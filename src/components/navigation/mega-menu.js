@@ -182,17 +182,19 @@ export default function MegaMenu() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 hover:bg-[#cba442] text-gray-600 hover:text-white">
+              <div className="bg-gray-50 hover:bg-[#cba442]/25 cursor-pointer">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 py-4">
                   <div className="flex items-center gap-x-3">
-                    <h3 className="text-sm font-semibold leading-6">
+                    <h3 className="text-sm font-semibold leading-6 text-gray-900">
                       Bekijk onze agenda
                     </h3>
                     <p className="rounded-full bg-indigo-600/10 px-2.5 pt-1.5 text-xs font-semibold text-indigo-600 hidden">
                       New
                     </p>
                   </div>
-                  <p className="text-sm leading-6">Claim jouw avontuur nu</p>
+                  <p className="text-sm leading-6 text-gray-600">
+                    Claim jouw avontuur nu
+                  </p>
                 </div>
               </div>
             </PopoverPanel>
