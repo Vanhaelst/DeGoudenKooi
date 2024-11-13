@@ -30,8 +30,7 @@ const recentPosts = [
     date: "Mar 16, 2023",
     datetime: "2023-03-16",
     category: { title: "Marketing", href: "#" },
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
+    imageUrl: "/degoudenkooi.jpeg",
     description:
       "Bij een Escape Experience gaan we bij De Gouden Kooi net een stapje verder dan...",
   },
@@ -83,7 +82,7 @@ export default function MegaMenu() {
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
                   <div>
                     <h3 className="text-sm font-medium leading-6 text-gray-500">
-                      Escape Rooms
+                      Escape Games
                     </h3>
                     <div className="mt-6 flow-root">
                       <div className="-my-2">
