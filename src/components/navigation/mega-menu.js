@@ -25,7 +25,7 @@ const recentPosts = [
   {
     id: 1,
     title:
-      "Wat is het verschil tussen een escape room en een escape experience?",
+      "Wat is het verschil tussen een Escape Room en een Escape Experience?",
     href: "#",
     date: "Mar 16, 2023",
     datetime: "2023-03-16",
@@ -33,7 +33,7 @@ const recentPosts = [
     imageUrl:
       "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
     description:
-      "Bij een escape experience gaan we bij De Gouden Kooi net een stapje verder dan...",
+      "Bij een Escape Experience gaan we bij De Gouden Kooi net een stapje verder dan...",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function MegaMenu() {
             <div className="bg-white py-5">
               <div className="mx-auto max-w-7xl">
                 <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                  Escape rooms
+                  Games & Experiences
                   <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
                 </PopoverButton>
               </div>
@@ -130,7 +130,7 @@ export default function MegaMenu() {
                   </div>
                   <div>
                     <h3 className="text-sm font-medium leading-6 text-gray-500">
-                      Escape Walk
+                      Escape Walk Experience
                     </h3>
                     <div className="mt-6 flow-root">
                       <div className="-my-2">
@@ -193,7 +193,7 @@ export default function MegaMenu() {
                     </p>
                   </div>
                   <p className="text-sm leading-6 text-gray-600">
-                    Plan en boek jouw experience online.
+                    Claim jouw avontuur nu
                   </p>
                 </div>
               </div>

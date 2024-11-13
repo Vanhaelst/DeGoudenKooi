@@ -14,7 +14,7 @@ export const topNavigation = [
     href: "LINKS.HOME",
   },
   {
-    name: "Faq",
+    name: "FAQ",
     href: "LINKS.ABOUT",
   },
 ];
