@@ -10,17 +10,17 @@ export const BentoCard = ({
   if (backgroundImage) {
     return (
       <div
-        className="overflow-hidden bg-cover bg-center w-full ring-1 ring-white/15 rounded-2xl flex flex-col justify-between"
+        className="overflow-hidden bg-cover bg-center w-full ring-1 ring-white/15 rounded-2xl flex flex-col justify-between bg-secondary-500"
         style={{ backgroundImage: `url("${backgroundImage.url}")` }}
       >
         <div className="p-7">
           {title && (
-            <Text as="h5" level="h4" classnames="text-white">
+            <Text as="h5" level="lg" classnames="text-white">
               {title}
             </Text>
           )}
           {description && (
-            <Text as="p" level="p" classnames="text-white">
+            <Text as="p" level="sm" classnames="text-white">
               {description}
             </Text>
           )}
@@ -36,12 +36,12 @@ export const BentoCard = ({
     <div className="overflow-hidden bg-white w-full flex flex-col justify-between ring-1 ring-white/15 rounded-2xl">
       <div className="p-7">
         {title && (
-          <Text as="h5" level="h4" classnames="text-secondary-500">
+          <Text as="h5" level="lg" classnames="text-secondary-500">
             {title}
           </Text>
         )}
         {description && (
-          <Text as="p" level="p" classnames="text-primary-700">
+          <Text as="p" level="sm" classnames="text-primary-700">
             {description}
           </Text>
         )}

@@ -1,0 +1,73 @@
+/*
+ * ------------------
+ * Slick slider
+ * ------------------
+*/
+
+/* Dots */
+
+.slick-slider .slick-dots li{
+    margin: 0;
+    height: 2px;
+    overflow: hidden;
+}
+
+.slick-slider .slick-dots li button {
+    width: 16px;
+    height: 2px;
+    background-color: theme('colors.gray.300');
+    padding: 0;
+    margin: 0;
+    transition: all 0.5s;
+}
+
+.slick-slider .slick-dots li button:before {
+    font-family: serif;
+    transition: all 0.5s;
+    width: 16px;
+    height: 2px;
+}
+
+.slick-slider .slick-dots li.slick-active button {
+    transition: all 0.5s;
+    transition-delay: 0.25s;
+    background-color: theme('colors.primary.500');
+}
+
+.dots-inside .slick-dots{
+    bottom: 50px;
+    width: 100%
+}
+
+/* Arrows */
+
+.slick-arrow {
+    z-index: 1;
+    bottom: -70px;
+    top: auto;
+    background-color: theme('colors.primary.500');
+}
+
+.slick-next {
+    right: calc(50% - 50px);
+}
+.slick-prev {
+    left: calc(50% - 50px);
+}
+
+
+/* Equal height */
+
+.slide,
+.slick-slide > div {
+    height: 100%;
+}
+
+.slick-track {
+    display: flex !important;
+}
+
+.slick-slide {
+    height: inherit !important;
+}
+

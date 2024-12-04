@@ -1,16 +1,16 @@
 //          <div className="container px-4  ">
 
-export const Container = ({ size = "md", classnames, children }) => {
+export const Container = ({ size, classnames, children }) => {
   const getSize = () => {
     switch (size) {
       case "s":
-        return "container px-4 md:px-[4%] lg:px-[8%]";
+        return "container px-6 lg:px-8 max-w-xl lg:max-w-5xl";
       case "md":
         return "container px-4";
       case "lg":
-        return "px-4";
+        return "container px-6 lg:px-8";
       default:
-        return "";
+        return "container px-6 lg:px-8 max-w-2xl lg:max-w-7xl";
     }
   };
 
