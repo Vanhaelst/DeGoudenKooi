@@ -43,7 +43,7 @@ const callsToAction = [
   { name: "View all products", href: "#", icon: NewspaperIcon },
 ];
 
-export default function MegaMenu() {
+export const MegaMenu = () => {
   return (
     <header className="bg-white shadow">
       <nav
@@ -215,4 +215,4 @@ export default function MegaMenu() {
       </nav>
     </header>
   );
-}
+};

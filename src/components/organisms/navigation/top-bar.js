@@ -1,4 +1,4 @@
-import NavigationTopItem from "@/components/navigation/NavigationTopItem";
+import NavigationTopItem from "@/components/organisms/navigation/NavigationTopItem";
 
 export const topNavigation = [
   {
@@ -19,7 +19,7 @@ export const topNavigation = [
   },
 ];
 
-export default function TopBar() {
+export const TopBar = () => {
   return (
     <>
       <div className="bg-white z-50 w-full border-b text-black">
@@ -33,4 +33,4 @@ export default function TopBar() {
       </div>
     </>
   );
-}
+};
