@@ -1,4 +1,4 @@
-import { Text } from "@/components/atoms";
+import { RichText, Text } from "@/components/atoms";
 import Image from "next/image";
 import React from "react";
 
@@ -20,9 +20,7 @@ export const Feature = ({ title, description, icon }) => {
         )}
       </div>
       {description && (
-        <Text as="p" level="md" classnames="text-primary-700">
-          {description}
-        </Text>
+        <RichText text={description} classnames="text-primary-700" />
       )}
     </div>
   );

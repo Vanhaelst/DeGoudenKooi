@@ -23,9 +23,9 @@ export const Button = ({
       case "secondary-outline":
         return "border border-secondary-500 text-secondary-500 hover:bg-secondary-500 hover:text-white active:bg-secondary-700";
       case "white-outline":
-        return "border border-white text-white hover:border-primary-500 hover:text-primary-500";
+        return "border border-white text-white hover:bg-white hover:text-primary-500";
       case "white":
-        return "border bg-white text-accent-500 hover:bg-accent-500 hover:border-white hover:text-white active:bg-accent-700";
+        return "border bg-white text-secondary-500 hover:text-primary-500";
     }
   };
 
@@ -38,7 +38,7 @@ export const Button = ({
       case "primary-outline":
       case "secondary-outline":
       case "white":
-        return "font-semibold ";
+        return "font-semibold";
       default:
         return "";
     }

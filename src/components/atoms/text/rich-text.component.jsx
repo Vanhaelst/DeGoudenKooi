@@ -1,87 +1,115 @@
-"use client";
+import React from "react";
 import Link from "next/link";
+import parse, { attributesToProps, domToReact } from "html-react-parser";
 import { Text } from "./text.component";
 
-export const RichText = ({ content, classnames }) => {
-  return null;
-  /*(
-    <HygraphRichText
-      content={content}
-      renderers={{
-        h1: ({ children }) => (
-          <Text as="h1" level="4xl" classnames={classnames}>
-            {children}
+export const RichText = ({ text, classnames, level }) => {
+  const options = {
+    replace({ attribs, children, name }) {
+      if (name === "h1") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level="h1" classnames={classnames}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        h2: ({ children }) => (
-          <Text as="h2" level="3xl" classnames={classnames}>
-            {children}
+        );
+      }
+      if (name === "h2") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level="h2" classnames={classnames}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        h3: ({ children }) => (
-          <Text as="h3" level="2xl" classnames={classnames}>
-            {children}
+        );
+      }
+      if (name === "h3") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level="h3" classnames={classnames}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        h4: ({ children }) => (
-          <Text as="h4" level="xl" classnames={classnames}>
-            {children}
+        );
+      }
+      if (name === "h4") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level="h4" classnames={classnames}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        h5: ({ children }) => (
-          <Text as="h5" level="lg" classnames={classnames}>
-            {children}
+        );
+      }
+      if (name === "h5") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level="h5" classnames={classnames}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        h6: ({ children }) => (
-          <Text as="h6" level="md" classnames={classnames}>
-            {children}
+        );
+      }
+      if (name === "h6") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level="h6" classnames={`${classnames} text-xl`}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        p: ({ children }) => (
-          <Text as="p" level="md" classnames={classnames}>
-            {children}
+        );
+      }
+      if (name === "p") {
+        const props = attributesToProps(attribs);
+        return (
+          <Text {...props} level={level} classnames={`${classnames}`}>
+            {domToReact(children, options)}
           </Text>
-        ),
-        li: ({ children }) => (
-          <li>
-            <Text as="span" level="md" className={classnames}>
-              {children}
-            </Text>
-          </li>
-        ),
-        ul: ({ children }) => (
-          <ul className={`list-outside ml-5 mt-3 list-disc ${classnames}`}>
-            {children}
-          </ul>
-        ),
-        ol: ({ children }) => (
-          <ol className={`list-decimal list-outside ml-5 mt-3 ${classnames}`}>
-            {children}
-          </ol>
-        ),
-        a: ({ children, openInNewTab, href, rel, ...rest }) => {
-          if (href?.match(/^https?:\/\/|^\/\//i)) {
-            return (
-              <a
-                href={href}
-                className="hover:underline"
-                target={openInNewTab ? "_blank" : "_self"}
-                rel={rel || "noopener noreferrer"}
-                {...rest}
-              >
-                {children}
-              </a>
-            );
-          }
+        );
+      }
 
-          return (
-            <Link href={href} classnames="hover:underline">
-              {children}
-            </Link>
-          );
-        },
-      }}
-    />
-  ); */
+      if (name === "strong") {
+        return (
+          <span className="font-bold">{domToReact(children, options)}</span>
+        );
+      }
+
+      if (name === "ul") {
+        return (
+          <ul
+            role="list"
+            className={`${classnames} mt-8 space-y-3 list-disc font-barlow text-lg md:text-2xl font-thin`}
+          >
+            {domToReact(children, options)}
+          </ul>
+        );
+      }
+
+      if (name === "ol") {
+        return (
+          <ol
+            role="list"
+            className={`${classnames} mt-8 space-y-3 list-decimal font-barlow text-lg md:text-2xl font-thin`}
+          >
+            {domToReact(children, options)}
+          </ol>
+        );
+      }
+
+      if (name === "li") {
+        return (
+          <li className="gap-x-3 ml-5">
+            <Text level={level}>{domToReact(children, options)}</Text>
+          </li>
+        );
+      }
+
+      if (name === "a") {
+        return (
+          <Link href={attribs.href} target="_blank">
+            <span className="relative underline decoration-accent-500">
+              {domToReact(children, options)}
+            </span>
+          </Link>
+        );
+      }
+    },
+  };
+
+  return parse(text, options);
 };

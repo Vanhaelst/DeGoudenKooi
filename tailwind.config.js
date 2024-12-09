@@ -16,9 +16,10 @@ module.exports = {
         },
         secondary: {
           500: "#453408",
+          700: "#453408",
         },
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

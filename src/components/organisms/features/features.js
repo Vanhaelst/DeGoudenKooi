@@ -1,4 +1,4 @@
-import { Container, Text } from "@/components/atoms";
+import { Container, RichText, Text } from "@/components/atoms";
 import Image from "next/image";
 import React from "react";
 import { Feature } from "@/components/molecules";
@@ -21,9 +21,10 @@ export const Features = ({ title, description, features }) => {
             </Text>
           )}
           {description && (
-            <Text as="p" level="md" classnames="text-primary-700">
-              {description}
-            </Text>
+            <RichText
+              text={description}
+              classnames="text-primary-700 text-center"
+            />
           )}
         </div>
       </Container>

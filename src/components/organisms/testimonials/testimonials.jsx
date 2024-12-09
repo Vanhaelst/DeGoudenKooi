@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import useMeasure from "react-use-measure";
-import { Container, Text } from "@/components/atoms";
+import { Container, RichText, Text } from "@/components/atoms";
 import Image from "next/image";
 
 function TestimonialCard({
@@ -145,9 +145,7 @@ export function Testimonials({ title, description, testimonials }) {
             </Text>
           )}
           {description && (
-            <Text as="p" level="md" classnames="text-primary-700">
-              {description}
-            </Text>
+            <RichText text={description} classnames="text-primary-700" />
           )}
         </div>
       </Container>

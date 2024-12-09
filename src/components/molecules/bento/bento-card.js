@@ -1,17 +1,18 @@
-import { Button, Container, Text } from "@/components/atoms";
+import { Button, RichText, Text } from "@/components/atoms";
 
 export const BentoCard = ({
   title,
   description,
-  button,
+  buttons,
   image,
-  backgroundImage,
+  isBackgroundAsset,
 }) => {
-  if (backgroundImage) {
+  console.log(buttons);
+  if (isBackgroundAsset) {
     return (
       <div
         className="overflow-hidden bg-cover bg-center w-full ring-1 ring-white/15 rounded-2xl flex flex-col justify-between bg-secondary-500"
-        style={{ backgroundImage: `url("${backgroundImage.url}")` }}
+        style={{ backgroundImage: `url("${image.url}")` }}
       >
         <div className="p-7">
           {title && (
@@ -20,13 +21,14 @@ export const BentoCard = ({
             </Text>
           )}
           {description && (
-            <Text as="p" level="sm" classnames="text-white">
-              {description}
-            </Text>
+            <RichText text={description} classnames="text-white" />
           )}
         </div>
         <div className="p-7">
-          {button && <Button key={button.href} {...button} classnames="mt-4" />}
+          {buttons &&
+            buttons.map((button) => (
+              <Button key={button.href} {...button} classnames="mt-4" />
+            ))}
         </div>
       </div>
     );
@@ -41,11 +43,12 @@ export const BentoCard = ({
           </Text>
         )}
         {description && (
-          <Text as="p" level="sm" classnames="text-primary-700">
-            {description}
-          </Text>
+          <RichText text={description} classnames="text-primary-700" />
         )}
-        {button && <Button key={button.href} {...button} classnames="mt-4" />}
+        {buttons &&
+          buttons.map((button) => (
+            <Button key={button.href} {...button} classnames="mt-4" />
+          ))}
       </div>
       {image && (
         <img

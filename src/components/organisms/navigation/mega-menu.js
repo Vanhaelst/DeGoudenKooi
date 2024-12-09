@@ -6,6 +6,7 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const rooms = [
   { name: "De schat van Kalakmul", href: "#", icon: NewspaperIcon },
@@ -53,11 +54,12 @@ export const MegaMenu = () => {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="https://degoudenkooi.be/assets/uploads/degoudenkooi_logo.png"
+            <Image
+              width={121}
+              height={18}
+              src="/logo.png"
               className="h-8 w-auto"
-            />
+            />{" "}
           </a>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12 items-center">

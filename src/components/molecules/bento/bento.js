@@ -1,8 +1,13 @@
-import { Text } from "@/components/atoms";
+import { RichText, Text } from "@/components/atoms";
 import { BentoCard } from "@/components/molecules/bento/bento-card";
 import Image from "next/image";
 
-export const Bento = () => {
+export const Bento = ({ title, description, games }) => {
+  console.log("games", games);
+
+  const room = games?.[0];
+  const experience = games?.[1];
+  const walk = games?.[2];
   return (
     <div>
       <Image
@@ -13,58 +18,34 @@ export const Bento = () => {
         height={45}
       />
       <Text as="h5" level="3xl" classnames="text-secondary-500">
-        Ontdek alle Experiences
+        {title}
       </Text>
-      <Text as="p" level="p" classnames="text-primary-700">
-        Ons ruime aanbod aan escape experiences biedt voor ieder wat wils.
-      </Text>
+      <RichText text={description} classnames="text-primary-700" />
+
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-12 lg:grid-rows-2">
         <div className="flex p-px lg:col-span-5">
           <BentoCard
-            title="Ontdek alle escape games"
-            description="Duik in spannende uitdagingen"
-            image={{
-              alt: "",
-              url: "",
-            }}
-            button={{
-              href: "#",
-              variant: "primary-outline",
-              callToAction: "Ontdek meer",
-              size: "small",
-            }}
+            title={room?.title}
+            description={room?.description}
+            image={room?.image?.[0]}
+            buttons={room?.buttons}
           />
         </div>
         <div className="flex p-px lg:col-span-7">
           <BentoCard
-            title="Ontdek alle escape experiences"
-            description="Duik in spannende uitdagingen"
-            image={{
-              alt: "",
-              url: "",
-            }}
-            button={{
-              href: "#",
-              variant: "primary-outline",
-              callToAction: "Ontdek meer",
-              size: "small",
-            }}
+            title={experience?.title}
+            description={experience?.description}
+            image={experience?.image?.[0]}
+            buttons={experience?.buttons}
           />
         </div>
         <div className="flex p-px lg:col-span-12">
           <BentoCard
-            title="Ontdek alle escape walk experiences"
-            description="Brengt de spanning van een escape room naar een avontuurlijke omgeving."
-            backgroundImage={{
-              alt: "",
-              url: "",
-            }}
-            button={{
-              href: "#",
-              variant: "white-outline",
-              callToAction: "Ontdek meer",
-              size: "small",
-            }}
+            title={walk?.title}
+            description={walk?.description}
+            image={walk?.image?.[0]}
+            buttons={walk?.buttons}
+            isBackgroundAsset={walk?.isBackgroundAsset}
           />
         </div>
       </div>

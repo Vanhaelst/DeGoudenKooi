@@ -1,11 +1,18 @@
-import { Hero } from "@/components/organisms/hero/hero";
-import { Container, Text } from "@/components/atoms";
-import { MegaMenu, TopBar, Features } from "@/components/organisms";
-import { Slider } from "@/components/molecules";
-import { Bento } from "@/components/molecules/bento/bento";
-import Image from "next/image";
 import React from "react";
-import { Testimonials } from "@/components/organisms/testimonials/testimonials";
+import Image from "next/image";
+import { Container, RichText, Text } from "@/components/atoms";
+import { Cta, Slider, Bento } from "@/components/molecules";
+import {
+  Hero,
+  Faq,
+  Footer,
+  Testimonials,
+  MegaMenu,
+  TopBar,
+  Features,
+} from "@/components/organisms";
+import { HomeQuery } from "@/queries/sections/home";
+import { fetchData } from "@/utils/fetchData";
 
 const reviews = [
   {
@@ -106,55 +113,85 @@ const features = [
     description: "Duizenden beleefden al onze onvergetelijke avonturen.",
   },
 ];
+const faq = [
+  { title: "Q1", description: "A1" },
+  { title: "Q2", description: "A2" },
+  { title: "Q3", description: "A3" },
+  { title: "Q4", description: "A4" },
+  { title: "Q5", description: "A5" },
+  { title: "Q6", description: "A6" },
+  { title: "Q7", description: "A7" },
+  { title: "Q8", description: "A8" },
+];
+const cta = {
+  title: "Ervaar De Meest Bekroonde Escape Experiences In Mechelen",
+  pullUp: true,
+  buttons: [
+    { href: "#", variant: "white", callToAction: "Boek nu" },
+    {
+      href: "#",
+      variant: "white-outline",
+      callToAction: "Secondary CTA",
+    },
+  ],
+  backgroundImage: "/bird.png",
+};
 
-export default function Home() {
+async function getData() {
+  return fetchData(HomeQuery());
+}
+
+export default async function Home() {
+  const { page } = await getData();
+
+  const {
+    heroTitle,
+    heroType,
+    heroButtons,
+    heroImage,
+    awardsStatus,
+
+    bentoTitle,
+    bentoDescription,
+    games,
+
+    awardsTitle,
+    awardsDescription,
+
+    featuresTitle,
+    featuresDescription,
+    features,
+
+    gamesTitle,
+    gamesDescription,
+
+    faqTitle,
+    faqDescription,
+  } = page?.[0] || {};
+
+  // console.log(page);
   return (
     <div>
       <TopBar />
       <MegaMenu />
 
       <Hero
-        type="horizontal"
-        title="Ervaar De Meest Bekroonde Escape Experiences In Mechelen"
-        buttons={[
-          { href: "#", variant: "secondary", callToAction: "Boek nu" },
-          {
-            href: "#",
-            variant: "secondary-outline",
-            callToAction: "Secondary CTA",
-          },
-        ]}
-        reviews={reviews}
+        type={heroType}
+        title={heroTitle}
+        buttons={heroButtons}
+        image={heroImage[0]}
+        // reviews={reviews}
+        showAwards={awardsStatus}
+        awards={awards}
       />
-
-      <section>
-        <Container classnames="py-20">
-          <Slider
-            settings={{
-              slidesToShow: 8,
-              speed: 9000,
-              autoplay: true,
-              infinite: true,
-            }}
-          >
-            {awards.map(({ alt, url, width, height }) => (
-              <div key={url} className="px-9">
-                <Image
-                  src={url}
-                  alt={alt}
-                  width={width}
-                  height={height}
-                  className="w-36 h-36 object-contain"
-                />
-              </div>
-            ))}
-          </Slider>
-        </Container>
-      </section>
 
       <section className="bg-[#F7F6F2]">
         <Container classnames="py-24 sm:py-32">
-          <Bento />
+          <Bento
+            title={bentoTitle}
+            description={bentoDescription}
+            games={games}
+          />
         </Container>
       </section>
 
@@ -205,11 +242,12 @@ export default function Home() {
             />
           </div>
           <Text as="h5" level="3xl" classnames="text-secondary-500 text-center">
-            Onze awards
+            {awardsTitle}
           </Text>
-          <Text as="p" level="p" classnames="text-primary-700 text-center">
-            We scoorde al reeds 50+ unieke awards!{" "}
-          </Text>
+          <RichText
+            text={awardsDescription}
+            classnames="text-primary-700 text-center"
+          />
         </Container>
 
         <div className="mb-24">
@@ -217,11 +255,27 @@ export default function Home() {
             settings={{
               arrows: true,
               slidesToShow: 5,
-              autoplay: true,
+              autoplay: false,
               autoplaySpeed: 10000,
               speed: 5000,
               infinite: true,
               cssEase: "linear",
+              responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  },
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                  },
+                },
+              ],
             }}
           >
             {awards.map(({ alt, url, width, height }) => (
@@ -244,13 +298,27 @@ export default function Home() {
         </div>
       </section>
 
-      <Features title="Waarom kiezen voor de gouden kooi" features={features} />
+      <Features
+        title={featuresTitle}
+        description={featuresDescription}
+        features={features}
+      />
 
       <Testimonials
-        title="Kies een kamer naar keuze"
-        description="Bekroonde escape rooms met elk hun eigen verhaal"
+        title={gamesTitle}
+        description={gamesDescription}
         testimonials={games}
       />
+
+      <Faq title={faqTitle} description={faqDescription} faq={faq} />
+
+      <section className="bg-secondary-700">
+        <Container classnames="">
+          <Cta {...cta} />
+        </Container>
+      </section>
+
+      <Footer />
     </div>
   );
 }
