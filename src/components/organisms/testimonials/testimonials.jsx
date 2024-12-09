@@ -13,10 +13,10 @@ import { Container, RichText, Text } from "@/components/atoms";
 import Image from "next/image";
 
 function TestimonialCard({
-  name,
-  duration,
+  title,
+  time,
   players,
-  img,
+  featuredImage,
   children,
   bounds,
   scrollX,
@@ -66,7 +66,7 @@ function TestimonialCard({
       <div>
         <img
           alt=""
-          src={img}
+          src={featuredImage?.[0]?.url}
           className="inset-x-0 top-0 aspect-[37/40] w-full object-cover bg-primary-500  rounded-3xl"
         />
       </div>
@@ -74,7 +74,7 @@ function TestimonialCard({
       <figure className="relative py-5">
         <figcaption className="mt-6">
           <Text as="h4" level="xl" classnames="text-secondary-500">
-            Escape room name
+            {title}
           </Text>
           <div className="flex items-center mt-2">
             <div className="flex items-center mr-4">
@@ -86,7 +86,7 @@ function TestimonialCard({
                 height={16}
               />
               <Text as="span" level="xs" classnames="text-secondary-500">
-                {duration}
+                {time}
               </Text>
             </div>
 
@@ -110,6 +110,7 @@ function TestimonialCard({
 }
 
 export function Testimonials({ title, description, testimonials }) {
+  console.log(testimonials);
   let scrollRef = useRef(null);
   let { scrollX } = useScroll({ container: scrollRef });
   let [setReferenceWindowRef, bounds] = useMeasure();

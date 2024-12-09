@@ -15,6 +15,7 @@ import { HomeQuery } from "@/queries/sections/home";
 import { fetchData } from "@/utils/fetchData";
 import { faqQuery } from "@/queries/sections/faq";
 import { awardsQuery } from "@/queries/entries/awards";
+import { roomsQuery } from "@/queries/sections/rooms";
 
 const reviews = [
   {
@@ -38,18 +39,6 @@ const reviews = [
     avatar: { alt: "Jasper", src: "" },
   },
 ];
-const awards = [
-  { alt: "Award", url: "/award1.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award2.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award3.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award4.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award5.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award1.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award2.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award3.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award4.webp", width: 536, height: 307 },
-  { alt: "Award", url: "/award5.webp", width: 536, height: 307 },
-];
 const cta = {
   title: "Ervaar De Meest Bekroonde Escape Experiences In Mechelen",
   pullUp: true,
@@ -67,17 +56,24 @@ const cta = {
 async function getData() {
   return fetchData(HomeQuery());
 }
+
 async function getFaq() {
   return fetchData(faqQuery({ categories: ["featured"] }));
 }
+
 async function getAwards() {
   return fetchData(awardsQuery({ klasse: "" }));
+}
+
+async function getRooms() {
+  return fetchData(roomsQuery({ type: "" }));
 }
 
 export default async function Home() {
   const { page } = await getData();
   const { faq } = await getFaq();
   const { awards } = await getAwards();
+  const { rooms } = await getRooms();
 
   const {
     heroTitle,
@@ -244,7 +240,7 @@ export default async function Home() {
       <Testimonials
         title={gamesTitle}
         description={gamesDescription}
-        testimonials={games}
+        testimonials={rooms}
       />
 
       <Faq title={faqTitle} description={faqDescription} faq={faq} />
