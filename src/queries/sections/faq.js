@@ -1,9 +1,12 @@
-export const faqQuery = ({ page = "", permissions = [] }) => `
-  faqEntries {
-    ... on faq_Entry {
-      title
-      categories
-      description
+export const faqQuery = ({ categories }) => `
+  query MyQuery {
+      faq: faqEntries(categories: "${categories}") {
+        ... on faq_Entry {
+          title
+          description
+          categories
+        }
+      }
     }
-  }
+
 `;

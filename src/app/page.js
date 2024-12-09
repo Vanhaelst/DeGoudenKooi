@@ -13,6 +13,8 @@ import {
 } from "@/components/organisms";
 import { HomeQuery } from "@/queries/sections/home";
 import { fetchData } from "@/utils/fetchData";
+import { faqQuery } from "@/queries/sections/faq";
+import { awardsQuery } from "@/queries/entries/awards";
 
 const reviews = [
   {
@@ -48,81 +50,6 @@ const awards = [
   { alt: "Award", url: "/award4.webp", width: 536, height: 307 },
   { alt: "Award", url: "/award5.webp", width: 536, height: 307 },
 ];
-const games = [
-  {
-    img: "/testimonials/tina-yards.jpg",
-    award: "/testimonials/tina-yards.jpg",
-    duration: "90 min",
-    players: "4 - 8",
-  },
-  {
-    img: "/testimonials/conor-neville.jpg",
-    award: "/testimonials/conor-neville.jpg",
-    duration: "90 min",
-    players: "4 - 8",
-  },
-  {
-    img: "/testimonials/amy-chase.jpg",
-    duration: "90 min",
-    players: "4 - 8",
-  },
-  {
-    img: "/testimonials/veronica-winton.jpg",
-    award: "/testimonials/veronica-winton.jpg",
-    duration: "90 min",
-    players: "4 - 8",
-  },
-  {
-    img: "/testimonials/dillon-lenora.jpg",
-    award: "/testimonials/dillon-lenora.jpg",
-    duration: "90 min",
-    players: "4 - 8",
-  },
-  {
-    img: "/testimonials/harriet-arron.jpg",
-    award: "/testimonials/harriet-arron.jpg",
-    duration: "90 min",
-    players: "4 - 8",
-  },
-];
-const features = [
-  {
-    title: "Award winning",
-    description:
-      "Nationaal en internationaal geprezen, dé top escape rooms van België.",
-  },
-  {
-    title: "Unieke angepaste planner",
-    description: "Plan je bezoek eenvoudig en zonder stress.",
-  },
-  {
-    title: "Vertrouwd door 200k+ spelers",
-    description: "Duizenden beleefden al onze onvergetelijke avonturen.",
-  },
-  {
-    title: "Award winning",
-    description:
-      "Nationaal en internationaal geprezen, dé top escape rooms van België.",
-  },
-  {
-    title: "Unieke angepaste planner",
-    description: "Plan je bezoek eenvoudig en zonder stress.",
-  },
-  {
-    title: "Vertrouwd door 200k+ spelers",
-    description: "Duizenden beleefden al onze onvergetelijke avonturen.",
-  },
-];
-const faq = [
-  { title: "Q1", description: "A1" },
-  { title: "Q2", description: "A2" },
-  { title: "Q3", description: "A3" },
-  { title: "Q4", description: "A4" },
-  { title: "Q5", description: "A5" },
-  { title: "Q6", description: "A6" },
-  { title: "Q7", description: "A7" },
-  { title: "Q8", description: "A8" },
-];
 const cta = {
   title: "Ervaar De Meest Bekroonde Escape Experiences In Mechelen",
   pullUp: true,
@@ -140,9 +67,17 @@ const cta = {
 async function getData() {
   return fetchData(HomeQuery());
 }
+async function getFaq() {
+  return fetchData(faqQuery({ categories: ["featured"] }));
+}
+async function getAwards() {
+  return fetchData(awardsQuery({ klasse: "" }));
+}
 
 export default async function Home() {
   const { page } = await getData();
+  const { faq } = await getFaq();
+  const { awards } = await getAwards();
 
   const {
     heroTitle,
@@ -169,7 +104,6 @@ export default async function Home() {
     faqDescription,
   } = page?.[0] || {};
 
-  // console.log(page);
   return (
     <div>
       <TopBar />
@@ -278,22 +212,25 @@ export default async function Home() {
               ],
             }}
           >
-            {awards.map(({ alt, url, width, height }) => (
-              <div key={url} className="px-2">
-                <div
-                  key={url}
-                  className="px-6 py-2 bg-[#F7F6F2] flex justify-center items-center rounded-2xl"
-                >
-                  <Image
-                    src={url}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    className="w-36 h-36 object-contain"
-                  />
+            {awards?.map(({ image }) => {
+              const { alt, url, width, height } = image?.[0];
+              return (
+                <div key={url} className="px-2">
+                  <div
+                    key={url}
+                    className="px-6 py-2 bg-[#F7F6F2] flex justify-center items-center rounded-2xl"
+                  >
+                    <Image
+                      src={url}
+                      alt={alt}
+                      width={width}
+                      height={height}
+                      className="w-36 h-36 object-contain"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </Slider>
         </div>
       </section>

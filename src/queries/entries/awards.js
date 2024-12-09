@@ -1,11 +1,13 @@
+import { imageQuery } from "@/queries/entries/image";
+
 export const awardsQuery = ({ klasse }) => `
-  awardsEntries {
-    ...on award_Entry {
-    title
-    awardimage {
-      url
-    }
-    class
-    }
-  }            
+    query MyQuery {
+        awards: awardsEntries {
+            ...on award_Entry {
+            title
+            image: awardimage ${imageQuery}
+            class
+            }
+          }          
+  }  
 `;

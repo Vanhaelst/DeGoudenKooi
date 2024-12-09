@@ -3,8 +3,6 @@ import { BentoCard } from "@/components/molecules/bento/bento-card";
 import Image from "next/image";
 
 export const Bento = ({ title, description, games }) => {
-  console.log("games", games);
-
   const room = games?.[0];
   const experience = games?.[1];
   const walk = games?.[2];

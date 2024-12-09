@@ -1,5 +1,5 @@
-import { Text } from "@/components/atoms";
 import React from "react";
+import { RichText, Text } from "@/components/atoms";
 
 export const AccordionItem = ({ title, description }) => {
   return (
@@ -11,9 +11,7 @@ export const AccordionItem = ({ title, description }) => {
         </Text>
       </div>
       <div className="collapse-content">
-        <Text as="p" level="md" classnames="text-primary-700">
-          {description}
-        </Text>
+        <RichText text={description} level="md" classnames="text-primary-700" />
       </div>
     </div>
   );

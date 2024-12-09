@@ -7,7 +7,6 @@ export const BentoCard = ({
   image,
   isBackgroundAsset,
 }) => {
-  console.log(buttons);
   if (isBackgroundAsset) {
     return (
       <div

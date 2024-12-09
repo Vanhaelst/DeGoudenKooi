@@ -73,17 +73,20 @@ export const Hero = ({
         {awards?.length > 0 && showAwards && (
           <Container classnames="py-10 xl:py-20">
             <Slider settings={settings}>
-              {awards.map(({ alt, url, width, height }) => (
-                <div key={url} className="px-9">
-                  <Image
-                    src={url}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    className="w-24 lg:w-36 lg:h-36 object-contain"
-                  />
-                </div>
-              ))}
+              {awards?.map(({ image }) => {
+                const { alt, url, width, height } = image?.[0];
+                return (
+                  <div key={url} className="px-9">
+                    <Image
+                      src={url}
+                      alt={alt}
+                      width={width}
+                      height={height}
+                      className="w-24 lg:w-36 lg:h-36 object-contain"
+                    />
+                  </div>
+                );
+              })}
             </Slider>
           </Container>
         )}
@@ -158,17 +161,20 @@ export const Hero = ({
       {awards?.length > 0 && showAwards && (
         <Container classnames="py-10 xl:py-20">
           <Slider settings={settings}>
-            {awards.map(({ alt, url, width, height }) => (
-              <div key={url} className="px-9">
-                <Image
-                  src={url}
-                  alt={alt}
-                  width={width}
-                  height={height}
-                  className="w-24 lg:w-36 lg:h-36 object-contain"
-                />
-              </div>
-            ))}
+            {awards?.map(({ image }) => {
+              const { alt, url, width, height } = image?.[0];
+              return (
+                <div key={url} className="px-9">
+                  <Image
+                    src={url}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    className="w-24 lg:w-36 lg:h-36 object-contain"
+                  />
+                </div>
+              );
+            })}
           </Slider>
         </Container>
       )}
