@@ -7,10 +7,18 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import useMeasure from "react-use-measure";
 import { Container, RichText, Text } from "@/components/atoms";
 import Image from "next/image";
+import { fetchData } from "@/utils/fetchData";
+import { roomsQuery } from "@/queries/sections/rooms";
 
 function TestimonialCard({
   title,
@@ -61,7 +69,7 @@ function TestimonialCard({
       ref={ref}
       style={{ opacity }}
       {...props}
-      className="relative flex w-72 shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-end overflow-hidden sm:w-96"
+      className="relative flex w-72 shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-between overflow-hidden sm:w-96"
     >
       <div>
         <img
@@ -71,8 +79,8 @@ function TestimonialCard({
         />
       </div>
 
-      <figure className="relative py-5">
-        <figcaption className="mt-6">
+      <figure className="relative py-5 h-full">
+        <figcaption className="mt-6 h-full flex flex-col justify-between">
           <Text as="h4" level="xl" classnames="text-secondary-500">
             {title}
           </Text>
@@ -109,12 +117,16 @@ function TestimonialCard({
   );
 }
 
-export function Testimonials({ title, description, testimonials }) {
-  console.log(testimonials);
+export function Testimonials({ title, description }) {
   let scrollRef = useRef(null);
   let { scrollX } = useScroll({ container: scrollRef });
   let [setReferenceWindowRef, bounds] = useMeasure();
   let [activeIndex, setActiveIndex] = useState(0);
+  let [cards, setCards] = useState(undefined);
+
+  useEffect(() => {
+    fetchData(roomsQuery({ type: "" })).then(({ rooms }) => setCards(rooms));
+  }, []);
 
   useMotionValueEvent(scrollX, "change", (x) => {
     setActiveIndex(Math.floor(x / scrollRef.current.children[0].clientWidth));
@@ -159,7 +171,7 @@ export function Testimonials({ title, description, testimonials }) {
           "[--scroll-padding:max(theme(spacing.6),calc((100vw-theme(maxWidth.2xl))/2))] lg:[--scroll-padding:max(theme(spacing.8),calc((100vw-theme(maxWidth.7xl))/2))]",
         ])}
       >
-        {testimonials.map((testimonial, testimonialIndex) => (
+        {cards?.map((testimonial, testimonialIndex) => (
           <TestimonialCard
             key={testimonialIndex}
             {...testimonial}

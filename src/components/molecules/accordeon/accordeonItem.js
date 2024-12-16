@@ -4,7 +4,7 @@ import { RichText, Text } from "@/components/atoms";
 export const AccordionItem = ({ title, description }) => {
   return (
     <div className="collapse collapse-plus">
-      <input type="radio" name="my-accordion-3" defaultChecked />
+      <input type="radio" name="my-accordion-3" />
       <div className="collapse-title">
         <Text as="p" level="md" classnames="font-semibold text-primary-700">
           {title}

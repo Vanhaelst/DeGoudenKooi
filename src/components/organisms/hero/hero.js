@@ -1,4 +1,4 @@
-import { Button, Container, Text } from "@/components/atoms";
+import { Button, Container, RichText, Text } from "@/components/atoms";
 import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
 import { Slider } from "@/components/molecules";
 import Image from "next/image";
@@ -8,8 +8,12 @@ const settings = {
   slidesToShow: 8,
   slidesToScroll: 1,
   speed: 9000,
+  autoplaySpeed: 0,
   autoplay: true,
   infinite: true,
+  arrows: false,
+  pauseOnHover: false,
+  cssEase: "linear",
   responsive: [
     {
       breakpoint: 1024,
@@ -34,6 +38,7 @@ const settings = {
 
 export const Hero = ({
   title,
+  description,
   buttons,
   image,
   reviews,
@@ -52,6 +57,9 @@ export const Hero = ({
             <Text as={"h1"} level="4xl" classnames="text-secondary-500">
               {title}
             </Text>
+            {description && (
+              <RichText text={description} classnames="text-primary-700" />
+            )}
             <div className="space-x-2 mt-6">
               {buttons?.map(({ href, variant, callToAction }) => {
                 return (
@@ -65,10 +73,12 @@ export const Hero = ({
               })}
             </div>
           </div>
-          <div
-            className="mt-12 bg-primary-500 rounded-2xl min-h-80 w-full bg-cover bg-center"
-            style={{ backgroundImage: `url('${image?.url}')` }}
-          />
+          {image?.[0] && (
+            <div
+              className="mt-12 bg-primary-500 rounded-2xl min-h-80 w-full bg-cover bg-center"
+              style={{ backgroundImage: `url('${image[0].url}')` }}
+            />
+          )}
         </Container>
         {awards?.length > 0 && showAwards && (
           <Container classnames="py-10 xl:py-20">
@@ -106,6 +116,9 @@ export const Hero = ({
           <Text as={"h1"} level="4xl" classnames="text-secondary-500">
             {title}
           </Text>
+          {description && (
+            <RichText text={description} classnames="text-primary-700" />
+          )}
           <div className="space-x-2 mt-6">
             {buttons?.map(({ href, variant, callToAction }) => {
               return (
@@ -152,10 +165,12 @@ export const Hero = ({
               })}
             </div>
           )}
-          <div
-            className="bg-primary-500 rounded-2xl h-full w-full bg-cover bg-center"
-            style={{ backgroundImage: `url('${image?.url}')` }}
-          />
+          {image?.[0] && (
+            <div
+              className="bg-primary-500 rounded-2xl h-full w-full bg-cover bg-center"
+              style={{ backgroundImage: `url('${image[0].url}')` }}
+            />
+          )}
         </div>
       </Container>
       {awards?.length > 0 && showAwards && (

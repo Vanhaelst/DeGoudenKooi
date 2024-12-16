@@ -7,6 +7,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
 
 const rooms = [
   { name: "De schat van Kalakmul", href: "#", icon: NewspaperIcon },
@@ -82,75 +83,9 @@ export const MegaMenu = () => {
             >
               <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-6 py-10 lg:grid-cols-4 lg:px-8">
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
-                  <div>
-                    <h3 className="text-sm font-medium leading-6 text-gray-500">
-                      Escape Games
-                    </h3>
-                    <div className="mt-6 flow-root">
-                      <div className="-my-2">
-                        {rooms.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className="flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
-                          >
-                            <item.icon
-                              aria-hidden="true"
-                              className="h-6 w-6 flex-none text-gray-400"
-                            />
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-medium leading-6 text-gray-500">
-                      Escape Experience
-                      <span className="ml-4 inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-800">
-                        Aanbevolen
-                      </span>
-                    </h3>
-                    <div className="mt-6 flow-root">
-                      <div className="-my-2">
-                        {experience.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className="flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
-                          >
-                            <item.icon
-                              aria-hidden="true"
-                              className="h-6 w-6 flex-none text-gray-400"
-                            />
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-medium leading-6 text-gray-500">
-                      Escape Walk Experience
-                    </h3>
-                    <div className="mt-6 flow-root">
-                      <div className="-my-2">
-                        {walk.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className="flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
-                          >
-                            <item.icon
-                              aria-hidden="true"
-                              className="h-6 w-6 flex-none text-gray-400"
-                            />
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                  <MegaMenuItem label="Gerechtstraat" subItems={rooms} />
+                  <MegaMenuItem label="Haverwerf" subItems={experience} />
+                  <MegaMenuItem label="Haverwerf (Wandeling)" subItems={walk} />
                 </div>
                 <div className="grid grid-cols-1 gap-10 sm:gap-8 ">
                   <h3 className="sr-only">Escape Games</h3>

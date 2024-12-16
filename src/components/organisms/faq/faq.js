@@ -1,21 +1,24 @@
-import { Container, RichText, Text } from "@/components/atoms";
 import React from "react";
-import { Accordion } from "@/components/molecules/accordeon/accordeon";
+import { fetchData } from "@/utils/fetchData";
+import { Container } from "@/components/atoms";
+import { Accordion, Title } from "@/components/molecules";
+import { faqQuery } from "@/queries/sections/faq";
 
-export const Faq = ({ title, description, faq }) => {
+async function getPage({ categories }) {
+  return fetchData(faqQuery({ categories }));
+}
+
+export const Faq = async ({ title, description, categories }) => {
+  const { faq } = (await getPage({ categories })) ?? undefined;
+
+  if (!faq) {
+    return null;
+  }
+
   return (
     <section className="bg-[#F7F6F2] py-24 sm:py-32">
       <Container classnames="">
-        <div className="md:max-w-[60%] lg:max-w-[40%]">
-          {title && (
-            <Text as="h5" level="3xl" classnames="text-secondary-500">
-              {title}
-            </Text>
-          )}
-          {description && (
-            <RichText text={description} classnames="text-primary-700" />
-          )}
-        </div>
+        <Title title={title} description={description} />
         <div className="divide-y">
           <Accordion items={faq} />
         </div>

@@ -5,9 +5,11 @@ export const roomsQuery = ({ type }) => `
       rooms: roomsEntries {
           ... on game_Entry {
               title
+              story
               featuredImage ${imageQuery}
               time
               players
+              slug
           }
       }
   }

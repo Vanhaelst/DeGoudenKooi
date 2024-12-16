@@ -1,13 +1,8 @@
-import { imageQuery } from "@/queries/entries/image";
-
-export const awardsQuery = ({ klasse }) => `
-    query MyQuery {
-        awards: awardsEntries {
-            ...on award_Entry {
-            title
-            image: awardimage ${imageQuery}
-            class
-            }
-          }          
-  }  
+export const awardsEntry = `
+    ... on awards_Entry {
+        typeHandle
+        title
+        description
+        grade: class
+    }
 `;

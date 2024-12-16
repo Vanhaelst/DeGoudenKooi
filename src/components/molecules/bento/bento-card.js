@@ -11,7 +11,7 @@ export const BentoCard = ({
     return (
       <div
         className="overflow-hidden bg-cover bg-center w-full ring-1 ring-white/15 rounded-2xl flex flex-col justify-between bg-secondary-500"
-        style={{ backgroundImage: `url("${image.url}")` }}
+        style={{ backgroundImage: `url("${image?.[0].url}")` }}
       >
         <div className="p-7">
           {title && (
@@ -52,7 +52,7 @@ export const BentoCard = ({
       {image && (
         <img
           alt=""
-          src={image.url}
+          src={image?.[0].url}
           className="h-80 w-full object-cover object-left bg-primary-500 rounded-2xl"
         />
       )}

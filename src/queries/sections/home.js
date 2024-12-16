@@ -6,6 +6,7 @@ export const HomeQuery = () => `
       page: homeEntries {
         ... on home_Entry {
           heroTitle
+          heroDescription
           heroImage: image ${imageQuery}
           heroType
           awardsStatus

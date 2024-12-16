@@ -29,7 +29,7 @@ export const Features = ({ title, description, features }) => {
         </div>
       </Container>
       <Container classnames="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {features.map((feature) => {
+        {features?.map((feature) => {
           return <Feature key={feature.title} {...feature} />;
         })}
       </Container>

@@ -8,7 +8,7 @@ import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 
 async function getPage() {
-  return fetchData(PageQuery({ page: "homeEntries" }));
+  return fetchData(PageQuery({ page: "gerechtstraatEntries" }));
 }
 
 export default async function Home() {

@@ -3,7 +3,11 @@ import Link from "next/link";
 import parse, { attributesToProps, domToReact } from "html-react-parser";
 import { Text } from "./text.component";
 
-export const RichText = ({ text, classnames, level }) => {
+export const RichText = ({ text = "", classnames, level }) => {
+  if (!text) {
+    return null;
+  }
+
   const options = {
     replace({ attribs, children, name }) {
       if (name === "h1") {
