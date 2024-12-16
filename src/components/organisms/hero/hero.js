@@ -3,6 +3,8 @@ import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
 import { Slider } from "@/components/molecules";
 import Image from "next/image";
 import React from "react";
+import { fetchData } from "@/utils/fetchData";
+import { awardsQuery } from "@/queries/sections/awards";
 
 const settings = {
   slidesToShow: 8,
@@ -36,16 +38,20 @@ const settings = {
   ],
 };
 
-export const Hero = ({
+async function getPage({ grade }) {
+  return fetchData(awardsQuery({ grade }));
+}
+
+export const Hero = async ({
   title,
   description,
   buttons,
   image,
   reviews,
   type,
-  awards,
   showAwards,
 }) => {
+  const { awards } = (await getPage({})) ?? undefined;
   const evenReviews = reviews?.filter((review, index) => index % 2 === 0);
   const oddReviews = reviews?.filter((review, index) => index % 2 === 1);
 

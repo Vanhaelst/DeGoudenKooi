@@ -1,9 +1,6 @@
 import React from "react";
 import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import { fetchData } from "@/utils/fetchData";
-import { faqQuery } from "@/queries/sections/faq";
-import { awardsQuery } from "@/queries/sections/awards";
-import { roomsQuery } from "@/queries/sections/rooms";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 
