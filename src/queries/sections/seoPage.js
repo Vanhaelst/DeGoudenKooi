@@ -4,7 +4,7 @@ import { imageQuery } from "@/queries/entries/image";
 export const SeoQuery = ({ url }) => {
   return `
     query MyQuery {
-      page: seoPagesEntries(slug:"hotel-deals") {
+      page: seoPagesEntries(slug:"${url}") {
         ... on seoPage_Entry {
           title          
           heroTitle

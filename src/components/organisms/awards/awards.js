@@ -4,20 +4,27 @@ import { Container } from "@/components/atoms";
 import { Slider, Title } from "@/components/molecules";
 import { fetchData } from "@/utils/fetchData";
 import { awardsQuery } from "@/queries/sections/awards";
+import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
 async function getPage({ grade }) {
   return fetchData(awardsQuery({ grade }));
 }
 
-export const Awards = async ({ title, description, grade }) => {
+export const Awards = async ({
+  title,
+  description,
+  grade,
+  backgroundColor,
+}) => {
   const { awards } = (await getPage({ grade })) ?? undefined;
+  const bgColor = getBackgroundColor(backgroundColor);
 
   if (!awards) {
     return null;
   }
 
   return (
-    <section className="bg-white">
+    <section className={bgColor}>
       <Container classnames="py-24 sm:py-32 flex flex-col items-center">
         <Title title={title} description={description} />
       </Container>

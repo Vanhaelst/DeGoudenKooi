@@ -4,5 +4,6 @@ export const RoomSliderEntry = `
         title
         description
         gameType
+        backgroundColor
     }
 `;

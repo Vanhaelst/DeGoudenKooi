@@ -4,5 +4,6 @@ export const awardsEntry = `
         title
         description
         grade: class
+        backgroundColor
     }
 `;

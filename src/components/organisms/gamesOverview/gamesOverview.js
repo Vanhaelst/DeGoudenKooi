@@ -4,6 +4,7 @@ import { roomsQuery } from "@/queries/sections/rooms";
 import { Button, Container, RichText, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import Image from "next/image";
+import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
 async function getGames() {
   return fetchData(roomsQuery({ type: "" }));
@@ -14,15 +15,18 @@ export const GamesOverview = async ({
   description,
   gameType,
   gameLocation,
+  backgroundColor,
 }) => {
   const { rooms } = await getGames();
+
+  const bgColor = getBackgroundColor(backgroundColor);
 
   // console.log("rooms", rooms);
   // console.log(gameType, gameLocation);
 
   const location = gameLocation;
   return (
-    <section className="bg-[#F7F6F2] py-24 sm:py-32">
+    <section className={`${bgColor} py-24 sm:py-32`}>
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>

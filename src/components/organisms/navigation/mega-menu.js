@@ -8,20 +8,19 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
+import { CompanyData } from "@/data/companyData";
+import { fetchData } from "@/utils/fetchData";
+import { roomsQuery } from "@/queries/sections/rooms";
+import Link from "next/link";
+import { LINKS } from "@/enums/links";
 
-const rooms = [
-  { name: "De schat van Kalakmul", href: "#", icon: NewspaperIcon },
-  { name: "Cabin in the woods", href: "#", icon: NewspaperIcon },
-  { name: "De meesterdief van Mechelen", href: "#", icon: NewspaperIcon },
-  { name: "Lost in space", href: "#", icon: NewspaperIcon },
-];
 const experience = [
-  { name: "Het geheim van Sint-Rumoldus", href: "#", icon: NewspaperIcon },
-  { name: "De wraak van Han", href: "#", icon: NewspaperIcon },
+  { title: "Het geheim van Sint-Rumoldus", slug: "#", icon: NewspaperIcon },
+  { title: "De wraak van Han", slug: "#", icon: NewspaperIcon },
 ];
 
 const walk = [
-  { name: "DE NEKKER escape walk", href: "#", icon: NewspaperIcon },
+  { title: "DE NEKKER escape walk", slug: "#", icon: NewspaperIcon },
 ];
 const recentPosts = [
   {
@@ -38,14 +37,13 @@ const recentPosts = [
   },
 ];
 
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: NewspaperIcon },
-  { name: "Contact sales", href: "#", icon: NewspaperIcon },
-  { name: "View all products", href: "#", icon: NewspaperIcon },
-  { name: "View all products", href: "#", icon: NewspaperIcon },
-];
+async function getGames() {
+  return fetchData(roomsQuery({ type: "" }));
+}
 
-export const MegaMenu = () => {
+export const MegaMenu = async () => {
+  const { rooms } = await getGames();
+
   return (
     <header className="bg-white shadow">
       <nav
@@ -53,20 +51,23 @@ export const MegaMenu = () => {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <Link href={LINKS.HOME} className="-m-1.5 p-1.5">
+            <span className="sr-only">{CompanyData.name}</span>
             <Image
               width={121}
               height={18}
-              src="/logo.png"
+              src={CompanyData.logo}
               className="h-8 w-auto"
-            />{" "}
-          </a>
+            />
+          </Link>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12 items-center">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            href={LINKS.ABOUT}
+            className="cursor-pointer text-sm font-semibold leading-6 text-gray-900"
+          >
             Ons verhaal
-          </a>
+          </Link>
           <Popover className="isolate z-50">
             <div className="bg-white py-5">
               <div className="mx-auto max-w-7xl">
@@ -135,19 +136,27 @@ export const MegaMenu = () => {
               </div>
             </PopoverPanel>
           </Popover>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href={LINKS.TEAMBUILDING}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Teambuilding & Events
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href={LINKS.CONTACT}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Contact
           </a>
 
-          <button
-            type="button"
-            className="rounded-full bg-[#cba442] hover:bg-[#a5832d] px-3.5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
-            Reserveer nu
-          </button>
+          <Link href={LINKS.BOOK} className="cursor-pointer">
+            <button
+              type="button"
+              className="cursor-pointer rounded-full bg-[#cba442] hover:bg-[#a5832d] px-3.5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              Reserveer nu
+            </button>
+          </Link>
         </PopoverGroup>
       </nav>
     </header>

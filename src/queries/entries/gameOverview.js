@@ -5,5 +5,6 @@ export const gameOverviewEntry = `
         description
         gameType
         gameLocation
+        backgroundColor
     }
 `;

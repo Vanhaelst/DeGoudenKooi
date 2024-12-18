@@ -19,6 +19,7 @@ import { Container, RichText, Text } from "@/components/atoms";
 import Image from "next/image";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
+import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
 function TestimonialCard({
   title,
@@ -117,12 +118,14 @@ function TestimonialCard({
   );
 }
 
-export function Testimonials({ title, description }) {
+export function Testimonials({ title, description, backgroundColor }) {
   let scrollRef = useRef(null);
   let { scrollX } = useScroll({ container: scrollRef });
   let [setReferenceWindowRef, bounds] = useMeasure();
   let [activeIndex, setActiveIndex] = useState(0);
   let [cards, setCards] = useState(undefined);
+
+  const bgColor = getBackgroundColor(backgroundColor);
 
   useEffect(() => {
     fetchData(roomsQuery({ type: "" })).then(({ rooms }) => setCards(rooms));
@@ -139,7 +142,7 @@ export function Testimonials({ title, description }) {
   }
 
   return (
-    <div className="overflow-hidden py-32">
+    <div className={`overflow-hidden py-32 ${bgColor}`}>
       <Container classnames="mb-24">
         <div
           className="md:max-w-[60%] lg:max-w-[40%]"

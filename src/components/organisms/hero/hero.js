@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { fetchData } from "@/utils/fetchData";
 import { awardsQuery } from "@/queries/sections/awards";
+import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
 const settings = {
   slidesToShow: 8,
@@ -50,14 +51,17 @@ export const Hero = async ({
   reviews,
   type,
   showAwards,
+  backgroundColor,
 }) => {
   const { awards } = (await getPage({})) ?? undefined;
   const evenReviews = reviews?.filter((review, index) => index % 2 === 0);
   const oddReviews = reviews?.filter((review, index) => index % 2 === 1);
 
+  const bgColor = getBackgroundColor(backgroundColor);
+
   if (type === "vertical") {
     return (
-      <section>
+      <section className={bgColor}>
         <Container classnames="py-20">
           <div className="lg:max-w-[65%]">
             <Text as={"h1"} level="4xl" classnames="text-secondary-500">
@@ -116,7 +120,7 @@ export const Hero = async ({
    */
 
   return (
-    <section>
+    <section className={bgColor}>
       <Container classnames="py-20 grid grid-cols-1 lg:grid-cols-2">
         <div className="lg:max-w-[90%] pb-14 lg:py-28">
           <Text as={"h1"} level="4xl" classnames="text-secondary-500">

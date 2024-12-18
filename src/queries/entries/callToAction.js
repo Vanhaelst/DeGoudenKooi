@@ -7,5 +7,6 @@ export const callToActionEntry = `
         description
         buttons ${buttonsQuery}
         pullUp
+        backgroundColor
     }
 `;

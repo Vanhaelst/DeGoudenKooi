@@ -9,12 +9,10 @@ import {
 } from "@/components/organisms";
 import { Grid } from "@/components/organisms/grid/grid";
 import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
+import { Contents } from "@/components/organisms/content";
+import { ContentImage } from "@/components/organisms/content/content-image";
+import { Content } from "@/components/organisms/content/content";
 
-/* TODO:
- *  - ContentImage
- *  - Grid
- *  - gameOverview
- * */
 export const renderComponents = (data) => {
   const { typeHandle } = data ?? {};
 
@@ -29,14 +27,19 @@ export const renderComponents = (data) => {
       return <Faq key={data.id} {...data} />;
     case "callToAction":
       return <CallToAction key={data.id} {...data} />;
-    case "ContentImage":
-      return <Features key={data.id} {...data} />;
+    case "contents":
+      console.log("contents", data);
+      return <Contents key={data.id} {...data} />;
     case "roomSlider":
       return <Testimonials key={data.id} {...data} />;
     case "grid":
       return <Grid key={data.id} {...data} />;
     case "gamesOverview":
       return <GamesOverview key={data.id} {...data} />;
+    case "contentImage":
+      return <ContentImage key={data.id} {...data} />;
+    case "text":
+      return <Content key={data.id} {...data} />;
     default:
       return null;
   }

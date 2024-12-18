@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Text } from "@/components/atoms";
 import Image from "next/image";
+import { CompanyData } from "@/data/companyData";
 
 const navigation = {
   navigation: [
@@ -102,7 +103,7 @@ export const Footer = () => {
               <Image
                 width={121}
                 height={18}
-                src="/logo.png"
+                src={CompanyData.logo}
                 className="h-6 w-auto"
               />
               <ul role="list" className="mt-6 space-y-2">

@@ -1,21 +1,22 @@
 import NavigationTopItem from "@/components/organisms/navigation/NavigationTopItem";
+import { LINKS } from "@/enums/links";
 
 export const topNavigation = [
   {
     name: "Awards",
-    href: "LINKS.HOME",
+    href: LINKS.AWARDS,
   },
   {
     name: "Nieuws",
-    href: "LINKS.ABOUT",
+    href: LINKS.NEWS,
   },
   {
     name: "Cadeaubon",
-    href: "LINKS.HOME",
+    href: LINKS.GIFTCARD,
   },
   {
     name: "FAQ",
-    href: "LINKS.ABOUT",
+    href: LINKS.FAQ,
   },
 ];
 

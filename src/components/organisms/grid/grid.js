@@ -1,10 +1,13 @@
 import { Container } from "@/components/atoms";
 import { Title } from "@/components/molecules/title/title";
 import { BentoCard } from "@/components/molecules/bento/bento-card";
+import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
-export const Grid = ({ title, description, gridItems }) => {
+export const Grid = ({ title, description, gridItems, backgroundColor }) => {
+  const bgColor = getBackgroundColor(backgroundColor);
+
   return (
-    <section className="bg-[#F7F6F2]">
+    <section className={bgColor}>
       <Container classnames="py-24 sm:py-32">
         <Title title={title} description={description} />
 

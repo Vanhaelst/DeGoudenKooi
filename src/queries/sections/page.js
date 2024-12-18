@@ -3,10 +3,10 @@ import { awardsEntry } from "@/queries/entries/awards";
 import { featuresEntry } from "@/queries/entries/features";
 import { faqEntry } from "@/queries/entries/faq";
 import { callToActionEntry } from "@/queries/entries/callToAction";
-import { contentImageEntry } from "@/queries/entries/contentImage";
 import { RoomSliderEntry } from "@/queries/entries/roomSlider";
 import { gridEntry } from "@/queries/entries/grid";
 import { gameOverviewEntry } from "@/queries/entries/gameOverview";
+import { contentEntry } from "@/queries/entries/content";
 
 export const PageQuery = ({ page }) => `
     query MyQuery {
@@ -19,7 +19,7 @@ export const PageQuery = ({ page }) => `
             ${featuresEntry}
             ${faqEntry}
             ${callToActionEntry}
-            ${contentImageEntry}
+            ${contentEntry}
             ${RoomSliderEntry}
             ${gridEntry}
             ${gameOverviewEntry}

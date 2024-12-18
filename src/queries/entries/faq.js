@@ -4,5 +4,6 @@ export const faqEntry = `
         title
         description
         categories
+        backgroundColor
     }
 `;

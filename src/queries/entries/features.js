@@ -5,6 +5,7 @@ export const featuresEntry = `
         typeHandle
         title
         description
+        backgroundColor
         features {
              ... on feature_Entry {
                  title
