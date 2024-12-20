@@ -5,6 +5,7 @@ export async function fetchData(graphql) {
     method: "post",
     body: graphql,
     cache: "no-store",
+    maxDuration: 25,
     headers: {
       "Content-Type": "application/graphql",
       Authorization: "Bearer JYZ6XcF_A15nBvbMC1SOiM14Zk-YxNE8",
