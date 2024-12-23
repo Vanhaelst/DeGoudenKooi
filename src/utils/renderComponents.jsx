@@ -28,7 +28,6 @@ export const renderComponents = (data) => {
     case "callToAction":
       return <CallToAction key={data.id} {...data} />;
     case "contents":
-      console.log("contents", data);
       return <Contents key={data.id} {...data} />;
     case "roomSlider":
       return <Testimonials key={data.id} {...data} />;

@@ -10,6 +10,11 @@ export const roomsQuery = ({ type }) => `
               time
               players
               slug
+              price2
+              price3
+              price4
+              price5
+              price6
           }
       }
   }

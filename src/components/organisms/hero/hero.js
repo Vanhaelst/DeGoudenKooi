@@ -58,6 +58,62 @@ export const Hero = async ({
   const oddReviews = reviews?.filter((review, index) => index % 2 === 1);
 
   const bgColor = getBackgroundColor(backgroundColor);
+  const player = "youtube";
+
+  if (type === "video") {
+    return (
+      <section className="hero relative flex h-[80vh] flex-col items-center justify-center bg-cover bg-center bg-no-repeat overflow-hidden">
+        <div className="video-wrapper">
+          {player === "vimeo" && (
+            <iframe
+              src={`https://player.vimeo.com/video/1005489409?h=ab6adab836&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&autopause=0&background=1`}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              className="video"
+              title="Intro video"
+            />
+          )}
+          {player === "youtube" && (
+            <iframe
+              width="568"
+              height="319"
+              src="https://www.youtube.com/embed/x8u0zqpG_qI?autoplay=1&mute=1&controls=0&loop=1"
+              title="Het geheim van Sint-Rumoldus (trailer) (De Gouden Kooi - Escape experience)"
+              frameBorder="0"
+              className="video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
+        </div>
+
+        <Container classnames="py-20">
+          <div className="lg:max-w-[65%]">
+            <Text as={"h1"} level="4xl" classnames="text-secondary-500">
+              {title}
+            </Text>
+            {description && (
+              <RichText text={description} classnames="text-primary-700" />
+            )}
+            <div className="space-x-2 mt-6">
+              {buttons?.map(({ href, variant, callToAction }) => {
+                return (
+                  <Button
+                    key={href}
+                    variant={variant}
+                    href={href}
+                    callToAction={callToAction}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+    );
+  }
 
   if (type === "vertical") {
     return (
@@ -85,7 +141,7 @@ export const Hero = async ({
           </div>
           {image?.[0] && (
             <div
-              className="mt-12 bg-primary-500 rounded-2xl min-h-80 w-full bg-cover bg-center"
+              className="mt-12 bg-primary-500 rounded-2xl min-h-80 w-full bg-cover bg-center shadow-xl"
               style={{ backgroundImage: `url('${image[0].url}')` }}
             />
           )}
@@ -177,7 +233,7 @@ export const Hero = async ({
           )}
           {image?.[0] && (
             <div
-              className="bg-primary-500 rounded-2xl h-full w-full bg-cover bg-center"
+              className="bg-primary-500 rounded-2xl h-full w-full bg-cover bg-center shadow-xl"
               style={{ backgroundImage: `url('${image[0].url}')` }}
             />
           )}

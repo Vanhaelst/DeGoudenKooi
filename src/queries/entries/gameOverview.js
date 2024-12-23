@@ -2,7 +2,7 @@ export const gameOverviewEntry = `
     ... on gamesOverview_Entry {
         typeHandle
         title
-        description
+        intro: description
         gameType
         gameLocation
         backgroundColor

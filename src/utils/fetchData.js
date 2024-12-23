@@ -8,7 +8,7 @@ export async function fetchData(graphql) {
     maxDuration: 25,
     headers: {
       "Content-Type": "application/graphql",
-      Authorization: "Bearer JYZ6XcF_A15nBvbMC1SOiM14Zk-YxNE8",
+      // Authorization: "Bearer JYZ6XcF_A15nBvbMC1SOiM14Zk-YxNE8",
     },
   });
 
@@ -18,6 +18,7 @@ export async function fetchData(graphql) {
 
   const json = await res.json();
 
+  console.log(json);
   if (json.errors) {
     console.error(json.errors);
     throw new Error("Failed to fetch API");

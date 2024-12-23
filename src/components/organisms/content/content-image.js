@@ -10,7 +10,7 @@ export const ContentImage = ({ title, description, buttons, image, order }) => {
       <Container classnames="mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className={`${contentLeft ? "order-1" : "order-2"}`}>
-            <Title title={title} description={description} />
+            <Title title={title} description={description} showIcon={false} />
             {buttons &&
               buttons.map((button) => (
                 <Button key={button.href} {...button} classnames="mt-4" />
