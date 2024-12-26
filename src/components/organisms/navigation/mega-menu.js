@@ -13,15 +13,9 @@ import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import Link from "next/link";
 import { LINKS } from "@/enums/links";
+import { LOCATIONS } from "@/enums/locations";
+import { GAMETYPE } from "@/enums/gameTypes";
 
-const experience = [
-  { title: "Het geheim van Sint-Rumoldus", slug: "#", icon: NewspaperIcon },
-  { title: "De wraak van Han", slug: "#", icon: NewspaperIcon },
-];
-
-const walk = [
-  { title: "DE NEKKER escape walk", slug: "#", icon: NewspaperIcon },
-];
 const recentPosts = [
   {
     id: 1,
@@ -38,14 +32,26 @@ const recentPosts = [
 ];
 
 async function getGames() {
-  return fetchData(roomsQuery({ type: "" }));
+  return fetchData(
+    roomsQuery({
+      type: `"${GAMETYPE.GAME}", "${GAMETYPE.EXPERIENCE}", "${GAMETYPE.WALK}"`,
+      location: `"${LOCATIONS.GERECHTSTRAAT}", "${LOCATIONS.HAVERWERF}"`,
+    }),
+  );
 }
 
 export const MegaMenu = async () => {
   const { rooms } = await getGames();
 
+  const gerechtstraat = rooms.filter(
+    (room) => room.gameLocation === LOCATIONS.GERECHTSTRAAT,
+  );
+  const haverwerf = rooms.filter(
+    (room) => room.gameLocation === LOCATIONS.HAVERWERF,
+  );
+
   return (
-    <header className="bg-white shadow">
+    <header className="bg-primary-500/25 shadow">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -69,7 +75,7 @@ export const MegaMenu = async () => {
             Ons verhaal
           </Link>
           <Popover className="isolate z-50">
-            <div className="bg-white py-5">
+            <div className="py-5">
               <div className="mx-auto max-w-7xl">
                 <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                   Games & Experiences
@@ -84,9 +90,16 @@ export const MegaMenu = async () => {
             >
               <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-6 py-10 lg:grid-cols-4 lg:px-8">
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
-                  <MegaMenuItem label="Gerechtstraat" subItems={rooms} />
-                  <MegaMenuItem label="Haverwerf" subItems={experience} />
-                  <MegaMenuItem label="Haverwerf (Wandeling)" subItems={walk} />
+                  <MegaMenuItem
+                    label="Gerechtstraat"
+                    queryparams={`?location=${LOCATIONS.GERECHTSTRAAT}`}
+                    subItems={gerechtstraat}
+                  />
+                  <MegaMenuItem
+                    label="Haverwerf"
+                    queryparams={`?location=${LOCATIONS.HAVERWERF}`}
+                    subItems={haverwerf}
+                  />
                 </div>
                 <div className="grid grid-cols-1 gap-10 sm:gap-8 ">
                   <h3 className="sr-only">Escape Games</h3>
@@ -121,14 +134,14 @@ export const MegaMenu = async () => {
 
               <div className="bg-gray-50 hover:bg-[#cba442]/25 cursor-pointer">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 py-4">
-                  <div className="flex items-center gap-x-3">
+                  <a href={LINKS.BOOK} className="flex items-center gap-x-3">
                     <h3 className="text-sm font-semibold leading-6 text-gray-900">
                       Bekijk onze agenda
                     </h3>
                     <p className="rounded-full bg-indigo-600/10 px-2.5 pt-1.5 text-xs font-semibold text-indigo-600 hidden">
                       New
                     </p>
-                  </div>
+                  </a>
                   <p className="text-sm leading-6 text-gray-600">
                     Claim jouw avontuur nu
                   </p>
@@ -149,14 +162,14 @@ export const MegaMenu = async () => {
             Contact
           </a>
 
-          <Link href={LINKS.BOOK} className="cursor-pointer">
+          <a href={LINKS.BOOK} className="cursor-pointer">
             <button
               type="button"
               className="cursor-pointer rounded-full bg-[#cba442] hover:bg-[#a5832d] px-3.5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               Reserveer nu
             </button>
-          </Link>
+          </a>
         </PopoverGroup>
       </nav>
     </header>

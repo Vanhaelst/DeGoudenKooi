@@ -10,6 +10,7 @@ export const contentEntry = `
                typeHandle
                 title
                 description
+                columns
                 buttons ${buttonsQuery}
             }
             ... on contentImage_Entry {

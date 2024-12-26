@@ -10,7 +10,7 @@ export const Button = ({
   fullWidth,
   buttonType,
   onClick,
-  classnames,
+  classnames = "",
 }) => {
   const getVariant = () => {
     switch (variant) {
@@ -68,17 +68,17 @@ export const Button = ({
     switch (buttonType) {
       case "internal":
         return {
-          target: "target='_self'",
+          target: "_self",
           url: href,
         };
       case "external":
         return {
-          target: "target='_blank'",
+          target: "_blank",
           url: href,
         };
       case "phone":
         return {
-          target: "target='_blank'",
+          target: "_blank",
           url: `tel:${href}`,
         };
       case "eMail":
@@ -88,7 +88,7 @@ export const Button = ({
         };
       default:
         return {
-          target: "target='_self'",
+          target: "_self",
           url: href || "#",
         };
     }

@@ -7,7 +7,6 @@ import { SeoQuery } from "@/queries/sections/seoPage";
 
 import { usePathname } from "next/navigation";
 import { Loader } from "@/components/atoms/loader/loader";
-import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import { renderComponents } from "@/utils/renderComponents";
 
 export default function Page() {
@@ -24,14 +23,5 @@ export default function Page() {
     return <Loader />;
   }
 
-  return (
-    <div>
-      <TopBar />
-      <MegaMenu />
-
-      {data?.map((section) => renderComponents(section))}
-
-      <Footer />
-    </div>
-  );
+  return data?.map((section) => renderComponents(section));
 }

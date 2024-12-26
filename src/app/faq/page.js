@@ -1,5 +1,3 @@
-import React from "react";
-import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
@@ -13,14 +11,5 @@ export default async function Home() {
 
   const sections = page[0]?.sections;
 
-  return (
-    <div>
-      <TopBar />
-      <MegaMenu />
-
-      {sections?.map((section) => renderComponents(section))}
-
-      <Footer />
-    </div>
-  );
+  return sections?.map((section) => renderComponents(section));
 }

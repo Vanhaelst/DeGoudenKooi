@@ -10,6 +10,9 @@ module.exports = {
       pattern: /(bg)-(primary|secondary|lightGray|darkGray)-(500)/,
     },
     {
+      pattern: /(columns)-([123])/,
+    },
+    {
       pattern: /(bg)-(white)/,
       variants: ["hover"],
     },

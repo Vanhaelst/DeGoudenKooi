@@ -1,5 +1,4 @@
 import React from "react";
-import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import { fetchData } from "@/utils/fetchData";
 
 async function getBlogs() {
@@ -25,10 +24,7 @@ export default async function Home() {
   const { blogs } = await getBlogs();
 
   return (
-    <div>
-      <TopBar />
-      <MegaMenu />
-
+    <>
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
@@ -76,8 +72,6 @@ export default async function Home() {
           </div>
         </div>
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }

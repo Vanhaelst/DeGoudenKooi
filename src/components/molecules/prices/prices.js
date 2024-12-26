@@ -10,12 +10,6 @@ export const Prices = ({ title, description, prices }) => {
   const [value, setValue] = useState("2");
   const bgColor = "bg-lightGray-500";
 
-  let num = 140;
-  const myObj = {
-    style: "currency",
-    currency: "EUR",
-  };
-
   return (
     <section className={`${bgColor} py-24 sm:py-32`}>
       <Container classnames="">

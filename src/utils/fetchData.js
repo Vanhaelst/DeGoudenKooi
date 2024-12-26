@@ -18,7 +18,6 @@ export async function fetchData(graphql) {
 
   const json = await res.json();
 
-  console.log(json);
   if (json.errors) {
     console.error(json.errors);
     throw new Error("Failed to fetch API");

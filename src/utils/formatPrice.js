@@ -1,5 +1,5 @@
 export const formatPrice = (price) =>
-  price.toLocaleString("nl-BE", {
+  price?.toLocaleString("nl-BE", {
     style: "currency",
     currency: "EUR",
   });

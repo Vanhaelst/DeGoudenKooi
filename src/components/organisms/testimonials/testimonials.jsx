@@ -128,7 +128,7 @@ export function Testimonials({ title, description, backgroundColor }) {
   const bgColor = getBackgroundColor(backgroundColor);
 
   useEffect(() => {
-    fetchData(roomsQuery({ type: "" })).then(({ rooms }) => setCards(rooms));
+    fetchData(roomsQuery({})).then(({ rooms }) => setCards(rooms));
   }, []);
 
   useMotionValueEvent(scrollX, "change", (x) => {

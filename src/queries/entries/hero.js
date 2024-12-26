@@ -7,6 +7,7 @@ export const heroEntry = `
         backgroundColor
         title
         description
+        backgroundImage ${imageQuery}
         image ${imageQuery}
         heroType
         awardsStatus

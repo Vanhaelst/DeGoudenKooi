@@ -1,28 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { Button, Container, RichText, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import Image from "next/image";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
+import { useSearchParams } from "next/navigation";
+import { LOCATIONS } from "@/enums/locations";
+import { GAMETYPE } from "@/enums/gameTypes";
 
-async function getGames() {
-  return fetchData(roomsQuery({ type: "" }));
-}
-
-export const GamesOverview = async ({
+export const GamesOverview = ({
   title,
   description,
-  gameType,
   gameLocation,
   backgroundColor,
 }) => {
-  const { rooms } = await getGames();
+  const [rooms, setRooms] = useState([]);
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const locationSearch = searchParams.get("location")?.toString();
+    const typeSearch = searchParams.get("type")?.toString();
+
+    const location = locationSearch ? `"${locationSearch}"` : undefined;
+    const type = typeSearch ? `"${typeSearch}"` : undefined;
+
+    fetchData(roomsQuery({ type, location }))
+      .then((res) => {
+        setRooms(res.rooms);
+      })
+      .catch((e) => console.log("error", e));
+  }, [searchParams]);
 
   const bgColor = getBackgroundColor(backgroundColor);
-
-  // console.log("rooms", rooms);
-  // console.log(gameType, gameLocation);
 
   const location = gameLocation;
   return (
@@ -30,6 +43,7 @@ export const GamesOverview = async ({
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>
+
       {rooms.map(
         ({ title, story, featuredImage, slug, players, time }, index) => {
           const isEven = index % 2 === 0;

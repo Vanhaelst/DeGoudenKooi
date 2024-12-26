@@ -4,7 +4,7 @@ import {
   CallToAction,
   Faq,
   Features,
-  Hero,
+  AsyncHero,
   Testimonials,
 } from "@/components/organisms";
 import { Grid } from "@/components/organisms/grid/grid";
@@ -18,7 +18,7 @@ export const renderComponents = (data) => {
 
   switch (typeHandle) {
     case "hero":
-      return <Hero key={data.id} {...data} />;
+      return <AsyncHero key={data.id} {...data} />;
     case "awards":
       return <Awards key={data.id} {...data} />;
     case "features":

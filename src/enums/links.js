@@ -1,13 +1,12 @@
 export const LINKS = {
   HOME: "/",
   ABOUT: "/over-ons",
-  GERECHTSTRAAT: "/gerechtstraat",
-  HAVERWERF: "/haverwerf",
+  GAME_OVERVIEW: "/overzicht",
   TEAMBUILDING: "/teambuilding-en-events",
   CONTACT: "/contact",
   AWARDS: "/awards",
   NEWS: "/nieuws",
   GIFTCARD: "/cadeaubon",
   FAQ: "/faq",
-  BOOK: "/",
+  BOOK: "/boek-nu",
 };

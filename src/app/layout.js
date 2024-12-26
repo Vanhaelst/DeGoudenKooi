@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import "./globals.css";
 import "./slick.css";
+import { Footer, MegaMenu, TopBar } from "@/components/organisms";
+import React from "react";
 
 const font = Inter({
   subsets: ["latin"],
@@ -19,7 +21,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${font.className} antialiased`}>{children}</body>
+      <body className={`${font.className} antialiased`}>
+        <TopBar />
+        <MegaMenu />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

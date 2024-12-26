@@ -6,7 +6,7 @@ export default function NavigationTopItem({ item }) {
   return (
     <Link
       href={href}
-      className="text-sm text-black cursor-pointer hover:underline"
+      className="text-sm text-white cursor-pointer hover:underline"
     >
       {name}
     </Link>
