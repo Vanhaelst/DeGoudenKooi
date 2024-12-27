@@ -1,4 +1,5 @@
 import { Button, RichText, Text } from "@/components/atoms";
+import Link from "next/link";
 
 export const BentoCard = ({
   title,
@@ -23,6 +24,7 @@ export const BentoCard = ({
             <RichText text={description} classnames="text-white" />
           )}
         </div>
+
         <div className="p-7">
           {buttons &&
             buttons.map((button) => (
@@ -49,6 +51,7 @@ export const BentoCard = ({
             <Button key={button.href} {...button} classnames="mt-4" />
           ))}
       </div>
+
       {image && (
         <img
           alt=""

@@ -4,7 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 
 const defaultSettings = {
-  dots: false,
+  dots: true,
   arrows: false,
   draggable: false,
 };

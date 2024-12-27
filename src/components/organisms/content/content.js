@@ -4,8 +4,8 @@ import React from "react";
 export const Content = ({ title, description, buttons, columns }) => {
   return (
     <section className="">
-      <Container classnames="mb-24">
-        <Text as="h5" level="3xl" classnames="text-secondary-500">
+      <Container classnames="">
+        <Text as="h5" level="3xl" classnames="text-secondary-500 mb-4">
           {title}
         </Text>
         <div className={`columns-${columns} gap-x-8`}>

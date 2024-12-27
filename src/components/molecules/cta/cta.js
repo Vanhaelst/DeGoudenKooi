@@ -1,4 +1,4 @@
-import { Button, Text } from "@/components/atoms";
+import { Button, RichText, Text } from "@/components/atoms";
 
 export const Cta = ({
   title,
@@ -18,6 +18,7 @@ export const Cta = ({
         <Text as={"h2"} level="3xl" classnames="text-white lg:max-w-[80%]">
           {title}
         </Text>
+        <RichText text={description} classnames="text-white" />
         <div className="space-x-2 mt-6">
           {buttons?.map(({ href, variant, callToAction }) => {
             return (

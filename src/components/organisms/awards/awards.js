@@ -44,6 +44,7 @@ export const Awards = async ({
             infinite: true,
             centerPadding: "60px",
             arrows: false,
+            dots: false,
             responsive: [
               {
                 breakpoint: 1024,

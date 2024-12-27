@@ -7,6 +7,8 @@ import { RoomSliderEntry } from "@/queries/entries/roomSlider";
 import { gridEntry } from "@/queries/entries/grid";
 import { gameOverviewEntry } from "@/queries/entries/gameOverview";
 import { contentEntry } from "@/queries/entries/content";
+import { lightboxEntry } from "@/queries/entries/lightbox";
+import { teamEntry } from "@/queries/entries/team";
 
 export const PageQuery = ({ page }) => `
     query MyQuery {
@@ -23,6 +25,8 @@ export const PageQuery = ({ page }) => `
             ${RoomSliderEntry}
             ${gridEntry}
             ${gameOverviewEntry}
+            ${lightboxEntry}
+            ${teamEntry}
           }
         }
       }

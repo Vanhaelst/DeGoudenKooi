@@ -13,7 +13,6 @@ import { Loader } from "@/components/atoms/loader/loader";
 import { imageQuery } from "@/queries/entries/image";
 
 const query = ({ pathname }) => {
-  console.log("path", pathname, pathname?.slice(1));
   return `
         query MyQuery {
               rooms: roomsEntries(uri: "${pathname?.slice(1)}") {
@@ -46,7 +45,6 @@ export default function Game() {
 
   useEffect(() => {
     fetchData(query({ pathname })).then((res) => {
-      console.log(res.rooms?.[0]);
       setData(res.rooms?.[0]);
     });
   }, []);

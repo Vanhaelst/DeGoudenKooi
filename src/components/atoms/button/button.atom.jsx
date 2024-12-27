@@ -15,9 +15,9 @@ export const Button = ({
   const getVariant = () => {
     switch (variant) {
       case "primary":
-        return "bg-primary-500 hover:bg-primary-700 active:bg-primary-900";
+        return "border border-primary-500 bg-primary-500 hover:bg-primary-700 active:bg-primary-900";
       case "secondary":
-        return "bg-secondary-500 hover:bg-secondary-700 active:bg-secondary-900";
+        return "border border-secondary-500 bg-secondary-500 hover:bg-secondary-700 active:bg-secondary-900";
       case "primary-outline":
         return "border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-700";
       case "secondary-outline":
@@ -46,6 +46,8 @@ export const Button = ({
 
   const getType = () => {
     switch (type) {
+      case "square":
+        return "rounded-none";
       case "rounded":
         return "rounded-full";
       default:

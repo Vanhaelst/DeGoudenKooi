@@ -1,41 +1,10 @@
-import { Button, Container, RichText, Text } from "@/components/atoms";
-import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
-import { Slider } from "@/components/molecules";
-import Image from "next/image";
 import React from "react";
+import { Container } from "@/components/atoms";
+import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
-
-const settings = {
-  slidesToShow: 8,
-  slidesToScroll: 1,
-  speed: 9000,
-  autoplaySpeed: 0,
-  autoplay: true,
-  infinite: true,
-  arrows: false,
-  pauseOnHover: false,
-  cssEase: "linear",
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 5,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 3,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-  ],
-};
+import { HeroContent } from "@/components/molecules/hero/content";
+import { HeroAwards } from "@/components/molecules/hero/awards";
+import { Images } from "@/components/molecules/image/image";
 
 export const Hero = ({
   title,
@@ -45,6 +14,7 @@ export const Hero = ({
   backgroundImage,
   reviews,
   type,
+  heroType,
   showAwards,
   backgroundColor,
   awards,
@@ -86,26 +56,11 @@ export const Hero = ({
         </div>
 
         <Container classnames="py-20">
-          <div className="lg:max-w-[65%]">
-            <Text as={"h1"} level="4xl" classnames="text-secondary-500">
-              {title}
-            </Text>
-            {description && (
-              <RichText text={description} classnames="text-primary-700" />
-            )}
-            <div className="space-x-2 mt-6">
-              {buttons?.map(({ href, variant, callToAction }) => {
-                return (
-                  <Button
-                    key={href}
-                    variant={variant}
-                    href={href}
-                    callToAction={callToAction}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          <HeroContent
+            title={title}
+            description={description}
+            buttons={buttons}
+          />
         </Container>
       </section>
     );
@@ -118,53 +73,14 @@ export const Hero = ({
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
         <Container classnames="py-20">
-          <div className="lg:max-w-[65%]">
-            <Text as={"h1"} level="4xl" classnames="text-secondary-500">
-              {title}
-            </Text>
-            {description && (
-              <RichText text={description} classnames="text-primary-700" />
-            )}
-            <div className="space-x-2 mt-6">
-              {buttons?.map(({ href, variant, callToAction }) => {
-                return (
-                  <Button
-                    key={href}
-                    variant={variant}
-                    href={href}
-                    callToAction={callToAction}
-                  />
-                );
-              })}
-            </div>
-          </div>
-          {image?.[0] && (
-            <div
-              className="mt-12 rounded-2xl min-h-80 w-full bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: `url('${image?.[0]?.url}')` }}
-            />
-          )}
+          <HeroContent
+            title={title}
+            description={description}
+            buttons={buttons}
+          />
+          <Images images={image} />
         </Container>
-        {awards?.length > 0 && showAwards && (
-          <Container classnames="py-10 xl:py-20">
-            <Slider settings={settings}>
-              {awards?.map(({ image }) => {
-                const { alt, url, width, height } = image?.[0];
-                return (
-                  <div key={url} className="px-9">
-                    <Image
-                      src={url}
-                      alt={alt}
-                      width={width}
-                      height={height}
-                      className="w-24 lg:w-36 lg:h-36 object-contain"
-                    />
-                  </div>
-                );
-              })}
-            </Slider>
-          </Container>
-        )}
+        <HeroAwards awards={awards} showAwards={showAwards} />
       </section>
     );
   }
@@ -180,26 +96,11 @@ export const Hero = ({
       style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
     >
       <Container classnames="py-20 grid grid-cols-1 lg:grid-cols-2">
-        <div className="lg:max-w-[90%] pb-14 lg:py-28">
-          <Text as={"h1"} level="4xl" classnames="text-secondary-500">
-            {title}
-          </Text>
-          {description && (
-            <RichText text={description} classnames="text-primary-700" />
-          )}
-          <div className="space-x-2 mt-6">
-            {buttons?.map(({ href, variant, callToAction }) => {
-              return (
-                <Button
-                  key={href}
-                  variant={variant}
-                  href={href}
-                  callToAction={callToAction}
-                />
-              );
-            })}
-          </div>
-        </div>
+        <HeroContent
+          title={title}
+          description={description}
+          buttons={buttons}
+        />
         <div className="lg:pl-10 xl:pl-36 w-full min-h-96">
           <div className="lg:hidden">
             {reviews?.map((review) => {
@@ -233,34 +134,10 @@ export const Hero = ({
               })}
             </div>
           )}
-          {image?.[0] && (
-            <div
-              className="rounded-2xl h-full w-full bg-contain bg-no-repeat bg-center float"
-              style={{ backgroundImage: `url('${image?.[0]?.url}')` }}
-            />
-          )}
+          <Images images={image} />
         </div>
       </Container>
-      {awards?.length > 0 && showAwards && (
-        <Container classnames="py-10 xl:py-20">
-          <Slider settings={settings}>
-            {awards?.map(({ image }) => {
-              const { alt, url, width, height } = image?.[0];
-              return (
-                <div key={url} className="px-9">
-                  <Image
-                    src={url}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    className="w-24 lg:w-36 lg:h-36 object-contain"
-                  />
-                </div>
-              );
-            })}
-          </Slider>
-        </Container>
-      )}
+      <HeroAwards awards={awards} showAwards={showAwards} />
     </section>
   );
 };

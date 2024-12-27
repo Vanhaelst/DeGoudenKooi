@@ -12,6 +12,9 @@ import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOvervie
 import { Contents } from "@/components/organisms/content";
 import { ContentImage } from "@/components/organisms/content/content-image";
 import { Content } from "@/components/organisms/content/content";
+import { Gallery } from "@/components/molecules/lightbox/lightbox";
+import { Video } from "@/components/molecules/video/video";
+import { Team } from "@/components/molecules/team/team";
 
 export const renderComponents = (data) => {
   const { typeHandle } = data ?? {};
@@ -39,6 +42,12 @@ export const renderComponents = (data) => {
       return <ContentImage key={data.id} {...data} />;
     case "text":
       return <Content key={data.id} {...data} />;
+    case "lightbox":
+      return <Gallery key={data.id} {...data} />;
+    case "video":
+      return <Video key={data.id} {...data} />;
+    case "team":
+      return <Team key={data.id} {...data} />;
     default:
       return null;
   }

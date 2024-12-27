@@ -1,7 +1,8 @@
 import React from "react";
-import { Hero, Footer, MegaMenu, TopBar } from "@/components/organisms";
+import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import { fetchData } from "@/utils/fetchData";
 import { SeoQuery } from "@/queries/sections/seoPage";
+import { Hero } from "@/components/molecules/hero/hero";
 
 async function getData() {
   return fetchData(SeoQuery({ url: "/seo1/seo2" }));
@@ -18,6 +19,7 @@ export default async function Home() {
       <TopBar />
       <MegaMenu />
 
+      <p>SEO</p>
       <Hero
         type={heroType}
         title={heroTitle}
