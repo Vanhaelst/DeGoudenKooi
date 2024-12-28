@@ -14,7 +14,6 @@ export const Hero = ({
   backgroundImage,
   reviews,
   type,
-  heroType,
   showAwards,
   backgroundColor,
   awards,

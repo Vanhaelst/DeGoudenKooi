@@ -26,6 +26,8 @@ function TestimonialCard({
   time,
   players,
   featuredImage,
+  gameLocation,
+  gameType,
   children,
   bounds,
   scrollX,
@@ -85,12 +87,15 @@ function TestimonialCard({
           <Text as="h4" level="xl" classnames="text-secondary-500">
             {title}
           </Text>
+          <Text as="p" level="sm" classnames="text-secondary-500">
+            {gameType} {/* TODO: map to clean translatable text */}
+          </Text>
           <div className="flex items-center mt-2">
             <div className="flex items-center mr-4">
               <Image
                 src="/icon-hourglass.svg"
                 alt="zandloper"
-                className="mr-2"
+                className="mr-2 w-3 h-6"
                 width={13}
                 height={16}
               />
@@ -103,7 +108,7 @@ function TestimonialCard({
               <Image
                 src="/icon-group.svg"
                 alt="Aantal spelers"
-                className="mr-2"
+                className="mr-2 w-6 h-6"
                 width={21}
                 height={14}
               />

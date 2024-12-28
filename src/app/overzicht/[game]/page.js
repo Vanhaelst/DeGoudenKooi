@@ -23,6 +23,7 @@ const query = ({ pathname }) => {
                       videoPlayer
                       detailImage ${imageQuery}
                       featuredImage ${imageQuery}
+                      backgroundImage ${imageQuery}
                       gameLocation
                       gameType
                       time
@@ -53,6 +54,7 @@ export default function Game() {
     title,
     featuredImage,
     detailImage,
+    backgroundImage,
     story,
     videoId,
     videoPlayer,
@@ -83,6 +85,7 @@ export default function Game() {
         videoPlayer={videoPlayer}
         title={title}
         image={detailImage || featuredImage}
+        backgroundImage={backgroundImage}
         awards={true}
       />
 

@@ -166,7 +166,7 @@ export const Footer = () => {
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 md:flex md:items-center md:justify-between lg:mt-10">
           <Text as="p" level="xs" classnames="text-white">
-            &copy; 2024 De Gouden kooi
+            &copy; 2024 De Gouden kooi | Publiplus
           </Text>
 
           <div className="flex gap-x-6 md:order-2">

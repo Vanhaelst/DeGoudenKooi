@@ -12,7 +12,7 @@ export const Title = ({ title, description, showIcon = true }) => {
         <Image
           src="/artwork-diamond.png"
           alt="diamond artwork"
-          className="mb-2"
+          className="mb-2 w-16 h-16"
           width={45}
           height={45}
         />

@@ -16,10 +16,12 @@ export const Prices = ({ title, description, prices }) => {
         <Title title={title} description={description} />
         <div className="bg-white rounded-xl p-2 mt-12 grid xl:grid-cols-5">
           <div className="bg-white rounded-xl p-6 col-span-3">
-            <Text level="p">What&apos;s included</Text>
+            <Text level="p" classnames="mb-2">
+              What&apos;s included
+            </Text>
 
             {prices.map(({ price, players }) => (
-              <div key={players} className="flex">
+              <div key={players} className="flex mb-2">
                 <CheckBadgeIcon className="w-6 h-6 mr-2" />
                 <Text level="p" classnames="text-secondary-500">
                   <Text as="span" classnames="font-bold">

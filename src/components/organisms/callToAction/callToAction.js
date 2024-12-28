@@ -7,7 +7,7 @@ export const CallToAction = (data) => {
   const bgColor = getBackgroundColor(data.backgroundColor);
 
   return (
-    <section className={bgColor}>
+    <section className={`${bgColor} ${data.pullUp ? "" : "pt-24"}`}>
       <Container classnames="">
         <Cta {...data} />
       </Container>

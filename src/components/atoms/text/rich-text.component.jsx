@@ -75,10 +75,7 @@ export const RichText = ({ text = "", classnames, level }) => {
 
       if (name === "ul") {
         return (
-          <ul
-            role="list"
-            className={`${classnames} mt-8 space-y-3 list-disc font-barlow text-lg md:text-2xl font-thin`}
-          >
+          <ul role="list" className={`${classnames} mt-8 space-y-3 list-disc`}>
             {domToReact(children, options)}
           </ul>
         );
@@ -88,7 +85,7 @@ export const RichText = ({ text = "", classnames, level }) => {
         return (
           <ol
             role="list"
-            className={`${classnames} mt-8 space-y-3 list-decimal font-barlow text-lg md:text-2xl font-thin`}
+            className={`${classnames} mt-8 space-y-3 list-decimal`}
           >
             {domToReact(children, options)}
           </ol>

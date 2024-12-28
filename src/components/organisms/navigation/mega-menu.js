@@ -15,6 +15,7 @@ import Link from "next/link";
 import { LINKS } from "@/enums/links";
 import { LOCATIONS } from "@/enums/locations";
 import { GAMETYPE } from "@/enums/gameTypes";
+import { Button } from "@/components/atoms";
 
 const recentPosts = [
   {
@@ -163,12 +164,13 @@ export const MegaMenu = async () => {
           </a>
 
           <a href={LINKS.BOOK} className="cursor-pointer">
-            <button
-              type="button"
-              className="cursor-pointer rounded-full bg-[#cba442] hover:bg-[#a5832d] px-3.5 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              Reserveer nu
-            </button>
+            <Button
+              href="#"
+              variant="secondary"
+              callToAction="Reserveer nu"
+              type="rounded"
+              size="small"
+            />
           </a>
         </PopoverGroup>
       </nav>
