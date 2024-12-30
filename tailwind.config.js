@@ -11,6 +11,7 @@ module.exports = {
     },
     {
       pattern: /(columns)-([123])/,
+      variants: ["md", "lg"],
     },
     {
       pattern: /(bg)-(white)/,

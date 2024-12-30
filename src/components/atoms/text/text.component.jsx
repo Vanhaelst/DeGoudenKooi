@@ -6,6 +6,7 @@ export const Text = ({ as, level, classnames = "", children }) => {
       case "xs":
         return "text-xs md:text-s";
       case "s":
+      case "sm":
         return "text-s md:text-md";
       case "base":
         return "text-sm md:text-base";

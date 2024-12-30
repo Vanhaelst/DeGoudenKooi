@@ -12,12 +12,14 @@ export const roomsQuery = ({
                   ... on game_Entry {
                       title
                       story
+                      icon: iconImage ${imageQuery}
                       featuredImage ${imageQuery}
                       detailImage ${imageQuery}
                       gameLocation
                       gameType
                       time
                       players
+                      categories
                       slug: uri
                       price2
                       price3

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
-import { roomsQuery } from "@/queries/sections/rooms";
 import { ContentImage } from "@/components/organisms/content/content-image";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { Prices } from "@/components/molecules/prices/prices";
@@ -11,6 +10,9 @@ import { Hero } from "@/components/molecules/hero/hero";
 import { Faq } from "@/components/molecules/faq/faq";
 import { Loader } from "@/components/atoms/loader/loader";
 import { imageQuery } from "@/queries/entries/image";
+import { Video } from "@/components/molecules/video/video";
+import { Container, Text } from "@/components/atoms";
+import Image from "next/image";
 
 const query = ({ pathname }) => {
   return `
@@ -58,6 +60,9 @@ export default function Game() {
     story,
     videoId,
     videoPlayer,
+    players,
+    time,
+    gameLocation,
     price2,
     price3,
     price4,
@@ -73,6 +78,24 @@ export default function Game() {
     { players: 6, price: price6 },
   ];
 
+  const features = [
+    {
+      icon: "/icon-hourglass.svg",
+      title: "Locatie",
+      description: gameLocation,
+    },
+    {
+      icon: "/icon-group.svg",
+      title: "Aantal",
+      description: players,
+    },
+    {
+      icon: "/icon-hourglass.svg",
+      title: "Duurtijd",
+      description: time,
+    },
+  ];
+
   if (!data) {
     return <Loader />;
   }
@@ -80,23 +103,63 @@ export default function Game() {
   return (
     <>
       <Hero
-        type={videoId ? "video" : "horizontal"}
-        videoId={videoId}
-        videoPlayer={videoPlayer}
-        title={title}
+        type={"horizontal"}
         image={detailImage || featuredImage}
         backgroundImage={backgroundImage}
         awards={true}
       />
 
-      <div className={`py-24 sm:py-32`}>
+      <Container
+        classnames="relative"
+        style={{ transform: "translateY(-50%)" }}
+      >
+        <div className="rounded-2xl border border-secondary-500 bg-white p-6 grid grid-cols-3 divide-x divide-secondary-500">
+          {features.map(({ title, description }) => (
+            <div className="flex items-center justify-center">
+              <Image
+                src="/icon-hourglass.svg"
+                alt="zandloper"
+                className="mr-6 w-16 h-16 border-2 rounded-full p-2 border-secondary-500"
+                width={13}
+                height={16}
+              />
+              <div className="flex flex-col">
+                <Text
+                  as={"span"}
+                  level="md"
+                  classnames="text-bold text-secondary-500"
+                >
+                  {title}
+                </Text>
+                <Text
+                  as={"span"}
+                  level="sm"
+                  classnames="font-light text-secondary-500"
+                >
+                  {description}
+                </Text>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+
+      <div className={`py-14`}>
         <ContentImage
-          title="Het verhaal"
+          title={title}
           description={story}
           image={featuredImage}
           order={false}
         />
       </div>
+
+      <Video
+        title={`Teaser: ${title}`}
+        videoId={videoId}
+        videoPlayer={videoPlayer}
+        backgroundColor={"lightGray"}
+        halfBg={true}
+      />
 
       <Prices title="Tarieven" prices={prices} />
       <Bookeo />

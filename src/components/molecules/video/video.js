@@ -9,6 +9,7 @@ export const Video = ({
   backgroundColor,
   videoId,
   videoPlayer,
+  halfBg,
 }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
@@ -17,12 +18,12 @@ export const Video = ({
   }
 
   return (
-    <section className={`${bgColor} py-24 sm:py-32`}>
+    <section className={`${bgColor & !halfBg ? bgColor : ""} relative py-14`}>
       <Container classnames="mb-24">
-        <Title title={title} description={description} />
+        <Title showIcon={true} title={title} description={description} />
       </Container>
 
-      <Container classnames="aspect-video">
+      <Container classnames="aspect-video z-10">
         {videoPlayer === "vimeo" && (
           <iframe
             src={`https://player.vimeo.com/video/${videoId}?h=ab6adab836&badge=0`}
@@ -45,6 +46,9 @@ export const Video = ({
           />
         )}
       </Container>
+      <div
+        className={`${bgColor} h-[50%] w-full absolute bottom-0 left-0 z-0`}
+      ></div>
     </section>
   );
 };

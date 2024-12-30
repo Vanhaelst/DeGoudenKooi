@@ -6,7 +6,7 @@ export const Bookeo = () => {
     <>
       <Script
         type="text/javascript"
-        src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360"
+        src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&type=325043P7UH151F85563A6"
       ></Script>
       <section>
         <Container>
@@ -16,6 +16,7 @@ export const Bookeo = () => {
           />
         </Container>
       </section>
+      https://www-2552n.bookeo.com/bookeo/b_viewGenericGiftVouchers.html?bsid=pehkxw9prtawfj94&backNav=true&ncs=k93pnuaj7e&ncs2=hxnt6xrtla
     </>
   );
 };

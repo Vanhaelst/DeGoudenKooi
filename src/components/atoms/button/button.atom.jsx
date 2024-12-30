@@ -106,7 +106,7 @@ export const Button = ({
             ${classnames}
           ${getVariant()} ${getFont()} ${getType()} ${buttonSize()} 
           ${fullWidth ? "w-full" : ""}
-        cursor-pointer font-barlow
+        cursor-pointer hover:scale-110 transition-all
         `}
       >
         {callToAction}
@@ -125,7 +125,7 @@ export const Button = ({
             ${classnames}
           ${getVariant()} ${getFont()} ${getType()} ${buttonSize()} 
           ${fullWidth ? "w-full" : ""}
-        cursor-pointer font-barlow
+        cursor-pointer hover:scale-110 transition-all
         `}
       >
         {callToAction}

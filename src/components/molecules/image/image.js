@@ -17,7 +17,7 @@ const settings = {
 };
 
 export const Images = ({ images, classnames }) => {
-  if (images.length === 0) {
+  if (!images || images.length === 0) {
     return null;
   }
 
@@ -41,15 +41,12 @@ export const Images = ({ images, classnames }) => {
   }
 
   return (
-    <div
-      className="slider-container"
-      style={{ transform: "translate(0%, 25%)" }}
-    >
+    <div className="slider-container">
       <Slider {...settings}>
         {images.map((image) => {
           const classNames = image.url.includes(".png")
-            ? "object-contain"
-            : "rounded-2xl object-cover ";
+            ? "object-contain py-10"
+            : "rounded-2xl object-cover py-10";
 
           return (
             <Image

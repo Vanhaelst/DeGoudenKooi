@@ -68,7 +68,7 @@ export const Hero = ({
   if (type === "vertical") {
     return (
       <section
-        className={`${bgColor}  bg-cover bg-center`}
+        className={`${bgColor}  bg-cover bg-center pt-[150px]`}
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
         <Container classnames="py-20">
@@ -100,41 +100,43 @@ export const Hero = ({
           description={description}
           buttons={buttons}
         />
-        <div className="lg:pl-10 xl:pl-36 w-full min-h-96">
-          <div className="lg:hidden">
-            {reviews?.map((review) => {
-              return (
-                <div key={title} className="ml-4 absolute bottom-24">
-                  <ReviewCard {...review} />
-                </div>
-              );
-            })}
-          </div>
-
-          {reviews && (
-            <div className="hidden lg:block">
-              {evenReviews?.map((review) => {
+        {image && image[0] && (
+          <div className="hidden lg:block lg:pl-10 xl:pl-36 w-full min-h-96">
+            <div className="lg:hidden">
+              {reviews?.map((review) => {
                 return (
-                  <div key={title} className="ml-12 absolute bottom-64">
-                    <ReviewCard {...review} />
-                  </div>
-                );
-              })}
-
-              {oddReviews?.map((review) => {
-                return (
-                  <div
-                    key={title}
-                    className="-ml-32 lg:-ml-24 xl:-ml-32 absolute bottom-32"
-                  >
+                  <div key={title} className="ml-4 absolute bottom-24">
                     <ReviewCard {...review} />
                   </div>
                 );
               })}
             </div>
-          )}
-          <Images images={image} />
-        </div>
+
+            {reviews && (
+              <div className="hidden lg:block">
+                {evenReviews?.map((review) => {
+                  return (
+                    <div key={title} className="ml-12 absolute bottom-64">
+                      <ReviewCard {...review} />
+                    </div>
+                  );
+                })}
+
+                {oddReviews?.map((review) => {
+                  return (
+                    <div
+                      key={title}
+                      className="-ml-32 lg:-ml-24 xl:-ml-32 absolute bottom-32"
+                    >
+                      <ReviewCard {...review} />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            <Images images={image} />
+          </div>
+        )}
       </Container>
       <HeroAwards awards={awards} showAwards={showAwards} />
     </section>

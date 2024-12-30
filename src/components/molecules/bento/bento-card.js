@@ -25,7 +25,7 @@ export const BentoCard = ({
           )}
         </div>
 
-        <div className="p-7">
+        <div className="p-7 mt-32 md:mt-0">
           {buttons &&
             buttons.map((button) => (
               <Button key={button.href} {...button} classnames="mt-4" />

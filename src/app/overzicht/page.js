@@ -1,64 +1,60 @@
 import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
+import { roomsQuery } from "@/queries/sections/rooms";
 import { renderComponents } from "@/utils/renderComponents";
 import { Text } from "@/components/atoms";
+import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
+import React from "react";
 
 async function getPage() {
   return fetchData(PageQuery({ page: "gerechtstraatEntries" }));
 }
 
-const games = [
-  {
-    src: "https://triptrapescape.ch/wp-content/uploads/2021/04/mini-logo-tresor-rackham.png",
-    name: "Jack Rackhams treasure",
-  },
-  {
-    src: "https://triptrapescape.ch/wp-content/uploads/2021/04/mini-logo-confrerie-de-la-pierre.png",
-    name: "The Brotherhood of the Stone",
-  },
-  {
-    src: "https://triptrapescape.ch/wp-content/uploads/2021/05/jeu-revanche-rackham-badge-1.png",
-    name: "The Chest Rackham's Revenge",
-  },
-  {
-    src: "https://triptrapescape.ch/wp-content/uploads/2021/05/mini_picto_tante_hilda.png",
-    name: "Aunt Hilda's Room",
-  },
-  {
-    src: "https://triptrapescape.ch/wp-content/uploads/2021/04/mini-logo-confrerie-de-la-pierre.png",
-    name: "The Brotherhood of the Stone",
-  },
-  {
-    src: "https://triptrapescape.ch/wp-content/uploads/2021/05/jeu-revanche-rackham-badge-1.png",
-    name: "The Chest Rackham's Revenge",
-  },
-];
+async function getRooms() {
+  return fetchData(roomsQuery({ page: "gerechtstraatEntries" }));
+}
+
 export default async function Home({ searchParams }) {
   const { page } = await getPage();
+  const { rooms } = await getRooms();
 
   const sections = page[0]?.sections;
 
-  const bgColor = "bg-lightGray-500";
+  const bgColor = "bg-white";
   return (
     <>
-      <section className={`${bgColor} pt-24 pb-0`}>
+      <section className={`${bgColor} pt-24 pb-12`}>
         <div className="badges w-full flex justify-center">
           <div className="flex overflow-x-scroll space-x-5 hide-scrollbar px-10">
-            {games.map(({ src, name, isNew }, index) => (
+            {rooms.map(({ featuredImage, title, slug, gameLocation }) => (
               <a
-                key={name}
-                href="https://triptrapescape.ch/en/game/jack-rackhams-treasure/"
-                className="w-48 min-w-48 flex flex-col items-center grayscale hover:grayscale-0 duration-200"
+                key={title}
+                href={slug}
+                className={`group w-72 min-w-72 flex flex-col items-center hover:grayscale-0 duration-200 ${gameLocation === searchParams.location ? "" : "grayscale"}`}
               >
-                <img src={src} alt={name} className="px-8 mb-2" />
-                <Text as="p" level="sm" classnames="text-center">
-                  {name}
+                <img
+                  src={featuredImage[0].url}
+                  alt={title}
+                  className="px-8 mb-2"
+                />
+                <Text
+                  as="span"
+                  level="sm"
+                  classnames="text-center transition-all group-hover:font-bold group-hover:scale-110 group-hover:text-primary-500"
+                >
+                  {title}
                 </Text>
               </a>
             ))}
           </div>
         </div>
       </section>
+
+      <GamesOverview
+        title={`${searchParams.location ? `Onze belevingen op locatie "${searchParams.location}"` : "Al onze belevingen"}`}
+        backgroundColor="lightGray"
+      />
+
       {sections?.map((section) => renderComponents(section))}
     </>
   );

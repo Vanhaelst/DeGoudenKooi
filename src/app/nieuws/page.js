@@ -5,6 +5,12 @@ import { RichText, Text } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { formatDate } from "@/utils/formatDate";
 
+export const metadata = {
+  title: "Nieuws - De Gouden Kooi",
+  description: "",
+  // keywords: "",
+};
+
 async function getBlogs() {
   return fetchData(
     `query MyQuery {
@@ -36,7 +42,8 @@ export default async function Home() {
             <Text level="xl" as="p" classnames="mt-2 text-gray-600">
               Learn how to grow your business with our expert advice.
             </Text>
-            <div className="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 mt-16 gap-20 lg:mt-20 lg:space-y-20">
               {blogs.map((post) => (
                 <article
                   key={post.id}
@@ -69,10 +76,7 @@ export default async function Home() {
                           {post.title}
                         </a>
                       </Text>
-                      <RichText
-                        text={post.shortDescription}
-                        className="mt-5 text-sm/6 text-gray-600"
-                      />
+                      <RichText text={post.shortDescription} />
                     </div>
                   </div>
                 </article>

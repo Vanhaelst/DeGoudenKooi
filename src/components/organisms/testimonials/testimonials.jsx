@@ -78,7 +78,7 @@ function TestimonialCard({
         <img
           alt=""
           src={featuredImage?.[0]?.url}
-          className="inset-x-0 top-0 aspect-[37/40] w-full object-cover bg-primary-500  rounded-3xl"
+          className="inset-x-0 top-0 aspect-[37/40] w-full object-cover rounded-3xl"
         />
       </div>
 

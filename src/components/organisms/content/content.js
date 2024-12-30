@@ -8,7 +8,7 @@ export const Content = ({ title, description, buttons, columns }) => {
         <Text as="h5" level="3xl" classnames="text-secondary-500 mb-4">
           {title}
         </Text>
-        <div className={`columns-${columns} gap-x-8`}>
+        <div className={`lg:columns-${columns} gap-x-8`}>
           <RichText text={description} classnames="text-primary-700" />
           {buttons &&
             buttons.map((button) => (

@@ -6,7 +6,7 @@ export const LINKS = {
   CONTACT: "/contact",
   AWARDS: "/awards",
   NEWS: "/nieuws",
-  GIFTCARD: "/cadeaubon",
+  GIFTCARD: "/shop",
   FAQ: "/faq",
   BOOK: "/boek-nu",
 };

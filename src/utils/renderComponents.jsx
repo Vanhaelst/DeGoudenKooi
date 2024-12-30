@@ -15,10 +15,12 @@ import { Content } from "@/components/organisms/content/content";
 import { Gallery } from "@/components/molecules/lightbox/lightbox";
 import { Video } from "@/components/molecules/video/video";
 import { Team } from "@/components/molecules/team/team";
+import { Faq as FaqMolecule } from "@/components/molecules/faq/faq";
 
 export const renderComponents = (data) => {
   const { typeHandle } = data ?? {};
 
+  console.log("typeHandle", typeHandle);
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} {...data} />;
@@ -48,6 +50,8 @@ export const renderComponents = (data) => {
       return <Video key={data.id} {...data} />;
     case "team":
       return <Team key={data.id} {...data} />;
+    case "accordion":
+      return <FaqMolecule key={data.id} {...data} />;
     default:
       return null;
   }

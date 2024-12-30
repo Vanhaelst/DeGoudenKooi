@@ -51,11 +51,12 @@ export const MegaMenu = async () => {
     (room) => room.gameLocation === LOCATIONS.HAVERWERF,
   );
 
+  console.log("haverwerf", haverwerf);
   return (
-    <header className="bg-primary-500/25 shadow">
+    <header className="relative z-50 bg-primary-500/25 drop-shadow-xl">
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
       >
         <div className="flex lg:flex-1">
           <Link href={LINKS.HOME} className="-m-1.5 p-1.5">
@@ -64,11 +65,11 @@ export const MegaMenu = async () => {
               width={121}
               height={18}
               src={CompanyData.logo}
-              className="h-8 w-auto"
+              className="h-8 lg:max-w-40 xl:max-w-40 w-auto"
             />
           </Link>
         </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12 items-center">
+        <PopoverGroup className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
           <Link
             href={LINKS.ABOUT}
             className="cursor-pointer text-sm font-semibold leading-6 text-gray-900"
@@ -87,7 +88,7 @@ export const MegaMenu = async () => {
 
             <PopoverPanel
               transition
-              className="absolute inset-x-0 top-[150px] -z-10 bg-white pt-16 shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+              className="absolute inset-x-0 top-[80px] -z-10 bg-white pt-16 shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
             >
               <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-6 py-10 lg:grid-cols-4 lg:px-8">
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">

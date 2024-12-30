@@ -8,8 +8,7 @@ import { Title } from "@/components/molecules";
 import Image from "next/image";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { useSearchParams } from "next/navigation";
-import { LOCATIONS } from "@/enums/locations";
-import { GAMETYPE } from "@/enums/gameTypes";
+import { awardsQuery } from "@/queries/sections/awards";
 
 export const GamesOverview = ({
   title,
@@ -18,6 +17,7 @@ export const GamesOverview = ({
   backgroundColor,
 }) => {
   const [rooms, setRooms] = useState([]);
+  const [awards, setAwards] = useState([]);
 
   const searchParams = useSearchParams();
 
@@ -33,11 +33,18 @@ export const GamesOverview = ({
         setRooms(res.rooms);
       })
       .catch((e) => console.log("error", e));
+
+    fetchData(awardsQuery({}))
+      .then((res) => {
+        setAwards(res.awards);
+      })
+      .catch((e) => console.log("error", e));
   }, [searchParams]);
 
   const bgColor = getBackgroundColor(backgroundColor);
 
   const location = gameLocation;
+
   return (
     <section className={`${bgColor} py-24 sm:py-32`}>
       <Container classnames="mb-24">
@@ -45,23 +52,30 @@ export const GamesOverview = ({
       </Container>
 
       {rooms.map(
-        ({ title, story, featuredImage, slug, players, time }, index) => {
+        (
+          { title, story, featuredImage, slug, players, time, categories },
+          index,
+        ) => {
           const isEven = index % 2 === 0;
+          const roomAwards = awards.filter((award) =>
+            award.categories.includes(categories[0]),
+          );
+
           return (
             <Container key={slug} classnames="">
               <div className="mt-10 grid grid-cols-1 lg:gap-4 sm:mt-16 lg:grid-cols-12">
                 <div
-                  className={`relative lg:col-span-7 min-h-60 ${isEven ? "lg:order-1" : "lg:order-2"}`}
+                  className={`relative lg:col-span-5 min-h-60 ${isEven ? "lg:order-1" : "lg:order-2"}`}
                 >
                   <div
-                    className="absolute inset-px lg:rounded-lg bg-cover bg-center bg-secondary-500 max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]"
+                    className="absolute inset-px lg:rounded-lg bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
                     style={{
                       backgroundImage: `url('${featuredImage[0]?.url}')`,
                     }}
                   />
                 </div>
                 <div
-                  className={`relative lg:col-span-5 ${isEven ? "lg:order-2" : "lg:order-1"}`}
+                  className={`relative lg:col-span-7 ${isEven ? "lg:order-2" : "lg:order-1"}`}
                 >
                   <div className="absolute inset-px lg:rounded-lg bg-white lg:rounded-tr-[2rem]" />
                   <div className="relative flex h-full flex-col overflow-hidden lg:rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]">
@@ -91,8 +105,25 @@ export const GamesOverview = ({
                           callToAction="Boek nu"
                           size="small"
                         />
+
+                        <div className="group flex mt-6">
+                          {roomAwards.map(({ image, title }) => {
+                            return (
+                              <div
+                                className="tooltip hover:tooltip-open tooltip-bottom mr-2"
+                                data-tip={title}
+                              >
+                                <img
+                                  src={image[0].url}
+                                  alt={title}
+                                  className="h-12 hover:scale-125 transition-all"
+                                />
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                      <div className="relative lg:col-span-12 flex order-3 mt-8">
+                      <div className="relative lg:col-span-12 flex order-3 mt-6">
                         <div className="flex mr-4">
                           <Image
                             src="/icon-group.svg"

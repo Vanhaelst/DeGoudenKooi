@@ -5,8 +5,10 @@ export const awardsQuery = ({ grade }) => `
         awards: awardsEntries {
             ...on award_Entry {
             title
+            description
             image: awardimage ${imageQuery}
             class
+            categories
             }
           }          
   }  

@@ -9,6 +9,13 @@ import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
 import { Title } from "@/components/molecules";
 
+export const metadata = {
+  title: "Over ons - De Gouden Kooi",
+  description:
+    "Een overzicht van de awards die we de voorbije jaren verzamelden.",
+  // keywords: "",
+};
+
 async function getPage() {
   return fetchData(PageQuery({ page: "aboutUsEntries" }));
 }

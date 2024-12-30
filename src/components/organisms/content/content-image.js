@@ -9,9 +9,9 @@ export const ContentImage = ({ title, description, buttons, image, order }) => {
   return (
     <section className="">
       <Container classnames="">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
-            className={`${contentLeft ? "order-1" : "order-2"} flex flex-col justify-center`}
+            className={`${contentLeft ? "md:order-1" : "md:order-2"} order-2 flex flex-col justify-center`}
           >
             <Title title={title} description={description} showIcon={false} />
             {buttons &&
@@ -22,7 +22,7 @@ export const ContentImage = ({ title, description, buttons, image, order }) => {
 
           <Images
             images={image}
-            classnames={`${contentLeft ? "order-2" : "order-1"}`}
+            classnames={`${contentLeft ? "md:order-2" : "md:order-1"} order-1`}
           />
         </div>
       </Container>

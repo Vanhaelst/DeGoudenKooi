@@ -14,8 +14,8 @@ export const Prices = ({ title, description, prices }) => {
     <section className={`${bgColor} py-24 sm:py-32`}>
       <Container classnames="">
         <Title title={title} description={description} />
-        <div className="bg-white rounded-xl p-2 mt-12 grid xl:grid-cols-5">
-          <div className="bg-white rounded-xl p-6 col-span-3">
+        <div className="bg-white rounded-xl p-2 mt-12 grid lg:grid-cols-5">
+          <div className="bg-white rounded-xl p-6 lg:col-span-3">
             <Text level="p" classnames="mb-2">
               What&apos;s included
             </Text>
@@ -28,12 +28,14 @@ export const Prices = ({ title, description, prices }) => {
                     {players} spelers:&nbsp;
                   </Text>
                   {formatPrice(price)} per escape experience /{" "}
-                  {formatPrice(price / players)} per persoon
+                  {formatPrice(price / players)}{" "}
+                  <span className="inline xl:hidden">p.p.</span>
+                  <span className="hidden xl:inline">per persoon</span>
                 </Text>
               </div>
             ))}
           </div>
-          <div className="p-6 col-span-2 bg-lightGray-500 w-full">
+          <div className="p-6 lg:col-span-2 bg-lightGray-500 w-full">
             <div className="flex justify-between">
               <TagIcon className="w-6 h-6 mr-2" />
               <Text
