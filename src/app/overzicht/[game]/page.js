@@ -115,7 +115,7 @@ export default function Game() {
       >
         <div className="rounded-2xl border border-secondary-500 bg-white p-6 grid grid-cols-3 divide-x divide-secondary-500">
           {features.map(({ title, description }) => (
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center" key={title}>
               <Image
                 src="/icon-hourglass.svg"
                 alt="zandloper"

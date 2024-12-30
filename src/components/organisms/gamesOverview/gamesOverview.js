@@ -110,6 +110,7 @@ export const GamesOverview = ({
                           {roomAwards.map(({ image, title }) => {
                             return (
                               <div
+                                key={title}
                                 className="tooltip hover:tooltip-open tooltip-bottom mr-2"
                                 data-tip={title}
                               >
