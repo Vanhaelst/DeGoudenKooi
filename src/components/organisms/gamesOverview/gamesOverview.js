@@ -147,7 +147,7 @@ export const GamesOverview = ({
                         </div>
                         <div className="flex mr-4">
                           <Image
-                            src="/icon-hourglass.svg"
+                            src="/icon-location.svg"
                             alt="zandloper"
                             className="mr-2"
                             width={13}

@@ -16,7 +16,7 @@ import { Loader } from "@/components/atoms/loader/loader";
 const query = ({ pathname, language = "nl" }) => {
   return `
         query MyQuery {
-              blog: blogEntries(uri: "${pathname?.slice(4)}", language: "${language}") {
+              blog: blogsEntries(uri: "${pathname?.slice(4)}", language: "${language}") {
                   ... on newsItem_Entry {
                       id
                       title

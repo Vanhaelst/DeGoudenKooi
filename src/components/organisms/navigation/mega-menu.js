@@ -14,7 +14,7 @@ import Link from "next/link";
 import { LINKS } from "@/enums/links";
 import { LOCATIONS } from "@/enums/locations";
 import { GAMETYPE } from "@/enums/gameTypes";
-import { Button } from "@/components/atoms";
+import { Button, Container } from "@/components/atoms";
 
 const recentPosts = [
   {
@@ -25,7 +25,7 @@ const recentPosts = [
     date: "Mar 16, 2023",
     datetime: "2023-03-16",
     category: { title: "Marketing", href: "#" },
-    imageUrl: "/degoudenkooi.jpeg",
+    imageUrl: "/dgk-card.jpeg",
     description:
       "Bij een Escape Experience gaan we bij De Gouden Kooi net een stapje verder dan...",
   },
@@ -51,7 +51,10 @@ export const MegaMenu = async ({ locale = "nl" }) => {
   );
 
   return (
-    <header className="relative z-10 bg-primary-500/25 drop-shadow-xl py-5">
+    <header
+      className="relative w-full z-10 bg-cover drop-shadow-xl py-5"
+      style={{ backgroundImage: `url('${CompanyData.heroBg}')` }}
+    >
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
@@ -144,22 +147,24 @@ export const MegaMenu = async ({ locale = "nl" }) => {
                 href={LINKS[locale.toUpperCase()].BOOK}
                 className="flex bg-gray-100 hover:bg-primary-500/25 cursor-pointer"
               >
-                <div className="flex items-center gap-x-3 sm:px-6 lg:px-8 py-4">
-                  <Image
-                    width={48}
-                    height={48}
-                    src="/kalender.svg"
-                    className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
-                  />
-                  <div>
-                    <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                      Bekijk onze agenda
-                    </h3>
-                    <p className="text-sm leading-6 text-gray-600">
-                      Claim jouw avontuur nu
-                    </p>
+                <Container>
+                  <div className="flex items-center gap-x-3 py-4">
+                    <Image
+                      width={48}
+                      height={48}
+                      src="/kalender.svg"
+                      className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
+                    />
+                    <div>
+                      <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                        Bekijk onze agenda
+                      </h3>
+                      <p className="text-sm leading-6 text-gray-600">
+                        Claim jouw avontuur nu
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Container>
               </a>
             </PopoverPanel>
           </Popover>

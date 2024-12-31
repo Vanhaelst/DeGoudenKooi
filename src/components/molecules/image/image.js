@@ -41,7 +41,7 @@ export const Images = ({ images, classnames }) => {
   }
 
   return (
-    <div className="slider-container">
+    <div className={`${classnames} slider-container`}>
       <Slider {...settings}>
         {images.map((image) => {
           const classNames = image.url.includes(".png")

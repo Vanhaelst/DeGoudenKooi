@@ -29,6 +29,7 @@ function TestimonialCard({
   gameLocation,
   gameType,
   children,
+  slug,
   bounds,
   scrollX,
   ...props
@@ -68,58 +69,60 @@ function TestimonialCard({
   });
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ opacity }}
-      {...props}
-      className="relative flex w-72 shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-between overflow-hidden sm:w-96"
-    >
-      <div>
-        <img
-          alt=""
-          src={featuredImage?.[0]?.url}
-          className="inset-x-0 top-0 aspect-[37/40] w-full object-cover rounded-3xl"
-        />
-      </div>
+    <a href={`/nl/${slug}`}>
+      <motion.div
+        ref={ref}
+        style={{ opacity }}
+        {...props}
+        className="relative flex w-72 shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-between overflow-hidden sm:w-96"
+      >
+        <div>
+          <img
+            alt=""
+            src={featuredImage?.[0]?.url}
+            className="top-0 aspect-[37/40] w-full object-contain object-left rounded-3xl"
+          />
+        </div>
 
-      <figure className="relative py-5 h-full">
-        <figcaption className="mt-6 h-full flex flex-col justify-between">
-          <Text as="h4" level="xl" classnames="text-secondary-500">
-            {title}
-          </Text>
-          <Text as="p" level="sm" classnames="text-secondary-500">
-            {gameType} {/* TODO: map to clean translatable text */}
-          </Text>
-          <div className="flex items-center mt-2">
-            <div className="flex items-center mr-4">
-              <Image
-                src="/icon-hourglass.svg"
-                alt="zandloper"
-                className="mr-2 w-3 h-6"
-                width={13}
-                height={16}
-              />
-              <Text as="span" level="xs" classnames="text-secondary-500">
-                {time}
-              </Text>
-            </div>
+        <figure className="relative py-5 h-full">
+          <figcaption className="mt-6 h-full flex flex-col justify-between">
+            <Text as="h4" level="xl" classnames="text-secondary-500">
+              {title}
+            </Text>
+            <Text as="p" level="sm" classnames="text-secondary-500">
+              {gameType} {/* TODO: map to clean translatable text */}
+            </Text>
+            <div className="flex items-center mt-2">
+              <div className="flex items-center mr-4">
+                <Image
+                  src="/icon-hourglass.svg"
+                  alt="zandloper"
+                  className="mr-2 w-3 h-6"
+                  width={13}
+                  height={16}
+                />
+                <Text as="span" level="xs" classnames="text-secondary-500">
+                  {time}
+                </Text>
+              </div>
 
-            <div className="flex items-center">
-              <Image
-                src="/icon-group.svg"
-                alt="Aantal spelers"
-                className="mr-2 w-6 h-6"
-                width={21}
-                height={14}
-              />
-              <Text as="span" level="xs" classnames="text-secondary-500">
-                {players}
-              </Text>
+              <div className="flex items-center">
+                <Image
+                  src="/icon-group.svg"
+                  alt="Aantal spelers"
+                  className="mr-2 w-6 h-6"
+                  width={21}
+                  height={14}
+                />
+                <Text as="span" level="xs" classnames="text-secondary-500">
+                  {players}
+                </Text>
+              </div>
             </div>
-          </div>
-        </figcaption>
-      </figure>
-    </motion.div>
+          </figcaption>
+        </figure>
+      </motion.div>
+    </a>
   );
 }
 
@@ -181,7 +184,6 @@ export function Testimonials({ title, description, backgroundColor }) {
       >
         {cards?.map((testimonial, testimonialIndex) => (
           <TestimonialCard
-            key={testimonialIndex}
             {...testimonial}
             bounds={bounds}
             scrollX={scrollX}

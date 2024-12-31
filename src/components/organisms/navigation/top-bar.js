@@ -1,6 +1,7 @@
 import NavigationTopItem from "@/components/organisms/navigation/NavigationTopItem";
 import { LINKS } from "@/enums/links";
 import { LanguageSwitch } from "@/components/organisms/navigation/languageSwitch";
+import { CompanyData } from "@/data/companyData";
 
 export const TopBar = ({ locale = "nl" }) => {
   const topNavigation = [

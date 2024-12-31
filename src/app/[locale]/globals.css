@@ -19,6 +19,9 @@ body {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 .hero .video-wrapper {
   height: 100vh;

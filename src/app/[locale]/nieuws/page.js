@@ -4,6 +4,8 @@ import { fetchData } from "@/utils/fetchData";
 import { RichText, Text } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { formatDate } from "@/utils/formatDate";
+import { renderComponents } from "@/utils/renderComponents";
+import { PageQuery } from "@/queries/sections/page";
 
 export const metadata = {
   title: "Nieuws - De Gouden Kooi",
@@ -11,10 +13,14 @@ export const metadata = {
   // keywords: "",
 };
 
+async function getPage() {
+  return fetchData(PageQuery({ page: "blogEntries" }));
+}
+
 async function getBlogs({ language }) {
   return fetchData(
     `query MyQuery {
-      blogs: blogEntries(language: "nl") {
+      blogs: blogsEntries(language: "${language}") {
         ... on newsItem_Entry {
           id
           slug: uri
@@ -29,20 +35,18 @@ async function getBlogs({ language }) {
 }
 
 export default async function Home({ params }) {
+  const { page } = await getPage({ language: params.locale });
   const { blogs } = await getBlogs({ language: "nl" }); // params.locale });
+
+  const sections = page[0]?.sections;
 
   return (
     <>
+      {sections?.map((section) => renderComponents(section))}
+
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
-            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-              From the blog
-            </h2>
-            <Text level="xl" as="p" classnames="mt-2 text-gray-600">
-              Learn how to grow your business with our expert advice.
-            </Text>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 mt-16 gap-20 lg:mt-20 lg:space-y-20">
               {blogs.map((post) => (
                 <article

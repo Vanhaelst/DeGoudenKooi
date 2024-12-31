@@ -91,7 +91,7 @@ export const Hero = ({
 
   return (
     <section
-      className={`${bgColor}  bg-cover bg-center`}
+      className={`${bgColor} min-h-96  bg-cover bg-center`}
       style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
     >
       <Container classnames="py-20 grid grid-cols-1 lg:grid-cols-2">
