@@ -1,26 +1,27 @@
 import NavigationTopItem from "@/components/organisms/navigation/NavigationTopItem";
 import { LINKS } from "@/enums/links";
+import { LanguageSwitch } from "@/components/organisms/navigation/languageSwitch";
 
-export const topNavigation = [
-  {
-    name: "Awards",
-    href: LINKS.AWARDS,
-  },
-  {
-    name: "Nieuws",
-    href: LINKS.NEWS,
-  },
-  {
-    name: "Cadeaubon",
-    href: LINKS.GIFTCARD,
-  },
-  {
-    name: "FAQ",
-    href: LINKS.FAQ,
-  },
-];
+export const TopBar = ({ locale = "nl" }) => {
+  const topNavigation = [
+    {
+      name: "Awards",
+      href: LINKS[locale.toUpperCase()].AWARDS,
+    },
+    {
+      name: "Nieuws",
+      href: LINKS[locale.toUpperCase()].NEWS,
+    },
+    {
+      name: "Cadeaubon",
+      href: LINKS[locale.toUpperCase()].GIFTCARD,
+    },
+    {
+      name: "FAQ",
+      href: LINKS[locale.toUpperCase()].FAQ,
+    },
+  ];
 
-export const TopBar = () => {
   return (
     <div className="w-full bg-primary-500 z-50 border-b text-black">
       <div className="mx-auto max-w-7xl px-6 lg:px-0">
@@ -28,6 +29,7 @@ export const TopBar = () => {
           {topNavigation.map((item) => {
             return <NavigationTopItem key={item.name} item={item} />;
           })}
+          <LanguageSwitch />
         </div>
       </div>
     </div>

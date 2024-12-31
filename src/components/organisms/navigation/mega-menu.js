@@ -41,7 +41,7 @@ async function getGames() {
   );
 }
 
-export const MegaMenu = async () => {
+export const MegaMenu = async ({ locale = "nl" }) => {
   const { rooms } = await getGames();
 
   const gerechtstraat = rooms.filter(
@@ -51,15 +51,14 @@ export const MegaMenu = async () => {
     (room) => room.gameLocation === LOCATIONS.HAVERWERF,
   );
 
-  console.log("haverwerf", haverwerf);
   return (
-    <header className="relative z-50 bg-primary-500/25 drop-shadow-xl">
+    <header className="relative z-10 bg-primary-500/25 drop-shadow-xl">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <Link href={LINKS.HOME} className="-m-1.5 p-1.5">
+          <Link href={`/${locale}`} className="-m-1.5 p-1.5">
             <span className="sr-only">{CompanyData.name}</span>
             <Image
               width={121}
@@ -71,12 +70,12 @@ export const MegaMenu = async () => {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
           <Link
-            href={LINKS.ABOUT}
+            href={LINKS[locale.toUpperCase()].ABOUT}
             className="cursor-pointer text-sm font-semibold leading-6 text-gray-900"
           >
             Ons verhaal
           </Link>
-          <Popover className="isolate z-50">
+          <Popover className="isolate z-10">
             <div className="py-5">
               <div className="mx-auto max-w-7xl">
                 <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -93,11 +92,13 @@ export const MegaMenu = async () => {
               <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-6 py-10 lg:grid-cols-4 lg:px-8">
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
                   <MegaMenuItem
+                    locale={locale}
                     label="Gerechtstraat"
                     queryparams={`?location=${LOCATIONS.GERECHTSTRAAT}`}
                     subItems={gerechtstraat}
                   />
                   <MegaMenuItem
+                    locale={locale}
                     label="Haverwerf"
                     queryparams={`?location=${LOCATIONS.HAVERWERF}`}
                     subItems={haverwerf}
@@ -136,7 +137,10 @@ export const MegaMenu = async () => {
 
               <div className="bg-gray-50 hover:bg-[#cba442]/25 cursor-pointer">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 py-4">
-                  <a href={LINKS.BOOK} className="flex items-center gap-x-3">
+                  <a
+                    href={LINKS[locale.toUpperCase()].BOOK}
+                    className="flex items-center gap-x-3"
+                  >
                     <h3 className="text-sm font-semibold leading-6 text-gray-900">
                       Bekijk onze agenda
                     </h3>
@@ -152,19 +156,19 @@ export const MegaMenu = async () => {
             </PopoverPanel>
           </Popover>
           <a
-            href={LINKS.TEAMBUILDING}
+            href={LINKS[locale.toUpperCase()].TEAMBUILDING}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Teambuilding & Events
           </a>
           <a
-            href={LINKS.CONTACT}
+            href={LINKS[locale.toUpperCase()].CONTACT}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Contact
           </a>
 
-          <a href={LINKS.BOOK} className="cursor-pointer">
+          <a href={LINKS[locale.toUpperCase()].BOOK} className="cursor-pointer">
             <Button
               href="#"
               variant="secondary"

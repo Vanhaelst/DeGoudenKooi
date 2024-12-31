@@ -11,10 +11,10 @@ export const metadata = {
   // keywords: "",
 };
 
-async function getBlogs() {
+async function getBlogs({ language }) {
   return fetchData(
     `query MyQuery {
-      blogs: blogEntries {
+      blogs: blogEntries(language: "nl") {
         ... on newsItem_Entry {
           id
           slug: uri
@@ -28,8 +28,8 @@ async function getBlogs() {
   );
 }
 
-export default async function Home() {
-  const { blogs } = await getBlogs();
+export default async function Home({ params }) {
+  const { blogs } = await getBlogs({ language: "nl" }); // params.locale });
 
   return (
     <>

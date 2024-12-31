@@ -17,8 +17,8 @@ const getAwards = () => {
   return fetchData(awardsQuery({}));
 };
 
-export default async function Home() {
-  const { awards } = await getAwards();
+export default async function Home({ params }) {
+  const { awards } = await getAwards({ language: params.locale });
 
   return (
     <>

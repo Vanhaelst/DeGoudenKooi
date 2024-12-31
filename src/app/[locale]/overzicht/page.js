@@ -6,17 +6,17 @@ import { Text } from "@/components/atoms";
 import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
 import React from "react";
 
-async function getPage() {
-  return fetchData(PageQuery({ page: "gerechtstraatEntries" }));
+async function getPage({ language }) {
+  return fetchData(PageQuery({ page: "overviewEntries", language }));
 }
 
-async function getRooms() {
-  return fetchData(roomsQuery({ page: "gerechtstraatEntries" }));
+async function getRooms({ language }) {
+  return fetchData(roomsQuery({ language }));
 }
 
-export default async function Home({ searchParams }) {
-  const { page } = await getPage();
-  const { rooms } = await getRooms();
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({ language: params.locale });
+  const { rooms } = await getRooms({ language: params.locale });
 
   const sections = page[0]?.sections;
 

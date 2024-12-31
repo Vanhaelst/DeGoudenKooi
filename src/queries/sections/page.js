@@ -10,9 +10,12 @@ import { contentEntry } from "@/queries/entries/content";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 
-export const PageQuery = ({ page }) => `
+export const PageQuery = ({ page, language = "nl" }) => {
+  console.log("PageQuery", language);
+
+  return `
     query MyQuery {
-      page: ${page} {
+      page: ${page}(language: "${language}") {
         ... on page_Entry {
           id
           sections {
@@ -45,3 +48,4 @@ export const PageQuery = ({ page }) => `
       }
     }
 `;
+};

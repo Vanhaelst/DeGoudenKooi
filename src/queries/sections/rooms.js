@@ -5,10 +5,11 @@ import { LOCATIONS } from "@/enums/locations";
 export const roomsQuery = ({
   type = `"${GAMETYPE.GAME}", "${GAMETYPE.EXPERIENCE}", "${GAMETYPE.WALK}"`,
   location = `"${LOCATIONS.GERECHTSTRAAT}", "${LOCATIONS.HAVERWERF}"`,
+  language = "nl",
 }) => {
   return `
           query MyQuery {
-              rooms: roomsEntries(gameType: [${type}], gameLocation: [${location}]) {
+              rooms: roomsEntries(language: "${language}", gameType: [${type}], gameLocation: [${location}]) {
                   ... on game_Entry {
                       title
                       story

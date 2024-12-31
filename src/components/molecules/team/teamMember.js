@@ -13,7 +13,7 @@ export const TeamMember = ({ name, image, role, position }) => {
         src={foo.url}
         width={foo.width}
         height={foo.height}
-        className="mx-auto w-40 rounded-full"
+        className="mx-auto w-40"
       />
       <div className="flex flex-col items-center">
         <Text as="h4" level="lg" classnames="text-primary-500">

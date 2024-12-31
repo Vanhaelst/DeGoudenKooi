@@ -13,11 +13,12 @@ import { imageQuery } from "@/queries/entries/image";
 import { Video } from "@/components/molecules/video/video";
 import { Container, Text } from "@/components/atoms";
 import Image from "next/image";
+import { faqQuery } from "@/queries/sections/faq";
 
-const query = ({ pathname }) => {
+const query = ({ pathname, language = "nl" }) => {
   return `
         query MyQuery {
-              rooms: roomsEntries(uri: "${pathname?.slice(1)}") {
+              rooms: roomsEntries(uri: "${pathname?.slice(4)}", language: "${language}") {
                   ... on game_Entry {
                       title
                       story
@@ -28,6 +29,7 @@ const query = ({ pathname }) => {
                       backgroundImage ${imageQuery}
                       gameLocation
                       gameType
+                      categories
                       time
                       players
                       slug: uri
@@ -42,12 +44,13 @@ const query = ({ pathname }) => {
   `;
 };
 
-export default function Game() {
+export default function Game({ params }) {
   const [data, setData] = useState(undefined);
+  const [faq, setFaq] = useState(undefined);
   const pathname = usePathname();
 
   useEffect(() => {
-    fetchData(query({ pathname })).then((res) => {
+    fetchData(query({ pathname, language: params.locale })).then((res) => {
       setData(res.rooms?.[0]);
     });
   }, []);
@@ -62,6 +65,7 @@ export default function Game() {
     videoPlayer,
     players,
     time,
+    categories,
     gameLocation,
     price2,
     price3,
@@ -69,6 +73,15 @@ export default function Game() {
     price5,
     price6,
   } = data || {};
+
+  useEffect(() => {
+    if (!categories) {
+      return;
+    }
+    fetchData(faqQuery({ categories })).then((res) => {
+      setFaq(res.faq);
+    });
+  }, [categories]);
 
   const prices = [
     { players: 2, price: price2 },
@@ -83,16 +96,19 @@ export default function Game() {
       icon: "/icon-hourglass.svg",
       title: "Locatie",
       description: gameLocation,
+      classes: "",
     },
     {
       icon: "/icon-group.svg",
       title: "Aantal",
       description: players,
+      classes: "hidden lg:flex",
     },
     {
       icon: "/icon-hourglass.svg",
       title: "Duurtijd",
       description: time,
+      classes: "hidden sm:flex",
     },
   ];
 
@@ -109,13 +125,13 @@ export default function Game() {
         awards={true}
       />
 
-      <Container
-        classnames="relative"
-        style={{ transform: "translateY(-50%)" }}
-      >
-        <div className="rounded-2xl border border-secondary-500 bg-white p-6 grid grid-cols-3 divide-x divide-secondary-500">
-          {features.map(({ title, description }) => (
-            <div className="flex items-center justify-center" key={title}>
+      <Container classnames="relative -translate-y-8 lg:-translate-y-1/2">
+        <div className="rounded-2xl border border-secondary-500 bg-white p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:divide-x divide-secondary-500">
+          {features.map(({ title, description, classes }) => (
+            <div
+              className={`flex items-center justify-center ${classes}`}
+              key={title}
+            >
               <Image
                 src="/icon-hourglass.svg"
                 alt="zandloper"
@@ -164,7 +180,7 @@ export default function Game() {
       <Prices title="Tarieven" prices={prices} />
       <Bookeo />
 
-      <Faq backgroundColor="lightGray" />
+      <Faq backgroundColor="lightGray" faq={faq} />
     </>
   );
 }

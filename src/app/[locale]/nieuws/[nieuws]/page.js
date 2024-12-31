@@ -13,10 +13,10 @@ import { lightboxEntry } from "@/queries/entries/lightbox";
 import { videoEntry } from "@/queries/entries/video";
 import { Loader } from "@/components/atoms/loader/loader";
 
-const query = ({ pathname }) => {
+const query = ({ pathname, language = "nl" }) => {
   return `
         query MyQuery {
-              blog: blogEntries(uri: "${pathname?.slice(1)}") {
+              blog: blogEntries(uri: "${pathname?.slice(4)}", language: "${language}") {
                   ... on newsItem_Entry {
                       id
                       title
@@ -38,12 +38,12 @@ const query = ({ pathname }) => {
   `;
 };
 
-export default function News() {
+export default function News({ params }) {
   const [data, setData] = useState(undefined);
   const pathname = usePathname();
 
   useEffect(() => {
-    fetchData(query({ pathname })).then((res) => {
+    fetchData(query({ pathname, language: params.locale })).then((res) => {
       setData(res?.blog[0]);
     });
   }, []);

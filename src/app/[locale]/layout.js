@@ -42,35 +42,15 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
+  console.log("layout", params);
   return (
     <html lang="en">
-      <Head>
-        <link
-          rel="icon"
-          href="/favicons/cropped-pictogram-192x192.png"
-          sizes="192x192"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/favicons/cropped-pictogram-180x180.png"
-        />
-        <meta
-          name="msapplication-TileImage"
-          content="favicons/cropped-pictogram-270x270.png"
-        />
-        <link
-          rel="icon"
-          href="/favicons/cropped-pictogram-32x32.png"
-          sizes="32x32"
-        />
-        ;
-      </Head>
       <body className={`${font.className} antialiased`}>
-        <TopBar />
-        <MegaMenu />
+        <TopBar locale={"nl"} />
+        <MegaMenu locale={params.locale} />
         {children}
-        <Footer />
+        <Footer locale={"nl"} />
       </body>
     </html>
   );

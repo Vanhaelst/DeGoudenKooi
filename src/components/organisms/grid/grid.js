@@ -20,6 +20,7 @@ export const Grid = ({ title, description, gridItems, backgroundColor }) => {
             return (
               <div
                 key={item.title}
+                // TODO add switch and add classes to config
                 className={`flex p-px ${item.gridSize === "oneThird" ? " lg:col-span-5" : item.gridSize === "twoThirds" ? "lg:col-span-7" : "lg:col-span-12"}`}
               >
                 <BentoCard {...item} />

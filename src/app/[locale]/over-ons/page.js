@@ -19,10 +19,10 @@ export const metadata = {
 async function getPage() {
   return fetchData(PageQuery({ page: "aboutUsEntries" }));
 }
-async function getBlogs() {
+async function getBlogs({ language }) {
   return fetchData(
     `query MyQuery {
-      blogs: newsEntries(orderBy: "postDate desc") {
+      blogs: newsEntries(language: "${language}", orderBy: "postDate desc") {
         ... on article_Entry {
           id
           title
@@ -41,9 +41,9 @@ async function getBlogs() {
   );
 }
 
-export default async function Home() {
-  const { page } = await getPage();
-  const { blogs } = await getBlogs();
+export default async function Home({ params }) {
+  const { page } = await getPage({ language: params.locale });
+  const { blogs } = await getBlogs({ language: params.locale });
 
   const sections = page[0]?.sections;
 

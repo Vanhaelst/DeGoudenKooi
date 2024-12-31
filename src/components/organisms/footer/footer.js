@@ -93,7 +93,7 @@ const navigation = {
   ],
 };
 
-export const Footer = () => {
+export const Footer = ({ locale = "nl" }) => {
   return (
     <footer className="bg-secondary-700">
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-20 lg:px-8 xl:pt-32">

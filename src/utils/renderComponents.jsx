@@ -20,7 +20,6 @@ import { Faq as FaqMolecule } from "@/components/molecules/faq/faq";
 export const renderComponents = (data) => {
   const { typeHandle } = data ?? {};
 
-  console.log("typeHandle", typeHandle);
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} {...data} />;

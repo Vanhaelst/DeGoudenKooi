@@ -2,12 +2,12 @@ import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 
-async function getPage() {
-  return fetchData(PageQuery({ page: "homeEntries" }));
+async function getPage({ language }) {
+  return fetchData(PageQuery({ page: "shopEntries", language }));
 }
 
-export default async function Home() {
-  const { page } = await getPage();
+export default async function Home({ params }) {
+  const { page } = await getPage({ language: params.locale });
 
   const sections = page[0]?.sections;
 

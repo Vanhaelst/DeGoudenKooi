@@ -10,7 +10,7 @@ export const AccordionItem = ({ title, description }) => {
           {title}
         </Text>
       </div>
-      <div className="collapse-content">
+      <div className="collapse-content px-0">
         <RichText text={description} level="md" classnames="text-primary-700" />
       </div>
     </div>

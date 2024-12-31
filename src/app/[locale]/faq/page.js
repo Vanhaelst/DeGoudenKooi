@@ -8,12 +8,12 @@ export const metadata = {
   // keywords: "",
 };
 
-async function getPage() {
-  return fetchData(PageQuery({ page: "faqPageEntries" }));
+async function getPage({ language }) {
+  return fetchData(PageQuery({ page: "faqPageEntries", language }));
 }
 
-export default async function Home() {
-  const { page } = await getPage();
+export default async function Home({ params }) {
+  const { page } = await getPage({ language: params.locale });
 
   const sections = page[0]?.sections;
 

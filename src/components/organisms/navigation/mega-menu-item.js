@@ -2,11 +2,11 @@ import { NewspaperIcon } from "@heroicons/react/24/outline";
 import { LINKS } from "@/enums/links";
 import Image from "next/image";
 
-export const MegaMenuItem = ({ label, queryparams, subItems }) => {
+export const MegaMenuItem = ({ locale, label, queryparams, subItems }) => {
   return (
     <div>
       <a
-        href={`${LINKS.GAME_OVERVIEW}${queryparams}`}
+        href={`${LINKS[locale.toUpperCase()].GAME_OVERVIEW}${queryparams}`}
         className="relative text-md font-bold leading-6 text-secondary-500"
       >
         {label}
@@ -16,7 +16,7 @@ export const MegaMenuItem = ({ label, queryparams, subItems }) => {
           {subItems?.map((item = {}) => (
             <a
               key={item.title}
-              href={`/${item.slug}`}
+              href={`/${locale}/${item.slug}`}
               className="relative flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
             >
               {item.icon?.[0] ? (
