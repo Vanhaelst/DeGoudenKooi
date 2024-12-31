@@ -12,7 +12,6 @@ export default async function Contact({ params }) {
 
   const sections = page[0]?.sections;
 
-  console.log("params", params);
   return (
     <>
       {sections?.map((section) => renderComponents(section))}

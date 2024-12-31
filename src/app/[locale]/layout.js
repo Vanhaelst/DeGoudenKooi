@@ -38,12 +38,11 @@ export const metadata = {
       "Plan een leuke uitstap met vrienden, familie of collega’s in onze escape room in Mechelen met zes verschillende escape rooms. Boek snel online!",
     url: "https://degoudenkooi.be/",
     site_name: "De Gouden Kooi",
-    image: "/symbool-uitgesneden-en-transparant.png",
+    image: "/symbool.png",
   },
 };
 
 export default function RootLayout({ children, params }) {
-  console.log("layout", params);
   return (
     <html lang="en">
       <body className={`${font.className} antialiased`}>

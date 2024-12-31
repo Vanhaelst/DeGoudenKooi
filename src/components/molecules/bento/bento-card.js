@@ -1,5 +1,4 @@
 import { Button, RichText, Text } from "@/components/atoms";
-import Link from "next/link";
 
 export const BentoCard = ({
   title,
@@ -54,7 +53,7 @@ export const BentoCard = ({
 
       {image && (
         <img
-          alt=""
+          alt={title}
           src={image?.[0].url}
           className="h-80 w-full object-cover object-left bg-primary-500 rounded-2xl"
         />

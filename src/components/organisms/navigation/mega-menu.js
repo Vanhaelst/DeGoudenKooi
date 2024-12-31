@@ -5,7 +5,6 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { NewspaperIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
 import { CompanyData } from "@/data/companyData";
@@ -52,14 +51,20 @@ export const MegaMenu = async ({ locale = "nl" }) => {
   );
 
   return (
-    <header className="relative z-10 bg-primary-500/25 drop-shadow-xl">
+    <header className="relative z-10 bg-primary-500/25 drop-shadow-xl py-5">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <Link href={`/${locale}`} className="-m-1.5 p-1.5">
+          <Link href={`/${locale}`} className="flex -m-1.5 p-1.5">
             <span className="sr-only">{CompanyData.name}</span>
+            <Image
+              width={48}
+              height={48}
+              src="/symbool.png"
+              className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
+            />
             <Image
               width={121}
               height={18}
@@ -71,14 +76,14 @@ export const MegaMenu = async ({ locale = "nl" }) => {
         <PopoverGroup className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
           <Link
             href={LINKS[locale.toUpperCase()].ABOUT}
-            className="cursor-pointer text-sm font-semibold leading-6 text-gray-900"
+            className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
             Ons verhaal
           </Link>
           <Popover className="isolate z-10">
-            <div className="py-5">
+            <div className="">
               <div className="mx-auto max-w-7xl">
-                <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all">
                   Games & Experiences
                   <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
                 </PopoverButton>
@@ -93,13 +98,13 @@ export const MegaMenu = async ({ locale = "nl" }) => {
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
                   <MegaMenuItem
                     locale={locale}
-                    label="Gerechtstraat"
+                    label="Gerechtstraat (game)"
                     queryparams={`?location=${LOCATIONS.GERECHTSTRAAT}`}
                     subItems={gerechtstraat}
                   />
                   <MegaMenuItem
                     locale={locale}
-                    label="Haverwerf"
+                    label="Haverwerf (experience)"
                     queryparams={`?location=${LOCATIONS.HAVERWERF}`}
                     subItems={haverwerf}
                   />
@@ -135,35 +140,38 @@ export const MegaMenu = async ({ locale = "nl" }) => {
                 </div>
               </div>
 
-              <div className="bg-gray-50 hover:bg-[#cba442]/25 cursor-pointer">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 py-4">
-                  <a
-                    href={LINKS[locale.toUpperCase()].BOOK}
-                    className="flex items-center gap-x-3"
-                  >
+              <a
+                href={LINKS[locale.toUpperCase()].BOOK}
+                className="flex bg-gray-100 hover:bg-primary-500/25 cursor-pointer"
+              >
+                <div className="flex items-center gap-x-3 sm:px-6 lg:px-8 py-4">
+                  <Image
+                    width={48}
+                    height={48}
+                    src="/kalender.svg"
+                    className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
+                  />
+                  <div>
                     <h3 className="text-sm font-semibold leading-6 text-gray-900">
                       Bekijk onze agenda
                     </h3>
-                    <p className="rounded-full bg-indigo-600/10 px-2.5 pt-1.5 text-xs font-semibold text-indigo-600 hidden">
-                      New
+                    <p className="text-sm leading-6 text-gray-600">
+                      Claim jouw avontuur nu
                     </p>
-                  </a>
-                  <p className="text-sm leading-6 text-gray-600">
-                    Claim jouw avontuur nu
-                  </p>
+                  </div>
                 </div>
-              </div>
+              </a>
             </PopoverPanel>
           </Popover>
           <a
             href={LINKS[locale.toUpperCase()].TEAMBUILDING}
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
             Teambuilding & Events
           </a>
           <a
             href={LINKS[locale.toUpperCase()].CONTACT}
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
             Contact
           </a>
@@ -172,7 +180,7 @@ export const MegaMenu = async ({ locale = "nl" }) => {
             <Button
               href="#"
               variant="secondary"
-              callToAction="Reserveer nu"
+              callToAction="RESERVEER NU"
               type="rounded"
               size="small"
             />

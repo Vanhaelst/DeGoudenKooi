@@ -3,7 +3,7 @@ import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 
 async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "homeEntries", language }));
+  return fetchData(PageQuery({ page: "dealsActiviteitenEntries", language }));
 }
 
 export default async function Home({ params }) {

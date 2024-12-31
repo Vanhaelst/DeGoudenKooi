@@ -9,7 +9,7 @@ export const LanguageSwitch = () => {
   return (
     <div className="group relative z-50">
       <button
-        className="text-sm text-white cursor-pointer hover:underline my-3 flex w-full items-center justify-between border-b border-gray-100  py-2 pl-3 pr-4 md:w-auto md:border-0 md:p-0 md:hover:bg-transparent"
+        className="text-sm text-white cursor-pointer flex w-full items-center justify-between border-b border-gray-100  py-2 pl-3 pr-4 md:w-auto md:border-0 md:p-0 md:hover:bg-transparent"
         onClick={() => setShow((prevState) => !prevState)}
       >
         NL

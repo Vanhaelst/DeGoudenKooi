@@ -11,8 +11,6 @@ import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 
 export const PageQuery = ({ page, language = "nl" }) => {
-  console.log("PageQuery", language);
-
   return `
     query MyQuery {
       page: ${page}(language: "${language}") {

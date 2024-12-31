@@ -10,10 +10,12 @@ export const Content = ({ title, description, buttons, columns }) => {
         </Text>
         <div className={`lg:columns-${columns} gap-x-8`}>
           <RichText text={description} classnames="text-primary-700" />
-          {buttons &&
-            buttons.map((button) => (
-              <Button key={button.href} {...button} classnames="mt-4" />
-            ))}
+          <div className="space-x-4">
+            {buttons &&
+              buttons.map((button) => (
+                <Button key={button.href} {...button} classnames="mt-4" />
+              ))}
+          </div>
         </div>
       </Container>
     </section>

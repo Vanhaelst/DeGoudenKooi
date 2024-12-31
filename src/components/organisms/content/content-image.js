@@ -14,10 +14,12 @@ export const ContentImage = ({ title, description, buttons, image, order }) => {
             className={`${contentLeft ? "md:order-1" : "md:order-2"} order-2 flex flex-col justify-center`}
           >
             <Title title={title} description={description} showIcon={false} />
-            {buttons &&
-              buttons.map((button) => (
-                <Button key={button.href} {...button} classnames="mt-4" />
-              ))}
+            <div className="space-x-4">
+              {buttons &&
+                buttons.map((button) => (
+                  <Button key={button.href} {...button} classnames="mt-4" />
+                ))}
+            </div>
           </div>
 
           <Images

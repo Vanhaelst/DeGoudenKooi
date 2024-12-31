@@ -7,7 +7,7 @@ export const MegaMenuItem = ({ locale, label, queryparams, subItems }) => {
     <div>
       <a
         href={`${LINKS[locale.toUpperCase()].GAME_OVERVIEW}${queryparams}`}
-        className="relative text-md font-bold leading-6 text-secondary-500"
+        className="relative flex text-md font-bold leading-6 text-secondary-500 hover:underline hover:pl-2 transition-all"
       >
         {label}
       </a>
@@ -17,7 +17,7 @@ export const MegaMenuItem = ({ locale, label, queryparams, subItems }) => {
             <a
               key={item.title}
               href={`/${locale}/${item.slug}`}
-              className="relative flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
+              className="relative flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900 cursor-pointer hover:underline hover:pl-2 transition-all"
             >
               {item.icon?.[0] ? (
                 <Image
