@@ -184,6 +184,7 @@ export function Testimonials({ title, description, backgroundColor }) {
       >
         {cards?.map((testimonial, testimonialIndex) => (
           <TestimonialCard
+            key={testimonialIndex}
             {...testimonial}
             bounds={bounds}
             scrollX={scrollX}
