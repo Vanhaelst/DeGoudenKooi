@@ -49,5 +49,10 @@
     "title": "Subscribe to our newsletter",
     "mail": "Email address",
     "button": "Subscribe"
+  },
+  "notFound": {
+    "title": "This cage is closed",
+    "subtitle": "Take a look at our homepage.",
+    "button": "back to the homepage"
   }
 }

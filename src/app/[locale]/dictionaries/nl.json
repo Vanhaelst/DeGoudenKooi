@@ -48,5 +48,10 @@
      "title": "Schrijf je in voor onze nieuwsbrief.",
      "mail": "E-mail adres",
      "button": "Inschrijven"
+   },
+   "notFound": {
+     "title": "Deze kooi blijft gesloten",
+     "subtitle": "Neem daarom een kijkje op onze homepagina.",
+     "button": "Naar de homepagina"
    }
 }
