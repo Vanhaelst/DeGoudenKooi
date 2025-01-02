@@ -18,6 +18,7 @@
     "calendar_subtitle": "Claim jouw avontuur nu"
   },
   "general": {
+    "the": "De",
     "gerechtstraat": "Gerechtstraat",
     "haverwerf": "Haverwerf",
     "game": "Game",
@@ -25,8 +26,24 @@
     "walk": "Wandeling",
     "location": "Locatie",
     "discover": "Ontdek",
-    "questions": "Vragen"
+    "questions": "Vragen",
+    "amount": "Aantal",
+    "time": "Duurtijd"
   },
+   "game": {
+     "teaser": "Teaser",
+     "awards_link": "Ontdek ze allemaal op onze",
+     "Awards_link_bold": " awards pagina"
+   },
+   "rate": {
+     "included": "Wat is inclusief",
+     "escape": "per escape game",
+     "person": "per persoon",
+     "tag": "Speel met meer, betaal minder",
+     "total": "Totaal",
+     "players": "spelers",
+     "reserve": "Boek nu"
+   },
    "newsletter": {
      "title": "Schrijf je in voor onze nieuwsbrief.",
      "mail": "E-mail adres",

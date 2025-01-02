@@ -17,6 +17,9 @@ import { AwardSlider } from "@/components/molecules/awardSlider/awards";
 import { awardsQuery } from "@/queries/sections/awards";
 import { CompanyData } from "@/data/companyData";
 
+import nl from "@/app/[locale]/dictionaries/nl.json";
+import en from "@/app/[locale]/dictionaries/en.json";
+
 const query = ({ slug, language = "nl" }) => {
   return `
         query MyQuery {
@@ -50,6 +53,8 @@ export default function Game({ params }) {
   const [data, setData] = useState(undefined);
   const [faq, setFaq] = useState(undefined);
   const [awards, setAwards] = useState(undefined);
+
+  const t = params.locale === nl ? nl : en;
 
   useEffect(() => {
     fetchData(
@@ -104,19 +109,19 @@ export default function Game({ params }) {
   const features = [
     {
       icon: "/icon-location.svg",
-      title: "Locatie",
-      description: gameLocation,
+      title: t.general.location,
+      description: t.general[gameLocation],
       classes: "",
     },
     {
       icon: "/icon-group.svg",
-      title: "Aantal",
+      title: t.general.amount,
       description: players,
       classes: "hidden lg:flex",
     },
     {
       icon: "/icon-hourglass.svg",
-      title: "Duurtijd",
+      title: t.general.time,
       description: time,
       classes: "hidden sm:flex",
     },
@@ -179,7 +184,7 @@ export default function Game({ params }) {
           description={story}
           buttons={[
             {
-              callToAction: "Boek nu",
+              callToAction: t.navigation.reserve,
               href: "#book",
             },
           ]}
@@ -197,7 +202,9 @@ export default function Game({ params }) {
                 width={20}
                 height={20}
               />
-              <Text classnames="text-secondary-500">{gameLocation}</Text>
+              <Text classnames="text-secondary-500">
+                {t.general[gameLocation]}
+              </Text>
             </div>
             <div className="flex mr-4">
               <Image
@@ -224,11 +231,12 @@ export default function Game({ params }) {
       </div>
 
       <AwardSlider
-        title={`De "${title}" Awards`}
+        title={`${t.general.the} "${title}" ${t.topbar.awards}`}
         backgroundColor="darkGray"
         awards={awards}
         locale={params.locale}
         detail
+        t={t.game}
       />
 
       <Video
@@ -239,7 +247,7 @@ export default function Game({ params }) {
         halfBg={true}
       />
 
-      <Prices title="Tarieven" prices={prices} />
+      <Prices title="Tarieven" prices={prices} t={t.rate} />
       <Bookeo />
 
       <Faq title={`FAQ: ${title}`} backgroundColor="lightGray" faq={faq} />

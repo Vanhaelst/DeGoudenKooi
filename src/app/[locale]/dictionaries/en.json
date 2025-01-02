@@ -1,4 +1,4 @@
- {
+{
   "topbar": {
     "awards": "Awards",
     "news": "News",
@@ -18,6 +18,8 @@
     "calendar_subtitle": "Claim your adventure now"
   },
   "general": {
+    "the": "The",
+    "teaser": "Teaser",
     "gerechtstraat": "Gerechtstraat",
     "haverwerf": "Haverwerf",
     "game": "Game",
@@ -25,11 +27,27 @@
     "walk": "Walk",
     "location": "Location",
     "discover": "Discover",
-    "questions": "Questions"
+    "questions": "Questions",
+    "amount": "Amount",
+    "time": "Time"
   },
-   "newsletter": {
-     "title": "Subscribe to our newsletter",
-     "mail": "Email address",
-     "button": "Subscribe"
-   }
+  "game": {
+    "teaser": "Teaser",
+    "awards_link": "Discover all on our",
+    "awards_link_bold": "awards page"
+  },
+  "rate": {
+    "included": "What's included",
+    "escape": "per escape game",
+    "person": "per person",
+    "tag": "Play with more, pay less",
+    "total": "Total",
+    "players": "players",
+    "reserve": "Book now"
+  },
+  "newsletter": {
+    "title": "Subscribe to our newsletter",
+    "mail": "Email address",
+    "button": "Subscribe"
+  }
 }

@@ -6,7 +6,7 @@ import { Title } from "@/components/molecules";
 import { CheckBadgeIcon, TagIcon } from "@heroicons/react/24/outline";
 import { formatPrice } from "@/utils/formatPrice";
 
-export const Prices = ({ title, description, prices }) => {
+export const Prices = ({ title, description, prices, t }) => {
   const [value, setValue] = useState("2");
   const bgColor = "bg-lightGray-500";
 
@@ -17,7 +17,7 @@ export const Prices = ({ title, description, prices }) => {
         <div className="bg-white rounded-xl p-2 mt-12 grid lg:grid-cols-5">
           <div className="bg-white rounded-xl p-6 lg:col-span-3">
             <Text level="p" classnames="mb-2">
-              What&apos;s included
+              {t.included}
             </Text>
 
             {prices.map(({ price, players }) => (
@@ -25,12 +25,12 @@ export const Prices = ({ title, description, prices }) => {
                 <CheckBadgeIcon className="w-6 h-6 mr-2" />
                 <Text level="p" classnames="text-secondary-500">
                   <Text as="span" classnames="font-bold">
-                    {players} spelers:&nbsp;
+                    {players} {t.players}&nbsp;
                   </Text>
-                  {formatPrice(price)} per escape experience /{" "}
+                  {formatPrice(price)} {t.escape} /{" "}
                   {formatPrice(price / players)}{" "}
                   <span className="inline xl:hidden">p.p.</span>
-                  <span className="hidden xl:inline">per persoon</span>
+                  <span className="hidden xl:inline">{t.person}</span>
                 </Text>
               </div>
             ))}
@@ -43,14 +43,14 @@ export const Prices = ({ title, description, prices }) => {
                 level="sm"
                 classnames="shadow-md border-solid border-2 border-white font-light py-1 px-2 rounded-lg text-white bg-primary-500"
               >
-                Speel met meer, betaal minder
+                {t.tag}
               </Text>
             </div>
             <Text level="2xl" as="span" classnames="font-bold">
-              Totaal
+              {t.total}
             </Text>
             <Text level="lg" as="p" classnames="font-light text-primary-700">
-              {value} spelers
+              {value} {t.players}
             </Text>
             <Text level="2xl" as="span" classnames="font-bold">
               {formatPrice(prices[value - 2].price / prices[value - 2].players)}{" "}
@@ -59,7 +59,7 @@ export const Prices = ({ title, description, prices }) => {
                 as="span"
                 classnames="font-light text-primary-700"
               >
-                /per persoon
+                {t.person}
               </Text>
             </Text>
 
@@ -69,7 +69,7 @@ export const Prices = ({ title, description, prices }) => {
                 variant="primary"
                 classnames="w-full"
                 size="small"
-                callToAction="Boek nu"
+                callToAction={t.reserve}
               />
             </div>
 
