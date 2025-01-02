@@ -32,7 +32,7 @@ export const TopBar = async ({ locale = "nl" }) => {
           {topNavigation.map((item) => {
             return <NavigationTopItem key={item.name} item={item} />;
           })}
-          <LanguageSwitch locale={locale} />
+          <LanguageSwitch lang={locale} />
         </div>
       </div>
     </div>

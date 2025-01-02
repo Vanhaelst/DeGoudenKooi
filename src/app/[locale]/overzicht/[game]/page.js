@@ -54,7 +54,7 @@ export default function Game({ params }) {
   const [faq, setFaq] = useState(undefined);
   const [awards, setAwards] = useState(undefined);
 
-  const t = params.locale === nl ? nl : en;
+  const t = params.locale === "nl" ? nl : en;
 
   useEffect(() => {
     fetchData(

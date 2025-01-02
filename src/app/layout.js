@@ -3,8 +3,9 @@ import { Inter } from "next/font/google";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import "./globals.css";
-import "./slick.css";
+import "./[locale]/globals.css";
+import "./[locale]/slick.css";
+
 import React from "react";
 import { TopBar } from "@/components/organisms/navigation/top-bar";
 import { MegaMenu } from "@/components/organisms/navigation/mega-menu";
@@ -45,18 +46,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children, params }) {
-  if (params.locale !== "nl" && params.locale !== "en") {
-    redirect("/nl");
-  }
-
   return (
     <html lang={params.locale}>
-      <body className={`${font.className} antialiased`}>
-        <TopBar locale={params.locale} />
-        <MegaMenu locale={params.locale} />
-        {children}
-        <Footer locale={params.locale} />
-      </body>
+      <body className={`${font.className} antialiased`}>{children}</body>
     </html>
   );
 }
