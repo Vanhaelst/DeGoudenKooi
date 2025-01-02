@@ -8,9 +8,7 @@ import { usePathname, useParams } from "next/navigation";
 
 export default function NotFound() {
   const pathname = usePathname();
-  const params = useParams();
   const t = pathname.includes("/nl/") ? nl : en;
-  console.log("t", t);
 
   return (
     <main className="relative isolate min-h-full">

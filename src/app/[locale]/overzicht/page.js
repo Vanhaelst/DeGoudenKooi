@@ -5,6 +5,7 @@ import { renderComponents } from "@/utils/renderComponents";
 import { Text } from "@/components/atoms";
 import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
 import React from "react";
+import { defaultMetadata } from "@/data/metadata";
 
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "overviewEntries", language }));
@@ -12,6 +13,32 @@ async function getPage({ language }) {
 
 async function getRooms({ language }) {
   return fetchData(roomsQuery({ language }));
+}
+
+export async function generateMetadata({ params }) {
+  return params.locale === "en"
+    ? {
+        ...defaultMetadata,
+        title: "Escape games - De Gouden Kooi",
+        description:
+          "Escape experiences ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "Escape experiences ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
+        },
+      }
+    : {
+        ...defaultMetadata,
+        title: "Escape games - De Gouden Kooi",
+        description:
+          "Onze escape experience is de next-level escape room in Mechelen met meer immersie. Ga jij de uitdaging aan? Ontdek het unieke thema en reserveer online!",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "Onze escape experience is de next-level escape room in Mechelen met meer immersie. Ga jij de uitdaging aan? Ontdek het unieke thema en reserveer online!",
+        },
+      };
 }
 
 export default async function Home({ params, searchParams }) {

@@ -8,13 +8,7 @@ import React from "react";
 import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
 import { Title } from "@/components/molecules";
-
-export const metadata = {
-  title: "Over ons - De Gouden Kooi",
-  description:
-    "Een overzicht van de awards die we de voorbije jaren verzamelden.",
-  // keywords: "",
-};
+import { defaultMetadata } from "@/data/metadata";
 
 async function getPage() {
   return fetchData(PageQuery({ page: "aboutUsEntries" }));
@@ -39,6 +33,32 @@ async function getBlogs({ language }) {
       }
     }`,
   );
+}
+
+export async function generateMetadata({ params }) {
+  return params.locale === "en"
+    ? {
+        ...defaultMetadata,
+        title: "About us - De Gouden Kooi",
+        description:
+          "About us ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "About us ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
+        },
+      }
+    : {
+        ...defaultMetadata,
+        title: "Ons verhaal - De Gouden Kooi",
+        description:
+          "De Gouden Kooi staat voor een team van gepassioneerde escape room bouwers. We bedenken en bouwen onze escape rooms zelf.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "De Gouden Kooi staat voor een team van gepassioneerde escape room bouwers. We bedenken en bouwen onze escape rooms zelf.",
+        },
+      };
 }
 
 export default async function Home({ params }) {

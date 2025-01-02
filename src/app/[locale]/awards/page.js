@@ -4,14 +4,34 @@ import { fetchData } from "@/utils/fetchData";
 import { Hero } from "@/components/molecules/hero/hero";
 import { CompanyData } from "@/data/companyData";
 import { awardsQuery } from "@/queries/sections/awards";
-import { Container, RichText, Text } from "@/components/atoms";
+import { Container, RichText } from "@/components/atoms";
+import { defaultMetadata } from "@/data/metadata";
 
-export const metadata = {
-  title: "Awards - De Gouden Kooi",
-  description:
-    "Een overzicht van de awards die we de voorbije jaren verzamelden.",
-  // keywords: "",
-};
+export async function generateMetadata({ params }) {
+  return params.locale === "en"
+    ? {
+        ...defaultMetadata,
+        title: "Awards - De Gouden Kooi",
+        description:
+          "An overview of the awards we have collected over the past years.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "An overview of the awards we have collected over the past years.",
+        },
+      }
+    : {
+        ...defaultMetadata,
+        title: "Awards - De Gouden Kooi",
+        description:
+          "Een overzicht van de awards die we de voorbije jaren verzamelden.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "Een overzicht van de awards die we de voorbije jaren verzamelden.",
+        },
+      };
+}
 
 const getAwards = () => {
   return fetchData(awardsQuery({}));

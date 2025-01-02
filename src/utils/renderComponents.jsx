@@ -8,12 +8,13 @@ import { Content } from "@/components/organisms/content/content";
 import { Gallery } from "@/components/molecules/lightbox/lightbox";
 import { Video } from "@/components/molecules/video/video";
 import { Team } from "@/components/molecules/team/team";
-import { Faq, Faq as FaqMolecule } from "@/components/molecules/faq/faq";
+import { Faq as FaqMolecule } from "@/components/molecules/faq/faq";
 import { AsyncHero } from "@/components/organisms/hero/hero";
 import { Awards } from "@/components/organisms/awards/awards";
 import { Features } from "@/components/organisms/features/features";
 import { CallToAction } from "@/components/organisms/callToAction/callToAction";
 import { Testimonials } from "@/components/organisms/testimonials/testimonials";
+import { Faq } from "@/components/organisms/faq/faq";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};

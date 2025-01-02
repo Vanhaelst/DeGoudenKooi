@@ -6,12 +6,7 @@ import { imageQuery } from "@/queries/entries/image";
 import { formatDate } from "@/utils/formatDate";
 import { renderComponents } from "@/utils/renderComponents";
 import { PageQuery } from "@/queries/sections/page";
-
-export const metadata = {
-  title: "Nieuws - De Gouden Kooi",
-  description: "",
-  // keywords: "",
-};
+import { defaultMetadata } from "@/data/metadata";
 
 async function getPage() {
   return fetchData(PageQuery({ page: "blogEntries" }));
@@ -32,6 +27,32 @@ async function getBlogs({ language }) {
       }
     }`,
   );
+}
+
+export async function generateMetadata({ params }) {
+  return params.locale === "en"
+    ? {
+        ...defaultMetadata,
+        title: "Blog - De Gouden Kooi",
+        description:
+          "Home ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "Home ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
+        },
+      }
+    : {
+        ...defaultMetadata,
+        title: "Blog - De Gouden Kooi",
+        description:
+          "Blog ✓ Informeel en leerzaam ✓ Meetings en bedrijfspresentaties ✓ Escape games.",
+        openGraph: {
+          ...defaultMetadata.openGraph,
+          description:
+            "Blog ✓ Informeel en leerzaam ✓ Meetings en bedrijfspresentaties ✓ Escape games.",
+        },
+      };
 }
 
 export default async function Home({ params }) {
@@ -56,9 +77,9 @@ export default async function Home({ params }) {
                   <div className="relative aspect-video sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
                     <Image
                       alt=""
-                      src={post.image[0].url}
-                      width={post.image[0].width}
-                      height={post.image[0].height}
+                      src={post.image[0]?.url}
+                      width={post.image[0]?.width}
+                      height={post.image[0]?.height}
                       className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover"
                     />
                     <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
