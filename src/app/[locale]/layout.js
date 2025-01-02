@@ -5,8 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 import "./globals.css";
 import "./slick.css";
-import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import React from "react";
+import { TopBar } from "@/components/organisms/navigation/top-bar";
+import { MegaMenu } from "@/components/organisms/navigation/mega-menu";
+import { Footer } from "@/components/organisms/footer/footer";
 
 const font = Inter({
   subsets: ["latin"],

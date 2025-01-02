@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Awards,
-  CallToAction,
-  Faq,
-  Features,
-  AsyncHero,
-  Testimonials,
-} from "@/components/organisms";
+
 import { Grid } from "@/components/organisms/grid/grid";
 import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
 import { Contents } from "@/components/organisms/content";
@@ -15,7 +8,12 @@ import { Content } from "@/components/organisms/content/content";
 import { Gallery } from "@/components/molecules/lightbox/lightbox";
 import { Video } from "@/components/molecules/video/video";
 import { Team } from "@/components/molecules/team/team";
-import { Faq as FaqMolecule } from "@/components/molecules/faq/faq";
+import { Faq, Faq as FaqMolecule } from "@/components/molecules/faq/faq";
+import { AsyncHero } from "@/components/organisms/hero/hero";
+import { Awards } from "@/components/organisms/awards/awards";
+import { Features } from "@/components/organisms/features/features";
+import { CallToAction } from "@/components/organisms/callToAction/callToAction";
+import { Testimonials } from "@/components/organisms/testimonials/testimonials";
 
 export const renderComponents = (data) => {
   const { typeHandle } = data ?? {};
