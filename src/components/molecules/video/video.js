@@ -10,6 +10,7 @@ export const Video = ({
   videoId,
   videoPlayer,
   halfBg,
+  id,
 }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
@@ -18,7 +19,10 @@ export const Video = ({
   }
 
   return (
-    <section className={`${bgColor & !halfBg ? bgColor : ""} relative py-14`}>
+    <section
+      className={`${bgColor & !halfBg ? bgColor : ""} relative py-14`}
+      id={id}
+    >
       <Container classnames="mb-24">
         <Title showIcon={true} title={title} description={description} />
       </Container>

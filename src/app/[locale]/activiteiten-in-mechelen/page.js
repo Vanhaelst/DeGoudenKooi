@@ -11,5 +11,5 @@ export default async function Home({ params }) {
 
   const sections = page[0]?.sections;
 
-  return sections?.map((section) => renderComponents(section));
+  return sections?.map((section) => renderComponents(section, params.locale));
 }

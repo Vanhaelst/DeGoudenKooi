@@ -30,6 +30,7 @@ const query = ({ slug, language = "nl" }) => {
                       videoId
                       videoPlayer
                       detailImage ${imageQuery}
+                      featuredDetailImage ${imageQuery}
                       featuredImage ${imageQuery}
                       backgroundImage ${imageQuery}
                       gameLocation
@@ -73,6 +74,7 @@ export default function Game({ params }) {
   const {
     title,
     featuredImage,
+    featuredDetailImage,
     detailImage,
     backgroundImage,
     story,
@@ -126,6 +128,14 @@ export default function Game({ params }) {
       classes: "hidden sm:flex",
     },
   ];
+
+  const teaserButton = videoId
+    ? {
+        callToAction: t.game.watch_teaser,
+        href: "#teaser",
+        variant: "primary-outline",
+      }
+    : {};
 
   if (!data) {
     return <Loader />;
@@ -187,8 +197,9 @@ export default function Game({ params }) {
               callToAction: t.navigation.reserve,
               href: "#book",
             },
+            teaserButton,
           ]}
-          image={featuredImage}
+          image={featuredDetailImage}
           order={false}
         />
 
@@ -245,6 +256,7 @@ export default function Game({ params }) {
         videoPlayer={videoPlayer}
         backgroundColor={"lightGray"}
         halfBg={true}
+        id={"teaser"}
       />
 
       <Prices title="Tarieven" prices={prices} t={t.rate} />

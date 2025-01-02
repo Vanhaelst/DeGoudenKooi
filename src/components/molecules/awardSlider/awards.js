@@ -14,7 +14,7 @@ export const AwardSlider = ({
   backgroundColor,
   awards,
   detail,
-  locale,
+  locale = "nl",
   t,
 }) => {
   const bgColor = getBackgroundColor(backgroundColor);
@@ -34,7 +34,8 @@ export const AwardSlider = ({
           {awards?.map(({ image, title }) => {
             const { alt, url, width, height } = image?.[0];
             return (
-              <div
+              <a
+                href={LINKS[locale.toUpperCase()].AWARDS}
                 key={url}
                 className={`relative group ${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"} p-8 sm:p-10 flex flex-col justify-center items-center h-30 transition-all`}
               >
@@ -52,7 +53,7 @@ export const AwardSlider = ({
                 >
                   {title}
                 </Text>
-              </div>
+              </a>
             );
           })}
         </div>

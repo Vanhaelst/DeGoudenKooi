@@ -49,7 +49,7 @@ export default async function Home({ params }) {
 
   return (
     <>
-      {sections?.map((section) => renderComponents(section))}
+      {sections?.map((section) => renderComponents(section, params.locale))}
 
       <section className="py-24 sm:py-32">
         <Container>

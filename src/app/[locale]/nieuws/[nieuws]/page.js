@@ -63,7 +63,7 @@ export default function News({ params }) {
         awards={false}
       />
 
-      {blogsections?.map((section) => renderComponents(section))}
+      {blogsections?.map((section) => renderComponents(section, params.locale))}
     </>
   );
 }

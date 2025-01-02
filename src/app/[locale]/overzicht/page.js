@@ -55,7 +55,7 @@ export default async function Home({ params, searchParams }) {
         backgroundColor="lightGray"
       />
 
-      {sections?.map((section) => renderComponents(section))}
+      {sections?.map((section) => renderComponents(section, params.locale))}
     </>
   );
 }

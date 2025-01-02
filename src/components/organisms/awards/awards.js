@@ -7,7 +7,12 @@ async function getPage({ grade }) {
   return fetchData(awardsQuery({ grade }));
 }
 
-export const Awards = async ({ title, description, backgroundColor }) => {
+export const Awards = async ({
+  title,
+  description,
+  backgroundColor,
+  locale,
+}) => {
   const { awards } = (await getPage({ grade: "" })) ?? undefined;
 
   if (!awards) {
@@ -20,6 +25,7 @@ export const Awards = async ({ title, description, backgroundColor }) => {
       description={description}
       backgroundColor={backgroundColor}
       awards={awards}
+      locale={locale}
     />
   );
 };

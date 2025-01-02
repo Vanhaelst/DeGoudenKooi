@@ -98,6 +98,9 @@ export const Button = ({
 
   const foo = hrefType();
 
+  if (!callToAction) {
+    return null;
+  }
   if (onClick) {
     return (
       <button
