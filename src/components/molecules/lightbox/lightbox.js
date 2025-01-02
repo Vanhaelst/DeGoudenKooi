@@ -68,9 +68,11 @@ export const Gallery = ({ id, title, description, bgColor, images }) => {
               target="_blank"
               rel="noreferrer"
             >
-              <img
+              <Image
                 src={image.url}
                 alt=""
+                width={image.width}
+                height={image.height}
                 className="aspect-video object-cover object-center"
               />
             </a>

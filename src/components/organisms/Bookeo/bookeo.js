@@ -1,4 +1,3 @@
-import { Container } from "@/components/atoms";
 import Script from "next/script";
 
 export const Bookeo = () => {
@@ -6,7 +5,7 @@ export const Bookeo = () => {
     <>
       <p>-- START BOOKEO --</p>
 
-      <script
+      <Script
         type="text/javascript"
         src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&type=325043P7UH151F85563A6"
       />

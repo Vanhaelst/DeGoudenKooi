@@ -1,5 +1,6 @@
 import {
   Popover,
+  PopoverBackdrop,
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
@@ -52,12 +53,12 @@ export const MegaMenu = async ({ locale = "nl" }) => {
 
   return (
     <header
-      className="relative w-full z-10 bg-cover drop-shadow-xl py-5"
+      className="relative w-full z-10 bg-cover drop-shadow-xl"
       style={{ backgroundImage: `url('${CompanyData.heroBg}')` }}
     >
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8 z-20"
       >
         <div className="flex lg:flex-1">
           <Link href={`/${locale}`} className="flex -m-1.5 p-1.5">
@@ -76,27 +77,25 @@ export const MegaMenu = async ({ locale = "nl" }) => {
             />
           </Link>
         </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
+        <div className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
           <Link
             href={LINKS[locale.toUpperCase()].ABOUT}
             className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
             Ons verhaal
           </Link>
-          <Popover className="isolate z-10">
+
+          <div className="group isolate z-10 h-[80px] flex items-center">
             <div className="">
               <div className="mx-auto max-w-7xl">
-                <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all">
+                <div className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all">
                   Games & Experiences
                   <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
-                </PopoverButton>
+                </div>
               </div>
             </div>
 
-            <PopoverPanel
-              transition
-              className="absolute inset-x-0 top-[80px] -z-10 bg-white pt-16 shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-            >
+            <div className="absolute inset-x-0 top-[80px] z-20 bg-white pt-16 shadow-lg ring-1 invisible group-hover:visible opacity-0 group-hover:opacity-100 ring-gray-900/5 duration-200 ease-in-out">
               <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-6 py-10 lg:grid-cols-4 lg:px-8">
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
                   <MegaMenuItem
@@ -166,8 +165,8 @@ export const MegaMenu = async ({ locale = "nl" }) => {
                   </div>
                 </Container>
               </a>
-            </PopoverPanel>
-          </Popover>
+            </div>
+          </div>
           <a
             href={LINKS[locale.toUpperCase()].TEAMBUILDING}
             className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
@@ -190,7 +189,7 @@ export const MegaMenu = async ({ locale = "nl" }) => {
               size="small"
             />
           </a>
-        </PopoverGroup>
+        </div>
       </nav>
     </header>
   );

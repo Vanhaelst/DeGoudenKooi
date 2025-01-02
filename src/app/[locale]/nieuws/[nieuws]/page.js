@@ -46,7 +46,7 @@ export default function News({ params }) {
     fetchData(query({ pathname, language: params.locale })).then((res) => {
       setData(res?.blog[0]);
     });
-  }, []);
+  }, [pathname, params]);
 
   const { image, title, shortDescription, blogsections } = data || {};
 

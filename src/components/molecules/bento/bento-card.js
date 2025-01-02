@@ -52,9 +52,11 @@ export const BentoCard = ({
       </div>
 
       {image && (
-        <img
+        <Image
           alt={title}
           src={image?.[0].url}
+          width={image?.[0].width}
+          height={image?.[0].height}
           className="h-80 w-full object-cover object-left bg-primary-500 rounded-2xl"
         />
       )}

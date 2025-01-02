@@ -101,7 +101,7 @@ export const Hero = ({
           buttons={buttons}
         />
         {image && image[0] && (
-          <div className="hidden lg:block lg:pl-10 xl:pl-36 w-full min-h-96">
+          <div className="hidden lg:block lg:pl-10 xl:pl-36 w-full min-h-40 lg:min-h-96">
             <div className="lg:hidden">
               {reviews?.map((review) => {
                 return (
