@@ -138,6 +138,7 @@ export default function Game({ params }) {
     : {};
 
   if (!data) {
+    x;
     return <Loader />;
   }
 
