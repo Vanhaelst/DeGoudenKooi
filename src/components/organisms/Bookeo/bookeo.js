@@ -7,8 +7,8 @@ export const Bookeo = () => {
 
       <Script
         type="text/javascript"
-        src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&type=325043P7UH151F85563A6"
-      />
+        src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&category=325073FEXL162392927A1"
+      ></Script>
       <p>-- END BOOKEO --</p>
     </>
   );
