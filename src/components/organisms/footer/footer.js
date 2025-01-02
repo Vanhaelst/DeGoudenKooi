@@ -3,30 +3,38 @@ import { Text } from "@/components/atoms";
 import Image from "next/image";
 import { CompanyData } from "@/data/companyData";
 import { LINKS } from "@/enums/links";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
-export const Footer = ({ locale = "nl" }) => {
+import nl from "@/app/[locale]/dictionaries/nl.json";
+
+export const Footer = async ({ locale = "nl" }) => {
+  const dict = nl; //await getDictionary(locale);
+
   const navigation = {
     navigation: [
-      { name: "Over ons", href: LINKS[locale.toUpperCase()].ABOUT },
-      { name: "Contact", href: LINKS[locale.toUpperCase()].CONTACT },
-      { name: "Pers", href: LINKS[locale.toUpperCase()].PERS },
+      { name: dict.navigation.about, href: LINKS[locale.toUpperCase()].ABOUT },
+      {
+        name: dict.navigation.contact,
+        href: LINKS[locale.toUpperCase()].CONTACT,
+      },
+      { name: dict.navigation.pers, href: LINKS[locale.toUpperCase()].PERS },
       { name: "+32 15 67 68 67", href: "tel:+3215676867" },
     ],
     discover: [
       {
-        name: "Locatie Haverwerf",
+        name: `${dict.general.location} ${dict.general.haverwerf}`,
         href: `${LINKS[locale.toUpperCase()].GAME_OVERVIEW}?location=haverwerf`,
       },
       {
-        name: "Locatie Gerechtstraat",
+        name: `${dict.general.location} ${dict.general.gerechtstraat}`,
         href: `${LINKS[locale.toUpperCase()].GAME_OVERVIEW}?location=gerechtstraat`,
       },
       {
-        name: "Activiteiten deals",
+        name: dict.navigation.activity_deals,
         href: LINKS[locale.toUpperCase()].ACTIVITY_DEALS,
       },
       {
-        name: "Restaurant deals",
+        name: dict.navigation.restaurant_deals,
         href: LINKS[locale.toUpperCase()].RESTAURANT_DEALS,
       },
     ],
@@ -128,7 +136,7 @@ export const Footer = ({ locale = "nl" }) => {
             </div>
             <div className="mt-10 md:mt-0">
               <Text as="h3" level="xl" classnames="font-semibold text-white">
-                Ontdek
+                {dict.general.discover}
               </Text>
               <ul role="list" className="mt-6 space-y-2">
                 {navigation.discover.map((item) => (
@@ -147,7 +155,7 @@ export const Footer = ({ locale = "nl" }) => {
           <div className="mt-10 xl:mt-0 md:grid md:grid-cols-2 md:gap-8">
             <div>
               <Text as="h3" level="xl" classnames="font-semibold text-white">
-                Vragen
+                {dict.general.questions}
               </Text>
               <ul role="list" className="mt-6 space-y-2">
                 {navigation.Questions.map((item) => (

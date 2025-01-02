@@ -52,7 +52,6 @@ export default function Game({ params }) {
   const [awards, setAwards] = useState(undefined);
 
   useEffect(() => {
-    console.log(params);
     fetchData(
       query({
         slug: params.game,

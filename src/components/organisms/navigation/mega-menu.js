@@ -1,10 +1,3 @@
-import {
-  Popover,
-  PopoverBackdrop,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-} from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
@@ -16,6 +9,7 @@ import { LINKS } from "@/enums/links";
 import { LOCATIONS } from "@/enums/locations";
 import { GAMETYPE } from "@/enums/gameTypes";
 import { Button, Container } from "@/components/atoms";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
 const recentPosts = [
   {
@@ -42,6 +36,7 @@ async function getGames() {
 }
 
 export const MegaMenu = async ({ locale = "nl" }) => {
+  const dict = await getDictionary(locale); // nl
   const { rooms } = await getGames();
 
   const gerechtstraat = rooms.filter(
@@ -82,14 +77,14 @@ export const MegaMenu = async ({ locale = "nl" }) => {
             href={LINKS[locale.toUpperCase()].ABOUT}
             className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
-            Ons verhaal
+            {dict.navigation.about}
           </Link>
 
           <div className="group isolate z-10 h-[80px] flex items-center">
             <div className="">
               <div className="mx-auto max-w-7xl">
                 <div className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all">
-                  Games & Experiences
+                  {dict.navigation.games}
                   <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
                 </div>
               </div>
@@ -100,13 +95,13 @@ export const MegaMenu = async ({ locale = "nl" }) => {
                 <div className="grid col-span-3 grid-cols-3 gap-x-6 sm:gap-x-8">
                   <MegaMenuItem
                     locale={locale}
-                    label="Gerechtstraat (game)"
+                    label={`${dict.general.gerechtstraat} (${dict.general.game})`}
                     queryparams={`?location=${LOCATIONS.GERECHTSTRAAT}`}
                     subItems={gerechtstraat}
                   />
                   <MegaMenuItem
                     locale={locale}
-                    label="Haverwerf (experience)"
+                    label={`${dict.general.haverwerf} (${dict.general.experience})`}
                     queryparams={`?location=${LOCATIONS.HAVERWERF}`}
                     subItems={haverwerf}
                   />
@@ -156,10 +151,10 @@ export const MegaMenu = async ({ locale = "nl" }) => {
                     />
                     <div>
                       <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                        Bekijk onze agenda
+                        {dict.navigation.calendar}
                       </h3>
                       <p className="text-sm leading-6 text-gray-600">
-                        Claim jouw avontuur nu
+                        {dict.navigation.calendar_subtitle}
                       </p>
                     </div>
                   </div>
@@ -171,20 +166,20 @@ export const MegaMenu = async ({ locale = "nl" }) => {
             href={LINKS[locale.toUpperCase()].TEAMBUILDING}
             className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
-            Teambuilding & Events
+            {dict.navigation.teambuilding}
           </a>
           <a
             href={LINKS[locale.toUpperCase()].CONTACT}
             className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
-            Contact
+            {dict.navigation.contact}
           </a>
 
           <a href={LINKS[locale.toUpperCase()].BOOK} className="cursor-pointer">
             <Button
               href="#"
               variant="secondary"
-              callToAction="RESERVEER NU"
+              callToAction={dict.navigation.reserve.toUpperCase()}
               type="rounded"
               size="small"
             />

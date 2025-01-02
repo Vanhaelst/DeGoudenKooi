@@ -1,24 +1,26 @@
 import NavigationTopItem from "@/components/organisms/navigation/NavigationTopItem";
 import { LINKS } from "@/enums/links";
 import { LanguageSwitch } from "@/components/organisms/navigation/languageSwitch";
-import { CompanyData } from "@/data/companyData";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
-export const TopBar = ({ locale = "nl" }) => {
+export const TopBar = async ({ locale = "nl" }) => {
+  const dict = await getDictionary(locale);
+
   const topNavigation = [
     {
-      name: "Awards",
+      name: dict.topbar.awards,
       href: LINKS[locale.toUpperCase()].AWARDS,
     },
     {
-      name: "Nieuws",
+      name: dict.topbar.news,
       href: LINKS[locale.toUpperCase()].NEWS,
     },
     {
-      name: "Cadeaubon",
+      name: dict.topbar.giftcard,
       href: LINKS[locale.toUpperCase()].GIFTCARD,
     },
     {
-      name: "FAQ",
+      name: dict.topbar.faq,
       href: LINKS[locale.toUpperCase()].FAQ,
     },
   ];
@@ -30,7 +32,7 @@ export const TopBar = ({ locale = "nl" }) => {
           {topNavigation.map((item) => {
             return <NavigationTopItem key={item.name} item={item} />;
           })}
-          <LanguageSwitch />
+          <LanguageSwitch locale={locale} />
         </div>
       </div>
     </div>

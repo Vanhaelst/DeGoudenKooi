@@ -1,4 +1,5 @@
 import { Button, RichText, Text } from "@/components/atoms";
+import Image from "next/image";
 
 export const BentoCard = ({
   title,

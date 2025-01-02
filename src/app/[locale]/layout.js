@@ -7,7 +7,6 @@ import "./globals.css";
 import "./slick.css";
 import { Footer, MegaMenu, TopBar } from "@/components/organisms";
 import React from "react";
-import Head from "next/head";
 
 const font = Inter({
   subsets: ["latin"],
@@ -44,12 +43,12 @@ export const metadata = {
 
 export default function RootLayout({ children, params }) {
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body className={`${font.className} antialiased`}>
-        <TopBar locale={"nl"} />
+        <TopBar locale={params.locale} />
         <MegaMenu locale={params.locale} />
         {children}
-        <Footer locale={"nl"} />
+        <Footer locale={params.locale} />
       </body>
     </html>
   );

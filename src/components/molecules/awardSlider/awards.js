@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Container, Text } from "@/components/atoms";
-import { Slider, Title } from "@/components/molecules";
+import { Title } from "@/components/molecules";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { LINKS } from "@/enums/links";
 
@@ -19,7 +19,6 @@ export const AwardSlider = ({
     return null;
   }
 
-  console.log(backgroundColor);
   return (
     <section className={`${bgColor} py-24 sm:py-32`}>
       <Container classnames="pb-12 flex flex-col items-center">

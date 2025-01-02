@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import { Title } from "@/components/molecules";
 import { Container } from "@/components/atoms";
+import Image from "next/image";
 
 const galleryId = `${Math.random().toString(36).slice(2)}`;
 

@@ -1,0 +1,35 @@
+ {
+  "topbar": {
+    "awards": "Awards",
+    "news": "Nieuws",
+    "giftcard": "Cadeaubon",
+    "faq": "FAQ"
+  },
+  "navigation": {
+    "about": "Ons verhaal",
+    "games": "Games & Experiences",
+    "teambuilding": "Teambuilding & Events",
+    "contact": "Contact",
+    "reserve": "Reserveer nu",
+    "pers": "Pers",
+    "activity_deals": "Activiteiten deals",
+    "restaurant_deals": "Restaurant deals",
+    "calendar": "Bekijk onze agenda",
+    "calendar_subtitle": "Claim jouw avontuur nu"
+  },
+  "general": {
+    "gerechtstraat": "Gerechtstraat",
+    "haverwerf": "Haverwerf",
+    "game": "Game",
+    "experience": "Experience",
+    "walk": "Wandeling",
+    "location": "Locatie",
+    "discover": "Ontdek",
+    "questions": "Vragen"
+  },
+   "newsletter": {
+     "title": "Schrijf je in voor onze nieuwsbrief.",
+     "mail": "E-mail adres",
+     "button": "Inschrijven"
+   }
+}
