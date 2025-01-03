@@ -158,7 +158,7 @@ export const MegaMenu = async ({
 
           <a href={LINKS[locale.toUpperCase()].BOOK} className="cursor-pointer">
             <Button
-              href="#"
+              href={LINKS[locale.toUpperCase()].RESERVE}
               variant="secondary"
               callToAction={dict.navigation.reserve.toUpperCase()}
               type="rounded"

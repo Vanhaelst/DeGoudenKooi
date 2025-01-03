@@ -14,6 +14,7 @@ export const LINKS = {
     PRIVACY: "/nl/privacy",
     ACTIVITY_DEALS: "/nl/activiteiten-in-mechelen",
     RESTAURANT_DEALS: "/nl/hapje-eten",
+    RESERVE: "/nl/reserveer",
   },
   EN: {
     HOME: "/en",
@@ -30,5 +31,6 @@ export const LINKS = {
     PERS: "/en/pers",
     ACTIVITY_DEALS: "/en/activities",
     RESTAURANT_DEALS: "/en/grab-a-bite",
+    RESERVE: "/nl/reserve",
   },
 };

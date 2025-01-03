@@ -14,7 +14,7 @@ export const Contact = ({
           {title}
         </Text>
       </Container>
-      <Container classnames="grid grid-cols-2 gap-x-8">
+      <Container classnames="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
         <div>
           <RichText text={descriptionLeft} classnames="text-primary-700" />
         </div>
