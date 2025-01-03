@@ -17,6 +17,7 @@ import { CompanyData } from "@/data/companyData";
 
 import nl from "@/app/[locale]/dictionaries/nl.json";
 import en from "@/app/[locale]/dictionaries/en.json";
+import Warning from "@/components/molecules/alerts/warning";
 
 export default function GamePage({ data, awards, locale }) {
   const [faq, setFaq] = useState(undefined);
@@ -28,6 +29,9 @@ export default function GamePage({ data, awards, locale }) {
     featuredDetailImage,
     detailImage,
     backgroundImage,
+    inactiveMessage,
+    inactiveFrom,
+    inactiveTill,
     story,
     videoId,
     videoPlayer,
@@ -35,12 +39,17 @@ export default function GamePage({ data, awards, locale }) {
     time,
     categories,
     gameLocation,
+    gameType,
     price2,
     price3,
     price4,
     price5,
     price6,
   } = data || {};
+
+  const isInactive =
+    new Date() >= new Date(inactiveFrom) &&
+    new Date() <= new Date(inactiveTill);
 
   useEffect(() => {
     if (!categories) {
@@ -79,6 +88,13 @@ export default function GamePage({ data, awards, locale }) {
       classes: "hidden sm:flex",
     },
   ];
+
+  const reserveButton = !isInactive
+    ? {
+        callToAction: t.navigation.reserve,
+        href: "#book",
+      }
+    : {};
 
   const teaserButton = videoId
     ? {
@@ -139,17 +155,17 @@ export default function GamePage({ data, awards, locale }) {
         </div>
       </Container>
 
+      <div className="fixed z-50 bottom-5 right-5 space-y-2">
+        <Warning
+          title={t.game.inactive.title}
+          description={inactiveMessage || t.game.inactive[gameType]}
+        />
+      </div>
       <div className={`py-14`}>
         <ContentImage
           title={title}
           description={story}
-          buttons={[
-            {
-              callToAction: t.navigation.reserve,
-              href: "#book",
-            },
-            teaserButton,
-          ]}
+          buttons={[reserveButton, teaserButton]}
           image={featuredDetailImage}
           order={false}
         />
@@ -210,7 +226,7 @@ export default function GamePage({ data, awards, locale }) {
         id={"teaser"}
       />
 
-      <Prices title="Tarieven" prices={prices} t={t.rate} />
+      {!isInactive && <Prices title="Tarieven" prices={prices} t={t.rate} />}
       <Bookeo />
 
       <Faq title={`FAQ: ${title}`} backgroundColor="lightGray" faq={faq} />

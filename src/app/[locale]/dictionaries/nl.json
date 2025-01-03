@@ -1,4 +1,4 @@
- {
+{
   "topbar": {
     "awards": "Awards",
     "news": "Nieuws",
@@ -30,29 +30,35 @@
     "amount": "Aantal",
     "time": "Duurtijd"
   },
-   "game": {
-     "teaser": "Teaser",
-     "watch_teaser": "Bekijk onze teaser",
-     "awards_link": "Ontdek ze allemaal op onze",
-     "Awards_link_bold": "awards pagina"
-   },
-   "rate": {
-     "included": "Wat is inclusief",
-     "escape": "per escape game",
-     "person": "per persoon",
-     "tag": "Speel met meer, betaal minder",
-     "total": "Totaal",
-     "players": "spelers",
-     "reserve": "Boek nu"
-   },
-   "newsletter": {
-     "title": "Schrijf je in voor onze nieuwsbrief.",
-     "mail": "E-mail adres",
-     "button": "Inschrijven"
-   },
-   "notFound": {
-     "title": "Deze kooi blijft gesloten",
-     "subtitle": "Neem daarom een kijkje op onze homepagina.",
-     "button": "Naar de homepagina"
-   }
+  "game": {
+    "teaser": "Teaser",
+    "watch_teaser": "Bekijk onze teaser",
+    "awards_link": "Ontdek ze allemaal op onze",
+    "Awards_link_bold": "awards pagina",
+    "inactive": {
+      "title": "Momenteel niet actief",
+      "walk": "Deze wandeling is momenteel niet actief.",
+      "game": "Deze escape game is momenteel niet actief.",
+      "experience": "Deze escape experience is momenteel niet actief."
+    }
+  },
+  "rate": {
+    "included": "Wat is inclusief",
+    "escape": "per escape game",
+    "person": "per persoon",
+    "tag": "Speel met meer, betaal minder",
+    "total": "Totaal",
+    "players": "spelers",
+    "reserve": "Boek nu"
+  },
+  "newsletter": {
+    "title": "Schrijf je in voor onze nieuwsbrief.",
+    "mail": "E-mail adres",
+    "button": "Inschrijven"
+  },
+  "notFound": {
+    "title": "Deze kooi blijft gesloten",
+    "subtitle": "Neem daarom een kijkje op onze homepagina.",
+    "button": "Naar de homepagina"
+  }
 }

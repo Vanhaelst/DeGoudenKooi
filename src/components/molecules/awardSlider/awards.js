@@ -37,7 +37,7 @@ export const AwardSlider = ({
               <a
                 href={LINKS[locale.toUpperCase()].AWARDS}
                 key={url}
-                className={`relative group ${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"} p-8 sm:p-10 flex flex-col justify-center items-center h-30 transition-all`}
+                className={`relative group ${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"} p-8 sm:p-10 flex flex-col justify-center items-center h-30 transition-all overflow-hidden`}
               >
                 <Image
                   src={url}

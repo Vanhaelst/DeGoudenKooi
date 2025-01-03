@@ -19,6 +19,9 @@ const query = ({ slug, language = "nl" }) => {
                       featuredDetailImage ${imageQuery}
                       featuredImage ${imageQuery}
                       backgroundImage ${imageQuery}
+                      inactiveMessage
+                      inactiveFrom
+                      inactiveTill
                       gameLocation
                       gameType
                       categories
@@ -77,7 +80,7 @@ export async function generateMetadata({ params }) {
           "Onze escape experience is de next-level escape room in Mechelen met meer immersie. Ga jij de uitdaging aan? Ontdek het unieke thema en reserveer online!",
         openGraph: {
           ...defaultMetadata.openGraph,
-          image: data?.featuredImage?.[0]?.url,
+          image: rooms?.featuredImage?.[0]?.url,
           description:
             "Onze escape experience is de next-level escape room in Mechelen met meer immersie. Ga jij de uitdaging aan? Ontdek het unieke thema en reserveer online!",
         },

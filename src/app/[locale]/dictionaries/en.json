@@ -35,7 +35,13 @@
     "teaser": "Teaser",
     "watch_teaser": "Watch the teaser",
     "awards_link": "Discover all on our",
-    "awards_link_bold": "awards page"
+    "awards_link_bold": "awards page",
+    "inactive": {
+      "title": "Currently not active",
+      "walk": "This walk is not active.",
+      "game": "This escape game walk is not active.",
+      "experience": "This escape experience walk is not active."
+    }
   },
   "rate": {
     "included": "What's included",
