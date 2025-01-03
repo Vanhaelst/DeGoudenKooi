@@ -21,8 +21,6 @@ const BOOKEO = {
     "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&startmode=buyvoucher",
 };
 
-export const fetchCache = "force-no-store";
-
 export const Bookeo = ({ type = "", variant = "", locale }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
 

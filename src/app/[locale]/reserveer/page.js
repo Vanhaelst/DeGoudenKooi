@@ -6,6 +6,8 @@ import React from "react";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 
+export const fetchCache = "force-no-store";
+
 async function getPage({ language }) {
   return fetchData(FixedPageQuery({ page: "reserveEntries", language }));
 }
