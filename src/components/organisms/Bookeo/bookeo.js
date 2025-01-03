@@ -5,12 +5,8 @@ export const Bookeo = () => {
     <>
       <p>-- START BOOKEO --</p>
 
-      <Script
-        type="text/javascript"
-        src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&category=325073FEXL162392927A1"
-      ></Script>
       <script
-        async
+        defer
         type="text/javascript"
         src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&category=325073FEXL162392927A1"
       ></script>
