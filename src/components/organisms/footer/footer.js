@@ -40,11 +40,12 @@ export const Footer = async ({ locale = "nl" }) => {
       { name: "Blog", href: LINKS[locale.toUpperCase()].NEWS },
       { name: "FAQ", href: LINKS[locale.toUpperCase()].FAQ },
       { name: "Privacy", href: LINKS[locale.toUpperCase()].PRIVACY },
+      { name: "Jobs", href: LINKS[locale.toUpperCase()].JOBS },
     ],
     social: [
       {
         name: "LinkedIn",
-        href: CompanyData.socials.facebook,
+        href: CompanyData.socials.linkedin,
         icon: (props) => (
           <svg
             fill="ffffff"
@@ -190,10 +191,14 @@ export const Footer = async ({ locale = "nl" }) => {
               </ul>
             </div>
             <div className="mt-10 md:mt-0 ">
-              <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl w-48">
-                <Text as="h3" level="xl" classnames="font-semibold text-white">
-                  Review
-                </Text>
+              <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
+                <Image
+                  src="/befeb.webp"
+                  alt="befeb"
+                  width={236}
+                  height={300}
+                  className=""
+                />
               </div>
             </div>
           </div>
