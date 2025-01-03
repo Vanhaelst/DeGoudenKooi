@@ -3,7 +3,14 @@ import { Button, Container } from "@/components/atoms";
 import React from "react";
 import { Images } from "@/components/molecules/image/image";
 
-export const ContentImage = ({ title, description, buttons, image, order }) => {
+export const ContentImage = ({
+  title,
+  subtitle,
+  description,
+  buttons,
+  image,
+  order,
+}) => {
   const contentLeft = order;
 
   return (
@@ -13,7 +20,12 @@ export const ContentImage = ({ title, description, buttons, image, order }) => {
           <div
             className={`${contentLeft ? "md:order-1" : "md:order-2"} order-2 flex flex-col justify-center`}
           >
-            <Title title={title} description={description} showIcon={false} />
+            <Title
+              title={title}
+              subtitle={subtitle}
+              description={description}
+              showIcon={false}
+            />
             <div className="space-x-4">
               {buttons &&
                 buttons.map((button) => (

@@ -6,6 +6,8 @@ import { CompanyData } from "@/data/companyData";
 import { awardsQuery } from "@/queries/sections/awards";
 import { Container, RichText } from "@/components/atoms";
 import { defaultMetadata } from "@/data/metadata";
+import { FixedPageQuery } from "@/queries/sections/fixedPage";
+import { renderComponents } from "@/utils/renderComponents";
 
 export async function generateMetadata({ params }) {
   return params.locale === "en"
@@ -33,20 +35,39 @@ export async function generateMetadata({ params }) {
       };
 }
 
+async function getPage({ language }) {
+  return fetchData(FixedPageQuery({ page: "planningEntries", language }));
+}
+
 const getAwards = () => {
   return fetchData(awardsQuery({}));
 };
 
 export default async function Home({ params }) {
   const { awards } = await getAwards({ language: params.locale });
+  const { page } = await getPage({ language: params.locale });
+
+  const {
+    title,
+    description,
+    image,
+    buttons,
+    type,
+    backgroundColor,
+    backgroundImage,
+    sections,
+  } = page[0] ?? {};
 
   return (
     <>
       <Hero
-        type="vertical"
-        title="Awards"
-        backgroundImage={[{ url: CompanyData.heroBg }]}
-        description="<p>Doorheen de jaren hebben we bij De Gouden Kooi al best veel fijne erkenning gekregen voor ons werk. Soms vertaalt zich dat in een award. Onderstaand vind je een overzicht van onze verkregen awards doorheen de jaren.</p>"
+        type={type}
+        title={title}
+        description={description}
+        buttons={buttons}
+        image={image}
+        backgroundImage={backgroundImage}
+        backgroundColor={backgroundColor}
       />
 
       <section className="py-24 sm:py-32">
@@ -80,6 +101,8 @@ export default async function Home({ params }) {
           </ul>
         </Container>
       </section>
+
+      {sections?.map((section) => renderComponents(section, params.locale))}
     </>
   );
 }

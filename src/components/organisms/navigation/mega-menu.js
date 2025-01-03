@@ -1,36 +1,18 @@
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import Image from "next/image";
-import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
-import { CompanyData } from "@/data/companyData";
-import { fetchData } from "@/utils/fetchData";
-import { roomsQuery } from "@/queries/sections/rooms";
 import Link from "next/link";
+import Image from "next/image";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { CompanyData } from "@/data/companyData";
 import { LINKS } from "@/enums/links";
 import { LOCATIONS } from "@/enums/locations";
-import { GAMETYPE } from "@/enums/gameTypes";
+import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
 import { Button, Container } from "@/components/atoms";
-import { getDictionary } from "@/app/[locale]/dictionaries";
 
-async function getGames() {
-  return fetchData(
-    roomsQuery({
-      type: `"${GAMETYPE.GAME}", "${GAMETYPE.EXPERIENCE}", "${GAMETYPE.WALK}"`,
-      location: `"${LOCATIONS.GERECHTSTRAAT}", "${LOCATIONS.HAVERWERF}"`,
-    }),
-  );
-}
-
-export const MegaMenu = async ({ locale = "nl" }) => {
-  const dict = await getDictionary(locale); // nl
-  const { rooms } = await getGames();
-
-  const gerechtstraat = rooms.filter(
-    (room) => room.gameLocation === LOCATIONS.GERECHTSTRAAT,
-  );
-  const haverwerf = rooms.filter(
-    (room) => room.gameLocation === LOCATIONS.HAVERWERF,
-  );
-
+export const MegaMenu = async ({
+  locale = "nl",
+  dict,
+  gerechtstraat,
+  haverwerf,
+}) => {
   const recentPosts = [
     {
       id: 1,

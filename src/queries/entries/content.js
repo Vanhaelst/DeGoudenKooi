@@ -21,6 +21,14 @@ export const contentEntry = `
                 image ${imageQuery}
                 order
             }
+            ... on twoColumns_Entry {
+              id
+              typeHandle
+              title
+              descriptionLeft
+              descriptionRight
+              buttons ${buttonsQuery}
+            }
         }
     }
 `;

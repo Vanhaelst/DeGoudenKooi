@@ -56,7 +56,7 @@ export default async function Home({ params, searchParams }) {
   return (
     <>
       <GamesOverview
-        title={`${searchParams.location ? `Onze belevingen op locatie "${searchParams.location}"` : "Al onze belevingen"}`}
+        title={`${searchParams.location ? `Onze belevingen op locatie "${dict.general[searchParams.location]}"` : "Al onze belevingen"}`}
         backgroundColor="lightGray"
         t={dict}
       />

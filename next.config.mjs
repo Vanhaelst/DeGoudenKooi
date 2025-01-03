@@ -19,6 +19,10 @@ const nextConfig = {
         destination: "/nl",
       },
       {
+        source: "/boeking",
+        destination: "/nl/reserveer",
+      },
+      {
         source: "/en/about-us",
         destination: "/en/over-ons",
       },

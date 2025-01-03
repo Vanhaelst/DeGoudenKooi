@@ -9,14 +9,22 @@ import { gameOverviewEntry } from "@/queries/entries/gameOverview";
 import { contentEntry } from "@/queries/entries/content";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
-import { accordionEntry } from "@/queries/entries/accordion";
+import { buttonsQuery } from "@/queries/entries/buttons";
+import { imageQuery } from "@/queries/entries/image";
 
-export const PageQuery = ({ page, language = "nl" }) => {
+export const FixedPageQuery = ({ page, language = "nl" }) => {
   return `
     query MyQuery {
       page: ${page}(language: "${language}") {
-        ... on page_Entry {
+        ... on FixedPage_Entry {
           id
+          backgroundColor
+          title
+          description
+          backgroundImage ${imageQuery}
+          image ${imageQuery}
+          type: heroType
+          buttons ${buttonsQuery}
           sections {
             ${heroEntry}
             ${awardsEntry}
@@ -29,7 +37,19 @@ export const PageQuery = ({ page, language = "nl" }) => {
             ${gameOverviewEntry}
             ${lightboxEntry}
             ${teamEntry}
-            ${accordionEntry}
+            ... on accordion_Entry {
+              typeHandle
+              backgroundColor
+              title
+              description
+              faq: accordeonItems {
+                ... on accordeonItem_Entry {
+                  id
+                  title
+                  description
+                }
+              }
+            }
           }
         }
       }

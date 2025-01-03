@@ -10,7 +10,6 @@ export const heroEntry = `
         backgroundImage ${imageQuery}
         image ${imageQuery}
         type: heroType
-        awardsStatus
         buttons ${buttonsQuery}
     }
 `;

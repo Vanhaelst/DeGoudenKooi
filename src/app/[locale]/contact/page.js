@@ -44,6 +44,7 @@ export default async function Contact({ params }) {
   return (
     <>
       {sections?.map((section) => renderComponents(section, params.locale))}
+
       <Newsletter locale={params.locale} t={dict} />
     </>
   );

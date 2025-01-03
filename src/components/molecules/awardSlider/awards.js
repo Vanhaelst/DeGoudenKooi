@@ -19,7 +19,7 @@ export const AwardSlider = ({
 }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
-  if (!awards) {
+  if (!awards || awards.length === 0) {
     return null;
   }
 

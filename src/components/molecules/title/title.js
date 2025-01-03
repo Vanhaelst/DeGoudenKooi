@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { RichText, Text } from "@/components/atoms";
 
-export const Title = ({ title, description, showIcon = true }) => {
+export const Title = ({ title, subtitle, description, showIcon = true }) => {
   if (!title && !description) {
     return null;
   }
@@ -19,6 +19,9 @@ export const Title = ({ title, description, showIcon = true }) => {
       )}
       <Text as="h5" level="3xl" classnames="text-secondary-500 mb-4">
         {title}
+      </Text>
+      <Text as="h6" level="xl" classnames="text-secondary-500 mb-4">
+        {subtitle}
       </Text>
       <RichText text={description} classnames="text-primary-700" />
     </>

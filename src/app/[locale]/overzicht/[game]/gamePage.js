@@ -183,6 +183,9 @@ export default function GamePage({ data, locale }) {
       <div className={`py-14`}>
         <ContentImage
           title={title}
+          subtitle={
+            isInactive ? t.game.inactive[gameType] : t.general[gameType]
+          }
           description={story}
           buttons={[reserveButton, teaserButton]}
           image={featuredDetailImage}
@@ -246,7 +249,7 @@ export default function GamePage({ data, locale }) {
       />
 
       {!isInactive && <Prices title="Tarieven" prices={prices} t={t.rate} />}
-      <Bookeo variant={categories[0]} />
+      {!isInactive && <Bookeo variant={categories[0]} />}
 
       <Faq title={`FAQ: ${title}`} backgroundColor="lightGray" faq={faq} />
     </>

@@ -9,7 +9,6 @@ import "./globals.css";
 import "./slick.css";
 import React from "react";
 import { TopBar } from "@/components/organisms/navigation/top-bar";
-import { MegaMenu } from "@/components/organisms/navigation/mega-menu";
 import { Footer } from "@/components/organisms/footer/footer";
 import { redirect } from "next/navigation";
 import {
@@ -17,6 +16,7 @@ import {
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
+import { Navigation } from "@/components/organisms/navigation/navigation";
 
 const font = Inter({
   subsets: ["latin"],
@@ -60,7 +60,7 @@ export default function RootLayout({ children, params }) {
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
       <body className={`${font.className} antialiased`}>
         <TopBar locale={params.locale} />
-        <MegaMenu locale={params.locale} />
+        <Navigation locale={params.locale} />
         {children}
         <Footer locale={params.locale} />
       </body>

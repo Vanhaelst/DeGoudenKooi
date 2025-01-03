@@ -15,6 +15,7 @@ import { Features } from "@/components/organisms/features/features";
 import { CallToAction } from "@/components/organisms/callToAction/callToAction";
 import { Testimonials } from "@/components/organisms/testimonials/testimonials";
 import { Faq } from "@/components/organisms/faq/faq";
+import { Contact } from "@/components/molecules/contact/contact";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
@@ -50,6 +51,8 @@ export const renderComponents = (data, locale) => {
       return <Team key={data.id} locale={locale} {...data} />;
     case "accordion":
       return <FaqMolecule key={data.id} locale={locale} {...data} />;
+    case "twoColumns":
+      return <Contact key={data.id} locale={locale} {...data} />;
     default:
       return null;
   }

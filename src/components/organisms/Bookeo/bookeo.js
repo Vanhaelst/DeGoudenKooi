@@ -21,16 +21,13 @@ const BOOKEO = {
     "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&startmode=buyvoucher",
 };
 
+export const fetchCache = "force-no-store";
+
 export const Bookeo = ({ type = "", variant = "", locale }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
 
-  console.log(
-    variant,
-    BOOKEO[variant],
-    `${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`,
-  );
   return (
-    <div className="relative py-12 lg:py-24">
+    <section className="bg-white relative py-12 lg:py-24">
       <Container classnames="min-h-80 flex justify-center items-center">
         {type === "giftcard" ? (
           <script
@@ -46,6 +43,6 @@ export const Bookeo = ({ type = "", variant = "", locale }) => {
           ></script>
         )}
       </Container>
-    </div>
+    </section>
   );
 };

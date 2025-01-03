@@ -3,6 +3,10 @@ import Script from "next/script";
 import { CompanyData } from "@/data/companyData";
 import { defaultMetadata } from "@/data/metadata";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
+import React from "react";
+import { renderComponents } from "@/utils/renderComponents";
+import { fetchData } from "@/utils/fetchData";
+import { FixedPageQuery } from "@/queries/sections/fixedPage";
 
 export async function generateMetadata({ params }) {
   return params.locale === "en"
@@ -30,20 +34,39 @@ export async function generateMetadata({ params }) {
       };
 }
 
+async function getPage({ language }) {
+  return fetchData(FixedPageQuery({ page: "cadeaubonEntries", language }));
+}
+
 export default async function Home({ params }) {
+  const { page } = await getPage({ language: params.locale });
+
+  const {
+    title,
+    description,
+    image,
+    buttons,
+    type,
+    backgroundColor,
+    backgroundImage,
+    sections,
+  } = page[0] ?? {};
+
   return (
     <>
       <Hero
-        type="vertical"
-        title="Cadeaubon"
-        backgroundImage={[{ url: CompanyData.heroBg }]}
-        description="<p>Een spel bij de Gouden Kooi is vast en zeker een leuk geschenk. Er zijn cadeaubonnen met verschillende waardes en ze zijn 1 jaar geldig (vanaf dag van aankoop). Een cadeaubon hoeft niet in 1 keer gespendeerd te worden. Om de juiste keuze te maken kan je hier de tarieven voor onze escape rooms raadplegen.
-Je koopt je cadeaubon online, en krijgt vervolgens een e-mail met alle nodige info.
-Je kiest de opmaak van je cadeaubon, zet er een leuke tekst bij en print hem zelf af.
-Zo heb je in 1-2-3 een leuk geschenk!</p>"
+        type={type}
+        title={title}
+        description={description}
+        buttons={buttons}
+        image={image}
+        backgroundImage={backgroundImage}
+        backgroundColor={backgroundColor}
       />
 
       <Bookeo type="giftcard" locale={params.locale} />
+
+      {sections?.map((section) => renderComponents(section, params.locale))}
     </>
   );
 }

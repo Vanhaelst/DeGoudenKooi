@@ -14,9 +14,7 @@ export const Hero = ({
   backgroundImage,
   reviews,
   type,
-  showAwards,
   backgroundColor,
-  awards,
   videoId,
   videoPlayer = "youtube",
 }) => {
@@ -79,7 +77,6 @@ export const Hero = ({
           />
           <Images images={image} />
         </Container>
-        <HeroAwards awards={awards} showAwards={showAwards} />
       </section>
     );
   }
@@ -138,7 +135,6 @@ export const Hero = ({
           </div>
         )}
       </Container>
-      <HeroAwards awards={awards} showAwards={showAwards} />
     </section>
   );
 };
