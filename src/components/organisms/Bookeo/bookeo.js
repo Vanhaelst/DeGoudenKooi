@@ -38,7 +38,7 @@ export const Bookeo = ({ variant, locale }) => {
       <Container classnames="min-h-80 flex justify-center items-center">
         <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
         <Script
-          // strategy="afterInteractive"
+          strategy="afterInteractive"
           type="text/javascript"
           src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
         />
