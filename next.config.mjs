@@ -31,6 +31,10 @@ const nextConfig = {
         destination: "/en/nieuws",
       },
       {
+        source: "/en/news/:nieuws",
+        destination: "/en/nieuws/:nieuws",
+      },
+      {
         source: "/en/book-now",
         destination: "/en/boek-nu",
       },

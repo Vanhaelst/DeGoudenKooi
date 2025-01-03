@@ -11,21 +11,6 @@ import { GAMETYPE } from "@/enums/gameTypes";
 import { Button, Container } from "@/components/atoms";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 
-const recentPosts = [
-  {
-    id: 1,
-    title:
-      "Wat is het verschil tussen een Escape Room en een Escape Experience?",
-    href: "#",
-    date: "Mar 16, 2023",
-    datetime: "2023-03-16",
-    category: { title: "Marketing", href: "#" },
-    imageUrl: "/dgk-card.jpeg",
-    description:
-      "Bij een Escape Experience gaan we bij De Gouden Kooi net een stapje verder dan...",
-  },
-];
-
 async function getGames() {
   return fetchData(
     roomsQuery({
@@ -45,6 +30,20 @@ export const MegaMenu = async ({ locale = "nl" }) => {
   const haverwerf = rooms.filter(
     (room) => room.gameLocation === LOCATIONS.HAVERWERF,
   );
+
+  const recentPosts = [
+    {
+      id: 1,
+      title: "Wat is het verschil nu juist tussen de belevingen?",
+      href: `${LINKS[locale.toUpperCase()].NEWS}/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience`,
+      date: "Mar 16, 2023",
+      datetime: "2023-03-16",
+      category: { title: "Marketing", href: "#" },
+      imageUrl: "/dgk-card.jpeg",
+      description:
+        "Bij De Gouden Kooi kun je kiezen uit escape games, escape experiences en ...",
+    },
+  ];
 
   return (
     <header

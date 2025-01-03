@@ -28,7 +28,8 @@
     "discover": "Ontdek",
     "questions": "Vragen",
     "amount": "Aantal",
-    "time": "Duurtijd"
+    "time": "Duurtijd",
+    "discover_all": "Ontdek alle escape games"
   },
   "game": {
     "teaser": "Teaser",

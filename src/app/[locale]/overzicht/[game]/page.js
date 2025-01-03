@@ -2,7 +2,6 @@ import React from "react";
 import { fetchData } from "@/utils/fetchData";
 import { Loader } from "@/components/atoms/loader/loader";
 import { imageQuery } from "@/queries/entries/image";
-import { awardsQuery } from "@/queries/sections/awards";
 import GamePage from "@/app/[locale]/overzicht/[game]/gamePage";
 import { defaultMetadata } from "@/data/metadata";
 
@@ -14,6 +13,7 @@ const query = ({ slug, language = "nl" }) => {
                       title
                       story
                       videoId
+                      categories
                       videoPlayer
                       detailImage ${imageQuery}
                       featuredDetailImage ${imageQuery}
@@ -46,10 +46,6 @@ async function getRoom({ params }) {
       language: params.locale,
     }),
   );
-}
-
-async function getAwards() {
-  return fetchData(awardsQuery({ grade: "" }));
 }
 
 export async function generateMetadata({ params }) {
@@ -89,11 +85,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Game({ params }) {
   const { rooms } = await getRoom({ params });
-  const { awards } = await getAwards();
 
   if (!rooms) {
     return <Loader />;
   }
 
-  return <GamePage data={rooms[0]} locale={params.locale} awards={awards} />;
+  return <GamePage data={rooms[0]} locale={params.locale} />;
 }

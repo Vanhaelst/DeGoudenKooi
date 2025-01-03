@@ -30,14 +30,16 @@ export const AwardSlider = ({
       </Container>
 
       <Container>
-        <div className="grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 rounded-2xl md:grid-cols-3">
+        <div
+          className={`grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 rounded-2xl md:grid-cols-3 ${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"}`}
+        >
           {awards?.map(({ image, title }) => {
             const { alt, url, width, height } = image?.[0];
             return (
               <a
                 href={LINKS[locale.toUpperCase()].AWARDS}
                 key={url}
-                className={`relative group ${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"} p-8 sm:p-10 flex flex-col justify-center items-center h-30 transition-all overflow-hidden`}
+                className={`${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"} relative group p-8 sm:p-10 flex flex-col justify-center items-center h-30 transition-all overflow-hidden`}
               >
                 <Image
                   src={url}

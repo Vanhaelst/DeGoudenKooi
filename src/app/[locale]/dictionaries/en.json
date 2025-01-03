@@ -29,7 +29,8 @@
     "discover": "Discover",
     "questions": "Questions",
     "amount": "Amount",
-    "time": "Time"
+    "time": "Time",
+    "discover_all": "Discover all escape games"
   },
   "game": {
     "teaser": "Teaser",

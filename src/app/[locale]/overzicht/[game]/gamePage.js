@@ -18,9 +18,11 @@ import { CompanyData } from "@/data/companyData";
 import nl from "@/app/[locale]/dictionaries/nl.json";
 import en from "@/app/[locale]/dictionaries/en.json";
 import Warning from "@/components/molecules/alerts/warning";
+import { imageQuery } from "@/queries/entries/image";
 
-export default function GamePage({ data, awards, locale }) {
+export default function GamePage({ data, locale }) {
   const [faq, setFaq] = useState(undefined);
+  const [awards, setAwards] = useState(undefined);
   const t = locale === "nl" ? nl : en;
 
   const {
@@ -57,6 +59,21 @@ export default function GamePage({ data, awards, locale }) {
     }
     fetchData(faqQuery({ categories })).then((res) => {
       setFaq(res.faq);
+    });
+
+    console.log(categories);
+    fetchData(`query MyQuery {
+        awards: awardsEntries(categories: ["${categories}"]) {
+            ...on award_Entry {
+            title
+            description
+            image: awardimage ${imageQuery}
+            class
+            categories
+            }
+          }          
+  }  `).then((res) => {
+      setAwards(res.awards);
     });
   }, [categories]);
 
@@ -175,7 +192,7 @@ export default function GamePage({ data, awards, locale }) {
             <div className="flex mr-4">
               <Image
                 src="/icon-location.svg"
-                alt="zandloper"
+                alt="pin"
                 className="mr-2"
                 width={20}
                 height={20}
