@@ -41,12 +41,12 @@ export function MobileNavigation({ locale, nav, open, setOpen }) {
               {nav.map(({ name, href, children }) => {
                 if (children) {
                   return (
-                    <li>
+                    <li key={name}>
                       <details>
                         <summary>{name}</summary>
                         <ul>
                           {children.map(({ title, slug }) => (
-                            <li>
+                            <li key={title}>
                               <a href={`/${locale}/${slug}`}>{title}</a>
                             </li>
                           ))}
@@ -56,7 +56,7 @@ export function MobileNavigation({ locale, nav, open, setOpen }) {
                   );
                 }
                 return (
-                  <li>
+                  <li key={name}>
                     <a href={href}>{name} </a>
                   </li>
                 );
