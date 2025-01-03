@@ -25,7 +25,6 @@ export const TopBar = async ({ locale = "nl" }) => {
     },
   ];
 
-  console.log(locale);
   return (
     <div className="hidden sm:block w-full bg-primary-500 z-50 border-b text-black">
       <div className="mx-auto max-w-7xl px-6 lg:px-0">
