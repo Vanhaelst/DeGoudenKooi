@@ -2,13 +2,6 @@ import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import { defaultMetadata } from "@/data/metadata";
-
-export const metadata = {
-  title: "Faq - De Gouden Kooi",
-  description: "",
-  // keywords: "",
-};
-
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "faqPageEntries", language }));
 }
