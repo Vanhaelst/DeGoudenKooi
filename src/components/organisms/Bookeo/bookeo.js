@@ -30,7 +30,7 @@ export const Bookeo = ({ type = "", variant = "", locale }) => {
     `${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`,
   );
   return (
-    <div className="relative">
+    <div className="relative py-12 lg:py-24">
       <Container classnames="min-h-80 flex justify-center items-center">
         {type === "giftcard" ? (
           <script
