@@ -63,7 +63,7 @@ export default async function Home({ params }) {
         backgroundColor={backgroundColor}
       />
 
-      <Bookeo locale={params.locale} variant={""} />
+      <Bookeo locale={params.locale} />
       {sections?.map((section) => renderComponents(section, params.locale))}
     </>
   );

@@ -23,7 +23,7 @@ const BOOKEO = {
   voucher: "&startmode=buyvoucher",
 };
 
-export const Bookeo = ({ variant = "", locale }) => {
+export const Bookeo = ({ variant, locale }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
 
   const [isMounted, setIsMounted] = useState(false);
@@ -38,8 +38,7 @@ export const Bookeo = ({ variant = "", locale }) => {
         <script
           defer={true}
           type="text/javascript"
-          src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}`}
-          //src={BOOKEO.main}
+          src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
         ></script>
       </Container>
     </section>
