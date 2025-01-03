@@ -2,6 +2,7 @@
 
 import { Container } from "@/components/atoms";
 import { useEffect, useState } from "react";
+import Script from "next/script";
 
 const BOOKEO = {
   main: "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360",
@@ -35,11 +36,12 @@ export const Bookeo = ({ variant, locale }) => {
   return (
     <section className="bg-white relative py-12 lg:py-24">
       <Container classnames="min-h-80 flex justify-center items-center">
-        <script
-          defer={true}
+        <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
+        <Script
+          // strategy="afterInteractive"
           type="text/javascript"
           src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
-        ></script>
+        />
       </Container>
     </section>
   );
