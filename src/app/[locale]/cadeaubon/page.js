@@ -2,6 +2,7 @@ import { Hero } from "@/components/molecules/hero/hero";
 import Script from "next/script";
 import { CompanyData } from "@/data/companyData";
 import { defaultMetadata } from "@/data/metadata";
+import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 
 export async function generateMetadata({ params }) {
   return params.locale === "en"
@@ -29,15 +30,9 @@ export async function generateMetadata({ params }) {
       };
 }
 
-export default async function Home() {
+export default async function Home({ params }) {
   return (
     <>
-      <Script
-        strategy="beforeInteractive"
-        type="text/javascript"
-        src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&type=325043P7UH151F85563A6"
-      />
-
       <Hero
         type="vertical"
         title="Cadeaubon"
@@ -48,7 +43,7 @@ Je kiest de opmaak van je cadeaubon, zet er een leuke tekst bij en print hem zel
 Zo heb je in 1-2-3 een leuk geschenk!</p>"
       />
 
-      <div id="bookeo_position" />
+      <Bookeo type="giftcard" locale={params.locale} />
     </>
   );
 }

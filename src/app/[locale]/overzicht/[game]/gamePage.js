@@ -61,7 +61,6 @@ export default function GamePage({ data, locale }) {
       setFaq(res.faq);
     });
 
-    console.log(categories);
     fetchData(`query MyQuery {
         awards: awardsEntries(categories: ["${categories}"]) {
             ...on award_Entry {
@@ -172,12 +171,15 @@ export default function GamePage({ data, locale }) {
         </div>
       </Container>
 
-      <div className="fixed z-50 bottom-5 right-5 space-y-2">
-        <Warning
-          title={t.game.inactive.title}
-          description={inactiveMessage || t.game.inactive[gameType]}
-        />
-      </div>
+      {isInactive && (
+        <div className="fixed z-50 bottom-5 right-5 space-y-2">
+          <Warning
+            title={t.game.inactive.title}
+            description={inactiveMessage || t.game.inactive[gameType]}
+          />
+        </div>
+      )}
+
       <div className={`py-14`}>
         <ContentImage
           title={title}
@@ -244,7 +246,7 @@ export default function GamePage({ data, locale }) {
       />
 
       {!isInactive && <Prices title="Tarieven" prices={prices} t={t.rate} />}
-      <Bookeo />
+      <Bookeo variant={categories[0]} />
 
       <Faq title={`FAQ: ${title}`} backgroundColor="lightGray" faq={faq} />
     </>
