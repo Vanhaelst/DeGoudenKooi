@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -6,12 +8,14 @@ import { LINKS } from "@/enums/links";
 import { LOCATIONS } from "@/enums/locations";
 import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
 import { Button, Container } from "@/components/atoms";
+import { Bars2Icon } from "@heroicons/react/24/solid";
 
-export const MegaMenu = async ({
+export const MegaMenu = ({
   locale = "nl",
   dict,
   gerechtstraat,
   haverwerf,
+  setOpen,
 }) => {
   const recentPosts = [
     {
@@ -29,14 +33,14 @@ export const MegaMenu = async ({
 
   return (
     <header
-      className="relative w-full z-10 bg-cover drop-shadow-xl"
+      className="relative w-full z-10 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
       style={{ backgroundImage: `url('${CompanyData.heroBg}')` }}
     >
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8 z-20"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex justify-between w-full lg:w-auto">
           <Link href={`/${locale}`} className="flex -m-1.5 p-1.5">
             <span className="sr-only">{CompanyData.name}</span>
             <Image
@@ -52,6 +56,15 @@ export const MegaMenu = async ({
               className="h-8 lg:max-w-40 xl:max-w-40 w-auto"
             />
           </Link>
+
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="lg:hidden -ml-2 bg-primary-500 p-2 text-white rounded-xl"
+          >
+            <span className="sr-only">Open menu</span>
+            <Bars2Icon aria-hidden="true" className="h-6 w-6" />
+          </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
           <Link
@@ -156,15 +169,13 @@ export const MegaMenu = async ({
             {dict.navigation.contact}
           </a>
 
-          <a href={LINKS[locale.toUpperCase()].BOOK} className="cursor-pointer">
-            <Button
-              href={LINKS[locale.toUpperCase()].RESERVE}
-              variant="secondary"
-              callToAction={dict.navigation.reserve.toUpperCase()}
-              type="rounded"
-              size="small"
-            />
-          </a>
+          <Button
+            href={LINKS[locale.toUpperCase()].RESERVE}
+            variant="secondary"
+            callToAction={dict.navigation.reserve.toUpperCase()}
+            type="rounded"
+            size="small"
+          />
         </div>
       </nav>
     </header>

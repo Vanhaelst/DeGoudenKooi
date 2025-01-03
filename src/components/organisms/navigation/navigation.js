@@ -1,9 +1,9 @@
-import { MegaMenu } from "@/components/organisms/navigation/mega-menu";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { LOCATIONS } from "@/enums/locations";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { GAMETYPE } from "@/enums/gameTypes";
+import { NavigationClient } from "@/components/organisms/navigation/navigation-client";
 
 async function getGames() {
   return fetchData(
@@ -18,21 +18,5 @@ export const Navigation = async ({ locale = "nl" }) => {
   const dict = await getDictionary(locale); // nl
   const { rooms } = await getGames();
 
-  const gerechtstraat = rooms.filter(
-    (room) => room.gameLocation === LOCATIONS.GERECHTSTRAAT,
-  );
-  const haverwerf = rooms.filter(
-    (room) => room.gameLocation === LOCATIONS.HAVERWERF,
-  );
-
-  return (
-    <>
-      <MegaMenu
-        locale={locale}
-        dict={dict}
-        gerechtstraat={gerechtstraat}
-        haverwerf={haverwerf}
-      />
-    </>
-  );
+  return <NavigationClient locale={locale} dict={dict} rooms={rooms} />;
 };

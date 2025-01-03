@@ -39,8 +39,15 @@ const nextConfig = {
         destination: "/en/nieuws/:nieuws",
       },
       {
+        source: "/en/reserve",
+        destination: "/en/reserveer",
+      },{
         source: "/en/book-now",
-        destination: "/en/boek-nu",
+        destination: "/en/reserveer",
+      },
+      {
+        source: "/nl/boek-nu",
+        destination: "/nl/reserveer",
       },
     ];
   },
