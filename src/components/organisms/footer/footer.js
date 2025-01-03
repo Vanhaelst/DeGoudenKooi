@@ -144,12 +144,12 @@ export const Footer = async ({ locale = "nl" }) => {
               <ul role="list" className="mt-6 space-y-2">
                 {navigation.navigation.map((item) => (
                   <li key={item.name}>
-                    <Link
+                    <a
                       href={item.href}
                       className="text-sm text-white hover:underline hover:pl-2 transition-all"
                     >
                       {item.name}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

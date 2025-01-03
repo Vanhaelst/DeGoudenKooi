@@ -64,18 +64,18 @@ export function MobileNavigation({ locale, nav, open, setOpen }) {
             </ul>
 
             <div className="space-y-6 px-4 py-6  md:mt-12">
-              <Link
+              <a
                 href={LINKS.NL.HOME}
                 className={`flex justify-end md:justify-center items-center font-barlow text-md font-medium hover:text-accent-500 ${!pathname.startsWith("/fr") && !pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
               >
                 Nederlands
-              </Link>
-              <Link
+              </a>
+              <a
                 href={LINKS.EN.HOME}
                 className={`flex justify-end md:justify-center items-center font-barlow text-md font-medium hover:text-accent-500 ${pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
               >
                 English
-              </Link>
+              </a>
             </div>
           </DialogPanel>
         </div>

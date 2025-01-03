@@ -1,4 +1,7 @@
+"use client";
+
 import { Container } from "@/components/atoms";
+import { useEffect, useState } from "react";
 
 const BOOKEO = {
   main: "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360",
@@ -17,29 +20,27 @@ const BOOKEO = {
   escapeWalk_overview: "&type=42552AH3CLR186AD05FA70",
   escapeWalk: "&type=42552JF9XXT186AD0B4B42",
   varia: "&type=3250HNWC761623948C7CB",
-  vouhcer:
-    "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360&startmode=buyvoucher",
+  voucher: "&startmode=buyvoucher",
 };
 
-export const Bookeo = ({ type = "", variant = "", locale }) => {
+export const Bookeo = ({ variant = "", locale }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <section className="bg-white relative py-12 lg:py-24">
       <Container classnames="min-h-80 flex justify-center items-center">
-        {type === "giftcard" ? (
-          <script
-            defer
-            type="text/javascript"
-            src={`${BOOKEO.vouhcer}${lang}`}
-          ></script>
-        ) : (
-          <script
-            defer
-            type="text/javascript"
-            src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
-          ></script>
-        )}
+        <script
+          defer={true}
+          type="text/javascript"
+          src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}`}
+          //src={BOOKEO.main}
+        ></script>
       </Container>
     </section>
   );

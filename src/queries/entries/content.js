@@ -4,6 +4,7 @@ import { imageQuery } from "@/queries/entries/image";
 export const contentEntry = `
     ... on contents_Entry {
         typeHandle
+              id
         backgroundColor
         contentItem {
             ... on text_Entry {

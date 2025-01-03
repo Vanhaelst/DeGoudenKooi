@@ -4,6 +4,7 @@ import { buttonsQuery } from "@/queries/entries/buttons";
 export const heroEntry = `
     ... on hero_Entry {
         typeHandle
+              id
         backgroundColor
         title
         description

@@ -5,6 +5,7 @@ export const gridEntry = `
     ... on grid_Entry {
         typeHandle
         title
+              id
         description
         backgroundColor
         gridItems {

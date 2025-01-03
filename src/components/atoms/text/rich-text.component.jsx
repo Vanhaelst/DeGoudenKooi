@@ -102,11 +102,11 @@ export const RichText = ({ text = "", classnames, level }) => {
 
       if (name === "a") {
         return (
-          <Link href={attribs.href} target="_blank">
+          <a href={attribs.href} target="_blank">
             <span className="relative underline decoration-accent-500">
               {domToReact(children, options)}
             </span>
-          </Link>
+          </a>
         );
       }
     },

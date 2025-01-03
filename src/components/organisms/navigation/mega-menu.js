@@ -41,7 +41,7 @@ export const MegaMenu = ({
         className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8 z-20"
       >
         <div className="flex justify-between w-full lg:w-auto">
-          <Link href={`/${locale}`} className="flex -m-1.5 p-1.5">
+          <a href={`/${locale}`} className="flex -m-1.5 p-1.5">
             <span className="sr-only">{CompanyData.name}</span>
             <Image
               width={48}
@@ -55,7 +55,7 @@ export const MegaMenu = ({
               src={CompanyData.logo}
               className="h-8 lg:max-w-40 xl:max-w-40 w-auto"
             />
-          </Link>
+          </a>
 
           <button
             type="button"
@@ -67,12 +67,12 @@ export const MegaMenu = ({
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
-          <Link
+          <a
             href={LINKS[locale.toUpperCase()].ABOUT}
             className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
           >
             {dict.navigation.about}
-          </Link>
+          </a>
 
           <div className="group isolate z-10 h-[80px] flex items-center">
             <div className="">

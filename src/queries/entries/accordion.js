@@ -1,6 +1,7 @@
 export const accordionEntry = `
     ... on accordion_Entry {
               typeHandle
+              id
               backgroundColor
               title
               description

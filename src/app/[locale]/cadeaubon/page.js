@@ -7,6 +7,7 @@ import React from "react";
 import { renderComponents } from "@/utils/renderComponents";
 import { fetchData } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
+import { Container } from "@/components/atoms";
 
 export async function generateMetadata({ params }) {
   return params.locale === "en"
@@ -52,6 +53,8 @@ export default async function Home({ params }) {
     sections,
   } = page[0] ?? {};
 
+  const lang = params.locale === "en" ? "&languageCode=en_US" : "";
+
   return (
     <>
       <Hero
@@ -64,7 +67,7 @@ export default async function Home({ params }) {
         backgroundColor={backgroundColor}
       />
 
-      <Bookeo type="giftcard" locale={params.locale} />
+      <Bookeo locale={params.locale} variant="voucher" />
 
       {sections?.map((section) => renderComponents(section, params.locale))}
     </>
