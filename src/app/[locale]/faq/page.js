@@ -1,35 +1,40 @@
 import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
-import { defaultMetadata } from "@/data/metadata";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
+import { SeoQuery } from "@/queries/sections/seo";
+
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "faqPageEntries", language }));
 }
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        title: "FAQ - De Gouden Kooi",
-        description:
-          "Discover everything about our escape room and escape experience. We answer all frequently asked questions. Click through and discover the answer to who, what and how.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Discover everything about our escape room and escape experience. We answer all frequently asked questions. Click through and discover the answer to who, what and how.",
-        },
-      }
-    : {
-        ...defaultMetadata,
-        title: "FAQ - De Gouden Kooi",
-        description:
-          "Ontdek alles over onze escape room en escape experience. We beantwoorden alle veelgestelde vragen. Klik door en ontdek het antwoord op wie, wat en hoe.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Ontdek alles over onze escape room en escape experience. We beantwoorden alle veelgestelde vragen. Klik door en ontdek het antwoord op wie, wat en hoe.",
-        },
-      };
+  const { page } = await fetchData(
+    SeoQuery({ page: "faqPageEntries", language: params.locale }),
+  );
+
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+    },
+  };
 }
 
 export default async function Home({ params }) {

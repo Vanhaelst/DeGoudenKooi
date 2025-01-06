@@ -1,9 +1,6 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { fetchData } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
-import { usePathname } from "next/navigation";
 import { imageQuery } from "@/queries/entries/image";
 import { Hero } from "@/components/molecules/hero/hero";
 import { contentEntry } from "@/queries/entries/content";
@@ -17,11 +14,18 @@ import { LINKS } from "@/enums/links";
 
 import nl from "@/app/[locale]/dictionaries/nl.json";
 import en from "@/app/[locale]/dictionaries/en.json";
+import { SeoQuery } from "@/queries/sections/seo";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
+import { seoEntry } from "@/queries/entries/seo";
 
 const query = ({ pathname, language = "nl" }) => {
   return `
         query MyQuery {
-              blog: blogsEntries(uri: "${pathname?.slice(4)}", language: "${language}") {
+              blog: blogsEntries(slug: "${pathname}", language: "${language}") {
                   ... on newsItem_Entry {
                       id
                       title
@@ -43,17 +47,62 @@ const query = ({ pathname, language = "nl" }) => {
   `;
 };
 
-export default function News({ params }) {
-  const [data, setData] = useState(undefined);
-  const pathname = usePathname();
+async function getPage({ pathname, language }) {
+  return fetchData(query({ pathname, language }));
+}
 
-  useEffect(() => {
-    fetchData(query({ pathname, language: params.locale })).then((res) => {
-      setData(res?.blog[0]);
-    });
-  }, [pathname, params]);
+export async function generateMetadata({ params }) {
+  const { page } = await fetchData(`
+        query MyQuery {
+        page: blogsEntries(slug: "${params.nieuws}", language: "${params.locale}") {
+        ... on newsItem_Entry {
+                id
+                title
+                image ${imageQuery}
+                ${seoEntry}
+            }
+        }
+    }`);
 
-  const { image, title, shortDescription, blogsections } = data || {};
+  const {
+    title,
+    seoTitle,
+    seoDescription,
+    seoKeywords,
+    seoUrl,
+    seoImage,
+    image,
+  } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || title || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images:
+      seoImage?.[0]?.url || image?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images:
+        seoImage?.[0]?.url ||
+        image?.[0]?.url ||
+        defaultMetadata.openGraph.image,
+    },
+  };
+}
+
+export default async function News({ params }) {
+  const { blog } = await getPage({
+    pathname: params.nieuws,
+    language: params.locale,
+  });
+
+  const { image, title, shortDescription, blogsections } = blog?.[0] || {};
 
   const t = params.locale === "en" ? en : nl;
   const pages = [
@@ -65,7 +114,7 @@ export default function News({ params }) {
     { name: title, href: "#", current: true },
   ];
 
-  if (!data) {
+  if (!blog) {
     return <Loader />;
   }
   return (

@@ -1,36 +1,40 @@
 import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
-import { defaultMetadata } from "@/data/metadata";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
+import { SeoQuery } from "@/queries/sections/seo";
 
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "jobsEntries", language }));
 }
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        title: "Hotels in Mechelen - De Gouden Kooi",
-        description:
-          "Hotels in Mechelen ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Hotels in Mechelen ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        },
-      }
-    : {
-        ...defaultMetadata,
-        title: "Hotels in Mechelen - De Gouden Kooi",
-        description:
-          "Voor of na je escape room nog een hapje gaan eten? Bij De Gouden Kooi selecteerden we een paar leuke adresjes voor je, met een exclusief voordeel!",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Voor of na je escape room nog een hapje gaan eten? Bij De Gouden Kooi selecteerden we een paar leuke adresjes voor je, met een exclusief voordeel!",
-        },
-      };
+  const { page } = await fetchData(
+    SeoQuery({ page: "jobsEntries", language: params.locale }),
+  );
+
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+    },
+  };
 }
 
 export default async function Home({ params }) {

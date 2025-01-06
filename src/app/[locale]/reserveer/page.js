@@ -1,10 +1,15 @@
 import { fetchData } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
-import { defaultMetadata } from "@/data/metadata";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
 import { Hero } from "@/components/molecules/hero/hero";
 import React from "react";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
+import { SeoQuery } from "@/queries/sections/seo";
 
 export const fetchCache = "force-no-store";
 
@@ -13,29 +18,28 @@ async function getPage({ language }) {
 }
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        title: "Reserve your escape - De Gouden Kooi",
-        description:
-          "Reserve ✓ Escape Experiences ✓ Escape Walks ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Reserve ✓ Escape Experiences ✓ Escape Walks ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        },
-      }
-    : {
-        ...defaultMetadata,
-        title: "Boek je Escape - De Gouden Kooi",
-        description:
-          "Boeking escape game ✓ Escape rooms ✓ Een teamactiviteit voor gezinnen, vrienden en collega's ✓ Twee locaties in centrum Mechelen ✓ Pioniers in België.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Boeking escape game ✓ Escape rooms ✓ Een teamactiviteit voor gezinnen, vrienden en collega's ✓ Twee locaties in centrum Mechelen ✓ Pioniers in België.",
-        },
-      };
+  const { page } = await fetchData(
+    SeoQuery({ page: "reserveEntries", language: params.locale }),
+  );
+
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+    },
+  };
 }
 
 export default async function Home({ params }) {

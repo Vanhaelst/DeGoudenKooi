@@ -8,7 +8,12 @@ import React from "react";
 import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
 import { Title } from "@/components/molecules";
-import { defaultMetadata } from "@/data/metadata";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
+import { SeoQuery } from "@/queries/sections/seo";
 
 async function getPage() {
   return fetchData(PageQuery({ page: "aboutUsEntries" }));
@@ -36,29 +41,28 @@ async function getBlogs({ language }) {
 }
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        title: "About us - De Gouden Kooi",
-        description:
-          "About us ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "About us ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        },
-      }
-    : {
-        ...defaultMetadata,
-        title: "Ons verhaal - De Gouden Kooi",
-        description:
-          "De Gouden Kooi staat voor een team van gepassioneerde escape room bouwers. We bedenken en bouwen onze escape rooms zelf.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "De Gouden Kooi staat voor een team van gepassioneerde escape room bouwers. We bedenken en bouwen onze escape rooms zelf.",
-        },
-      };
+  const { page } = await fetchData(
+    SeoQuery({ page: "aboutUsEntries", language: params.locale }),
+  );
+
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+    },
+  };
 }
 
 export default async function Home({ params }) {

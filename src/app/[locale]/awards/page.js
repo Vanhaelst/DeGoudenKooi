@@ -2,37 +2,40 @@ import React from "react";
 import Image from "next/image";
 import { fetchData } from "@/utils/fetchData";
 import { Hero } from "@/components/molecules/hero/hero";
-import { CompanyData } from "@/data/companyData";
 import { awardsQuery } from "@/queries/sections/awards";
 import { Container, RichText } from "@/components/atoms";
-import { defaultMetadata } from "@/data/metadata";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { renderComponents } from "@/utils/renderComponents";
+import { SeoQuery } from "@/queries/sections/seo";
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        title: "Awards - De Gouden Kooi",
-        description:
-          "An overview of the awards we have collected over the past years.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "An overview of the awards we have collected over the past years.",
-        },
-      }
-    : {
-        ...defaultMetadata,
-        title: "Awards - De Gouden Kooi",
-        description:
-          "Een overzicht van de awards die we de voorbije jaren verzamelden.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Een overzicht van de awards die we de voorbije jaren verzamelden.",
-        },
-      };
+  const { page } = await fetchData(
+    SeoQuery({ page: "planningEntries", language: params.locale }),
+  );
+
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+    },
+  };
 }
 
 async function getPage({ language }) {

@@ -1,38 +1,41 @@
 import { Hero } from "@/components/molecules/hero/hero";
 import Script from "next/script";
 import { CompanyData } from "@/data/companyData";
-import { defaultMetadata } from "@/data/metadata";
+import {
+  defaultMetadata,
+  dutchMetadata,
+  englishMetadata,
+} from "@/data/metadata";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import React from "react";
 import { renderComponents } from "@/utils/renderComponents";
 import { fetchData } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
-import { Container } from "@/components/atoms";
+import { SeoQuery } from "@/queries/sections/seo";
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        title: "Shop - De Gouden Kooi",
-        description:
-          "Shop ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Shop ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
-        },
-      }
-    : {
-        ...defaultMetadata,
-        title: "Cadeaubon - De Gouden Kooi",
-        description:
-          "Shop ✓ Escape rooms ✓ Een teamactiviteit voor gezinnen, vrienden en collega's ✓ Twee locaties in centrum Mechelen ✓ Pioniers in België.",
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          description:
-            "Een overzicht van de awards die we de voorbije jaren verzamelden.",
-        },
-      };
+  const { page } = await fetchData(
+    SeoQuery({ page: "cadeaubonEntries", language: params.locale }),
+  );
+
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+
+  const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  return {
+    ...defaultMetadata,
+    title: seoTitle || defaultMetadata.title,
+    description: seoDescription || metaData.description,
+    keywords: seoKeywords || metaData.keywords,
+    images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: seoTitle || defaultMetadata.title,
+      description: seoDescription || metaData.description,
+      url: seoUrl || defaultMetadata.openGraph.url,
+      images: seoImage?.[0]?.url || defaultMetadata.openGraph.image,
+    },
+  };
 }
 
 async function getPage({ language }) {

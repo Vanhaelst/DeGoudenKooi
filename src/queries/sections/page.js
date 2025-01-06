@@ -10,6 +10,7 @@ import { contentEntry } from "@/queries/entries/content";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 import { accordionEntry } from "@/queries/entries/accordion";
+import { seoEntry } from "@/queries/entries/seo";
 
 export const PageQuery = ({ page, language = "nl" }) => {
   return `
@@ -17,6 +18,7 @@ export const PageQuery = ({ page, language = "nl" }) => {
       page: ${page}(language: "${language}") {
         ... on page_Entry {
           id
+          ${seoEntry}
           sections {
             ${heroEntry}
             ${awardsEntry}
