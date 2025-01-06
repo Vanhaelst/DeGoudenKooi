@@ -80,3 +80,36 @@ html {
   scrollbar-width: none;
 }
 
+
+
+/* MAILCHIMP */
+
+#mc_embed_signup form div#mce-responses {
+  float: left;
+  top: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  clear: both;
+}
+
+#mc_embed_signup form .datefield {
+  padding: 0;
+}
+
+#mc_embed_signup form .datefield .monthfield input,
+#mc_embed_signup form .datefield .dayfield input {
+  width: auto;
+  padding: 8px;
+  min-width: 50px;
+}
+
+#mc_embed_signup form .button {
+  background-color: rgb(69 52 8 / var(--tw-bg-opacity));
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  height: auto;
+  line-height: inherit;
+  font-weight: 500;
+}

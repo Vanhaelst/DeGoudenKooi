@@ -1,5 +1,6 @@
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { Container, Text } from "@/components/atoms";
+import Script from "next/script";
 
 export default async function Newsletter({
   backgroundColor = "secondary",
@@ -21,28 +22,133 @@ export default async function Newsletter({
           >
             {t.newsletter.title}
           </Text>
-          <form className="w-full max-w-md lg:col-span-5 lg:pt-2">
-            <div className="flex gap-x-4">
-              <label htmlFor="email-address" className="sr-only">
-                {t.newsletter.mail}
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                autoComplete="email"
-                className="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-              <button
-                type="submit"
-                className="flex-none rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+
+          <div
+            id="mc_embed_shell"
+            className="w-full max-w-md lg:col-span-5 lg:pt-2"
+          >
+            <link
+              href="//cdn-images.mailchimp.com/embedcode/classic-061523.css"
+              rel="stylesheet"
+              type="text/css"
+            />
+            {/*<style type="text/css">
+              #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 600px;}
+              /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+              We recommend moving this block and the preceding CSS link to the HEAD of your HTML file.
+            </style>*/}
+            <div id="mc_embed_signup">
+              <form
+                action="https://degoudenkooi.us12.list-manage.com/subscribe/post?u=041e826c02983efe2d13909c3&amp;id=09e631601d&amp;f_id=0076f5e3f0"
+                method="post"
+                id="mc-embedded-subscribe-form"
+                name="mc-embedded-subscribe-form"
+                className="validate"
+                target="_blank"
               >
-                {t.newsletter.button}
-              </button>
+                <div id="mc_embed_signup_scroll">
+                  <div className="mc-field-group">
+                    <label htmlFor="mce-EMAIL" className="sr-only">
+                      E-mailadres <span className="asterisk">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="EMAIL"
+                      placeholder="E-mailadres"
+                      className="required email bg-white text-primary-500"
+                      id="mce-EMAIL"
+                      required=""
+                    />
+                  </div>
+                  <div className="mc-field-group">
+                    <label htmlFor="mce-FNAME" className="sr-only">
+                      Voornaam <span className="asterisk">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="FNAME"
+                      placeholder="Voornaam"
+                      className="required text bg-white text-primary-500"
+                      id="mce-FNAME"
+                      required=""
+                    />
+                  </div>
+                  <div className="mc-field-group">
+                    <label htmlFor="mce-MMERGE3-month" className="sr-only">
+                      Verjaardag{" "}
+                    </label>
+                    <div className="datefield">
+                      <span className="subfield dayfield">
+                        <input
+                          className="birthday REQ_CSS bg-white text-primary-500"
+                          type="text"
+                          pattern="[0-9]*"
+                          placeholder="DD"
+                          size="2"
+                          maxLength="2"
+                          name="MMERGE3[day]"
+                          id="mce-MMERGE3-day"
+                        />
+                      </span>{" "}
+                      /
+                      <span className="subfield monthfield">
+                        <input
+                          className="birthday REQ_CSS bg-white text-primary-500 px-2"
+                          type="text"
+                          pattern="[0-9]*"
+                          placeholder="MM"
+                          size="2"
+                          maxLength="2"
+                          name="MMERGE3[month]"
+                          id="mce-MMERGE3-month"
+                        />
+                      </span>
+                      <span className="small-meta nowrap ml-2">
+                        (Verjaardag dd / mm )
+                      </span>
+                    </div>
+                  </div>
+                  <div id="mce-responses" className="clear">
+                    <div
+                      className="response"
+                      id="mce-error-response"
+                      style={{ display: "none" }}
+                    ></div>
+                    <div
+                      className="response"
+                      id="mce-success-response"
+                      style={{ display: "none" }}
+                    ></div>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    style={{ position: "absolute", left: "-5000px" }}
+                  >
+                    <input
+                      type="text"
+                      name="b_041e826c02983efe2d13909c3_09e631601d"
+                      tabIndex="-1"
+                      value=""
+                    />
+                  </div>
+                  <div className="clear">
+                    <input
+                      type="submit"
+                      name="subscribe"
+                      id="mc-embedded-subscribe"
+                      className="button"
+                      value="Subscribe"
+                    />
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
+
+            <Script
+              type="text/javascript"
+              src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+            ></Script>
+          </div>
         </div>{" "}
       </Container>
     </section>
