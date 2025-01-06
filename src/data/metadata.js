@@ -8,7 +8,7 @@ export const defaultMetadata = {
     type: "website",
     url: "https://degoudenkooi.be/",
     site_name: "De Gouden Kooi",
-    image: "/symbool.png",
+    images: "/symbool.png",
   },
 };
 export const englishMetadata = {

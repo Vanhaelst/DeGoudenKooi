@@ -1,6 +1,4 @@
 import { Hero } from "@/components/molecules/hero/hero";
-import Script from "next/script";
-import { CompanyData } from "@/data/companyData";
 import {
   defaultMetadata,
   dutchMetadata,
@@ -11,11 +9,18 @@ import React from "react";
 import { renderComponents } from "@/utils/renderComponents";
 import { fetchData } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
-import { SeoQuery } from "@/queries/sections/seo";
+import { seoEntry } from "@/queries/entries/seo";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
-    SeoQuery({ page: "cadeaubonEntries", language: params.locale }),
+    `query MyQuery {
+      page: cadeaubonEntries(language: "${params.locale}") {
+        ... on FixedPage_Entry {
+          id
+          ${seoEntry}
+        }
+      }
+    }`,
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];

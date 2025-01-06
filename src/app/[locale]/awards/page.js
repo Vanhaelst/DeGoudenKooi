@@ -11,11 +11,18 @@ import {
 } from "@/data/metadata";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { renderComponents } from "@/utils/renderComponents";
-import { SeoQuery } from "@/queries/sections/seo";
+import { seoEntry } from "@/queries/entries/seo";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
-    SeoQuery({ page: "planningEntries", language: params.locale }),
+    `query MyQuery {
+      page: planningEntries(language: "${params.locale}") {
+        ... on FixedPage_Entry {
+          id
+          ${seoEntry}
+        }
+      }
+    }`,
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];

@@ -10,6 +10,7 @@ import React from "react";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { SeoQuery } from "@/queries/sections/seo";
+import { seoEntry } from "@/queries/entries/seo";
 
 export const fetchCache = "force-no-store";
 
@@ -18,9 +19,14 @@ async function getPage({ language }) {
 }
 
 export async function generateMetadata({ params }) {
-  const { page } = await fetchData(
-    SeoQuery({ page: "reserveEntries", language: params.locale }),
-  );
+  const { page } = await fetchData(`query MyQuery {
+      page: reserveEntries(language: "${params.locale}") {
+        ... on FixedPage_Entry {
+          id
+          ${seoEntry}
+        }
+      }
+    }`);
 
   const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
 
