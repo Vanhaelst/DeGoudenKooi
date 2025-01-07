@@ -55,7 +55,7 @@ export default async function Newsletter({
                       type="email"
                       name="EMAIL"
                       placeholder="E-mailadres"
-                      className="required email bg-white text-primary-500"
+                      className="required email bg-white text-primary-500 rounded-xl"
                       id="mce-EMAIL"
                       required=""
                     />
@@ -77,10 +77,10 @@ export default async function Newsletter({
                     <label htmlFor="mce-MMERGE3-month" className="sr-only">
                       Verjaardag{" "}
                     </label>
-                    <div className="datefield">
+                    <div className="datefield text-white">
                       <span className="subfield dayfield">
                         <input
-                          className="birthday REQ_CSS bg-white text-primary-500"
+                          className="birthday REQ_CSS bg-white text-primary-500 rounded-xl"
                           type="text"
                           pattern="[0-9]*"
                           placeholder="DD"
@@ -90,10 +90,10 @@ export default async function Newsletter({
                           id="mce-MMERGE3-day"
                         />
                       </span>{" "}
-                      /
+                      /{" "}
                       <span className="subfield monthfield">
                         <input
-                          className="birthday REQ_CSS bg-white text-primary-500 px-2"
+                          className="birthday REQ_CSS bg-white text-primary-500 px-2 rounded-xl"
                           type="text"
                           pattern="[0-9]*"
                           placeholder="MM"

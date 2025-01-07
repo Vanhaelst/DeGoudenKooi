@@ -98,6 +98,11 @@ html {
   padding: 0;
 }
 
+#mc_embed_signup form .mc-field-group input {
+  border: none;
+  border-radius: 0.25rem;
+}
+
 #mc_embed_signup form .datefield .monthfield input,
 #mc_embed_signup form .datefield .dayfield input {
   width: auto;

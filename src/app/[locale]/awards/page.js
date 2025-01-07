@@ -16,7 +16,7 @@ import { seoEntry } from "@/queries/entries/seo";
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     `query MyQuery {
-      page: planningEntries(language: "${params.locale}") {
+      page: awardspageEntries(language: "${params.locale}") {
         ... on FixedPage_Entry {
           id
           ${seoEntry}
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
 }
 
 async function getPage({ language }) {
-  return fetchData(FixedPageQuery({ page: "planningEntries", language }));
+  return fetchData(FixedPageQuery({ page: "awardspageEntries", language }));
 }
 
 const getAwards = () => {
