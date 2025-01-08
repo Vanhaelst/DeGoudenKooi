@@ -1,13 +1,39 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { RichText, Text } from "@/components/atoms";
 
-export const Title = ({ title, subtitle, description, showIcon = true }) => {
+import gsap from "gsap";
+import { fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+export const Title = ({
+  title,
+  subtitle,
+  description,
+  classnames,
+  showIcon = true,
+}) => {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(elementRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      scrollTrigger: {
+        trigger: elementRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
+
   if (!title && !description) {
     return null;
   }
 
   return (
-    <>
+    <div ref={elementRef} className={classnames}>
       {showIcon && (
         <Image
           src="/symbool.png"
@@ -24,6 +50,6 @@ export const Title = ({ title, subtitle, description, showIcon = true }) => {
         {subtitle}
       </Text>
       <RichText text={description} classnames="text-primary-700" />
-    </>
+    </div>
   );
 };

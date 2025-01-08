@@ -10,7 +10,8 @@ import { gameOverviewEntry } from "@/queries/entries/gameOverview";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 
-export const SeoQuery = ({ url }) => {
+export const SeoQuery = ({ url, language }) => {
+  const locale = language === "undefined" ? "nl" : language;
   return `
     query MyQuery {
       page: seoPagesEntries(slug:"${url}") {

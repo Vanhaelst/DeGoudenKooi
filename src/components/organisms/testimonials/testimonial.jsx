@@ -4,9 +4,14 @@ import nl from "@/app/[locale]/dictionaries/nl.json";
 import en from "@/app/[locale]/dictionaries/en.json";
 
 import { motion, useMotionValueEvent, useSpring } from "framer-motion";
-import React, { useCallback, useLayoutEffect, useRef } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { Text } from "@/components/atoms";
+
+import gsap from "gsap";
+import { fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export function TestimonialCard({
   title,
@@ -20,9 +25,11 @@ export function TestimonialCard({
   bounds,
   locale,
   scrollX,
+  index,
   ...props
 }) {
   let ref = useRef(null);
+  const elementRef = useRef(null);
 
   let computeOpacity = useCallback(() => {
     let element = ref.current;
@@ -56,8 +63,19 @@ export function TestimonialCard({
     opacity.set(computeOpacity());
   });
 
+  useEffect(() => {
+    gsap.fromTo(elementRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      delay: index * 0.5,
+      scrollTrigger: {
+        trigger: elementRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
+
   return (
-    <a href={`/nl/${slug}`}>
+    <a href={`/nl/${slug}`} ref={elementRef}>
       <motion.div
         ref={ref}
         style={{ opacity }}

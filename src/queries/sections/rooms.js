@@ -7,9 +7,11 @@ export const roomsQuery = ({
   location = `"${LOCATIONS.GERECHTSTRAAT}", "${LOCATIONS.HAVERWERF}"`,
   language = "nl",
 }) => {
+  const locale = language === "undefined" ? "nl" : language;
+
   return `
           query MyQuery {
-              rooms: roomsEntries(language: "${language}", gameType: [${type}], gameLocation: [${location}]) {
+              rooms: roomsEntries(language: "${locale}", gameType: [${type}], gameLocation: [${location}]) {
                   ... on game_Entry {
                       title
                       story

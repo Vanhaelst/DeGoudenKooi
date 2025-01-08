@@ -1,7 +1,14 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Title } from "@/components/molecules";
 import { Button, Container } from "@/components/atoms";
-import React from "react";
 import { Images } from "@/components/molecules/image/image";
+
+import gsap from "gsap";
+import { fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export const ContentImage = ({
   title,
@@ -12,6 +19,18 @@ export const ContentImage = ({
   order,
 }) => {
   const contentLeft = order;
+
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(elementRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      scrollTrigger: {
+        trigger: elementRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
 
   return (
     <section className="">
@@ -26,7 +45,7 @@ export const ContentImage = ({
               description={description}
               showIcon={false}
             />
-            <div className="space-x-4">
+            <div className="space-x-4" ref={elementRef}>
               {buttons &&
                 buttons.map((button) => (
                   <Button key={button.href} {...button} classnames="mt-4" />

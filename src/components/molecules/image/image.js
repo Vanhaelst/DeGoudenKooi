@@ -1,8 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+
+import gsap from "gsap";
+import { fade, fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const settings = {
   arrows: false,
@@ -16,7 +21,20 @@ const settings = {
   speed: 1000,
 };
 
-export const Images = ({ images, classnames }) => {
+export const Images = ({ images, classnames, animation = "true" }) => {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(elementRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      delay: 1,
+      scrollTrigger: {
+        trigger: elementRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
+
   if (!images || images.length === 0) {
     return null;
   }
@@ -28,20 +46,23 @@ export const Images = ({ images, classnames }) => {
       : "rounded-2xl object-cover ";
 
     return (
-      <div className={`${classnames} h-full flex flex-col justify-center`}>
+      <div
+        className={`${classnames} h-full flex flex-col justify-center`}
+        ref={elementRef}
+      >
         <Image
           src={image.url}
           alt={image.alt}
           width={image.width}
           height={image.height}
-          className={`${classes} float w-full`}
+          className={`${classes} ${animation ? "float" : ""} w-full`}
         />
       </div>
     );
   }
 
   return (
-    <div className={`${classnames} slider-container`}>
+    <div className={`${classnames} slider-container`} ref={elementRef}>
       <Slider {...settings}>
         {images.map((image) => {
           const classNames = image.url.includes(".png")

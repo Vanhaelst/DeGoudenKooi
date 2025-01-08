@@ -13,9 +13,11 @@ import { buttonsQuery } from "@/queries/entries/buttons";
 import { imageQuery } from "@/queries/entries/image";
 
 export const FixedPageQuery = ({ page, language = "nl" }) => {
+  const locale = language === "undefined" ? "nl" : language;
+
   return `
     query MyQuery {
-      page: ${page}(language: "${language}") {
+      page: ${page}(language: "${locale}") {
         ... on FixedPage_Entry {
           id
           backgroundColor

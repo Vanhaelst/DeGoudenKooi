@@ -1,12 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { Container, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { LINKS } from "@/enums/links";
 
-import nl from "@/app/[locale]/dictionaries/nl.json";
-import en from "@/app/[locale]/dictionaries/en.json";
+import gsap from "gsap";
+import { fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export const AwardSlider = ({
   title,
@@ -19,6 +23,18 @@ export const AwardSlider = ({
 }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
+  const elementRef = useRef(null);
+
+  useLayoutEffect(() => {
+    gsap.fromTo(elementRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      scrollTrigger: {
+        trigger: elementRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
+
   if (!awards || awards.length === 0) {
     return null;
   }
@@ -29,8 +45,9 @@ export const AwardSlider = ({
         <Title title={title} description={description} />
       </Container>
 
-      <Container>
+      <Container classnames="relative">
         <div
+          ref={elementRef}
           className={`grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 rounded-2xl md:grid-cols-3 ${backgroundColor === "white" ? "bg-primary-500/10" : "bg-white/75"}`}
         >
           {awards?.map(({ image, title }) => {

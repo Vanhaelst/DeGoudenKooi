@@ -24,6 +24,9 @@ export async function generateMetadata({ params }) {
       }
     }`,
   );
+  if (!page?.[0]) {
+    return;
+  }
 
   const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
 

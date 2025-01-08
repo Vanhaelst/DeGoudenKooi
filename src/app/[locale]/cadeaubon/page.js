@@ -23,7 +23,8 @@ export async function generateMetadata({ params }) {
     }`,
   );
 
-  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
+  const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } =
+    page?.[0] ?? {};
 
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {

@@ -1,10 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 import { Container } from "@/components/atoms";
 import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { HeroContent } from "@/components/molecules/hero/content";
-import { HeroAwards } from "@/components/molecules/hero/awards";
 import { Images } from "@/components/molecules/image/image";
+
+import gsap from "gsap";
+import { fade, fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export const Hero = ({
   title,
@@ -22,6 +28,19 @@ export const Hero = ({
   const oddReviews = reviews?.filter((review, index) => index % 2 === 1);
 
   const bgColor = getBackgroundColor(backgroundColor);
+
+  const wrapperRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(wrapperRef.current, fade.from, {
+      ...fade.to,
+      scrollTrigger: {
+        trigger: wrapperRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
 
   if (type === "video") {
     return (
@@ -88,8 +107,11 @@ export const Hero = ({
 
   return (
     <section
-      className={`${bgColor} min-h-96  bg-cover bg-center`}
-      style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
+      className={`${bgColor} min-h-96  bg-cover bg-center opacity-0`}
+      style={{
+        backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
+      }}
+      ref={wrapperRef}
     >
       <Container classnames="py-20 grid grid-cols-1 lg:grid-cols-2">
         <HeroContent
@@ -131,7 +153,7 @@ export const Hero = ({
                 })}
               </div>
             )}
-            <Images images={image} />
+            <Images images={image} ref={imageRef} />
           </div>
         )}
       </Container>

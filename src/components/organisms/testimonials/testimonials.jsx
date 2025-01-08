@@ -70,6 +70,7 @@ export function Testimonials({ title, description, backgroundColor }) {
         {cards?.map((testimonial, testimonialIndex) => (
           <TestimonialCard
             key={testimonialIndex}
+            index={testimonialIndex}
             {...testimonial}
             bounds={bounds}
             scrollX={scrollX}

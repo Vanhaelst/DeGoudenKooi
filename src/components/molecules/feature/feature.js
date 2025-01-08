@@ -1,11 +1,31 @@
-import { RichText, Text } from "@/components/atoms";
-import Image from "next/image";
-import React from "react";
+"use client";
 
-export const Feature = ({ title, description, icon }) => {
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
+import { RichText, Text } from "@/components/atoms";
+
+import gsap from "gsap";
+import { fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+export const Feature = ({ title, description, icon, index }) => {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(elementRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      delay: (index % 3) * 0.5,
+      scrollTrigger: {
+        trigger: elementRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, []);
+
   return (
-    <div>
-      <div className="flex flex-row items-center">
+    <div ref={elementRef}>
+      <div className="relative flex flex-row items-center">
         <Image
           src={icon?.url || "/artwork-diamond.png"}
           alt={icon?.alt || "diamond artwork"}

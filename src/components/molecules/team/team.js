@@ -33,8 +33,8 @@ export const Team = async ({ title, description, backgroundColor }) => {
         <Title title={title} description={description} />
       </Container>
       <Container classnames="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {team?.map((member) => {
-          return <TeamMember key={member.title} {...member} />;
+        {team?.map((member, index) => {
+          return <TeamMember key={member.title} index={index} {...member} />;
         })}
       </Container>
     </section>

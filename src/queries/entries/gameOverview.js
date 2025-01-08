@@ -1,7 +1,7 @@
 export const gameOverviewEntry = `
     ... on gamesOverview_Entry {
         typeHandle
-              id
+        id
         title
         intro: description
         gameType

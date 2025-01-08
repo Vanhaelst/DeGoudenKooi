@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import parse, { attributesToProps, domToReact } from "html-react-parser";
 import { Text } from "./text.component";
 

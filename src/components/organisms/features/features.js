@@ -12,8 +12,8 @@ export const Features = ({ title, description, features, backgroundColor }) => {
         <Title title={title} description={description} />
       </Container>
       <Container classnames="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {features?.map((feature) => {
-          return <Feature key={feature.title} {...feature} />;
+        {features?.map((feature, index) => {
+          return <Feature key={feature.title} {...feature} index={index} />;
         })}
       </Container>
     </section>

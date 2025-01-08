@@ -14,7 +14,7 @@ async function getPage({ language }) {
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
-    SeoQuery({ page: "homeEntries", language: params.locale }),
+    SeoQuery({ page: "homeEntries", language: params.locale || "nl" }),
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoUrl, seoImage } = page?.[0];
@@ -38,7 +38,9 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
+  const { page } = await getPage({
+    language: params.locale,
+  });
 
   const sections = page[0]?.sections;
 

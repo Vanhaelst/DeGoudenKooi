@@ -13,6 +13,7 @@ import {
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { Title } from "@/components/molecules";
 import { SeoQuery } from "@/queries/sections/seo";
+import { Badges } from "@/components/organisms/badges/badges";
 
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "overviewEntries", language }));
@@ -69,39 +70,8 @@ export default async function Home({ params, searchParams }) {
         <Container>
           <Title title={dict.general.discover_all} showIcon={false} />
         </Container>
-        <div className="badges w-full flex justify-center mt-12">
-          <div className="flex overflow-x-scroll space-x-5 hide-scrollbar px-10">
-            {rooms.map(
-              ({ featuredImage, title, slug, gameLocation, gameType }) => (
-                <a
-                  key={title}
-                  href={slug}
-                  className={`group w-72 min-w-72 flex flex-col items-center hover:grayscale-0 duration-200 hover:opacity-100 ${gameLocation === searchParams.location ? "lg:opacity-75" : "lg:opacity-75"}`}
-                >
-                  <img
-                    src={featuredImage[0].url}
-                    alt={title}
-                    className="px-8 mb-2"
-                  />
-                  <Text
-                    as="span"
-                    level="sm"
-                    classnames="text-center transition-all group-hover:font-bold group-hover:scale-110 font-light lg:text-gray-700 group-hover:text-primary-500"
-                  >
-                    {dict.general[gameType]}
-                  </Text>
-                  <Text
-                    as="span"
-                    level="sm"
-                    classnames="text-center transition-all group-hover:font-bold group-hover:scale-110 group-hover:text-primary-500"
-                  >
-                    {title}
-                  </Text>
-                </a>
-              ),
-            )}
-          </div>
-        </div>
+
+        <Badges rooms={rooms} searchParams={searchParams} dict={dict} />
       </section>
 
       {sections?.map((section) => renderComponents(section, params.locale))}
