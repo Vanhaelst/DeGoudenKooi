@@ -229,7 +229,7 @@ export default function GamePage({ data, locale }) {
                 as="p"
                 classnames="text-secondary-700 text-center text-bold w-full"
               >
-                "Spanning, opbouw en humor, oog voor detail. Alles klopt"
+                Spanning, opbouw en humor, oog voor detail. Alles klopt
               </Text>
               <Text as="h5" classnames="text-primary-700 text-center mt-4">
                 Roomrunners podcast
