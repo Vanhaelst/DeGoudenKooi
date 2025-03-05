@@ -66,27 +66,28 @@ export const Games = ({
               <div>
                 <Text
                   as="h5"
-                  level="2xl"
+                  level="3xl"
                   classnames="text-secondary-500 mb-4 font-bold"
                 >
                   {title}
                 </Text>
                 <RichText
                   text={story}
+                  level="lg"
                   classnames="text-primary-700 mb-4 font-light"
                 />
                 <div className="space-x-3">
                   <Button
                     variant="primary-outline"
                     href={slug}
-                    callToAction="Meer weten"
-                    size="small"
+                    callToAction="MEER WETEN"
+                    size="medium"
                   />
                   <Button
                     variant="secondary"
                     href={slug}
-                    callToAction="Boek nu"
-                    size="small"
+                    callToAction="BOEK NU"
+                    size="medium"
                   />
                 </div>
 

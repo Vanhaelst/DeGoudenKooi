@@ -45,17 +45,10 @@ export const MegaMenu = ({
             <span className="sr-only">{CompanyData.name}</span>
             <Image
               alt={CompanyData.name}
-              width={48}
-              height={48}
-              src="/symbool.png"
-              className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
-            />
-            <Image
-              alt={CompanyData.name}
               width={121}
               height={18}
               src={CompanyData.logo}
-              className="h-8 lg:max-w-40 xl:max-w-40 w-auto"
+              className="h-8 md:h-10 w-auto"
             />
           </a>
 
@@ -69,17 +62,10 @@ export const MegaMenu = ({
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-6 xl:gap-x-12 items-center">
-          <a
-            href={LINKS[locale.toUpperCase()].ABOUT}
-            className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
-          >
-            {dict.navigation.about}
-          </a>
-
-          <div className="group isolate z-10 h-[80px] flex items-center">
+          {/*<div className="group isolate z-10 h-[80px] flex items-center">
             <div className="">
               <div className="mx-auto max-w-7xl">
-                <div className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all">
+                <div className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-secondary-700 hover:underline hover:pb-2 transition-all">
                   {dict.navigation.games}
                   <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
                 </div>
@@ -118,7 +104,7 @@ export const MegaMenu = ({
                         <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10" />
                       </div>
                       <div>
-                        <h4 className="mt-2 text-sm font-semibold leading-6 text-gray-900">
+                        <h4 className="mt-2 text-sm font-semibold leading-6 text-secondary-700">
                           <a href={post.href}>
                             <span className="absolute inset-0" />
                             {post.title}
@@ -146,7 +132,7 @@ export const MegaMenu = ({
                       className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
                     />
                     <div>
-                      <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                      <h3 className="text-sm font-semibold leading-6 text-secondary-700">
                         {dict.navigation.calendar}
                       </h3>
                       <p className="text-sm leading-6 text-gray-600">
@@ -157,21 +143,40 @@ export const MegaMenu = ({
                 </Container>
               </a>
             </div>
-          </div>
+          </div>*/}
+          <a
+            href={LINKS[locale.toUpperCase()].GAME_OVERVIEW}
+            className="text-sm font-semibold leading-6 text-secondary-700 hover:underline hover:pb-2 transition-all uppercase"
+          >
+            {dict.navigation.games}
+          </a>
           <a
             href={LINKS[locale.toUpperCase()].TEAMBUILDING}
-            className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
+            className="text-sm font-semibold leading-6 text-secondary-700 hover:underline hover:pb-2 transition-all uppercase"
           >
             {dict.navigation.teambuilding}
           </a>
           <a
+            href={LINKS[locale.toUpperCase()].GIFTCARD}
+            className="text-sm font-semibold leading-6 text-secondary-700 hover:underline hover:pb-2 transition-all uppercase"
+          >
+            {dict.topbar.giftcard}
+          </a>
+          <a
+            href={LINKS[locale.toUpperCase()].FAQ}
+            className="text-sm font-semibold leading-6 text-secondary-700 hover:underline hover:pb-2 transition-all uppercase"
+          >
+            {dict.topbar.faq}
+          </a>
+          <a
             href={LINKS[locale.toUpperCase()].CONTACT}
-            className="text-sm font-semibold leading-6 text-gray-900 hover:underline hover:pb-2 transition-all"
+            className="text-sm font-semibold leading-6 text-secondary-700 hover:underline hover:pb-2 transition-all uppercase"
           >
             {dict.navigation.contact}
           </a>
 
           <Button
+            classnames="animate-scale"
             href={LINKS[locale.toUpperCase()].RESERVE}
             variant="secondary"
             callToAction={dict.navigation.reserve.toUpperCase()}

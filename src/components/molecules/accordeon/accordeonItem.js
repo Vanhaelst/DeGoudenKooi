@@ -24,9 +24,9 @@ export const AccordionItem = ({ title, description }) => {
 
   return (
     <div className="collapse collapse-plus" ref={elementRef}>
-      <input type="radio" name="my-accordion-3" />
+      <input type="checkbox" name="my-accordion-3" />
       <div className="collapse-title px-0">
-        <Text as="p" level="md" classnames="font-semibold text-primary-700">
+        <Text as="p" level="lg" classnames="font-semibold text-primary-700">
           {title}
         </Text>
       </div>

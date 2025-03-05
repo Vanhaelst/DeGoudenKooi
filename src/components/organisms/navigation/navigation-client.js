@@ -28,10 +28,6 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
       <MobileNavigation
         nav={[
           {
-            name: dict.navigation.about,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-          },
-          {
             name: dict.general.gerechtstraat,
             href: LINKS[locale.toUpperCase()].ABOUT,
             children: gerechtstraat,
@@ -46,10 +42,6 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
             href: LINKS[locale.toUpperCase()].ABOUT,
           },
           {
-            name: dict.topbar.awards,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-          },
-          {
             name: dict.topbar.news,
             href: LINKS[locale.toUpperCase()].ABOUT,
           },
@@ -59,6 +51,10 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
           },
           {
             name: dict.topbar.faq,
+            href: LINKS[locale.toUpperCase()].ABOUT,
+          },
+          {
+            name: dict.topbar.awards,
             href: LINKS[locale.toUpperCase()].ABOUT,
           },
         ]}

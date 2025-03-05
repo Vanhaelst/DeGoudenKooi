@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Roboto_Condensed } from "next/font/google";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -19,7 +19,7 @@ import {
 import { Navigation } from "@/components/organisms/navigation/navigation";
 import Image from "next/image";
 
-const font = Inter({
+const font = Roboto_Condensed({
   subsets: ["latin"],
   weight: ["300", "500", "700", "900"],
 });

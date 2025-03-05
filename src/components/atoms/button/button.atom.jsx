@@ -49,20 +49,20 @@ export const Button = ({
       case "square":
         return "rounded-none";
       case "rounded":
-        return "rounded-full";
+        return "rounded-lg";
       default:
-        return "rounded-xl";
+        return "rounded-lg";
     }
   };
 
   const buttonSize = () => {
     switch (size) {
       case "small":
-        return "py-2 px-4 text-xs";
+        return "py-2 px-8 text-xs";
       case "large":
         return " px-12 py-4 text-sm md:text-base";
       default:
-        return "py-2 px-6";
+        return "py-2 px-10";
     }
   };
 

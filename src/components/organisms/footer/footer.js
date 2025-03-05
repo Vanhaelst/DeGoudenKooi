@@ -155,7 +155,7 @@ export const Footer = async ({ locale = "nl" }) => {
                         href={item.href}
                         className="text-sm text-white hover:underline hover:pl-2 transition-all"
                       >
-                        {item.name}
+                        {item.name.toUpperCase()}
                       </a>
                     </li>
                   ))}
@@ -172,7 +172,7 @@ export const Footer = async ({ locale = "nl" }) => {
                         href={item.href}
                         className="text-sm text-white hover:underline hover:pl-2 transition-all"
                       >
-                        {item.name}
+                        {item.name.toUpperCase()}
                       </a>
                     </li>
                   ))}
@@ -191,7 +191,7 @@ export const Footer = async ({ locale = "nl" }) => {
                         href={item.href}
                         className="text-sm text-white hover:underline hover:pl-2 transition-all"
                       >
-                        {item.name}
+                        {item.name.toUpperCase()}
                       </a>
                     </li>
                   ))}
@@ -212,7 +212,7 @@ export const Footer = async ({ locale = "nl" }) => {
           </div>
           <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 md:flex md:items-center md:justify-between lg:mt-10">
             <Text as="p" level="xs" classnames="text-white">
-              &copy; 2024 De Gouden kooi | Publiplus
+              &copy; {new Date().getFullYear()} De Gouden Kooi | Publiplus
             </Text>
 
             <div className="flex gap-x-6 md:order-2">

@@ -42,7 +42,11 @@ export const Title = ({ title, subtitle, description, classnames }) => {
         </Text>
       )}
       {description && (
-        <RichText text={description} classnames="text-primary-700 font-light" />
+        <RichText
+          text={description}
+          level="lg"
+          classnames="text-primary-700 font-light"
+        />
       )}
     </div>
   );

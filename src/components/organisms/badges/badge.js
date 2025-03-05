@@ -37,7 +37,11 @@ export const Badge = ({
       href={slug}
       className={`group w-72 min-w-72 flex flex-col items-center hover:grayscale-0 duration-200 hover:opacity-100 ${gameLocation === searchParams.location ? "lg:opacity-75" : "lg:opacity-75"}`}
     >
-      <img src={featuredImage[0].url} alt={title} className="px-8 mb-2" />
+      <img
+        src={featuredImage[0].url}
+        alt={title}
+        className="px-8 mb-2 perspective"
+      />
       <Text
         as="span"
         level="sm"

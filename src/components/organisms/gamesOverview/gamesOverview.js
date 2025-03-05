@@ -54,7 +54,7 @@ export const GamesOverview = ({ title, description, t }) => {
   if (!rooms) return;
 
   return (
-    <section className={`py-24 sm:py-32 min-h-[80vh]`}>
+    <section className={`pb-24 sm:pb-32 min-h-[80vh]`}>
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>

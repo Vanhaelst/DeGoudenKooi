@@ -21,6 +21,7 @@ import { formatPrice } from "@/utils/formatPrice";
 import ModalVideo from "@/components/molecules/video/modalVideo";
 import { Container, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
+import { Reviews } from "@/components/organisms/reviews/review";
 
 export default function GamePage({ data, locale }) {
   const [faq, setFaq] = useState(undefined);
@@ -114,7 +115,7 @@ export default function GamePage({ data, locale }) {
     },
     {
       icon: "/icon-coins.svg",
-      description: `${t.general.amount} ${formatPrice(price6 / 6)} p.p.`,
+      description: `${t.general.from} ${formatPrice(price6 / 6)} p.p.`,
       classes: "",
     },
   ];
@@ -197,46 +198,7 @@ export default function GamePage({ data, locale }) {
           t={t.game}
         />
 
-        <section className={`pb-24 md:py-12 `}>
-          <Container classnames="flex justify-center mb-8">
-            <Title title={"Reviews"} />
-          </Container>
-          <Container classnames="grid grid-cols-1 md:grid-cols-3 space-y-6 md:space-y-0">
-            <div className="mx-5">
-              <Text
-                as="p"
-                classnames="text-secondary-700 text-center text-bold w-full"
-              >
-                Spanning, opbouw en humor, oog voor detail. Alles klopt
-              </Text>
-              <Text as="h5" classnames="text-primary-700 text-center mt-4">
-                Roomrunners podcast
-              </Text>
-            </div>{" "}
-            <div className="mx-5">
-              <Text
-                as="p"
-                classnames="text-secondary-700 text-center text-bold w-full"
-              >
-                Spanning, opbouw en humor, oog voor detail. Alles klopt
-              </Text>
-              <Text as="h5" classnames="text-primary-700 text-center mt-4">
-                Roomrunners podcast
-              </Text>
-            </div>{" "}
-            <div className="mx-5">
-              <Text
-                as="p"
-                classnames="text-secondary-700 text-center text-bold w-full"
-              >
-                Spanning, opbouw en humor, oog voor detail. Alles klopt
-              </Text>
-              <Text as="h5" classnames="text-primary-700 text-center mt-4">
-                Roomrunners podcast
-              </Text>
-            </div>
-          </Container>
-        </section>
+        <Reviews />
 
         {!isInactive && (
           <Prices

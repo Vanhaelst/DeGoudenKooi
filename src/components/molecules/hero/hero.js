@@ -101,11 +101,6 @@ export const Hero = ({
     );
   }
 
-  /* TODO: animate reviews
-   * - split review in 2 arrays (even / uneven)
-   * - Animate the reviews so the next one appears and the previous one disappears.
-   */
-
   return (
     <section
       className={`${bgColor} min-h-96  bg-cover bg-bottom opacity-0`}
@@ -125,7 +120,7 @@ export const Hero = ({
 
         <HeroContent
           detail={detail}
-          title={title}
+          title={title?.toUpperCase()}
           subtitle={subtitle}
           description={description}
           buttons={buttons}

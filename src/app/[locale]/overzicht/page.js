@@ -58,11 +58,6 @@ export default async function Home({ params, searchParams }) {
 
   return (
     <>
-      <GamesOverview
-        title={`${searchParams.location ? `Onze belevingen op locatie "${dict.general[searchParams.location]}"` : "Al onze belevingen"}`}
-        t={dict}
-      />
-
       <section className={`py-32 lg:py-40`}>
         <Container>
           <Title title={dict.general.discover_all} showIcon={false} />
@@ -70,6 +65,11 @@ export default async function Home({ params, searchParams }) {
 
         <Badges rooms={rooms} searchParams={searchParams} dict={dict} />
       </section>
+
+      <GamesOverview
+        title={`${searchParams.location ? `Onze belevingen op locatie "${dict.general[searchParams.location]}"` : ""}`}
+        t={dict}
+      />
 
       {sections?.map((section) => renderComponents(section, params.locale))}
     </>

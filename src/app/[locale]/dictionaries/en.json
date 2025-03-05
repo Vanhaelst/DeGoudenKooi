@@ -7,8 +7,8 @@
   },
   "navigation": {
     "about": "Our story",
-    "games": "Games & Experiences",
-    "teambuilding": "Teambuilding & Events",
+    "games": "Our Escape Rooms",
+    "teambuilding": "Teambuilding",
     "contact": "Contact",
     "reserve": "Reserve now",
     "pers": "Pers",
@@ -19,6 +19,7 @@
   },
   "general": {
     "the": "The",
+    "from": "sa",
     "teaser": "Teaser",
     "gerechtstraat": "Gerechtstraat",
     "haverwerf": "Haverwerf",
@@ -30,7 +31,7 @@
     "questions": "Helpfull",
     "amount": "Amount",
     "time": "Time",
-    "discover_all": "Discover all escape games",
+    "discover_all": "Discover all our escape rooms",
     "minAge": "Recommended minimum age"
   },
   "game": {

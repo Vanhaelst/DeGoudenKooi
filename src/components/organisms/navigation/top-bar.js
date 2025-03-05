@@ -8,20 +8,16 @@ export const TopBar = async ({ locale = "nl" }) => {
 
   const topNavigation = [
     {
+      name: dict.navigation.about,
+      href: LINKS[locale.toUpperCase()].ABOUT,
+    },
+    {
       name: dict.topbar.awards,
       href: LINKS[locale.toUpperCase()].AWARDS,
     },
     {
       name: dict.topbar.news,
       href: LINKS[locale.toUpperCase()].NEWS,
-    },
-    {
-      name: dict.topbar.giftcard,
-      href: LINKS[locale.toUpperCase()].GIFTCARD,
-    },
-    {
-      name: dict.topbar.faq,
-      href: LINKS[locale.toUpperCase()].FAQ,
     },
   ];
 

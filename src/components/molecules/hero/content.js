@@ -20,6 +20,8 @@ export const HeroContent = ({
 }) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
+  const featuresRef = useRef(null);
+  const awardsRef = useRef(null);
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -41,9 +43,27 @@ export const HeroContent = ({
       },
     });
 
-    gsap.fromTo(buttonRef.current, fadeSlide.from, {
+    gsap.fromTo(featuresRef.current, fadeSlide.from, {
       ...fadeSlide.to,
       delay: 2,
+      scrollTrigger: {
+        trigger: featuresRef.current,
+        ...scrollTrigger,
+      },
+    });
+
+    gsap.fromTo(awardsRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      delay: 2.5,
+      scrollTrigger: {
+        trigger: awardsRef.current,
+        ...scrollTrigger,
+      },
+    });
+
+    gsap.fromTo(buttonRef.current, fadeSlide.from, {
+      ...fadeSlide.to,
+      delay: 3,
       scrollTrigger: {
         trigger: buttonRef.current,
         ...scrollTrigger,
@@ -57,14 +77,14 @@ export const HeroContent = ({
         <Text
           as={"h1"}
           level="4xl"
-          classnames={`${detail ? "text-white" : "text-secondary-500"} text-center lg:text-left font-bold`}
+          classnames={`${detail ? "text-white" : "text-secondary-500"} text-center lg:text-left font-black`}
         >
           {title}
         </Text>
         <Text
           as={"h3"}
           level="2xl"
-          classnames={`${detail ? "text-white" : "text-secondary-500"} text-center lg:text-left font-bold`}
+          classnames={`${detail ? "text-white" : "text-secondary-500"} text-center lg:text-left italic `}
         >
           {subtitle}
         </Text>
@@ -78,7 +98,10 @@ export const HeroContent = ({
         </div>
       )}
       {features && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-y-4"
+          ref={featuresRef}
+        >
           {features.map(({ title, description, classes, icon }) => (
             <div
               className={`flex items-center justify-center lg:justify-start ${classes}`}
@@ -105,20 +128,21 @@ export const HeroContent = ({
         </div>
       )}
 
-      {awards && (
-        <div className="flex items-center justify-center lg:justify-start space-x-4 my-6">
-          {awards.map(({ title, image }) => (
-            <Image
-              key={image[0].url}
-              src={image[0].url}
-              alt={title}
-              className="w-32 h-32 object-contain brightness-0 invert"
-              width={image[0].width}
-              height={image[0].height}
-            />
-          ))}
-        </div>
-      )}
+      <div
+        className="flex items-center justify-center lg:justify-start space-x-4 my-6"
+        ref={awardsRef}
+      >
+        {awards?.map(({ title, image }) => (
+          <Image
+            key={image[0].url}
+            src={image[0].url}
+            alt={title}
+            className="w-32 h-32 object-contain brightness-0 invert"
+            width={image[0].width}
+            height={image[0].height}
+          />
+        ))}
+      </div>
 
       <div className="mx-auto lg:mx-0 space-x-4 mt-6" ref={buttonRef}>
         {buttons?.map(({ href, variant, callToAction }) => {
@@ -127,7 +151,7 @@ export const HeroContent = ({
               key={href}
               variant={variant}
               href={href}
-              callToAction={callToAction}
+              callToAction={callToAction.toUpperCase()}
             />
           );
         })}
