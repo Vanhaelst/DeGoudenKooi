@@ -72,7 +72,7 @@ export const AwardSlider = ({
 
   if (slider) {
     return (
-      <section className={`py-12 lg:py-32 px-8 md:px-4`}>
+      <section className={`py-12 px-8 md:px-4`}>
         <Container classnames="relative ">
           <Slider settings={settings} {...settings}>
             {awards.map(({ title, image }) => {

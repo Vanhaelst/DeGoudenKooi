@@ -197,7 +197,7 @@ export default function GamePage({ data, locale }) {
           t={t.game}
         />
 
-        <section className={`pb-24 md:py-24 `}>
+        <section className={`pb-24 md:py-12 `}>
           <Container classnames="flex justify-center mb-8">
             <Title title={"Reviews"} />
           </Container>
