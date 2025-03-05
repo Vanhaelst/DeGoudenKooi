@@ -27,14 +27,16 @@ const query = ({ slug, language = "nl" }) => {
 
                       contentItem {
                         ... on text_Entry {
-                           typeHandle
+                            id
+                            typeHandle
                             title
                             description
                             columns
                             buttons ${buttonsQuery}
                         }
                         ... on contentImage_Entry {
-                           typeHandle
+                            id
+                            typeHandle
                             title
                             description
                             buttons ${buttonsQuery}

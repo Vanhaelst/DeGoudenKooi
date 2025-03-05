@@ -29,7 +29,7 @@ export const Badge = ({
         ...scrollTrigger,
       },
     });
-  }, []);
+  }, [index]);
 
   return (
     <a

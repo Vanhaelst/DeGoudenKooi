@@ -139,6 +139,8 @@ export default function GamePage({ data, locale }) {
   if (!data) {
     return <Loader />;
   }
+
+  console.log(contentItem);
   return (
     <main
       className={`bg-[length:100%_100%] bg-center`}

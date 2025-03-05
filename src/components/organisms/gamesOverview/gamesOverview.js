@@ -38,7 +38,7 @@ export const GamesOverview = ({ title, description, t }) => {
         setAwards(res.awards);
       })
       .catch((e) => console.log("error", e));
-  }, [searchParams]);
+  }, [searchParams, location, type]);
 
   const elementRef = useRef(null);
 

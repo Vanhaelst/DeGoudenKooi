@@ -44,12 +44,14 @@ export const MegaMenu = ({
           <a href={`/${locale}`} className="flex -m-1.5 p-1.5">
             <span className="sr-only">{CompanyData.name}</span>
             <Image
+              alt={CompanyData.name}
               width={48}
               height={48}
               src="/symbool.png"
               className="h-8 mr-2 lg:max-w-40 xl:max-w-40 w-auto"
             />
             <Image
+              alt={CompanyData.name}
               width={121}
               height={18}
               src={CompanyData.logo}

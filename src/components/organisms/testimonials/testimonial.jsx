@@ -72,7 +72,7 @@ export function TestimonialCard({
         ...scrollTrigger,
       },
     });
-  }, []);
+  }, [index]);
 
   return (
     <a href={`/nl/${slug}`} ref={elementRef}>

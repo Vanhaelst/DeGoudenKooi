@@ -21,7 +21,7 @@ export const Feature = ({ title, description, icon, index }) => {
         ...scrollTrigger,
       },
     });
-  }, []);
+  }, [index]);
 
   return (
     <div ref={elementRef}>

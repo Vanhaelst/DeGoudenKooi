@@ -26,7 +26,7 @@ export const TeamMember = ({ name, image, role, position, index }) => {
         ...scrollTrigger,
       },
     });
-  }, []);
+  }, [index]);
 
   return (
     <li
