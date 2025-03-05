@@ -55,7 +55,7 @@ export const Images = ({ images, classnames, animation = "true" }) => {
           alt={image.alt}
           width={image.width}
           height={image.height}
-          className={`${classes} ${animation ? "float" : ""} w-full`}
+          className={`${classes} ${animation ? "float" : ""} mx-auto max-w-[80%] md:max-w-full w-full`}
         />
       </div>
     );

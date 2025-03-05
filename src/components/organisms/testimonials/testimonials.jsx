@@ -41,20 +41,16 @@ export function Testimonials({ title, description, backgroundColor }) {
           className="md:max-w-[60%] lg:max-w-[40%]"
           ref={setReferenceWindowRef}
         >
-          <Image
-            src="/artwork-diamond.png"
-            alt="diamond artwork"
-            className="mb-2"
-            width={45}
-            height={45}
-          />
           {title && (
-            <Text as="h5" level="3xl" classnames="text-secondary-500">
+            <Text as="h5" level="3xl" classnames="text-secondary-500 font-bold">
               {title}
             </Text>
           )}
           {description && (
-            <RichText text={description} classnames="text-primary-700" />
+            <RichText
+              text={description}
+              classnames="text-primary-700 font-light"
+            />
           )}
         </div>
       </Container>

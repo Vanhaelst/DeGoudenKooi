@@ -104,7 +104,10 @@ export default async function Home({ params }) {
                   <h3 className="text-lg/8 font-semibold tracking-tight text-gray-900">
                     {title}
                   </h3>
-                  <RichText text={description} className="mt-6 text-gray-600" />
+                  <RichText
+                    text={description}
+                    className="mt-6 text-gray-600 font-light"
+                  />
                 </div>
               </li>
             ))}

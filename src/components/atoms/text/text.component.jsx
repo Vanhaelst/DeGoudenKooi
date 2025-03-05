@@ -27,8 +27,8 @@ export const Text = ({ as, level, classnames = "", children }) => {
     }
   };
 
-  const titleClass = `${getLevel()} ${classnames} leading-tight md:leading-tight xl:leading-tight font-bold`;
-  const textClass = `${getLevel()} ${classnames} font-light leading-normal`;
+  const titleClass = `${getLevel()} ${classnames} leading-tight md:leading-tight xl:leading-tight`;
+  const textClass = `${getLevel()} ${classnames}  leading-normal`;
 
   const getTag = () => {
     switch (as) {

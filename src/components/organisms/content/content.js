@@ -46,13 +46,20 @@ export const Content = ({ title, description, buttons, columns }) => {
     <section className="">
       <Container classnames="">
         <div ref={titleRef}>
-          <Text as="h5" level="3xl" classnames="text-secondary-500 mb-4">
+          <Text
+            as="h5"
+            level="3xl"
+            classnames="text-secondary-500 mb-4 font-bold"
+          >
             {title}
           </Text>
         </div>
         <div className={`lg:columns-${columns} gap-x-8`}>
           <div ref={descriptionRef}>
-            <RichText text={description} classnames="text-primary-700" />
+            <RichText
+              text={description}
+              classnames="text-primary-700 font-light"
+            />
           </div>
           <div className="space-x-4" ref={buttonRef}>
             {buttons &&

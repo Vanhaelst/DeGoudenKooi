@@ -44,15 +44,13 @@
 .slick-arrow {
     z-index: 1;
     bottom: -70px;
-    top: auto;
-    background-color: theme('colors.primary.500');
 }
-
 .slick-next {
-    right: calc(50% - 50px);
+    right: -15px;
 }
-.slick-prev {
-    left: calc(50% - 50px);
+.slick-arrow::before {
+    color: theme('colors.primary.500') !important;
+    font-size: 32px;
 }
 
 

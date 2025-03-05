@@ -11,6 +11,7 @@ export const defaultMetadata = {
     images: "/symbool.png",
   },
 };
+
 export const englishMetadata = {
   description:
     "Home ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",

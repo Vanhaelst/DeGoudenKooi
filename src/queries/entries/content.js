@@ -8,14 +8,16 @@ export const contentEntry = `
         backgroundColor
         contentItem {
             ... on text_Entry {
-               typeHandle
+                id
+                typeHandle
                 title
                 description
                 columns
                 buttons ${buttonsQuery}
             }
             ... on contentImage_Entry {
-               typeHandle
+                id
+                typeHandle
                 title
                 description
                 buttons ${buttonsQuery}

@@ -56,17 +56,14 @@ export default async function Home({ params, searchParams }) {
 
   const sections = page[0]?.sections;
 
-  const bgColor = "bg-white";
-
   return (
     <>
       <GamesOverview
         title={`${searchParams.location ? `Onze belevingen op locatie "${dict.general[searchParams.location]}"` : "Al onze belevingen"}`}
-        backgroundColor="lightGray"
         t={dict}
       />
 
-      <section className={`${bgColor} py-32 lg:py-40`}>
+      <section className={`py-32 lg:py-40`}>
         <Container>
           <Title title={dict.general.discover_all} showIcon={false} />
         </Container>

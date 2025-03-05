@@ -30,7 +30,8 @@
     "questions": "Helpfull",
     "amount": "Amount",
     "time": "Time",
-    "discover_all": "Discover all escape games"
+    "discover_all": "Discover all escape games",
+    "minAge": "Recommended minimum age"
   },
   "game": {
     "teaser": "Teaser",
@@ -47,7 +48,7 @@
   "rate": {
     "included": "What's included",
     "escape": "per escape game",
-    "person": "per person",
+    "person": "p.p.",
     "tag": "Play with more, pay less",
     "total": "Total",
     "players": "players",

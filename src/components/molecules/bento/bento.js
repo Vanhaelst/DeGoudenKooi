@@ -18,7 +18,7 @@ export const Bento = ({ title, description, games }) => {
       <Text as="h5" level="3xl" classnames="text-secondary-500">
         {title}
       </Text>
-      <RichText text={description} classnames="text-primary-700" />
+      <RichText text={description} classnames="text-primary-700 font-light" />
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-12 lg:grid-rows-2">
         <div className="flex p-px lg:col-span-5">

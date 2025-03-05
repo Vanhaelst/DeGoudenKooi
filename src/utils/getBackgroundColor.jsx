@@ -9,7 +9,10 @@ export const getBackgroundColor = (backgroundColor) => {
     case "secondary":
       return "bg-secondary-500";
     case "white":
-    default:
       return "bg-white";
+    case "transparent":
+      return "bg-none";
+    default:
+      return "bg-none";
   }
 };

@@ -9,6 +9,7 @@ import {
   englishMetadata,
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
+import { buttonsQuery } from "@/queries/entries/buttons";
 
 const query = ({ slug, language = "nl" }) => {
   return `
@@ -16,14 +17,48 @@ const query = ({ slug, language = "nl" }) => {
               rooms: roomsEntries(slug: "${slug}", language: "${language}") {
                   ... on game_Entry {
                       title
-                      story
-                      videoId
-                      categories
-                      videoPlayer
-                      detailImage ${imageQuery}
-                      featuredDetailImage ${imageQuery}
                       featuredImage ${imageQuery}
+                      mainBackground ${imageQuery}
+
+                      heroTitle
+                      heroSubTitle
                       backgroundImage ${imageQuery}
+                      detailImage ${imageQuery}
+
+                      contentItem {
+                        ... on text_Entry {
+                           typeHandle
+                            title
+                            description
+                            columns
+                            buttons ${buttonsQuery}
+                        }
+                        ... on contentImage_Entry {
+                           typeHandle
+                            title
+                            description
+                            buttons ${buttonsQuery}
+                            image ${imageQuery}
+                            order
+                        }
+                        ... on twoColumns_Entry {
+                          id
+                          typeHandle
+                          title
+                          descriptionLeft
+                          descriptionRight
+                          buttons ${buttonsQuery}
+                        }
+                    }
+                      transparentImage ${imageQuery}
+                      
+                      
+                      videoId
+                      videoPlayer
+                      videoImage ${imageQuery}
+                      
+                      categories
+
                       inactiveMessage
                       inactiveFrom
                       inactiveTill
@@ -38,6 +73,7 @@ const query = ({ slug, language = "nl" }) => {
                       price4
                       price5
                       price6
+                      priceImage ${imageQuery}
                   }
               }
         }

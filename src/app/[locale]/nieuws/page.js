@@ -105,7 +105,10 @@ export default async function Home({ params }) {
                           {post.title}
                         </a>
                       </Text>
-                      <RichText text={post.shortDescription} />
+                      <RichText
+                        text={post.shortDescription}
+                        classnames=" font-light"
+                      />
                     </div>
                   </div>
                 </article>

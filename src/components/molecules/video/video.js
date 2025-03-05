@@ -1,18 +1,8 @@
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
-import { Title } from "@/components/molecules";
-import { Container } from "@/components/atoms";
 import React from "react";
+import { Container } from "@/components/atoms";
 
-export const Video = ({
-  title,
-  description,
-  backgroundColor,
-  videoId,
-  videoPlayer,
-  halfBg,
-  id,
-}) => {
-  const bgColor = getBackgroundColor(backgroundColor);
+export const Video = ({ videoId, videoPlayer, halfBg, id }) => {
+  const bgColor = ""; //getBackgroundColor(backgroundColor);
 
   if (!videoId) {
     return null;
@@ -23,10 +13,6 @@ export const Video = ({
       className={`${bgColor & !halfBg ? bgColor : ""} relative py-14`}
       id={id}
     >
-      <Container classnames="mb-24">
-        <Title showIcon={true} title={title} description={description} />
-      </Container>
-
       <Container classnames="aspect-video z-10">
         {videoPlayer === "vimeo" && (
           <iframe

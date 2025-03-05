@@ -19,8 +19,8 @@
   },
   "general": {
     "the": "De",
-    "gerechtstraat": "Gerechtstraat",
-    "haverwerf": "Haverwerf",
+    "gerechtstraat": "Gerechtstraat 10",
+    "haverwerf": "Haverwerf 7",
     "game": "Game",
     "experience": "Experience",
     "walk": "Wandeling",
@@ -29,7 +29,8 @@
     "questions": "Nuttig",
     "amount": "Aantal",
     "time": "Duurtijd",
-    "discover_all": "Ontdek alle escape games"
+    "discover_all": "Ontdek alle escape games",
+    "minAge": "Aanbevolen minimum leeftijd"
   },
   "game": {
     "teaser": "Teaser",
@@ -46,7 +47,7 @@
   "rate": {
     "included": "Wat is inclusief",
     "escape": "per escape game",
-    "person": "per persoon",
+    "person": "p.p.",
     "tag": "Speel met meer, betaal minder",
     "total": "Totaal",
     "players": "spelers",

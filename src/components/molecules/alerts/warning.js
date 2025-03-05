@@ -21,7 +21,7 @@ export default function Warning({ title, description, classnames }) {
           )}
           {description && (
             <div className="text-sm text-yellow-700">
-              <RichText text={description} />
+              <RichText text={description} classnames=" font-light" />
             </div>
           )}
         </div>

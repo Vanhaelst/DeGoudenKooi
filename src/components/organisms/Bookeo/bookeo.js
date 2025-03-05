@@ -3,6 +3,7 @@
 import { Container } from "@/components/atoms";
 import { useEffect, useState } from "react";
 import Script from "next/script";
+import Image from "next/image";
 
 const BOOKEO = {
   main: "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360",
@@ -34,15 +35,31 @@ export const Bookeo = ({ variant, locale }) => {
   }, []);
 
   return (
-    <section className="bg-white relative py-12 lg:py-24">
-      <Container classnames="min-h-80 flex justify-center items-center">
-        <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
-        <Script
-          // strategy="afterInteractive"
-          type="text/javascript"
-          src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
-        />
-      </Container>
-    </section>
+    <>
+      <Image
+        src="/scheur-top.png"
+        alt="scheur"
+        width={1459}
+        height={60}
+        className="w-full"
+      />
+      <section className="bg-white relative py-12 lg:py-24">
+        <Container classnames="min-h-80 flex justify-center items-center">
+          <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
+          <Script
+            // strategy="afterInteractive"
+            type="text/javascript"
+            src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
+          />
+        </Container>
+      </section>
+      <Image
+        src="/scheur-bottom.png"
+        alt="scheur"
+        width={1459}
+        height={60}
+        className="w-full"
+      />
+    </>
   );
 };

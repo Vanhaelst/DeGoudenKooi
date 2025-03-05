@@ -1,16 +1,48 @@
 "use client";
 
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { Container, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { LINKS } from "@/enums/links";
 
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Slider from "react-slick";
 gsap.registerPlugin(ScrollTrigger);
+
+const settings = {
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  // speed: 9000,
+  // autoplaySpeed: 0,
+  // autoplay: true,
+  infinite: true,
+  arrows: true,
+  // pauseOnHover: false,
+  cssEase: "linear",
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+  ],
+};
 
 export const AwardSlider = ({
   title,
@@ -18,11 +50,10 @@ export const AwardSlider = ({
   backgroundColor,
   awards,
   detail,
+  slider,
   locale = "nl",
   t,
 }) => {
-  const bgColor = getBackgroundColor(backgroundColor);
-
   const elementRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -39,8 +70,31 @@ export const AwardSlider = ({
     return null;
   }
 
+  if (slider) {
+    return (
+      <section className={`py-12 lg:py-32 px-8 md:px-4`}>
+        <Container classnames="relative ">
+          <Slider settings={settings} {...settings}>
+            {awards.map(({ title, image }) => {
+              return (
+                <Image
+                  key={image[0].url}
+                  src={image[0].url}
+                  alt={image[0].alt || title}
+                  width={image[0].width}
+                  height={image[0].height}
+                  className="w-full px-6 h-32 object-contain"
+                />
+              );
+            })}
+          </Slider>
+        </Container>
+      </section>
+    );
+  }
+
   return (
-    <section className={`${bgColor} py-24 sm:py-32`}>
+    <section className={`py-24 sm:py-32`}>
       <Container classnames="pb-12 flex flex-col items-center">
         <Title title={title} description={description} />
       </Container>

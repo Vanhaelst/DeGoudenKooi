@@ -15,7 +15,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Games } from "@/components/organisms/gamesOverview/games";
 gsap.registerPlugin(ScrollTrigger);
 
-export const GamesOverview = ({ title, description, backgroundColor, t }) => {
+export const GamesOverview = ({ title, description, t }) => {
   const [rooms, setRooms] = useState([]);
   const [awards, setAwards] = useState([]);
 
@@ -40,8 +40,6 @@ export const GamesOverview = ({ title, description, backgroundColor, t }) => {
       .catch((e) => console.log("error", e));
   }, [searchParams]);
 
-  const bgColor = getBackgroundColor(backgroundColor);
-
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -56,7 +54,7 @@ export const GamesOverview = ({ title, description, backgroundColor, t }) => {
   if (!rooms) return;
 
   return (
-    <section className={`${bgColor} py-24 sm:py-32 min-h-[80vh]`}>
+    <section className={`py-24 sm:py-32 min-h-[80vh]`}>
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>

@@ -17,6 +17,7 @@ import {
   englishMetadata,
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
+import Image from "next/image";
 
 const font = Inter({
   subsets: ["latin"],
@@ -58,9 +59,46 @@ export default function RootLayout({ children, params }) {
   return (
     <html lang={params.locale} className="bg-white">
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
-      <body className={`${font.className} antialiased`}>
+      <body
+        className={`${font.className} antialiased bg-[length:100%_100%] bg-center`}
+        style={{ backgroundImage: `url('/achtergrond.png')` }}
+      >
         <TopBar locale={params.locale} />
         <Navigation locale={params.locale} />
+
+        <div className="border-wrapper fixed bottom-0 pointer-events-none w-full z-40">
+          <Image
+            className="absolute right-2 top-2"
+            src="/border-top-right.png"
+            alt="border-top-right.png"
+            width={92}
+            height={92}
+          />
+          <div
+            className="border-top border-2 absolute left-2 top-2 border-primary-500"
+            style={{ width: "calc(100% - 1rem - 92px)" }}
+          />
+          <div
+            className="border-bottom border-2 absolute right-2 bottom-2 border-primary-500"
+            style={{ width: "calc(100% - 1rem - 92px)" }}
+          />
+          <div
+            className="border-left border-2 absolute left-2 top-2 border-primary-500"
+            style={{ height: "calc(100% - 1rem - 92px)" }}
+          />
+          <div
+            className="border-right border-2 absolute right-2 bottom-2 border-primary-500"
+            style={{ height: "calc(100% - 1rem - 92px)" }}
+          />
+          <Image
+            className="absolute bottom-2 left-2"
+            src="/border-bottom-left.png"
+            alt="border-bottom-left.png"
+            width={92}
+            height={92}
+          />
+        </div>
+
         {children}
         <Footer locale={params.locale} />
       </body>

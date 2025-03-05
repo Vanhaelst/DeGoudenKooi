@@ -34,13 +34,13 @@ export const Feature = ({ title, description, icon, index }) => {
           height={icon?.height || 45}
         />
         {title && (
-          <Text as="h5" level="xl" classnames="text-secondary-500">
+          <Text as="h5" level="xl" classnames="text-secondary-500 font-bold">
             {title}
           </Text>
         )}
       </div>
       {description && (
-        <RichText text={description} classnames="text-primary-700" />
+        <RichText text={description} classnames="text-primary-700" font-light />
       )}
     </div>
   );

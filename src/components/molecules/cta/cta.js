@@ -36,10 +36,14 @@ export const Cta = ({
       ref={elementRef}
     >
       <div className="mx-auto p-8 lg:p-16">
-        <Text as={"h2"} level="3xl" classnames="text-white lg:max-w-[80%]">
+        <Text
+          as={"h2"}
+          level="3xl"
+          classnames="text-white lg:max-w-[80%] font-bold"
+        >
           {title}
         </Text>
-        <RichText text={description} classnames="text-white" />
+        <RichText text={description} classnames="text-white font-light" />
         <div className="space-x-2 mt-6">
           {buttons?.map(({ href, variant, callToAction }) => {
             return (

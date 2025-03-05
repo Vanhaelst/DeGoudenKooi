@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+
 import { Container } from "@/components/atoms";
 import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
@@ -8,25 +9,25 @@ import { HeroContent } from "@/components/molecules/hero/content";
 import { Images } from "@/components/molecules/image/image";
 
 import gsap from "gsap";
-import { fade, fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { fade, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export const Hero = ({
+  awards,
   title,
+  subtitle,
   description,
   buttons,
   image,
   backgroundImage,
-  reviews,
   type,
   backgroundColor,
   videoId,
   videoPlayer = "youtube",
+  features,
+  detail,
 }) => {
-  const evenReviews = reviews?.filter((review, index) => index % 2 === 0);
-  const oddReviews = reviews?.filter((review, index) => index % 2 === 1);
-
   const bgColor = getBackgroundColor(backgroundColor);
 
   const wrapperRef = useRef(null);
@@ -107,52 +108,35 @@ export const Hero = ({
 
   return (
     <section
-      className={`${bgColor} min-h-96  bg-cover bg-center opacity-0`}
+      className={`${bgColor} min-h-96  bg-cover bg-bottom opacity-0`}
       style={{
         backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
       }}
       ref={wrapperRef}
     >
       <Container classnames="py-20 grid grid-cols-1 lg:grid-cols-2">
+        {image && image[0] && (
+          <div
+            className={`${detail ? "block lg:hidden" : "hidden"} lg:pl-10 xl:pl-36 w-full min-h-40 lg:min-h-96`}
+          >
+            <Images images={image} ref={imageRef} />
+          </div>
+        )}
+
         <HeroContent
+          detail={detail}
           title={title}
+          subtitle={subtitle}
           description={description}
           buttons={buttons}
+          features={features}
+          awards={awards}
         />
+
         {image && image[0] && (
-          <div className="hidden lg:block lg:pl-10 xl:pl-36 w-full min-h-40 lg:min-h-96">
-            <div className="lg:hidden">
-              {reviews?.map((review) => {
-                return (
-                  <div key={title} className="ml-4 absolute bottom-24">
-                    <ReviewCard {...review} />
-                  </div>
-                );
-              })}
-            </div>
-
-            {reviews && (
-              <div className="hidden lg:block">
-                {evenReviews?.map((review) => {
-                  return (
-                    <div key={title} className="ml-12 absolute bottom-64">
-                      <ReviewCard {...review} />
-                    </div>
-                  );
-                })}
-
-                {oddReviews?.map((review) => {
-                  return (
-                    <div
-                      key={title}
-                      className="-ml-32 lg:-ml-24 xl:-ml-32 absolute bottom-32"
-                    >
-                      <ReviewCard {...review} />
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+          <div
+            className={`${detail ? "hidden lg:block" : "hidden lg:block"} lg:pl-10 xl:pl-36 w-full min-h-40 lg:min-h-96`}
+          >
             <Images images={image} ref={imageRef} />
           </div>
         )}

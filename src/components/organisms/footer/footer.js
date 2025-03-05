@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Text } from "@/components/atoms";
 import Image from "next/image";
 import { CompanyData } from "@/data/companyData";
@@ -129,98 +128,107 @@ export const Footer = async ({ locale = "nl" }) => {
   };
 
   return (
-    <footer className="bg-secondary-700">
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-20 lg:px-8 xl:pt-32">
-        <div className="xl:grid xl:grid-cols-2 xl:gap-8">
-          <div className="md:grid md:grid-cols-2 md:gap-8">
-            <div>
-              <Image
-                width={121}
-                height={18}
-                src={CompanyData.logo}
-                alt={CompanyData.name}
-                className="h-6 w-auto"
-              />
-              <ul role="list" className="mt-6 space-y-2">
-                {navigation.navigation.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-10 md:mt-0">
-              <Text as="h3" level="xl" classnames="font-semibold text-white">
-                {dict.general.discover}
-              </Text>
-              <ul role="list" className="mt-6 space-y-2">
-                {navigation.discover.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="mt-10 xl:mt-0 md:grid md:grid-cols-2 md:gap-8">
-            <div>
-              <Text as="h3" level="xl" classnames="font-semibold text-white">
-                {dict.general.questions}
-              </Text>
-              <ul role="list" className="mt-6 space-y-2">
-                {navigation.Questions.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-10 md:mt-0 ">
-              <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
+    <>
+      <footer className="relative bg-secondary-700">
+        <Image
+          src="/scheur-footer-top.png"
+          alt="scheur"
+          width={1459}
+          height={60}
+          className="w-full absolute object-cover h-16 -top-16"
+        />
+        <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-20 lg:px-8 xl:pt-32">
+          <div className="xl:grid xl:grid-cols-2 xl:gap-8">
+            <div className="md:grid md:grid-cols-2 md:gap-8">
+              <div>
                 <Image
-                  src="/befeb.webp"
-                  alt="befeb"
-                  width={236}
-                  height={300}
-                  className=""
+                  width={121}
+                  height={18}
+                  src={CompanyData.logo}
+                  alt={CompanyData.name}
+                  className="h-6 w-auto"
                 />
+                <ul role="list" className="mt-6 space-y-2">
+                  {navigation.navigation.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-10 md:mt-0">
+                <Text as="h3" level="xl" classnames="font-semibold text-white">
+                  {dict.general.discover}
+                </Text>
+                <ul role="list" className="mt-6 space-y-2">
+                  {navigation.discover.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="mt-10 xl:mt-0 md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <Text as="h3" level="xl" classnames="font-semibold text-white">
+                  {dict.general.questions}
+                </Text>
+                <ul role="list" className="mt-6 space-y-2">
+                  {navigation.Questions.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-10 md:mt-0 ">
+                <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
+                  <Image
+                    src="/befeb.webp"
+                    alt="befeb"
+                    width={236}
+                    height={300}
+                    className=""
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 md:flex md:items-center md:justify-between lg:mt-10">
-          <Text as="p" level="xs" classnames="text-white">
-            &copy; 2024 De Gouden kooi | Publiplus
-          </Text>
+          <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 md:flex md:items-center md:justify-between lg:mt-10">
+            <Text as="p" level="xs" classnames="text-white">
+              &copy; 2024 De Gouden kooi | Publiplus
+            </Text>
 
-          <div className="flex gap-x-6 md:order-2">
-            {navigation.social.map((item) => (
-              <a key={item.name} href={item.href} className="transition-all">
-                <span className="sr-only">{item.name}</span>
-                <item.icon
-                  aria-hidden="true"
-                  className="size-6 fill-white hover:fill-primary-500 "
-                />
-              </a>
-            ))}
+            <div className="flex gap-x-6 md:order-2">
+              {navigation.social.map((item) => (
+                <a key={item.name} href={item.href} className="transition-all">
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon
+                    aria-hidden="true"
+                    className="size-6 fill-white hover:fill-primary-500 "
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };

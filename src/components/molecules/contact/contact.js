@@ -10,16 +10,26 @@ export const Contact = ({
   return (
     <section className="">
       <Container classnames="grid grid-cols-2  gap-x-8">
-        <Text as="h5" level="3xl" classnames="text-secondary-500 mb-4">
+        <Text
+          as="h5"
+          level="3xl"
+          classnames="text-secondary-500 mb-4 font-bold"
+        >
           {title}
         </Text>
       </Container>
       <Container classnames="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
         <div>
-          <RichText text={descriptionLeft} classnames="text-primary-700" />
+          <RichText
+            text={descriptionLeft}
+            classnames="text-primary-700 font-light"
+          />
         </div>
         <div>
-          <RichText text={descriptionRight} classnames="text-primary-700" />
+          <RichText
+            text={descriptionRight}
+            classnames="text-primary-700 font-light"
+          />
           <div className="space-x-4">
             {buttons &&
               buttons.map((button) => (

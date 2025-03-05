@@ -37,12 +37,12 @@ export const BentoCard = ({
       >
         <div className="p-7">
           {title && (
-            <Text as="h5" level="lg" classnames="text-white">
+            <Text as="h5" level="lg" classnames="text-white font-bold">
               {title}
             </Text>
           )}
           {description && (
-            <RichText text={description} classnames="text-white" />
+            <RichText text={description} classnames="text-white font-light" />
           )}
         </div>
 
@@ -63,12 +63,15 @@ export const BentoCard = ({
     >
       <div className="p-7">
         {title && (
-          <Text as="h5" level="lg" classnames="text-secondary-500">
+          <Text as="h5" level="lg" classnames="text-secondary-500 font-bold">
             {title}
           </Text>
         )}
         {description && (
-          <RichText text={description} classnames="text-primary-700" />
+          <RichText
+            text={description}
+            classnames="text-primary-700 font-light"
+          />
         )}
         {buttons &&
           buttons.map((button) => (

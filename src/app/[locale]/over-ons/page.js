@@ -124,7 +124,7 @@ export default async function Home({ params }) {
                       </Text>
                       <RichText
                         text={post.description}
-                        className="mt-5 text-sm/6 text-gray-600"
+                        className="mt-5 text-sm/6 text-gray-600 font-light"
                       />
                     </div>
                   </div>

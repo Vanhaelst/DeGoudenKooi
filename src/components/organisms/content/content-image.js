@@ -17,6 +17,7 @@ export const ContentImage = ({
   buttons,
   image,
   order,
+  detail = false,
 }) => {
   const contentLeft = order;
 
@@ -33,29 +34,34 @@ export const ContentImage = ({
   }, []);
 
   return (
-    <section className="">
+    <section>
       <Container classnames="">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div
+          ref={elementRef}
+          className={`grid grid-cols-1 ${detail ? " md:grid-cols-5 gap-8 md:gap-16" : " md:grid-cols-2 gap-8"} `}
+        >
           <div
-            className={`${contentLeft ? "md:order-1" : "md:order-2"} order-2 flex flex-col justify-center`}
+            className={`${contentLeft ? "md:order-1 items-end" : "md:order-2"} ${detail ? "md:col-span-3 max-w-xl" : " "} order-2 flex flex-col justify-center`}
           >
-            <Title
-              title={title}
-              subtitle={subtitle}
-              description={description}
-              showIcon={false}
-            />
-            <div className="space-x-4" ref={elementRef}>
-              {buttons &&
-                buttons.map((button) => (
-                  <Button key={button.href} {...button} classnames="mt-4" />
-                ))}
+            <div className={`${detail ? "md:max-w-[80%]" : ""} `}>
+              <Title
+                title={title}
+                subtitle={subtitle}
+                description={description}
+                showIcon={false}
+              />
+              <div className="space-x-4">
+                {buttons &&
+                  buttons.map((button) => (
+                    <Button key={button.href} {...button} classnames="mt-4" />
+                  ))}
+              </div>
             </div>
           </div>
 
           <Images
             images={image}
-            classnames={`${contentLeft ? "md:order-2" : "md:order-1"} order-1`}
+            classnames={`${contentLeft ? "md:order-2" : "md:order-1"} ${detail ? "md:col-span-2" : " "} order-1 `}
           />
         </div>
       </Container>

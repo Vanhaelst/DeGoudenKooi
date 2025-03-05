@@ -33,7 +33,7 @@ export const MegaMenu = ({
 
   return (
     <header
-      className="relative w-full z-10 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
+      className="fixed top-0 md:top-9 w-full z-10 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
       style={{ backgroundImage: `url('${CompanyData.heroBg}')` }}
     >
       <nav
