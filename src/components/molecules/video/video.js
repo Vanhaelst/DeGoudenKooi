@@ -16,12 +16,12 @@ export const Video = ({ videoId, videoPlayer, halfBg, id }) => {
       <Container classnames="aspect-video z-10">
         {videoPlayer === "vimeo" && (
           <iframe
-            src={`https://player.vimeo.com/video/${videoId}?h=ab6adab836&badge=0`}
+            src=${videoId}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
             className="video"
             style={{ width: "100%", height: "100%" }}
-            title="Dental Office Puurs"
+            title="De Gouden Kooi"
           />
         )}
 

@@ -28,7 +28,6 @@ export const Games = ({
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,
@@ -48,10 +47,10 @@ export const Games = ({
         ref={elementRef}
       >
         <div
-          className={`relative lg:col-span-5 min-h-60 ${isEven ? "lg:order-1" : "lg:order-2"}`}
+          className={`relative lg:col-span-5 aspect-[16/12] md:min-h-60 ${isEven ? "lg:order-1" : "lg:order-2"}`}
         >
           <div
-            className="absolute inset-px lg:rounded-lg bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
+            className=" absolute inset-px lg:rounded-lg w-[70%] md:w-full mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
             style={{
               backgroundImage: `url('${featuredImage[0]?.url}')`,
             }}

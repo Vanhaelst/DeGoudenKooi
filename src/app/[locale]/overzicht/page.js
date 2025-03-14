@@ -58,7 +58,7 @@ export default async function Home({ params, searchParams }) {
 
   return (
     <>
-      <section className={`py-32 lg:py-40`}>
+      <section className={`pt-32 lg:py-40`}>
         <Container>
           <Title title={dict.general.discover_all} showIcon={false} />
         </Container>

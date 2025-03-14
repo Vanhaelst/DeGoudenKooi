@@ -55,7 +55,7 @@ export const GamesOverview = ({ title, description, t }) => {
 
   return (
     <section className={`pb-24 sm:pb-32 min-h-[80vh]`}>
-      <Container classnames="mb-24">
+      <Container classnames="mb-10">
         <Title title={title} description={description} />
       </Container>
 

@@ -90,7 +90,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
               <DialogPanel className="aspect-video max-h-full overflow-hidden rounded-3xl bg-black shadow-2xl w-[95vw] md:w-[80vw]">
                 {videoPlayer === "vimeo" && (
                   <iframe
-                    src={`https://player.vimeo.com/video/${videoId}?h=ab6adab836&badge=0`}
+                    src={videoId}
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowFullScreen
                     className="video"
@@ -101,7 +101,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
 
                 {videoPlayer === "youtube" && (
                   <iframe
-                    src={`https://www.youtube.com/embed/${videoId}`}
+                    src={videoId}
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowFullScreen
                     className="video"
