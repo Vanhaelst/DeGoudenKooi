@@ -15,7 +15,7 @@ export const Feature = ({ title, description, icon, index }) => {
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: (index % 3) * 0.5,
+      delay: (index % 3) * 0.15,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

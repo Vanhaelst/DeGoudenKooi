@@ -20,7 +20,7 @@ export const TeamMember = ({ name, image, role, position, index }) => {
   useEffect(() => {
     gsap.fromTo(wrapperRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: (index % 3) * 0.5 + 1,
+      delay: (index % 3) * 0.25 + 1,
       scrollTrigger: {
         trigger: wrapperRef.current,
         ...scrollTrigger,

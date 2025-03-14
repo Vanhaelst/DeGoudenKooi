@@ -17,7 +17,7 @@ export const Prices = ({ title, description, prices, image, t }) => {
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
+      delay: 0.25,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

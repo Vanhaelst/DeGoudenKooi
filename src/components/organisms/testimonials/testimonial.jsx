@@ -66,7 +66,7 @@ export function TestimonialCard({
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: index * 0.5,
+      delay: index * 0.25,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

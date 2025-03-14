@@ -15,7 +15,7 @@ export const Review = ({ quote, source, index = 1 }) => {
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 0.5 + index * 0.5,
+      delay: 0.25 + index * 0.25,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

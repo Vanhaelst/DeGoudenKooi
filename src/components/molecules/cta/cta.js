@@ -19,7 +19,7 @@ export const Cta = ({
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
+      delay: 0.5,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

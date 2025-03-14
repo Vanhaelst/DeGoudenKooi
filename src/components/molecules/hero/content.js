@@ -27,7 +27,7 @@ export const HeroContent = ({
   useEffect(() => {
     gsap.fromTo(titleRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
+      delay: 0.25,
       scrollTrigger: {
         trigger: titleRef.current,
         ...scrollTrigger,
@@ -36,7 +36,7 @@ export const HeroContent = ({
 
     gsap.fromTo(descriptionRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1.5,
+      delay: 0.5,
       scrollTrigger: {
         trigger: descriptionRef.current,
         ...scrollTrigger,
@@ -45,7 +45,7 @@ export const HeroContent = ({
 
     gsap.fromTo(featuresRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 2,
+      delay: 0.75,
       scrollTrigger: {
         trigger: featuresRef.current,
         ...scrollTrigger,
@@ -54,7 +54,7 @@ export const HeroContent = ({
 
     gsap.fromTo(awardsRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 2.5,
+      delay: 1,
       scrollTrigger: {
         trigger: awardsRef.current,
         ...scrollTrigger,
@@ -63,7 +63,7 @@ export const HeroContent = ({
 
     gsap.fromTo(buttonRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 3,
+      delay: 1.25,
       scrollTrigger: {
         trigger: buttonRef.current,
         ...scrollTrigger,

@@ -14,7 +14,7 @@ export const AccordionItem = ({ title, description }) => {
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
+      delay: 0.25,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

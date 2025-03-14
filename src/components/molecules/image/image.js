@@ -27,7 +27,7 @@ export const Images = ({ images, classnames, animation = "true" }) => {
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
+      delay: 0.258,
       scrollTrigger: {
         trigger: elementRef.current,
         ...scrollTrigger,

@@ -16,7 +16,7 @@ export const Content = ({ title, description, buttons, columns }) => {
   useEffect(() => {
     gsap.fromTo(titleRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1,
+      delay: 0.25,
       scrollTrigger: {
         trigger: titleRef.current,
         ...scrollTrigger,
@@ -25,7 +25,7 @@ export const Content = ({ title, description, buttons, columns }) => {
 
     gsap.fromTo(descriptionRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 1.5,
+      delay: 0.5,
       scrollTrigger: {
         trigger: descriptionRef.current,
         ...scrollTrigger,
@@ -34,7 +34,7 @@ export const Content = ({ title, description, buttons, columns }) => {
 
     gsap.fromTo(buttonRef.current, fadeSlide.from, {
       ...fadeSlide.to,
-      delay: 2,
+      delay: 0.75,
       scrollTrigger: {
         trigger: buttonRef.current,
         ...scrollTrigger,
