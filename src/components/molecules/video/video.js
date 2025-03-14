@@ -16,7 +16,7 @@ export const Video = ({ videoId, videoPlayer, halfBg, id }) => {
       <Container classnames="aspect-video z-10">
         {videoPlayer === "vimeo" && (
           <iframe
-            src=${videoId}
+            src={videoId}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
             className="video"
@@ -27,7 +27,7 @@ export const Video = ({ videoId, videoPlayer, halfBg, id }) => {
 
         {videoPlayer === "youtube" && (
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}`}
+            src={videoId}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
             className="video"

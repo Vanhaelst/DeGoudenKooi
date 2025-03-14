@@ -4,6 +4,5 @@ export const seoEntry = `
       seoTitle
       seoDescription
       seoKeywords
-      seoUrl
       seoImage ${imageQuery}
 `;
