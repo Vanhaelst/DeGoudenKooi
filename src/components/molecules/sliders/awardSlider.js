@@ -15,6 +15,5 @@ export const SlickSlider = ({ children, settings = {} }) => {
     ...settings,
   };
 
-  console.log(sliderSettings);
   return <Slider {...sliderSettings}>{children}</Slider>;
 };

@@ -10,6 +10,7 @@ export const Badges = ({ rooms, searchParams, dict }) => {
             searchParams={searchParams}
             dict={dict}
             index={index}
+            length={rooms.length}
             {...room}
           />
         ))}

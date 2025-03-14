@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CompanyData } from "@/data/companyData";
 import { LINKS } from "@/enums/links";
 import { getDictionary } from "@/app/[locale]/dictionaries";
+import ImageWithFallback from "@/utils/Image";
 
 export const Footer = async ({ locale = "nl" }) => {
   const dict = await getDictionary(locale);
@@ -199,8 +200,10 @@ export const Footer = async ({ locale = "nl" }) => {
               </div>
               <div className="mt-10 md:mt-0 ">
                 <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
-                  <Image
-                    src="/befeb.webp"
+                  <ImageWithFallback
+                    // src="https://befeb.be/images/member-badge/BEFEB-member_white.png"
+                    src="https://befeb.be/images/member-badge/BEFEB-member_trans.png"
+                    fallbackImage="/befeb.webp"
                     alt="befeb"
                     width={236}
                     height={300}

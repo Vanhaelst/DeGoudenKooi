@@ -71,18 +71,16 @@ html {
     transform: translatey(0px);
   }
 }
-.float {
-  animation: float 6s ease-in-out infinite;
-}
 
-.perspective {
+
+/*.perspective {
   transform: perspective(1500px) rotateY(0deg);
   transition: transform 1s ease 0s;
 
   &:hover {
     transform: perspective(3000px) rotateY(15deg);
   }
-}
+}*/
 
 .hide-scrollbar {
   -ms-overflow-style: none;

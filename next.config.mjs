@@ -10,7 +10,20 @@ const nextConfig = {
         protocol: "https",
         hostname: "degoudenkooi.pluxit.be",
       },
+      {
+        protocol: "https",
+        hostname: "befeb.be",
+      },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/google",
+        permanent: false,
+        destination: "https://www.google.com",
+      },
+    ];
   },
   async rewrites() {
     return [
@@ -41,7 +54,8 @@ const nextConfig = {
       {
         source: "/en/reserve",
         destination: "/en/reserveer",
-      },{
+      },
+      {
         source: "/en/book-now",
         destination: "/en/reserveer",
       },
