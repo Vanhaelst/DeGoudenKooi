@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LINKS } from "@/enums/links";
 
-export function MobileNavigation({ locale, nav, open, setOpen }) {
+export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
   const pathname = usePathname();
 
   return (
@@ -24,9 +24,9 @@ export function MobileNavigation({ locale, nav, open, setOpen }) {
         <div className="fixed inset-0 z-40 flex">
           <DialogPanel
             transition
-            className="relative flex w-full justify-between md:justify-normal transform flex-col overflow-y-auto bg-primary-500 pb-12 shadow-xl transition duration-300 ease-in-out data-[closed]:-translate-x-full"
+            className="relative flex w-full h-full justify-between md:justify-between transform flex-col overflow-y-auto bg-primary-500 pb-12 shadow-xl transition duration-300 ease-in-out data-[closed]:-translate-x-full"
           >
-            <div className="absolute right-0 px-2 pb-2 md:pt-16 md:pb-16 pt-4">
+            <div className="absolute right-0 px-2 pb-2 md:pt-7 md:pb-16 pt-4">
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -57,22 +57,50 @@ export function MobileNavigation({ locale, nav, open, setOpen }) {
                 }
                 return (
                   <li key={name}>
-                    <a href={href}>{name} </a>
+                    <a href={href} className="md:text-lg">
+                      {name}{" "}
+                    </a>
+                  </li>
+                );
+              })}
+
+              {topbar.map(({ name, href, children }) => {
+                if (children) {
+                  return (
+                    <li key={name}>
+                      <details>
+                        <summary>{name}</summary>
+                        <ul>
+                          {children.map(({ title, slug }) => (
+                            <li key={title}>
+                              <a href={`/${locale}/${slug}`}>{title}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={name}>
+                    <a href={href} className="md:text-lg">
+                      {name}{" "}
+                    </a>
                   </li>
                 );
               })}
             </ul>
 
-            <div className="space-y-6 px-4 py-6  md:mt-12">
+            <div className="space-y-6 px-4 py-6 md:mt-12">
               <a
                 href={LINKS.NL.HOME}
-                className={`flex justify-end md:justify-center items-center font-barlow text-md font-medium hover:text-accent-500 ${!pathname.startsWith("/fr") && !pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
+                className={`flex justify-end items-center font-barlow text-md font-medium hover:text-accent-500 ${!pathname.startsWith("/fr") && !pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
               >
                 Nederlands
               </a>
               <a
                 href={LINKS.EN.HOME}
-                className={`flex justify-end md:justify-center items-center font-barlow text-md font-medium hover:text-accent-500 ${pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
+                className={`flex justify-end items-center font-barlow text-md font-medium hover:text-accent-500 ${pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
               >
                 English
               </a>

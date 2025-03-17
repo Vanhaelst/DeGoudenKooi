@@ -26,36 +26,40 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
       />
 
       <MobileNavigation
-        nav={[
+        topbar={[
           {
-            name: dict.general.gerechtstraat,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-            children: gerechtstraat,
-          },
-          {
-            name: dict.general.haverwerf,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-            children: haverwerf,
-          },
-          {
-            name: dict.navigation.contact,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-          },
-          {
-            name: dict.topbar.news,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-          },
-          {
-            name: dict.topbar.giftcard,
-            href: LINKS[locale.toUpperCase()].ABOUT,
-          },
-          {
-            name: dict.topbar.faq,
+            name: dict.navigation.about,
             href: LINKS[locale.toUpperCase()].ABOUT,
           },
           {
             name: dict.topbar.awards,
-            href: LINKS[locale.toUpperCase()].ABOUT,
+            href: LINKS[locale.toUpperCase()].AWARDS,
+          },
+          {
+            name: dict.topbar.news,
+            href: LINKS[locale.toUpperCase()].NEWS,
+          },
+        ]}
+        nav={[
+          {
+            name: dict.navigation.games,
+            href: LINKS[locale.toUpperCase()].GAME_OVERVIEW,
+          },
+          {
+            name: dict.navigation.teambuilding,
+            href: LINKS[locale.toUpperCase()].TEAMBUILDING,
+          },
+          {
+            name: dict.topbar.giftcard,
+            href: LINKS[locale.toUpperCase()].GIFTCARD,
+          },
+          {
+            name: dict.topbar.faq,
+            href: LINKS[locale.toUpperCase()].FAQ,
+          },
+          {
+            name: dict.navigation.contact,
+            href: LINKS[locale.toUpperCase()].CONTACT,
           },
         ]}
         open={open}

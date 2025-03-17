@@ -138,7 +138,7 @@ export const Footer = async ({ locale = "nl" }) => {
           height={60}
           className="w-full absolute object-cover h-16 -top-16"
         />
-        <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-20 lg:px-8 xl:pt-32">
+        <div className="mx-auto max-w-7xl px-6 pb-32 mb:pb-8 pt-20 sm:pt-20 lg:px-8 xl:pt-32">
           <div className="xl:grid xl:grid-cols-2 xl:gap-8">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>

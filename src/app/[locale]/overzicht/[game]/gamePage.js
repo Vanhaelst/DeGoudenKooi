@@ -19,8 +19,6 @@ import Warning from "@/components/molecules/alerts/warning";
 import { imageQuery } from "@/queries/entries/image";
 import { formatPrice } from "@/utils/formatPrice";
 import ModalVideo from "@/components/molecules/video/modalVideo";
-import { Container, Text } from "@/components/atoms";
-import { Title } from "@/components/molecules";
 import { Reviews } from "@/components/organisms/reviews/review";
 
 export default function GamePage({ data, locale }) {

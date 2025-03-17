@@ -10,7 +10,7 @@ export const Container = ({ size, classnames, children }) => {
       case "lg":
         return "container px-6 lg:px-8";
       default:
-        return "container px-6 lg:px-8 max-w-2xl lg:max-w-6xl";
+        return "container px-6 lg:px-8 lg:max-w-6xl";
     }
   };
 

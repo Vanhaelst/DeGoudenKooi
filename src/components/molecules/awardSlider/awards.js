@@ -15,12 +15,8 @@ gsap.registerPlugin(ScrollTrigger);
 const settings = {
   slidesToShow: 5,
   slidesToScroll: 1,
-  // speed: 9000,
-  // autoplaySpeed: 0,
-  // autoplay: true,
   infinite: true,
   arrows: true,
-  // pauseOnHover: false,
   cssEase: "linear",
   responsive: [
     {
@@ -74,7 +70,7 @@ export const AwardSlider = ({
     return (
       <section className={`py-12 px-8 md:px-4`}>
         <Container classnames="relative ">
-          <Slider settings={settings} {...settings}>
+          <Slider settings={settings}>
             {awards.map(({ title, image }) => {
               return (
                 <Image

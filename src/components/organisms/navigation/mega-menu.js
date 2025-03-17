@@ -1,39 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { CompanyData } from "@/data/companyData";
 import { LINKS } from "@/enums/links";
-import { LOCATIONS } from "@/enums/locations";
-import { MegaMenuItem } from "@/components/organisms/navigation/mega-menu-item";
-import { Button, Container } from "@/components/atoms";
+import { Button } from "@/components/atoms";
 import { Bars2Icon } from "@heroicons/react/24/solid";
 
-export const MegaMenu = ({
-  locale = "nl",
-  dict,
-  gerechtstraat,
-  haverwerf,
-  setOpen,
-}) => {
-  const recentPosts = [
-    {
-      id: 1,
-      title: "Wat is het verschil nu juist tussen de belevingen?",
-      href: `${LINKS[locale.toUpperCase()].NEWS}/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience`,
-      date: "Mar 16, 2023",
-      datetime: "2023-03-16",
-      category: { title: "Marketing", href: "#" },
-      imageUrl: "/dgk-card.jpeg",
-      description:
-        "Bij De Gouden Kooi kun je kiezen uit escape games, escape experiences en ...",
-    },
-  ];
-
+export const MegaMenu = ({ locale = "nl", dict, setOpen }) => {
   return (
     <header
-      className="fixed top-0 md:top-9 w-full z-10 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
+      className="fixed top-0 lg:top-9 w-full z-10 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
       style={{ backgroundImage: `url('${CompanyData.heroBg}')` }}
     >
       <nav

@@ -3,7 +3,7 @@ import { buttonsQuery } from "@/queries/entries/buttons";
 export const callToActionEntry = `
     ... on callToAction_Entry {
         typeHandle
-              id
+        id
         title
         description
         buttons ${buttonsQuery}

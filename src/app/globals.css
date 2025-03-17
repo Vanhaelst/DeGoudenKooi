@@ -31,6 +31,9 @@ html {
 .border-wrapper {
   height: calc(100vh - 72px);
   @media screen and (min-width: 768px) {
+    height: calc(100vh - 135px);
+  }
+  @media screen and (min-width: 1024px) {
     height: calc(100vh - 94px);
   }
 }

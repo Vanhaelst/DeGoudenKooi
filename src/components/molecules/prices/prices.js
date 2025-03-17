@@ -30,16 +30,19 @@ export const Prices = ({ title, description, prices, image, t }) => {
       <Container classnames="">
         <Title title={title} description={description} />
         <div
-          className="rounded-xl p-2 mt-4 md:mt-12 grid lg:grid-cols-5"
+          className="relative rounded-xl p-2 mt-4 md:mt-12 grid lg:grid-cols-5"
           ref={elementRef}
         >
-          <div className="lg:col-span-3 ">
+          <div className="lg:col-span-3">
             {prices.map(({ price, players }) => (
-              <div key={players} className="flex relative  z-20">
+              <div
+                key={players}
+                className="flex flex-col sm:flex-row md:justify-between relative z-20 mb-4"
+              >
                 <Text
                   as="p"
                   level="lg"
-                  classnames="text-secondary-500 mr-8 mb-2 font-light"
+                  classnames="text-secondary-500 mr-8 font-light"
                 >
                   <Text as="span" classnames="font-bold">
                     {players}&nbsp;
@@ -47,32 +50,34 @@ export const Prices = ({ title, description, prices, image, t }) => {
                   {t.players}
                 </Text>
 
-                <Text
-                  as="p"
-                  level="lg"
-                  classnames="text-secondary-500 mr-8 font-light"
-                >
-                  <Text as="span" classnames="font-bold">
-                    {formatPrice(price)}&nbsp;
+                <div className="flex justify-between">
+                  <Text
+                    as="p"
+                    level="lg"
+                    classnames="text-secondary-500 mr-8 font-light"
+                  >
+                    <Text as="span" classnames="font-bold">
+                      {formatPrice(price)}&nbsp;
+                    </Text>
+                    {t.escape}
                   </Text>
-                  {t.escape}
-                </Text>
 
-                <Text
-                  as="p"
-                  level="lg"
-                  classnames="text-secondary-500 font-light"
-                >
-                  <Text as="span" classnames="font-bold">
-                    {formatPrice(price / players)}&nbsp;
+                  <Text
+                    as="p"
+                    level="lg"
+                    classnames="text-secondary-500 font-light"
+                  >
+                    <Text as="span" classnames="font-bold">
+                      {formatPrice(price / players)}&nbsp;
+                    </Text>
+                    {t.person}
                   </Text>
-                  {t.person}
-                </Text>
+                </div>
               </div>
             ))}
           </div>
           {image && (
-            <div className="relative p-6 lg:col-span-2 w-full md:-mt-16 lg:-mt-24 z-10">
+            <div className="sm:relative sm:p-6 lg:col-span-2 w-full sm:right-0 md:-mt-16 lg:-mt-24 z-10">
               <Image
                 src={image.url}
                 alt={image.alt}
