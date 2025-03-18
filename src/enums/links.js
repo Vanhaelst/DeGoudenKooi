@@ -10,11 +10,11 @@ export const LINKS = {
     PERS: "/nl/pers",
     GIFTCARD: "/nl/cadeaubon",
     FAQ: "/nl/faq",
-    BOOK: "/nl/reserveer",
+    BOOK: "/nl/boeking",
     PRIVACY: "/nl/privacy",
     ACTIVITY_DEALS: "/nl/activiteiten-in-mechelen",
     RESTAURANT_DEALS: "/nl/hapje-eten",
-    RESERVE: "/nl/reserveer",
+    RESERVE: "/nl/boeking",
     JOBS: "/nl/jobs",
   },
   EN: {
