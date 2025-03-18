@@ -121,10 +121,7 @@ export default async function News({ params }) {
         awards={false}
       />
 
-      <nav
-        aria-label="Breadcrumb"
-        className="flex border-b border-gray-200 bg-white"
-      >
+      <nav aria-label="Breadcrumb" className="flex border-gray-200">
         <ol
           role="list"
           className="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6 lg:px-8"

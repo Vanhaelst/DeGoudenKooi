@@ -67,7 +67,7 @@ export const Images = ({ images, classnames, animation = "true" }) => {
         {images.map((image) => {
           const classNames = image.url.includes(".png")
             ? "object-contain py-10"
-            : "rounded-2xl object-cover py-10";
+            : "rounded-2xl object-cover";
 
           return (
             <Image

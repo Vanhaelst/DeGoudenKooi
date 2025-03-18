@@ -12,7 +12,12 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "h1") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level="h1" classnames={classnames}>
+          <Text
+            {...props}
+            as="h1"
+            level="4xl"
+            classnames={`${classnames} mb-2`}
+          >
             {domToReact(children, options)}
           </Text>
         );
@@ -20,7 +25,12 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "h2") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level="h2" classnames={classnames}>
+          <Text
+            {...props}
+            as="h2"
+            level="3xl"
+            classnames={`${classnames} mb-2`}
+          >
             {domToReact(children, options)}
           </Text>
         );
@@ -28,7 +38,12 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "h3") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level="h3" classnames={classnames}>
+          <Text
+            {...props}
+            as="h3"
+            level="2xl"
+            classnames={`${classnames} mb-2`}
+          >
             {domToReact(children, options)}
           </Text>
         );
@@ -36,7 +51,7 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "h4") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level="h4" classnames={classnames}>
+          <Text {...props} as="h4" level="xl" classnames={`${classnames} mb-2`}>
             {domToReact(children, options)}
           </Text>
         );
@@ -44,7 +59,7 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "h5") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level="h5" classnames={classnames}>
+          <Text {...props} as="h5" level="l" classnames={`${classnames} mb-2`}>
             {domToReact(children, options)}
           </Text>
         );
@@ -52,7 +67,7 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "h6") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level="h6" classnames={`${classnames} text-xl`}>
+          <Text {...props} as="h6" level="md" classnames={`${classnames} mb-2`}>
             {domToReact(children, options)}
           </Text>
         );
@@ -60,7 +75,7 @@ export const RichText = ({ text = "", classnames, level }) => {
       if (name === "p") {
         const props = attributesToProps(attribs);
         return (
-          <Text {...props} level={level} classnames={`${classnames}`}>
+          <Text {...props} level={level} classnames={`${classnames} mb-2`}>
             {domToReact(children, options)}
           </Text>
         );

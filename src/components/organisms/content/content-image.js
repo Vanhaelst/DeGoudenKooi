@@ -34,6 +34,7 @@ export const ContentImage = ({
     });
   }, []);
 
+  console.log(buttons);
   return (
     <section>
       <Container classnames="">

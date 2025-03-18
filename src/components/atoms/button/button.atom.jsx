@@ -11,6 +11,7 @@ export const Button = ({
   buttonType,
   onClick,
   classnames = "",
+  target,
 }) => {
   const getVariant = () => {
     switch (variant) {
@@ -67,7 +68,7 @@ export const Button = ({
   };
 
   const hrefType = () => {
-    switch (buttonType) {
+    switch (target) {
       case "internal":
         return {
           target: "_self",
@@ -83,7 +84,7 @@ export const Button = ({
           target: "_blank",
           url: `tel:${href}`,
         };
-      case "eMail":
+      case "mail":
         return {
           target: "",
           url: `mailto:${href}`,

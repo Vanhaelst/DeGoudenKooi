@@ -6,6 +6,7 @@ export const buttonsQuery = `
             href
             variant: buttonVariant
             size: buttonSize
+            target: buttonTarget
        }
    }                 
 `;
