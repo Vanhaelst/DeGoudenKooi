@@ -7,9 +7,9 @@ import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import { Text } from "@/components/atoms";
+import { RichText, Text } from "@/components/atoms";
 
-export const Review = ({ review, reviewer, index = 1 }) => {
+export const Review = ({ title, description, index = 1 }) => {
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -25,11 +25,14 @@ export const Review = ({ review, reviewer, index = 1 }) => {
 
   return (
     <div className="mx-5" ref={elementRef}>
-      <Text as="p" classnames="text-secondary-700 text-center text-bold w-full">
-        {review}
-      </Text>
+      <RichText
+        text={description}
+        as="p"
+        classnames="text-secondary-700 text-center text-bold w-full"
+      />
+
       <Text as="h5" classnames="text-primary-700 text-center mt-4">
-        {reviewer}
+        {title}
       </Text>
     </div>
   );
