@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
     SeoQuery({ page: "contactEntries", language: params.locale }),
   );
 
-  const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0];
+  const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};
 
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {

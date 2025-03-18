@@ -52,7 +52,7 @@ export const HeroAwards = ({ awards, showAwards }) => {
             <div key={url} className="px-9">
               <Image
                 src={url}
-                alt={alt}
+                alt={alt || ""}
                 width={width}
                 height={height}
                 className="w-24 lg:w-36 lg:h-36 object-contain"

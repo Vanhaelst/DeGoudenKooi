@@ -19,7 +19,7 @@ function ImageWithFallback({
   return (
     <Image
       src={imageError ? fbImage : src}
-      alt={alt}
+      alt={alt || ""}
       width={width}
       height={height}
       objectFit={objectFit || "cover"}

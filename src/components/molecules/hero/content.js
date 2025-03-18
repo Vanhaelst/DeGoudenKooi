@@ -109,7 +109,7 @@ export const HeroContent = ({
             >
               <Image
                 src={icon}
-                alt={description}
+                alt={description || ""}
                 className="mr-3 w-10 h-10"
                 width={13}
                 height={16}
@@ -136,7 +136,7 @@ export const HeroContent = ({
           <Image
             key={image[0].url}
             src={image[0].url}
-            alt={title}
+            alt={title || ""}
             className="w-32 h-32 object-contain brightness-0 invert"
             width={image[0].width}
             height={image[0].height}

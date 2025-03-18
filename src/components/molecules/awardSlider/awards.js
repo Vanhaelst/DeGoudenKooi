@@ -76,7 +76,7 @@ export const AwardSlider = ({
                 <Image
                   key={image[0].url}
                   src={image[0].url}
-                  alt={image[0].alt || title}
+                  alt={image[0].alt || title || ""}
                   width={image[0].width}
                   height={image[0].height}
                   className="w-full px-6 h-32 object-contain"
@@ -110,7 +110,7 @@ export const AwardSlider = ({
               >
                 <Image
                   src={url}
-                  alt={alt}
+                  alt={alt || ""}
                   width={width}
                   height={height}
                   className="h-20 w-full object-contain transition-all pb-2"

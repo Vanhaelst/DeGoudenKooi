@@ -100,7 +100,7 @@ export const Games = ({
                       >
                         <img
                           src={image[0].url}
-                          alt={title}
+                          alt={title || ""}
                           className="h-12 hover:scale-125 transition-all"
                         />
                       </div>

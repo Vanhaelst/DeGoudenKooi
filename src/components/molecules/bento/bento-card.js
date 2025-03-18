@@ -81,7 +81,7 @@ export const BentoCard = ({
 
       {image && (
         <Image
-          alt={title}
+          alt={title || ""}
           src={image?.[0].url}
           width={image?.[0].width}
           height={image?.[0].height}

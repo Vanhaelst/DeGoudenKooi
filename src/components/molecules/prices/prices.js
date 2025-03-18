@@ -80,7 +80,7 @@ export const Prices = ({ title, description, prices, image, t }) => {
             <div className="sm:relative sm:p-6 lg:col-span-2 w-full sm:right-0 md:-mt-16 lg:-mt-24 z-10">
               <Image
                 src={image.url}
-                alt={image.alt}
+                alt={image.alt || ""}
                 width={image.width}
                 height={image.height}
               />

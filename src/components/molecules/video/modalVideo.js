@@ -30,7 +30,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
             width={thumb.width}
             height={thumb.height}
             priority
-            alt={thumb.alt}
+            alt={thumb.alt || ""}
           />
         )}
         {/*

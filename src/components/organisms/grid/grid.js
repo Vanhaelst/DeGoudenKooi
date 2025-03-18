@@ -7,7 +7,6 @@ import { clsx } from "clsx";
 export const Grid = ({ title, description, gridItems, backgroundColor }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
-  console.log(gridItems);
   return (
     <section className={bgColor}>
       <Container classnames="py-24 sm:py-32">

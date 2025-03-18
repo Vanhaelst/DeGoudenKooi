@@ -40,7 +40,7 @@ export const Badge = ({
     >
       <img
         src={featuredImage[0].url}
-        alt={title}
+        alt={title || ""}
         className="px-2 lg:px-4 mb-2 perspective object-contain"
       />
       {/*}

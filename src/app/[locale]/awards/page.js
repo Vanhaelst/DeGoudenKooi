@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
     }`,
   );
 
-  const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0];
+  const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};
 
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {
@@ -94,7 +94,7 @@ export default async function Home({ params }) {
               >
                 <Image
                   src={image?.[0]?.url}
-                  alt={image?.[0]?.alt}
+                  alt={image?.[0]?.alt || ""}
                   width={image?.[0]?.width}
                   height={image?.[0]?.height}
                   className={`min-w-40 w-40 object-contain`}

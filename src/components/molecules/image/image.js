@@ -52,7 +52,7 @@ export const Images = ({ images, classnames, animation = "true" }) => {
       >
         <Image
           src={image.url}
-          alt={image.alt}
+          alt={image.alt || ""}
           width={image.width}
           height={image.height}
           className={`${classes} ${animation ? "float" : ""} mx-auto max-w-[80%] md:max-w-full w-full`}
@@ -73,7 +73,7 @@ export const Images = ({ images, classnames, animation = "true" }) => {
             <Image
               key={image.url}
               src={image.url}
-              alt={image.alt}
+              alt={image.alt || ""}
               width={image.width}
               height={image.height}
               className={`${classNames} float w-full`}
