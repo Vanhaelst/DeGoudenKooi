@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { Text } from "@/components/atoms";
 
-export const Review = ({ quote, source, index = 1 }) => {
+export const Review = ({ review, reviewer, index = 1 }) => {
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -26,10 +26,10 @@ export const Review = ({ quote, source, index = 1 }) => {
   return (
     <div className="mx-5" ref={elementRef}>
       <Text as="p" classnames="text-secondary-700 text-center text-bold w-full">
-        Spanning, opbouw en humor, oog voor detail. Alles klopt
+        {review}
       </Text>
       <Text as="h5" classnames="text-primary-700 text-center mt-4">
-        Roomrunners podcast
+        {reviewer}
       </Text>
     </div>
   );

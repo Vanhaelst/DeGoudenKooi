@@ -59,6 +59,14 @@ const query = ({ slug, language = "nl" }) => {
                       videoPlayer
                       videoImage ${imageQuery}
                       
+                      reviews: review {
+                        ... on review_Entry {
+                          id
+                          title
+                          description
+                        }
+                      }
+                      
                       categories
 
                       inactiveMessage
@@ -103,7 +111,8 @@ export async function generateMetadata({ params }) {
         }`,
   );
 
-  const { title, seoTitle, seoDescription, seoKeywords, seoImage } = rooms?.[0];
+  const { title, seoTitle, seoDescription, seoKeywords, seoImage } =
+    rooms?.[0] ?? {};
 
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
 

@@ -71,8 +71,6 @@ export const HeroContent = ({
     });
   }, []);
 
-  console.log(awards);
-
   return (
     <div className="flex justify-center flex-col">
       <div ref={titleRef} className="pb-8">

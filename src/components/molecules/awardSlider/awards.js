@@ -53,8 +53,6 @@ export const AwardSlider = ({
 }) => {
   const elementRef = useRef(null);
 
-  console.log(awards);
-
   if (!awards || awards.length === 0) {
     return null;
   }

@@ -42,6 +42,7 @@ export default function GamePage({ data, locale }) {
     videoId,
     videoPlayer,
     videoImage,
+    reviews,
     players,
     time,
     categories,
@@ -197,7 +198,7 @@ export default function GamePage({ data, locale }) {
           />
         )}
 
-        <Reviews />
+        <Reviews reviews={reviews} />
 
         {!isInactive && (
           <Prices
