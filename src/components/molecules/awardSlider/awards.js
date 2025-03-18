@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const settings = {
@@ -52,15 +53,7 @@ export const AwardSlider = ({
 }) => {
   const elementRef = useRef(null);
 
-  useLayoutEffect(() => {
-    gsap.fromTo(elementRef.current, fadeSlide.from, {
-      ...fadeSlide.to,
-      scrollTrigger: {
-        trigger: elementRef.current,
-        ...scrollTrigger,
-      },
-    });
-  }, []);
+  console.log(awards);
 
   if (!awards || awards.length === 0) {
     return null;
@@ -70,7 +63,7 @@ export const AwardSlider = ({
     return (
       <section className={`py-12 px-8 md:px-4`}>
         <Container classnames="relative ">
-          <Slider settings={settings}>
+          <Slider {...settings}>
             {awards.map(({ title, image }) => {
               return (
                 <Image

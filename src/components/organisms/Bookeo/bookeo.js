@@ -45,7 +45,7 @@ export const Bookeo = ({ variant, locale }) => {
       />
       <section className="bg-white relative py-12 lg:py-24">
         <Container classnames="min-h-80 flex justify-center items-center">
-          <div id="bookeo" style={{ clear: "both", width: "100%" }} />
+          <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
           <Script
             // strategy="afterInteractive"
             type="text/javascript"

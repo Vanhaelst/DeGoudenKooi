@@ -68,8 +68,13 @@ export const ContentImage = ({
           <Images
             images={image}
             classnames={clsx(
-              contentLeft && !detail ? "lg:order-2" : "lg:order-1",
-              contentLeft && detail ? "md:order-2" : "md:order-1",
+              detail
+                ? contentLeft
+                  ? "md:order-2"
+                  : "md:order-1"
+                : contentLeft
+                  ? "lg:order-2"
+                  : "lg:order-1",
               detail ? "md:col-span-2" : " ",
             )}
           />

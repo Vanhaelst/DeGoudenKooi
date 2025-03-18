@@ -186,14 +186,16 @@ export default function GamePage({ data, locale }) {
           thumb={videoImage?.[0]}
         />
 
-        <AwardSlider
-          title={`${t.general.the} "${title}" ${t.topbar.awards}`}
-          backgroundColor="darkGray"
-          awards={awards}
-          locale={locale}
-          slider
-          t={t.game}
-        />
+        {awards && awards.length && (
+          <AwardSlider
+            title={`${t.general.the} "${title}" ${t.topbar.awards}`}
+            backgroundColor="darkGray"
+            awards={awards}
+            locale={locale}
+            slider
+            t={t.game}
+          />
+        )}
 
         <Reviews />
 
