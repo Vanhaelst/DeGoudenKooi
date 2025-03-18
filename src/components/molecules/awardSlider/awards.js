@@ -65,6 +65,9 @@ export const AwardSlider = ({
         <Container classnames="relative ">
           <Slider {...settings}>
             {awards.map(({ title, image }) => {
+              if (!image[0]) {
+                return null;
+              }
               return (
                 <Image
                   key={image[0].url}

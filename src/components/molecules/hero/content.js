@@ -134,12 +134,12 @@ export const HeroContent = ({
       >
         {awards?.map(({ title, image }) => (
           <Image
-            key={image[0].url}
-            src={image[0].url}
+            key={image[0]?.url}
+            src={image[0]?.url}
             alt={title || ""}
             className="w-32 h-32 object-contain brightness-0 invert"
-            width={image[0].width}
-            height={image[0].height}
+            width={image[0]?.width}
+            height={image[0]?.height}
           />
         ))}
       </div>
