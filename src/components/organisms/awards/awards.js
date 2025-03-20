@@ -11,7 +11,9 @@ export const Awards = async ({
   title,
   description,
   backgroundColor,
+  backgroundImage,
   locale,
+  slider,
 }) => {
   const { awards } = (await getPage({ grade: "" })) ?? undefined;
 
@@ -24,8 +26,10 @@ export const Awards = async ({
       title={title}
       description={description}
       backgroundColor={backgroundColor}
+      backgroundImage={backgroundImage}
       awards={awards}
       locale={locale}
+      slider={slider}
     />
   );
 };

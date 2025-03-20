@@ -5,7 +5,6 @@ import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
 export const Features = ({ title, description, features, backgroundColor }) => {
   const bgColor = getBackgroundColor(backgroundColor);
-
   return (
     <section className={`${bgColor} py-24 sm:py-32`}>
       <Container classnames="mb-24">

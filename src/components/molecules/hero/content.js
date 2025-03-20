@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Button, RichText, Text } from "@/components/atoms";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
@@ -102,29 +103,63 @@ export const HeroContent = ({
           className="grid grid-cols-1 md:grid-cols-2 gap-y-4"
           ref={featuresRef}
         >
-          {features.map(({ title, description, classes, icon }) => (
-            <div
-              className={`flex items-center justify-center lg:justify-start ${classes}`}
-              key={title}
-            >
-              <Image
-                src={icon}
-                alt={description || ""}
-                className="mr-3 w-10 h-10"
-                width={13}
-                height={16}
-              />
-              <div className="flex flex-col">
-                <Text
-                  as={"span"}
-                  level="sm"
-                  classnames="font-semibold text-white"
+          {features.map(({ title, description, classes, icon, tooltip }) => {
+            if (tooltip) {
+              return (
+                <div
+                  className={`flex items-center justify-center lg:justify-start ${classes}`}
+                  key={title}
                 >
-                  {description}
-                </Text>
+                  <Image
+                    src={icon}
+                    alt={description || ""}
+                    className="mr-3 w-10 h-10"
+                    width={13}
+                    height={16}
+                  />
+                  <div className="flex flex-row">
+                    <Text
+                      as={"span"}
+                      level="sm"
+                      classnames="font-semibold text-white"
+                    >
+                      {description}
+                    </Text>
+                    <div
+                      className="hover:cursor-pointer tooltip"
+                      data-tip={tooltip}
+                    >
+                      <InformationCircleIcon className="ml-2 size-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div
+                className={`flex items-center justify-center lg:justify-start ${classes}`}
+                key={title}
+              >
+                <Image
+                  src={icon}
+                  alt={description || ""}
+                  className="mr-3 w-10 h-10"
+                  width={13}
+                  height={16}
+                />
+                <div className="flex flex-col">
+                  <Text
+                    as={"span"}
+                    level="sm"
+                    classnames="font-semibold text-white"
+                  >
+                    {description}
+                  </Text>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 

@@ -2,7 +2,7 @@ import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { renderComponents } from "@/utils/renderComponents";
-import { Container, Text } from "@/components/atoms";
+import { Container } from "@/components/atoms";
 import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
 import React from "react";
 import {

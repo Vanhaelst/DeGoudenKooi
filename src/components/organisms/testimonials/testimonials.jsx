@@ -1,81 +1,26 @@
-"use client";
+import React from "react";
 
-import { clsx } from "clsx";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
-import useMeasure from "react-use-measure";
-import { Container, RichText, Text } from "@/components/atoms";
-import Image from "next/image";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
-import { TestimonialCard } from "@/components/organisms/testimonials/testimonial";
+import { Badges } from "@/components/organisms/badges/badges";
+import { getDictionary } from "@/app/[locale]/dictionaries";
+import { Title } from "@/components/molecules";
+import { Container } from "@/components/atoms";
 
-export function Testimonials({ title, description, backgroundColor }) {
-  let scrollRef = useRef(null);
-  let { scrollX } = useScroll({ container: scrollRef });
-  let [setReferenceWindowRef, bounds] = useMeasure();
-  let [activeIndex, setActiveIndex] = useState(0);
-  let [cards, setCards] = useState(undefined);
+async function getRooms({ language }) {
+  return fetchData(roomsQuery({ language }));
+}
 
-  const bgColor = getBackgroundColor(backgroundColor);
-
-  useEffect(() => {
-    fetchData(roomsQuery({})).then(({ rooms }) => setCards(rooms));
-  }, []);
-
-  useMotionValueEvent(scrollX, "change", (x) => {
-    setActiveIndex(Math.floor(x / scrollRef.current.children[0].clientWidth));
-  });
-
-  function scrollTo(index) {
-    let gap = 32;
-    let width = scrollRef.current.children[0].offsetWidth;
-    scrollRef.current.scrollTo({ left: (width + gap) * index });
-  }
+export async function Testimonials({ locale }) {
+  const { rooms } = await getRooms({ language: locale });
+  const dict = await getDictionary(locale);
 
   return (
-    <div className={`overflow-hidden py-32 ${bgColor}`}>
-      <Container classnames="mb-24">
-        <div
-          className="md:max-w-[60%] lg:max-w-[40%]"
-          ref={setReferenceWindowRef}
-        >
-          {title && (
-            <Text as="h5" level="3xl" classnames="text-secondary-500 font-bold">
-              {title}
-            </Text>
-          )}
-          {description && (
-            <RichText
-              text={description}
-              classnames="text-primary-700 font-light"
-            />
-          )}
-        </div>
+    <section className={`pb-24 sm:pb-32`}>
+      <Container>
+        <Title title={dict.general.discover_all} showIcon={false} />
       </Container>
-      <div
-        ref={scrollRef}
-        className={clsx([
-          "mt-16 flex gap-8 px-[var(--scroll-padding)]",
-          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          "snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth",
-          "[--scroll-padding:max(theme(spacing.6),calc((100vw-theme(maxWidth.2xl))/2))] lg:[--scroll-padding:max(theme(spacing.8),calc((100vw-theme(maxWidth.7xl))/2))]",
-        ])}
-      >
-        {cards?.map((testimonial, testimonialIndex) => (
-          <TestimonialCard
-            key={testimonialIndex}
-            index={testimonialIndex}
-            {...testimonial}
-            bounds={bounds}
-            scrollX={scrollX}
-            locale={document.documentElement.lang}
-            onClick={() => scrollTo(testimonialIndex)}
-          />
-        ))}
-        <div className="w-[42rem] shrink-0 sm:w-[54rem]" />
-      </div>
-    </div>
+      <Badges rooms={rooms} dict={dict} />
+    </section>
   );
 }

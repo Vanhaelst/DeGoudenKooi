@@ -45,6 +45,7 @@ export const AwardSlider = ({
   title,
   description,
   backgroundColor,
+  backgroundImage,
   awards,
   detail,
   slider,
@@ -59,7 +60,10 @@ export const AwardSlider = ({
 
   if (slider) {
     return (
-      <section className={`py-12 px-8 md:px-4`}>
+      <section
+        className={`py-12 px-8 md:px-4`}
+        style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
+      >
         <Container classnames="relative ">
           <Slider {...settings}>
             {awards.map(({ title, image }) => {

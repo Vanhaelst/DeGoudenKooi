@@ -6,6 +6,7 @@ export const Contact = ({
   descriptionLeft,
   descriptionRight,
   buttons,
+  buttonsLeft,
 }) => {
   return (
     <section className="">
@@ -24,6 +25,12 @@ export const Contact = ({
             text={descriptionLeft}
             classnames="text-primary-700 font-light"
           />
+          <div className="space-x-4">
+            {buttonsLeft &&
+              buttonsLeft.map((button) => (
+                <Button key={button.href} {...button} classnames="mt-4" />
+              ))}
+          </div>
         </div>
         <div>
           <RichText

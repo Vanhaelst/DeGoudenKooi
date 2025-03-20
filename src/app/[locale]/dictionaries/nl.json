@@ -30,7 +30,7 @@
     "questions": "Nuttig",
     "amount": "Aantal",
     "time": "Duurtijd",
-    "discover_all": "Ontdek alle onze escape rooms",
+    "discover_all": "Ontdek alle escape games",
     "minAge": "Aanbevolen minimum leeftijd"
   },
   "game": {
@@ -38,6 +38,7 @@
     "watch_teaser": "Bekijk onze teaser",
     "awards_link": "Ontdek ze allemaal op onze",
     "awards_link_bold": "awards pagina",
+    "minAge": "Details onderaan in de faq",
     "inactive": {
       "title": "Momenteel niet actief",
       "walk": "Deze wandeling is momenteel niet actief.",
@@ -46,8 +47,11 @@
     }
   },
   "rate": {
+    "title": "Tarieven",
     "included": "Wat is inclusief",
-    "escape": "per escape game",
+    "game": "per escape game",
+    "experience": "per escape experience",
+    "walk": "per escape walk",
     "person": "p.p.",
     "tag": "Speel met meer, betaal minder",
     "total": "Totaal",

@@ -30,6 +30,7 @@ export const contentEntry = `
               title
               descriptionLeft
               descriptionRight
+              buttonsLeft ${buttonsQuery}
               buttons ${buttonsQuery}
             }
         }

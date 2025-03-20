@@ -11,7 +11,7 @@ import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-export const Prices = ({ title, description, prices, image, t }) => {
+export const Prices = ({ prices, image, t, gameType }) => {
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const Prices = ({ title, description, prices, image, t }) => {
   return (
     <section className={`pb-10 md:py-24 `}>
       <Container classnames="">
-        <Title title={title} description={description} />
+        <Title title={t.title} />
         <div
           className="relative rounded-xl p-2 mt-4 md:mt-12 grid lg:grid-cols-5"
           ref={elementRef}
@@ -37,7 +37,7 @@ export const Prices = ({ title, description, prices, image, t }) => {
             {prices.map(({ price, players }) => (
               <div
                 key={players}
-                className="flex flex-col sm:flex-row md:justify-between relative z-20 mb-4"
+                className="flex flex-col sm:flex-row relative z-20 mb-4"
               >
                 <Text
                   as="p"
@@ -59,7 +59,7 @@ export const Prices = ({ title, description, prices, image, t }) => {
                     <Text as="span" classnames="font-bold">
                       {formatPrice(price)}&nbsp;
                     </Text>
-                    {t.escape}
+                    {t[gameType[0]]}
                   </Text>
 
                   <Text

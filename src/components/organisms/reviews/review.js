@@ -4,7 +4,6 @@ import React from "react";
 import { Review } from "@/components/organisms/reviews/index";
 
 export const Reviews = ({ reviews }) => {
-  console.log("reviews", reviews);
   return (
     <section className={`pb-24 md:py-12 `}>
       <Container classnames="flex justify-center mb-8">

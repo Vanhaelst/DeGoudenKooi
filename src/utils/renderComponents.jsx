@@ -16,15 +16,18 @@ import { CallToAction } from "@/components/organisms/callToAction/callToAction";
 import { Testimonials } from "@/components/organisms/testimonials/testimonials";
 import { Faq } from "@/components/organisms/faq/faq";
 import { Contact } from "@/components/molecules/contact/contact";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
+
+  const dict = getDictionary(locale);
 
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} locale={locale} {...data} />;
     case "awards":
-      return <Awards key={data.id} locale={locale} {...data} />;
+      return <Awards key={data.id} locale={locale} {...data} slider={true} />;
     case "features":
       return <Features key={data.id} locale={locale} {...data} />;
     case "faqs":
@@ -38,7 +41,7 @@ export const renderComponents = (data, locale) => {
     case "grid":
       return <Grid key={data.id} locale={locale} {...data} />;
     case "gamesOverview":
-      return <GamesOverview key={data.id} locale={locale} {...data} />;
+      return <GamesOverview key={data.id} locale={locale} {...data} t={dict} />;
     case "contentImage":
       return <ContentImage key={data.id} locale={locale} {...data} />;
     case "text":

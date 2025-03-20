@@ -27,11 +27,11 @@ export const Feature = ({ title, description, icon, index }) => {
     <div ref={elementRef}>
       <div className="relative flex flex-row items-center">
         <Image
-          src={icon?.url || "/artwork-diamond.png"}
-          alt={icon?.alt || "diamond artwork"}
+          src={icon?.[0]?.url || "/artwork-diamond.png"}
+          alt={icon?.[0]?.alt || "diamond artwork"}
           className="w-10 h-10 mr-2"
-          width={icon?.width || 45}
-          height={icon?.height || 45}
+          width={icon?.[0]?.width || 45}
+          height={icon?.[0]?.height || 45}
         />
         {title && (
           <Text as="h5" level="xl" classnames="text-secondary-500 font-bold">

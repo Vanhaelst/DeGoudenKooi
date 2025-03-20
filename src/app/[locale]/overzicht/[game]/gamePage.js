@@ -111,6 +111,7 @@ export default function GamePage({ data, locale }) {
       icon: "/icon-age.svg",
       description: t.general.minAge,
       classes: "hidden lg:flex",
+      tooltip: t.game.minAge,
     },
     {
       icon: "/icon-coins.svg",
@@ -202,10 +203,10 @@ export default function GamePage({ data, locale }) {
 
         {!isInactive && (
           <Prices
-            title="Tarieven"
             prices={prices}
             image={priceImage[0]}
             t={t.rate}
+            gameType={gameType}
           />
         )}
         {!isInactive && <Bookeo variant={categories[0]} />}

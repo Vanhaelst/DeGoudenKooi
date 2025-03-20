@@ -61,7 +61,7 @@ export default function RootLayout({ children, params }) {
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
       <body
         className={`${font.className} antialiased bg-[length:100%_100%] bg-center`}
-        style={{ backgroundImage: `url('/achtergrond.png')` }}
+        style={{ backgroundImage: "url('/achtergrond.png')" }}
       >
         <TopBar locale={params.locale} />
         <Navigation locale={params.locale} />

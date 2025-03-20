@@ -5,7 +5,6 @@ import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { Container } from "@/components/atoms";
 import { Title } from "@/components/molecules";
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { useSearchParams } from "next/navigation";
 import { awardsQuery } from "@/queries/sections/awards";
 

@@ -1,7 +1,15 @@
 import React from "react";
 import { Container } from "@/components/atoms";
+import { Title } from "@/components/molecules";
 
-export const Video = ({ videoId, videoPlayer, halfBg, id }) => {
+export const Video = ({
+  videoId,
+  videoPlayer,
+  halfBg,
+  id,
+  title,
+  description,
+}) => {
   const bgColor = ""; //getBackgroundColor(backgroundColor);
 
   if (!videoId) {
@@ -13,7 +21,10 @@ export const Video = ({ videoId, videoPlayer, halfBg, id }) => {
       className={`${bgColor & !halfBg ? bgColor : ""} relative py-14`}
       id={id}
     >
-      <Container classnames="aspect-video z-10">
+      <Container classnames="pb-6">
+        <Title title={title} description={description} />
+      </Container>
+      <Container classnames="aspect-video z-10 ">
         {videoPlayer === "vimeo" && (
           <iframe
             src={videoId}

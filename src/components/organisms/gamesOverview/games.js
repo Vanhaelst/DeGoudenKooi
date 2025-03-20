@@ -138,7 +138,7 @@ export const Games = ({
                     height={20}
                   />
                   <Text classnames="text-secondary-500">
-                    {t.general[gameLocation]}
+                    {t.general?.[gameLocation]}
                   </Text>
                 </div>
               </div>
