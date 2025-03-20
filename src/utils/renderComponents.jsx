@@ -23,6 +23,7 @@ export const renderComponents = (data, locale) => {
 
   const dict = getDictionary(locale);
 
+  console.log(typeHandle);
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} locale={locale} {...data} />;

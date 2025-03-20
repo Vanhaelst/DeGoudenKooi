@@ -34,7 +34,7 @@ export const TeamMember = ({ name, image, role, position, index }) => {
       className="list-none flex flex-col items-center space-y-5 opacity-0"
       ref={wrapperRef}
     >
-      <div className="w-40" ref={descriptionRef}>
+      <div className="w-60" ref={descriptionRef}>
         <Images images={image} ref={descriptionRef} animation={false} />
       </div>
       <div className="flex flex-col items-center">

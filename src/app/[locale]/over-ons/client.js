@@ -37,6 +37,7 @@ export const NewsPaginated = ({ news, locale, amount }) => {
     if (page !== 1) {
       getBlogs({ language: locale, offset: page * amount, amount }).then(
         ({ blogs }) => {
+          console.log(blogs);
           setNewsItems((prevState) => [...prevState, ...blogs]);
         },
       );
@@ -50,7 +51,7 @@ export const NewsPaginated = ({ news, locale, amount }) => {
           key={post.id}
           className="relative isolate flex flex-col gap-8 lg:flex-row"
         >
-          <div className="relative aspect-video sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
+          <div className="relative lg:w-64 lg:shrink-0">
             {post.image?.[0]?.url ? (
               <Image
                 alt=""

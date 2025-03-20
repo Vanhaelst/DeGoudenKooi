@@ -57,6 +57,7 @@ export const Content = ({ title, description, buttons, columns }) => {
         <div className={`lg:columns-${columns} gap-x-8`}>
           <div ref={descriptionRef}>
             <RichText
+              level="lg"
               text={description}
               classnames="text-primary-700 font-light"
             />

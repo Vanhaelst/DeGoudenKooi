@@ -10,7 +10,7 @@ export const Contact = ({
 }) => {
   return (
     <section className="">
-      <Container classnames="grid grid-cols-2  gap-x-8">
+      <Container classnames="grid grid-cols-2 gap-x-8">
         <Text
           as="h5"
           level="3xl"
@@ -22,6 +22,7 @@ export const Contact = ({
       <Container classnames="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
         <div>
           <RichText
+            level="lg"
             text={descriptionLeft}
             classnames="text-primary-700 font-light"
           />
@@ -34,6 +35,7 @@ export const Contact = ({
         </div>
         <div>
           <RichText
+            level="lg"
             text={descriptionRight}
             classnames="text-primary-700 font-light"
           />
