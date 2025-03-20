@@ -20,16 +20,16 @@ export const Footer = async ({ locale = "nl" }) => {
     ],
     discover: [
       {
-        name: `${dict.general.location} ${dict.general.haverwerf}`,
-        href: `${LINKS[locale.toUpperCase()].GAME_OVERVIEW}?location=haverwerf`,
-      },
-      {
-        name: `${dict.general.location} ${dict.general.gerechtstraat}`,
-        href: `${LINKS[locale.toUpperCase()].GAME_OVERVIEW}?location=gerechtstraat`,
+        name: dict.topbar.awards,
+        href: LINKS[locale.toUpperCase()].AWARDS,
       },
       {
         name: dict.navigation.activity_deals,
         href: LINKS[locale.toUpperCase()].ACTIVITY_DEALS,
+      },
+      {
+        name: dict.navigation.hotel_deals,
+        href: LINKS[locale.toUpperCase()].HOTEL_DEALS,
       },
       {
         name: dict.navigation.restaurant_deals,
