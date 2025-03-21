@@ -2,7 +2,7 @@ import React from "react";
 import { fetchData } from "@/utils/fetchData";
 import { Loader } from "@/components/atoms/loader/loader";
 import { imageQuery } from "@/queries/entries/image";
-import GamePage from "@/app/[locale]/overzicht/[game]/gamePage";
+import GamePage from "./gamePage";
 import {
   defaultMetadata,
   dutchMetadata,

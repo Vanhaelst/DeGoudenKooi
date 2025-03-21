@@ -5,8 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 
-import "../globals.css";
-import "../slick.css";
+import "./globals.css";
+import "../../slick.css";
 import React from "react";
 import { TopBar } from "@/components/organisms/navigation/top-bar";
 import { Footer } from "@/components/organisms/footer/footer";
