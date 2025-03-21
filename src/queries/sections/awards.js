@@ -1,15 +1,16 @@
 import { imageQuery } from "@/queries/entries/image";
 
-export const awardsQuery = ({ grade }) => `
+export const awardsQuery = ({ visibility, locale = "nl" }) => {
+  return `
     query MyQuery {
-        awards: awardsEntries(limit: 9) {
+        awards: awardsEntries(language: "${locale}", visibility: ${visibility ? `["${visibility}"]` : `[]`}) {
             ...on award_Entry {
             title
             description
             image: awardimage ${imageQuery}
-            class
             categories
             }
-          }          
-  }  
+          }
+  }
 `;
+};

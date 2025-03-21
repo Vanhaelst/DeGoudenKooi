@@ -8,6 +8,9 @@ import { Button, Container, RichText, Text } from "@/components/atoms";
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { fetchData } from "@/utils/fetchData";
+import { roomsQuery } from "@/queries/sections/rooms";
+import { awardsQuery } from "@/queries/sections/awards";
 gsap.registerPlugin(ScrollTrigger);
 
 export const Games = ({
@@ -17,13 +20,13 @@ export const Games = ({
   slug,
   players,
   time,
-  categories,
   gameLocation,
   index,
-  awards,
+  locale,
   t,
 }) => {
   const elementRef = useRef(null);
+  const [awards, setAwards] = useState([]);
 
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
@@ -35,10 +38,15 @@ export const Games = ({
     });
   }, []);
 
+  useEffect(() => {
+    fetchData(awardsQuery({ locale: locale, visibility: "overview" }))
+      .then((res) => {
+        setAwards(res.awards);
+      })
+      .catch((e) => console.log("error", e));
+  }, []);
+
   const isEven = index % 2 === 0;
-  const roomAwards = awards?.filter((award) =>
-    award.categories.includes(categories[0]),
-  );
 
   return (
     <Container key={slug} classnames="">
@@ -91,21 +99,23 @@ export const Games = ({
                 </div>
 
                 <div className="group flex mt-6">
-                  {roomAwards.map(({ image, title }) => {
-                    return (
-                      <div
-                        key={title}
-                        className="tooltip hover:tooltip-open tooltip-bottom mr-2"
-                        data-tip={title}
-                      >
-                        <img
-                          src={image[0].url}
-                          alt={title || ""}
-                          className="h-12 hover:scale-125 transition-all"
-                        />
-                      </div>
-                    );
-                  })}
+                  {awards &&
+                    awards.length > 0 &&
+                    awards.map(({ image, title }) => {
+                      return (
+                        <div
+                          key={title}
+                          className="tooltip hover:tooltip-open tooltip-bottom mr-2"
+                          data-tip={title}
+                        >
+                          <img
+                            src={image[0]?.url}
+                            alt={title || ""}
+                            className="h-12 hover:scale-125 transition-all"
+                          />
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
               <div className="relative lg:col-span-12 flex order-3 mt-6">

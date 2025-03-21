@@ -62,7 +62,7 @@ export const Content = ({ title, description, buttons, columns }) => {
               classnames="text-primary-700 font-light"
             />
           </div>
-          <div className="space-x-4" ref={buttonRef}>
+          <div className="space-y-4 md:space-x-4" ref={buttonRef}>
             {buttons &&
               buttons.map((button) => (
                 <Button key={button.href} {...button} classnames="mt-4" />

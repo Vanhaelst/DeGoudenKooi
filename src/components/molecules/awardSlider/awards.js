@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 const settings = {
   slidesToShow: 5,
   slidesToScroll: 1,
-  infinite: true,
+  infinite: false,
   arrows: true,
   cssEase: "linear",
   responsive: [
@@ -61,10 +61,10 @@ export const AwardSlider = ({
   if (slider) {
     return (
       <section
-        className={`py-12 px-8 md:px-4`}
+        className={`py-12 px-8 md:px-4 bg-cover`}
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
-        <Container classnames="relative ">
+        <Container classnames="relative">
           <Slider {...settings}>
             {awards.map(({ title, image }) => {
               if (!image[0]) {

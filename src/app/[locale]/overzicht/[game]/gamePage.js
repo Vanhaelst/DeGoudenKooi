@@ -23,7 +23,8 @@ import { Reviews } from "@/components/organisms/reviews/review";
 
 export default function GamePage({ data, locale }) {
   const [faq, setFaq] = useState(undefined);
-  const [awards, setAwards] = useState(undefined);
+  const [sliderAwards, setSliderAwards] = useState(undefined);
+  const [heroAwards, setHeroAwards] = useState(undefined);
   const t = locale === "nl" ? nl : en;
 
   const {
@@ -69,17 +70,27 @@ export default function GamePage({ data, locale }) {
     });
 
     fetchData(`query MyQuery {
-        awards: awardsEntries(categories: ["${categories}"]) {
+        sliderAwards: awardsEntries(categories: ["${categories}"], visibility: ["roomsSlider"]) {
             ...on award_Entry {
             title
             description
             image: awardimage ${imageQuery}
-            class
+            visibility
             categories
             }
-          }          
+          } 
+        heroAwards: awardsEntries(categories: ["${categories}"], visibility: ["roomsHero"]) {
+            ...on award_Entry {
+            title
+            description
+            image: awardimage ${imageQuery}
+            visibility
+            categories
+            }
+        }                 
   }  `).then((res) => {
-      setAwards(res.awards);
+      setSliderAwards(res.sliderAwards);
+      setHeroAwards(res.heroAwards);
     });
   }, [categories]);
 
@@ -119,8 +130,6 @@ export default function GamePage({ data, locale }) {
       classes: "",
     },
   ];
-
-  const heroAwards = awards?.filter((award) => award.class === "a");
 
   const reserveButton = !isInactive
     ? {
@@ -188,11 +197,11 @@ export default function GamePage({ data, locale }) {
           thumb={videoImage?.[0]}
         />
 
-        {awards && awards.length && (
+        {sliderAwards && sliderAwards.length && (
           <AwardSlider
             title={`${t.general.the} "${title}" ${t.topbar.awards}`}
             backgroundColor="darkGray"
-            awards={awards}
+            awards={sliderAwards}
             locale={locale}
             slider
             t={t.game}

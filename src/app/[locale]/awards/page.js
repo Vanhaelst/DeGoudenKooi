@@ -49,12 +49,12 @@ async function getPage({ language }) {
   return fetchData(FixedPageQuery({ page: "awardspageEntries", language }));
 }
 
-const getAwards = () => {
-  return fetchData(awardsQuery({}));
+const getAwards = ({ locale }) => {
+  return fetchData(awardsQuery({ locale, visibility: "awardsPage" }));
 };
 
 export default async function Home({ params }) {
-  const { awards } = await getAwards({ language: params.locale });
+  const { awards } = await getAwards({ locale: params.locale });
   const { page } = await getPage({ language: params.locale });
 
   const {

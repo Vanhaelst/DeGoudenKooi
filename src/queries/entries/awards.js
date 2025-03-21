@@ -6,7 +6,7 @@ export const awardsEntry = `
         id
         title
         description
-        grade: class
+        visibility
         backgroundColor
         backgroundImage ${imageQuery}
     }

@@ -26,7 +26,7 @@ export const Contact = ({
             text={descriptionLeft}
             classnames="text-primary-700 font-light"
           />
-          <div className="space-x-4">
+          <div className="space-y-4 md:space-x-4">
             {buttonsLeft &&
               buttonsLeft.map((button) => (
                 <Button key={button.href} {...button} classnames="mt-4" />
@@ -39,7 +39,7 @@ export const Contact = ({
             text={descriptionRight}
             classnames="text-primary-700 font-light"
           />
-          <div className="space-x-4">
+          <div className="space-y-4 md:space-x-4">
             {buttons &&
               buttons.map((button) => (
                 <Button key={button.href} {...button} classnames="mt-4" />

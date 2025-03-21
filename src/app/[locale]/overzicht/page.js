@@ -69,6 +69,7 @@ export default async function Home({ params, searchParams }) {
       <GamesOverview
         title={`${searchParams.location ? `Onze belevingen op locatie "${dict.general[searchParams.location]}"` : ""}`}
         t={dict}
+        locale={params.locale}
       />
 
       {sections?.map((section) => renderComponents(section, params.locale))}

@@ -3,8 +3,8 @@ import { fetchData } from "@/utils/fetchData";
 import { awardsQuery } from "@/queries/sections/awards";
 import { AwardSlider } from "@/components/molecules/awardSlider/awards";
 
-async function getPage({ grade }) {
-  return fetchData(awardsQuery({ grade }));
+async function getPage({ visibility, locale }) {
+  return fetchData(awardsQuery({ visibility, locale }));
 }
 
 export const Awards = async ({
@@ -14,8 +14,9 @@ export const Awards = async ({
   backgroundImage,
   locale,
   slider,
+  visibility,
 }) => {
-  const { awards } = (await getPage({ grade: "" })) ?? undefined;
+  const { awards } = (await getPage({ visibility, locale })) ?? undefined;
 
   if (!awards) {
     return null;
@@ -30,6 +31,7 @@ export const Awards = async ({
       awards={awards}
       locale={locale}
       slider={slider}
+      visibility={visibility}
     />
   );
 };

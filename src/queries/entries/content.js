@@ -24,6 +24,14 @@ export const contentEntry = `
                 image ${imageQuery}
                 order
             }
+            ... on fullWidthImage_Entry {
+                id
+                typeHandle
+                title
+                description
+                buttons ${buttonsQuery}
+                image ${imageQuery}
+            }
             ... on twoColumns_Entry {
               id
               typeHandle

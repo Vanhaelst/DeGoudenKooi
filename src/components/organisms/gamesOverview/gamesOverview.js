@@ -6,7 +6,6 @@ import { roomsQuery } from "@/queries/sections/rooms";
 import { Container } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import { useSearchParams } from "next/navigation";
-import { awardsQuery } from "@/queries/sections/awards";
 
 import gsap from "gsap";
 import { fadeSlide } from "@/utils/gsap";
@@ -14,9 +13,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Games } from "@/components/organisms/gamesOverview/games";
 gsap.registerPlugin(ScrollTrigger);
 
-export const GamesOverview = ({ title, description, t }) => {
+export const GamesOverview = ({ title, description, t, locale }) => {
   const [rooms, setRooms] = useState([]);
-  const [awards, setAwards] = useState([]);
 
   const searchParams = useSearchParams();
   const locationSearch = searchParams.get("location")?.toString();
@@ -29,12 +27,6 @@ export const GamesOverview = ({ title, description, t }) => {
     fetchData(roomsQuery({ type, location }))
       .then((res) => {
         setRooms(res.rooms);
-      })
-      .catch((e) => console.log("error", e));
-
-    fetchData(awardsQuery({}))
-      .then((res) => {
-        setAwards(res.awards);
       })
       .catch((e) => console.log("error", e));
   }, [searchParams, location, type]);
@@ -63,9 +55,9 @@ export const GamesOverview = ({ title, description, t }) => {
           <Games
             key={room.title}
             {...room}
-            awards={awards}
             index={index}
             t={t}
+            locale={locale}
           />
         );
       })}

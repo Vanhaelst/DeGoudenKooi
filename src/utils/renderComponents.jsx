@@ -17,13 +17,13 @@ import { Testimonials } from "@/components/organisms/testimonials/testimonials";
 import { Faq } from "@/components/organisms/faq/faq";
 import { Contact } from "@/components/molecules/contact/contact";
 import { getDictionary } from "@/app/[locale]/dictionaries";
+import { ContentImageFullWidth } from "@/components/organisms/content/image";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
 
   const dict = getDictionary(locale);
 
-  console.log(typeHandle);
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} locale={locale} {...data} />;
@@ -35,18 +35,13 @@ export const renderComponents = (data, locale) => {
       return <Faq key={data.id} locale={locale} {...data} />;
     case "callToAction":
       return <CallToAction key={data.id} locale={locale} {...data} />;
-    case "contents":
-      return <Contents key={data.id} locale={locale} {...data} />;
     case "roomSlider":
       return <Testimonials key={data.id} locale={locale} {...data} />;
     case "grid":
       return <Grid key={data.id} locale={locale} {...data} />;
     case "gamesOverview":
       return <GamesOverview key={data.id} locale={locale} {...data} t={dict} />;
-    case "contentImage":
-      return <ContentImage key={data.id} locale={locale} {...data} />;
-    case "text":
-      return <Content key={data.id} locale={locale} {...data} />;
+
     case "lightbox":
       return <Gallery key={data.id} locale={locale} {...data} />;
     case "video":
@@ -55,8 +50,18 @@ export const renderComponents = (data, locale) => {
       return <Team key={data.id} locale={locale} {...data} />;
     case "accordion":
       return <FaqMolecule key={data.id} locale={locale} {...data} />;
+    // content wrapper
+    case "contents":
+      return <Contents key={data.id} locale={locale} {...data} />;
+    // content Items
+    case "contentImage":
+      return <ContentImage key={data.id} locale={locale} {...data} />;
+    case "fullWidthImage":
+      return <ContentImageFullWidth key={data.id} locale={locale} {...data} />;
     case "twoColumns":
       return <Contact key={data.id} locale={locale} {...data} />;
+    case "text":
+      return <Content key={data.id} locale={locale} {...data} />;
     default:
       return null;
   }

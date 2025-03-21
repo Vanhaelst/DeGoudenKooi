@@ -112,7 +112,7 @@ export const Hero = ({
       <Container classnames="py-20 grid grid-cols-1 lg:grid-cols-2">
         {image && image[0] && (
           <div
-            className={`${detail ? "block lg:hidden" : "hidden"} md:max-w-[60%] md:mx-auto mb-4 lg:pl-10 w-full min-h-40 lg:min-h-96`}
+            className={`${detail ? "block lg:hidden" : "hidden"} md:max-w-[80%] md:mx-auto mb-4 w-full min-h-40 lg:min-h-96`}
           >
             <Images images={image} />
           </div>
@@ -130,7 +130,7 @@ export const Hero = ({
 
         {image && image[0] && (
           <div
-            className={`${detail ? "hidden lg:block" : "hidden lg:block"} md:max-w-[60%] md:mx-auto mb-4 lg:pl-10 w-full min-h-40 lg:min-h-96`}
+            className={`${detail ? "hidden lg:block" : "hidden lg:block"} md:max-w-[80%] md:mx-auto mb-4 w-full min-h-40 lg:min-h-96`}
           >
             <Images images={image} />
           </div>
