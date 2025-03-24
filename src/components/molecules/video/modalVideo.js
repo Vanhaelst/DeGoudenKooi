@@ -87,7 +87,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
             leaveTo="opacity-0 scale-75"
           >
             <div className="mx-auto flex h-full max-w-5xl items-center">
-              <DialogPanel className="aspect-video max-h-full overflow-hidden rounded-3xl bg-black shadow-2xl w-[95vw] md:w-[80vw]">
+              <DialogPanel className="aspect-[21/9] max-h-full overflow-hidden rounded-3xl bg-black shadow-2xl w-[95vw] md:w-[80vw]">
                 {videoPlayer === "vimeo" && (
                   <iframe
                     src={videoId}
@@ -95,7 +95,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
                     allowFullScreen
                     className="video"
                     style={{ width: "100%", height: "100%" }}
-                    title="Dental Office Puurs"
+                    title="De Gouden Kooi"
                   />
                 )}
 
@@ -106,7 +106,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
                     allowFullScreen
                     className="video"
                     style={{ width: "100%", height: "100%" }}
-                    title="Dental Office Puurs"
+                    title="De Gouden Kooi"
                   />
                 )}
               </DialogPanel>

@@ -115,8 +115,13 @@ export const RichText = ({ text = "", classnames, level }) => {
       }
 
       if (name === "a") {
+        console.log(attribs);
         return (
-          <a href={attribs.href} target="_blank" className=" cursor-pointer">
+          <a
+            href={attribs.href}
+            target={attribs?.target ? attribs.target : "_self"}
+            className=" cursor-pointer"
+          >
             <span className="relative underline decoration-accent-500">
               {domToReact(children, options)}
             </span>

@@ -9,6 +9,7 @@ import { gridEntry } from "@/queries/entries/grid";
 import { gameOverviewEntry } from "@/queries/entries/gameOverview";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
+import { videoEntry } from "@/queries/entries/video";
 
 export const SeoQuery = ({ url, language }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -29,6 +30,7 @@ export const SeoQuery = ({ url, language }) => {
             ${gameOverviewEntry}
             ${lightboxEntry}
             ${teamEntry}
+            ${videoEntry}
             ... on accordion_Entry {
               typeHandle
               backgroundColor

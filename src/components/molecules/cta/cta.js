@@ -44,7 +44,7 @@ export const Cta = ({
           {title}
         </Text>
         <RichText text={description} classnames="text-white font-light" />
-        <div className="space-x-2 mt-6">
+        <div className="space-x-2 mt-6 mb-10 md:mb-4">
           {buttons?.map(({ href, variant, callToAction }) => {
             return (
               <Button

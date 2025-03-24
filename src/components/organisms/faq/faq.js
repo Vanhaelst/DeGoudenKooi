@@ -5,17 +5,18 @@ import { Accordion, Title } from "@/components/molecules";
 import { faqQuery } from "@/queries/sections/faq";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
-async function getPage({ categories }) {
-  return fetchData(faqQuery({ categories }));
+async function getPage({ categories, filters }) {
+  return fetchData(faqQuery({ categories, filters }));
 }
 
 export const Faq = async ({
   title,
   description,
   categories,
+  filters,
   backgroundColor,
 }) => {
-  const { faq } = (await getPage({ categories })) ?? undefined;
+  const { faq } = (await getPage({ categories, filters })) ?? undefined;
   const bgColor = getBackgroundColor(backgroundColor);
 
   if (!faq) {
@@ -23,7 +24,7 @@ export const Faq = async ({
   }
 
   return (
-    <section className={`${bgColor} py-24 sm:py-32`}>
+    <section className={`${bgColor} py-18 sm:py-24`}>
       <Container classnames="">
         <Title title={title} description={description} />
         <div className="divide-y">

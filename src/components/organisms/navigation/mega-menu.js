@@ -9,7 +9,7 @@ import { Bars2Icon } from "@heroicons/react/24/solid";
 export const MegaMenu = ({ locale = "nl", dict, setOpen }) => {
   return (
     <header
-      className="fixed top-0 lg:top-9 w-full z-10 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
+      className="fixed top-0 lg:top-9 w-full z-40 bg-cover drop-shadow-xl py-2 md:py-5 lg:py-0"
       style={{ backgroundImage: `url('${CompanyData.heroBg}')` }}
     >
       <nav

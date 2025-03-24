@@ -11,6 +11,7 @@ import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 import { accordionEntry } from "@/queries/entries/accordion";
 import { seoEntry } from "@/queries/entries/seo";
+import { videoEntry } from "@/queries/entries/video";
 
 export const PageQuery = ({ page, language = "nl" }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -33,6 +34,7 @@ export const PageQuery = ({ page, language = "nl" }) => {
             ${lightboxEntry}
             ${teamEntry}
             ${accordionEntry}
+            ${videoEntry}
           }
         }
       }

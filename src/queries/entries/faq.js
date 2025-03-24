@@ -5,6 +5,7 @@ export const faqEntry = `
         title
         description
         categories
+        filters
         backgroundColor
     }
 `;

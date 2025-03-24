@@ -1,8 +1,8 @@
 import { defaultMetadata } from "@/data/metadata";
-import Image from "next/image";
 import { Container, RichText, Text } from "@/components/atoms";
-import { Accordion, Title } from "@/components/molecules";
 import React from "react";
+import { fetchData } from "@/utils/fetchData";
+import { FixedPageQuery } from "@/queries/sections/fixedPage";
 
 export async function generateMetadata({ params }) {
   return {
@@ -35,9 +35,29 @@ const faq = [
       "\n</p>",
   },
 ];
-export default async function Home({ params }) {
+
+async function getPage({ language, location }) {
+  return fetchData(`
+    query MyQuery {
+      tips: tipsEntries(language: "${language}", location: ${location}) {
+        ... on tips_Entry {
+          id
+          title: question
+          description: tip
+        }
+      }
+    }
+  `);
+}
+
+export default async function Tips({ params }) {
+  const { tips } = await getPage({
+    language: params.locale,
+    location: params.location.slice(8),
+  });
+
   return (
-    <main className="bg-[#b0d8f4]">
+    <main className="bg-[#b0d8f4] min-h-[50vh]">
       <Container classnames="py-10 md:py-20">
         <Text as="h5" level="3xl" classnames="text-black mb-4 font-bold">
           Extra tips voor je puzzel
@@ -46,11 +66,11 @@ export default async function Home({ params }) {
         <RichText
           text="<p>Lukt het niet meteen om de puzzel op te lossen? Geen probleem! Klik eerst op ‘Tip 1’. Lukt het dan nog niet dan staat ‘Tip 2’ voor je klaar. Volledige black-out? Ga dan snel verder naar de volgende locatie. De tijd tikt! </p>"
           level="lg"
-          classnames="text-black font-light"
+          classnames="text-black font-light mb-12"
         />
 
         <div className="divide-y ">
-          {faq.map(({ title, description }) => {
+          {tips.map(({ title, description }) => {
             return (
               <div key={title} className="collapse collapse-plus">
                 <input type="checkbox" name="my-accordion-3" />

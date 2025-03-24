@@ -1,3 +1,5 @@
+import { imageQuery } from "@/queries/entries/image";
+
 export const videoEntry = `
     ... on video_Entry {
         typeHandle
@@ -5,6 +7,8 @@ export const videoEntry = `
         title
         description
         videoPlayer
+        videoType
+        image ${imageQuery}
         videoId
     }
 `;
