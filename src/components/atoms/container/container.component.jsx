@@ -1,6 +1,6 @@
 //          <div className="container px-4  ">
 
-export const Container = ({ size, classnames, children }) => {
+export const Container = ({ size, classnames, children, style }) => {
   const getSize = () => {
     switch (size) {
       case "s":
@@ -15,7 +15,10 @@ export const Container = ({ size, classnames, children }) => {
   };
 
   return (
-    <div className={`relative mx-auto ${getSize()} ${classnames}`}>
+    <div
+      className={`relative mx-auto ${getSize()} ${classnames}`}
+      style={style}
+    >
       {children}
     </div>
   );

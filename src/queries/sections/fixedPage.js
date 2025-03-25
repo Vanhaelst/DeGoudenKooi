@@ -11,6 +11,7 @@ import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 import { buttonsQuery } from "@/queries/entries/buttons";
 import { imageQuery } from "@/queries/entries/image";
+import { bannerEntry } from "@/queries/entries/banner";
 
 export const FixedPageQuery = ({ page, language = "nl" }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -26,6 +27,7 @@ export const FixedPageQuery = ({ page, language = "nl" }) => {
           backgroundImage ${imageQuery}
           image ${imageQuery}
           type: heroType
+          textColor
           buttons ${buttonsQuery}
           sections {
             ${heroEntry}
@@ -39,6 +41,7 @@ export const FixedPageQuery = ({ page, language = "nl" }) => {
             ${gameOverviewEntry}
             ${lightboxEntry}
             ${teamEntry}
+            ${bannerEntry}
             ... on accordion_Entry {
               typeHandle
               backgroundColor

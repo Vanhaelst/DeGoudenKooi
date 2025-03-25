@@ -2,7 +2,7 @@ export const LINKS = {
   NL: {
     HOME: "/nl",
     ABOUT: "/nl/over-ons",
-    GAME_OVERVIEW: "/nl/escape-room",
+    GAME_OVERVIEW: "/nl/escape-rooms",
     TEAMBUILDING: "/nl/teambuilding-events",
     CONTACT: "/nl/contact",
     AWARDS: "/nl/awards",

@@ -16,6 +16,7 @@ export const roomsQuery = ({
                       title
                       story
                       icon: iconImage ${imageQuery}
+                      background ${imageQuery}
                       featuredImage ${imageQuery}
                       detailImage ${imageQuery}
                       gameLocation

@@ -115,7 +115,6 @@ export const RichText = ({ text = "", classnames, level }) => {
       }
 
       if (name === "a") {
-        console.log(attribs);
         return (
           <a
             href={attribs.href}

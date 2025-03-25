@@ -37,7 +37,7 @@ const nextConfig = {
       },
       {
         source: "/en/overview",
-        destination: "/en/escape-room",
+        destination: "/en/escape-rooms",
       },
       {
         source: "/en/news",

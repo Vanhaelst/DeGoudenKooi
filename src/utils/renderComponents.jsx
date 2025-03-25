@@ -18,12 +18,14 @@ import { Faq } from "@/components/organisms/faq/faq";
 import { Contact } from "@/components/molecules/contact/contact";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { ContentImageFullWidth } from "@/components/organisms/content/image";
+import { Banner } from "@/components/molecules/banner";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
 
   const dict = getDictionary(locale);
 
+  console.log(typeHandle);
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} locale={locale} {...data} />;
@@ -41,7 +43,8 @@ export const renderComponents = (data, locale) => {
       return <Grid key={data.id} locale={locale} {...data} />;
     case "gamesOverview":
       return <GamesOverview key={data.id} locale={locale} {...data} t={dict} />;
-
+    case "banner":
+      return <Banner key={data.id} locale={locale} {...data} />;
     case "lightbox":
       return <Gallery key={data.id} locale={locale} {...data} />;
     case "video":

@@ -36,12 +36,12 @@ export const Badge = ({
     <a
       ref={elementRef}
       href={slug}
-      className={`group ${length ? "w-36 min-w-36 md:w-48 md:min-w-48 lg:w-[calc(100%/7)] lg:min-w-[calc(100%/7)" : "w-48 min-w-48"} flex flex-col items-center hover:grayscale-0 duration-200 hover:opacity-100 ${gameLocation === searchParams?.location ? "lg:opacity-75" : "lg:opacity-75"}`}
+      className={`group ${length ? "w-36 min-w-36 md:w-48 md:min-w-48 lg:w-[calc(100%/7)] lg:min-w-[calc(100%/7) lg:max-w-60" : "w-48 min-w-48"} flex flex-col items-center hover:grayscale-0 duration-200 hover:opacity-100 ${gameLocation === searchParams?.location ? "lg:opacity-75" : "lg:opacity-75"}`}
     >
       <img
         src={featuredImage[0].url}
         alt={title || ""}
-        className="px-2 lg:px-4 mb-2 perspective object-contain"
+        className="px-2 lg:px-4 mb-2 perspective object-contain hover:scale-105 transition-all duration-500"
       />
       {/*}
       <Text

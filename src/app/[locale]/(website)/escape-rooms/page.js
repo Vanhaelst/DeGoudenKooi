@@ -58,11 +58,12 @@ export default async function Home({ params, searchParams }) {
 
   return (
     <>
-      <section className={`pt-32 lg:py-40`}>
-        <Container>
-          <Title title={dict.general.discover_all} showIcon={false} />
-        </Container>
-
+      <section
+        className={`py-20 lg:pt-32 lg:pb-80 bg-bottom`}
+        style={{
+          backgroundImage: `url('/hero-badges.png')`,
+        }}
+      >
         <Badges rooms={rooms} searchParams={searchParams} dict={dict} />
       </section>
 

@@ -11,21 +11,28 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { awardsQuery } from "@/queries/sections/awards";
+import { clsx } from "clsx";
+import { formatPrice } from "@/utils/formatPrice";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 gsap.registerPlugin(ScrollTrigger);
 
 export const Games = ({
   title,
   story,
+  background,
   featuredImage,
   slug,
   players,
   time,
   gameLocation,
+
+  price6,
   index,
   locale,
   t,
 }) => {
   const elementRef = useRef(null);
+  const featuresRef = useRef(null);
   const [awards, setAwards] = useState([]);
 
   useEffect(() => {
@@ -48,8 +55,41 @@ export const Games = ({
 
   const isEven = index % 2 === 0;
 
+  const features = [
+    {
+      icon: "/icon-location.svg",
+      description: t.general[gameLocation],
+      classes: "",
+    },
+    {
+      icon: "/icon-hourglass-2.svg",
+      description: time,
+      classes: "",
+    },
+    {
+      icon: "/icon-group.svg",
+      description: players,
+      classes: "",
+    },
+    {
+      icon: "/icon-age.svg",
+      description: t.general.minAge,
+      classes: "hidden lg:flex",
+      tooltip: t.game.minAge,
+    },
+    {
+      icon: "/icon-coins.svg",
+      description: `${t.general.from} ${formatPrice(price6 / 6)} p.p.`,
+      classes: "",
+    },
+  ];
+
   return (
-    <Container key={slug} classnames="">
+    <Container
+      key={slug}
+      classnames={clsx(background[0]?.url ? "bg-cover" : "")}
+      style={{ backgroundImage: `url('${background?.[0]?.url}')` }}
+    >
       <div
         className="mt-10 grid grid-cols-1 lg:gap-4 sm:mt-16 lg:grid-cols-12"
         ref={elementRef}
@@ -58,7 +98,7 @@ export const Games = ({
           className={`relative lg:col-span-5 aspect-[16/12] lg:aspect-auto lg:min-h-60 ${isEven ? "lg:order-1" : "lg:order-2"}`}
         >
           <div
-            className=" absolute inset-px lg:rounded-lg w-[70%] lg:w-full mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
+            className=" absolute inset-px lg:rounded-lg w-[70%] md:w-[50%] lg:w-full lg:h-[80%] mt-[10%] mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
             style={{
               backgroundImage: `url('${featuredImage[0]?.url}')`,
             }}
@@ -74,31 +114,81 @@ export const Games = ({
                 <Text
                   as="h5"
                   level="3xl"
-                  classnames="text-secondary-500 mb-4 font-bold"
+                  classnames="text-white font-bold text-center lg:text-left"
                 >
                   {title}
                 </Text>
                 <RichText
                   text={story}
                   level="lg"
-                  classnames="text-primary-700 mb-4 font-light"
+                  classnames="text-white pb-6 lg:mb-4 font-light text-center lg:text-left"
                 />
-                <div className="space-x-3">
-                  <Button
-                    variant="primary-outline"
-                    href={slug}
-                    callToAction="MEER WETEN"
-                    size="medium"
-                  />
-                  <Button
-                    variant="secondary"
-                    href={slug}
-                    callToAction="BOEK NU"
-                    size="medium"
-                  />
-                </div>
 
-                <div className="group flex mt-6">
+                {features && (
+                  <div className="grid grid-cols-2 gap-y-4" ref={featuresRef}>
+                    {features.map(
+                      ({ title, description, classes, icon, tooltip }) => {
+                        if (tooltip) {
+                          return (
+                            <div
+                              className={`flex items-center justify-center lg:justify-start ${classes}`}
+                              key={title}
+                            >
+                              <Image
+                                src={icon}
+                                alt={description || ""}
+                                className="mr-3 w-10 h-10"
+                                width={13}
+                                height={16}
+                              />
+                              <div className="flex flex-row md:max-w-[60%]">
+                                <Text
+                                  as={"span"}
+                                  level="sm"
+                                  classnames="font-semibold text-white"
+                                >
+                                  {description}
+                                  <div
+                                    className="hover:cursor-pointer tooltip"
+                                    data-tip={tooltip}
+                                  >
+                                    <InformationCircleIcon className="ml-2 size-5 text-white" />
+                                  </div>
+                                </Text>
+                              </div>
+                            </div>
+                          );
+                        }
+
+                        return (
+                          <div
+                            className={`flex items-center justify-center lg:justify-start ${classes}`}
+                            key={title}
+                          >
+                            <Image
+                              src={icon}
+                              alt={description || ""}
+                              className="mr-3 w-10 h-10"
+                              width={13}
+                              height={16}
+                            />
+                            <div className="flex flex-col">
+                              <Text
+                                as={"span"}
+                                level="sm"
+                                classnames="font-semibold text-white"
+                              >
+                                {description}
+                              </Text>
+                            </div>
+                          </div>
+                        );
+                      },
+                    )}
+                  </div>
+                )}
+
+                <div className="group flex my-6 justify-center lg:justify-start">
                   {awards &&
                     awards.length > 0 &&
                     awards.map(({ image, title }) => {
@@ -117,39 +207,20 @@ export const Games = ({
                       );
                     })}
                 </div>
-              </div>
-              <div className="relative lg:col-span-12 flex order-3 mt-6">
-                <div className="flex mr-4">
-                  <Image
-                    src="/icon-group-dark.svg"
-                    alt="zandloper"
-                    className="mr-2"
-                    width={21}
-                    height={14}
+
+                <div className="space-x-3 flex justify-center lg:justify-start">
+                  <Button
+                    variant="white-outline"
+                    href={slug}
+                    callToAction="MEER WETEN"
+                    size="medium"
                   />
-                  <Text classnames="text-secondary-500">{players}</Text>
-                </div>
-                <div className="flex mr-4">
-                  <Image
-                    src="/icon-hourglass-dark.svg"
-                    alt="zandloper"
-                    className="mr-2"
-                    width={13}
-                    height={16}
+                  <Button
+                    variant="primary"
+                    href={`${slug}#bookeo-position`}
+                    callToAction="BOEK NU"
+                    size="medium"
                   />
-                  <Text classnames="text-secondary-500">{time}</Text>
-                </div>
-                <div className="flex mr-4">
-                  <Image
-                    src="/icon-location-dark.svg"
-                    alt="zandloper"
-                    className="mr-2"
-                    width={20}
-                    height={20}
-                  />
-                  <Text classnames="text-secondary-500">
-                    {t.general?.[gameLocation]}
-                  </Text>
                 </div>
               </div>
             </div>

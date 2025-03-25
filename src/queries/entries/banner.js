@@ -1,17 +1,13 @@
 import { imageQuery } from "@/queries/entries/image";
 import { buttonsQuery } from "@/queries/entries/buttons";
 
-export const heroEntry = `
-    ... on hero_Entry {
+export const bannerEntry = `
+    ... on banner_Entry {
         typeHandle
-              id
-        backgroundColor
+        id
         title
         description
-        textColor
-        backgroundImage ${imageQuery}
-        image ${imageQuery}
-        type: heroType
         buttons ${buttonsQuery}
+        backgroundImage ${imageQuery}
     }
 `;

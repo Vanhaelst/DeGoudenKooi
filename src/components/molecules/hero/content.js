@@ -17,6 +17,7 @@ export const HeroContent = ({
   description,
   buttons,
   features,
+  textColor,
   detail = false,
 }) => {
   const titleRef = useRef(null);
@@ -72,20 +73,30 @@ export const HeroContent = ({
     });
   }, []);
 
+  const getColor = () => {
+    switch (textColor) {
+      case "white":
+        return "text-white";
+      case "primary":
+        return "text-primary-500";
+      default:
+        return "text-secondary-500";
+    }
+  };
   return (
     <div className="flex justify-center flex-col">
       <div ref={titleRef} className="pb-8">
         <Text
           as={"h1"}
           level="4xl"
-          classnames={`${detail ? "text-white" : "text-secondary-500"} text-center lg:text-left font-black`}
+          classnames={`${detail ? "text-white" : getColor()} text-center lg:text-left font-black`}
         >
           {title}
         </Text>
         <Text
           as={"h3"}
           level="2xl"
-          classnames={`${detail ? "text-white" : "text-secondary-500"} text-center lg:text-left italic `}
+          classnames={`${detail ? "text-white" : getColor()} text-center lg:text-left italic `}
         >
           {subtitle}
         </Text>
@@ -94,7 +105,8 @@ export const HeroContent = ({
         <div ref={descriptionRef}>
           <RichText
             text={description}
-            classnames="text-primary-700 font-light"
+            level="lg"
+            classnames={`${detail ? "text-primary-700" : getColor()}  font-light`}
           />
         </div>
       )}

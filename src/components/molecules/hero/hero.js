@@ -20,6 +20,7 @@ export const Hero = ({
   description,
   buttons,
   image,
+  textColor,
   backgroundImage,
   type,
   backgroundColor,
@@ -74,6 +75,7 @@ export const Hero = ({
 
         <Container classnames="py-20">
           <HeroContent
+            textColor={textColor}
             title={title}
             description={description}
             buttons={buttons}
@@ -91,6 +93,7 @@ export const Hero = ({
       >
         <Container classnames="py-20">
           <HeroContent
+            textColor={textColor}
             title={title}
             description={description}
             buttons={buttons}
@@ -119,6 +122,7 @@ export const Hero = ({
         )}
 
         <HeroContent
+          textColor={textColor}
           detail={detail}
           title={title?.toUpperCase()}
           subtitle={subtitle}

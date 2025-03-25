@@ -119,7 +119,7 @@ export const Button = ({
   }
 
   return (
-    <a
+    <Link
       href={foo.url}
       className={`${fullWidth ? "w-full" : ""} `}
       target={foo.target}
@@ -134,6 +134,6 @@ export const Button = ({
       >
         {callToAction}
       </button>
-    </a>
+    </Link>
   );
 };

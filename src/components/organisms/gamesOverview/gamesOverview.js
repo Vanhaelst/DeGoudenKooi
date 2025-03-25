@@ -45,7 +45,7 @@ export const GamesOverview = ({ title, description, t, locale }) => {
   if (!rooms) return;
 
   return (
-    <section className={`pb-24 sm:pb-32 min-h-[80vh]`}>
+    <section className={`pb-24 sm:pb-32 min-h-[80vh] lg:-mt-60`}>
       <Container classnames="mb-10">
         <Title title={title} description={description} />
       </Container>

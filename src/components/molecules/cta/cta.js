@@ -16,7 +16,8 @@ export const Cta = ({
 }) => {
   const elementRef = useRef(null);
 
-  useEffect(() => {
+  {
+    /*  useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {
       ...fadeSlide.to,
       delay: 0.5,
@@ -26,7 +27,8 @@ export const Cta = ({
       },
     });
   }, []);
-
+*/
+  }
   return (
     <div
       className={`bg-primary-500 rounded-3xl bg-no-repeat bg-contain bg-right-bottom ${pullUp ? "relative -top-20" : ""}`}

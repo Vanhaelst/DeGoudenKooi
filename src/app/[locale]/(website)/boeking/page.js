@@ -56,6 +56,7 @@ export default async function Home({ params }) {
     image,
     buttons,
     type,
+    textColor,
     backgroundColor,
     backgroundImage,
     sections,
@@ -70,9 +71,12 @@ export default async function Home({ params }) {
         image={image}
         backgroundImage={backgroundImage}
         backgroundColor={backgroundColor}
+        textColor={textColor}
       />
 
-      <Bookeo locale={params.locale} />
+      <div className="-my-24">
+        <Bookeo locale={params.locale} />
+      </div>
       {sections?.map((section) => renderComponents(section, params.locale))}
     </>
   );
