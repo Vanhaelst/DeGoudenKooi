@@ -88,7 +88,7 @@ export const AwardSlider = ({
   }
 
   return (
-    <section className={`py-24 sm:py-32`}>
+    <section className={`py-12 sm:py-16`}>
       <Container classnames="pb-12 flex flex-col items-center">
         <Title title={title} description={description} />
       </Container>

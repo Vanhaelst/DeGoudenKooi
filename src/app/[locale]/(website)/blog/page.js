@@ -1,29 +1,42 @@
-import { fetchData } from "@/utils/fetchData";
-import { PageQuery } from "@/queries/sections/page";
-import { roomsQuery } from "@/queries/sections/rooms";
-import { renderComponents } from "@/utils/renderComponents";
-import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOverview";
 import React from "react";
+import { fetchData } from "@/utils/fetchData";
+import { Container } from "@/components/atoms";
+import { imageQuery } from "@/queries/entries/image";
+import { renderComponents } from "@/utils/renderComponents";
+import { PageQuery } from "@/queries/sections/page";
 import {
   defaultMetadata,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
-import { getDictionary } from "@/app/[locale]/dictionaries";
 import { SeoQuery } from "@/queries/sections/seo";
-import { Badges } from "@/components/organisms/badges/badges";
+import { NewsPaginated } from "./client";
 
-async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "overviewEntries", language }));
+async function getPage() {
+  return fetchData(PageQuery({ page: "blogEntries" }));
 }
 
-async function getRooms({ language }) {
-  return fetchData(roomsQuery({ language }));
+const amount = 5;
+async function getBlogs({ language }) {
+  return fetchData(
+    `query MyQuery {
+      blogs: blogsEntries(language: "${language}", orderBy: "postDate desc", limit: ${amount}) {
+        ... on newsItem_Entry {
+          id
+          slug: uri
+          title
+          description: shortDescription
+          image ${imageQuery}
+        }
+      }
+      count: entryCount(section: "blogs")
+    }`,
+  );
 }
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
-    SeoQuery({ page: "overviewEntries", language: params.locale }),
+    SeoQuery({ page: "blogEntries", language: params.locale }),
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};
@@ -46,28 +59,24 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params, searchParams }) {
+export default async function Home({ params }) {
   const { page } = await getPage({ language: params.locale });
-  const { rooms } = await getRooms({ language: params.locale });
-
-  const dict = await getDictionary(params.locale);
+  const { blogs, count } = await getBlogs({ language: params.locale });
 
   const sections = page[0]?.sections;
 
   return (
     <>
-      <section
-        className={`py-20 lg:pt-32 lg:pb-80 bg-bottom bg-cover`}
-        style={{
-          backgroundImage: `url('/hero-badges.png')`,
-        }}
-      >
-        <Badges defaultRooms={rooms} dict={dict} filter={true} />
-      </section>
-
-      <GamesOverview defaultRooms={rooms} t={dict} locale={params.locale} />
-
       {sections?.map((section) => renderComponents(section, params.locale))}
+
+      <Container classnames="mb-28">
+        <NewsPaginated
+          news={blogs}
+          locale={params.locale}
+          amount={amount}
+          count={count}
+        />
+      </Container>
     </>
   );
 }

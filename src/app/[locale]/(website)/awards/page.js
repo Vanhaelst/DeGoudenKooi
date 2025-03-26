@@ -80,7 +80,7 @@ export default async function Home({ params }) {
         backgroundColor={backgroundColor}
       />
 
-      <section className="py-24 sm:py-32">
+      <section className="py-12 sm:py-16">
         <Container classnames="grid grid-cols-12 relative">
           <div className="col-span-1" />
           <ul

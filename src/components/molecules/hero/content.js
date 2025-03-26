@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export const HeroContent = ({
@@ -137,12 +138,13 @@ export const HeroContent = ({
                     >
                       {description}
                     </Text>
-                    <div
+                    <Link
+                      href="#faq"
                       className="hover:cursor-pointer tooltip"
                       data-tip={tooltip}
                     >
                       <InformationCircleIcon className="ml-2 size-5 text-white" />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               );

@@ -220,6 +220,7 @@ export default function GamePage({ data, locale }) {
         )}
         {!isInactive && <Bookeo variant={categories[0]} />}
 
+        <div id="faq" />
         <Faq title={`FAQ: ${title}`} backgroundColor="lightGray" faq={faq} />
       </div>
     </main>

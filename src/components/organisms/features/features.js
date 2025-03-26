@@ -6,7 +6,7 @@ import { getBackgroundColor } from "@/utils/getBackgroundColor";
 export const Features = ({ title, description, features, backgroundColor }) => {
   const bgColor = getBackgroundColor(backgroundColor);
   return (
-    <section className={`${bgColor} py-24 sm:py-32`}>
+    <section className={`${bgColor} py-12 sm:py-16`}>
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>

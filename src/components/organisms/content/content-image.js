@@ -58,7 +58,7 @@ export const ContentImage = ({
               <div className="space-y-4 md:space-x-4">
                 {buttons &&
                   buttons.map((button) => (
-                    <Button key={button.href} {...button} classnames="mt-4" />
+                    <Button key={button?.href} {...button} classnames="mt-4" />
                   ))}
               </div>
             </div>

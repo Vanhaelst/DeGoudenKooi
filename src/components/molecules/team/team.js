@@ -28,7 +28,7 @@ export const Team = async ({ title, description, backgroundColor }) => {
   const { team } = await getTeam();
 
   return (
-    <section className={`${bgColor} py-24 sm:py-32`}>
+    <section className={`${bgColor} py-12 sm:py-16`}>
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>

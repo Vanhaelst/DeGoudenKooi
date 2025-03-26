@@ -5,7 +5,7 @@ export const Contents = ({ contentItem, backgroundColor }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
   return (
-    <div className={`${bgColor} py-24 sm:py-32 space-y-8 md:space-y-16`}>
+    <div className={`${bgColor} py-12 sm:py-16 space-y-8 md:space-y-16`}>
       {contentItem?.map((section) => renderComponents(section))}{" "}
     </div>
   );

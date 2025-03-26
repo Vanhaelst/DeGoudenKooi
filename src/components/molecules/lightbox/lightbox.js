@@ -53,7 +53,7 @@ export const Gallery = ({ id, title, description, bgColor, images }) => {
   }, []);
 
   return (
-    <div className={`${bgColor} py-24 sm:py-32`}>
+    <div className={`${bgColor} py-12 sm:py-16`}>
       <Container classnames="mb-24">
         <Title title={title} description={description} />
       </Container>

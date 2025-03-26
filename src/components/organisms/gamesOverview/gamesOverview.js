@@ -13,7 +13,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Games } from "@/components/organisms/gamesOverview/games";
 gsap.registerPlugin(ScrollTrigger);
 
-export const GamesOverview = ({ title, description, t, locale }) => {
+export const GamesOverview = ({
+  defaultRooms,
+  title,
+  description,
+  t,
+  locale,
+}) => {
   const [rooms, setRooms] = useState([]);
 
   const searchParams = useSearchParams();
@@ -24,12 +30,17 @@ export const GamesOverview = ({ title, description, t, locale }) => {
   const type = typeSearch ? `"${typeSearch}"` : undefined;
 
   useEffect(() => {
-    fetchData(roomsQuery({ type, location }))
-      .then((res) => {
-        setRooms(res.rooms);
-      })
-      .catch((e) => console.log("error", e));
-  }, [searchParams, location, type]);
+    setRooms([]);
+    if (type || location) {
+      fetchData(roomsQuery({ type, location }))
+        .then((res) => {
+          setRooms(res.rooms);
+        })
+        .catch((e) => console.log("error", e));
+    } else {
+      setRooms(defaultRooms);
+    }
+  }, [defaultRooms, searchParams, location, type]);
 
   const elementRef = useRef(null);
 
@@ -45,7 +56,7 @@ export const GamesOverview = ({ title, description, t, locale }) => {
   if (!rooms) return;
 
   return (
-    <section className={`pb-24 sm:pb-32 min-h-[80vh] lg:-mt-60`}>
+    <section className={`pb-24 sm:pb-32 min-h-[80vh] lg:-mt-52`}>
       <Container classnames="mb-10">
         <Title title={title} description={description} />
       </Container>

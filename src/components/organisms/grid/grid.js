@@ -9,7 +9,7 @@ export const Grid = ({ title, description, gridItems, backgroundColor }) => {
 
   return (
     <section className={bgColor}>
-      <Container classnames="py-24 sm:py-32">
+      <Container classnames="py-12 sm:py-16">
         <Title title={title} description={description} />
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 md:grid-cols-12 md:grid-rows-2">

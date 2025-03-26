@@ -25,7 +25,7 @@ export const Games = ({
   players,
   time,
   gameLocation,
-
+  categories,
   price6,
   index,
   locale,
@@ -46,7 +46,14 @@ export const Games = ({
   }, []);
 
   useEffect(() => {
-    fetchData(awardsQuery({ locale: locale, visibility: "overview" }))
+    console.log(categories);
+    fetchData(
+      awardsQuery({
+        locale: locale,
+        visibility: "overview",
+        categories: categories,
+      }),
+    )
       .then((res) => {
         setAwards(res.awards);
       })
@@ -91,7 +98,7 @@ export const Games = ({
       style={{ backgroundImage: `url('${background?.[0]?.url}')` }}
     >
       <div
-        className="mt-10 grid grid-cols-1 lg:gap-4 sm:mt-16 lg:grid-cols-12"
+        className="mt-10 grid grid-cols-1 lg:gap-4 sm:mt-16 lg:grid-cols-12 opacity-0"
         ref={elementRef}
       >
         <div
@@ -126,65 +133,31 @@ export const Games = ({
 
                 {features && (
                   <div className="grid grid-cols-2 gap-y-4" ref={featuresRef}>
-                    {features.map(
-                      ({ title, description, classes, icon, tooltip }) => {
-                        if (tooltip) {
-                          return (
-                            <div
-                              className={`flex items-center justify-center lg:justify-start ${classes}`}
-                              key={title}
+                    {features.map(({ title, description, classes, icon }) => {
+                      return (
+                        <div
+                          className={`flex items-center justify-center lg:justify-start ${classes}`}
+                          key={title}
+                        >
+                          <Image
+                            src={icon}
+                            alt={description || ""}
+                            className="mr-3 w-10 h-10"
+                            width={13}
+                            height={16}
+                          />
+                          <div className="flex flex-col">
+                            <Text
+                              as={"span"}
+                              level="sm"
+                              classnames="font-semibold text-white"
                             >
-                              <Image
-                                src={icon}
-                                alt={description || ""}
-                                className="mr-3 w-10 h-10"
-                                width={13}
-                                height={16}
-                              />
-                              <div className="flex flex-row md:max-w-[60%]">
-                                <Text
-                                  as={"span"}
-                                  level="sm"
-                                  classnames="font-semibold text-white"
-                                >
-                                  {description}
-                                  <div
-                                    className="hover:cursor-pointer tooltip"
-                                    data-tip={tooltip}
-                                  >
-                                    <InformationCircleIcon className="ml-2 size-5 text-white" />
-                                  </div>
-                                </Text>
-                              </div>
-                            </div>
-                          );
-                        }
-
-                        return (
-                          <div
-                            className={`flex items-center justify-center lg:justify-start ${classes}`}
-                            key={title}
-                          >
-                            <Image
-                              src={icon}
-                              alt={description || ""}
-                              className="mr-3 w-10 h-10"
-                              width={13}
-                              height={16}
-                            />
-                            <div className="flex flex-col">
-                              <Text
-                                as={"span"}
-                                level="sm"
-                                classnames="font-semibold text-white"
-                              >
-                                {description}
-                              </Text>
-                            </div>
+                              {description}
+                            </Text>
                           </div>
-                        );
-                      },
-                    )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
 

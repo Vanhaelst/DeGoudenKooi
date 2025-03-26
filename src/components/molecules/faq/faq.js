@@ -2,7 +2,6 @@ import React from "react";
 
 import { Container } from "@/components/atoms";
 import { Accordion, Title } from "@/components/molecules";
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
 export const Faq = ({ title, description, faq, backgroundColor }) => {
   if (!faq) {
@@ -10,7 +9,7 @@ export const Faq = ({ title, description, faq, backgroundColor }) => {
   }
 
   return (
-    <section className={`py-24 sm:py-32 md:pb-48`}>
+    <section className={`py-12 sm:py-16 md:pb-48`}>
       <Container classnames="">
         <Title title={title} description={description} />
         <div className="divide-y">

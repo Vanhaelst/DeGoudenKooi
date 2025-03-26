@@ -120,7 +120,7 @@ export const Button = ({
 
   return (
     <Link
-      href={foo.url}
+      href={foo.url || ""}
       className={`${fullWidth ? "w-full" : ""} `}
       target={foo.target}
     >

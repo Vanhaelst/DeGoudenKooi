@@ -19,6 +19,10 @@ export const TopBar = async ({ locale = "nl" }) => {
       name: dict.topbar.news,
       href: LINKS[locale.toUpperCase()].NEWS,
     },
+    {
+      name: dict.topbar.blog,
+      href: LINKS[locale.toUpperCase()].BLOG,
+    },
   ];
 
   return (
