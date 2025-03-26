@@ -1,4 +1,5 @@
 import { buttonsQuery } from "@/queries/entries/buttons";
+import { imageQuery } from "@/queries/entries/image";
 
 export const callToActionEntry = `
     ... on callToAction_Entry {
@@ -7,6 +8,7 @@ export const callToActionEntry = `
         title
         description
         buttons ${buttonsQuery}
+        image ${imageQuery}
         pullUp
         backgroundColor
     }

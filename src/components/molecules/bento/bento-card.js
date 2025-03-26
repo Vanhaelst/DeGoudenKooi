@@ -28,66 +28,13 @@ export const BentoCard = ({
     });
   }, []);
 
-  if (isBackgroundAsset) {
-    return (
-      <div
-        className="overflow-hidden bg-cover bg-center w-full ring-1 ring-white/15 rounded-2xl flex flex-col justify-between bg-secondary-500"
-        style={{ backgroundImage: `url("${image?.[0].url}")` }}
-        ref={elementRef}
-      >
-        <div className="p-7">
-          {title && (
-            <Text as="h5" level="lg" classnames="text-white font-bold">
-              {title}
-            </Text>
-          )}
-          {description && (
-            <RichText text={description} classnames="text-white font-light" />
-          )}
-        </div>
-
-        <div className="p-7 mt-32 md:mt-0">
-          {buttons &&
-            buttons.map((button) => (
-              <Button key={button.href} {...button} classnames="mt-4" />
-            ))}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div
-      className="overflow-hidden bg-white w-full flex flex-col justify-between ring-1 ring-white/15 rounded-2xl"
-      ref={elementRef}
-    >
-      <div className="p-7">
-        {title && (
-          <Text as="h5" level="lg" classnames="text-secondary-500 font-bold">
-            {title}
-          </Text>
-        )}
-        {description && (
-          <RichText
-            text={description}
-            classnames="text-primary-700 font-light"
-          />
-        )}
-        {buttons &&
-          buttons.map((button) => (
-            <Button key={button.href} {...button} classnames="mt-4" />
-          ))}
-      </div>
-
-      {image && (
-        <Image
-          alt={title || ""}
-          src={image?.[0].url}
-          width={image?.[0].width}
-          height={image?.[0].height}
-          className="h-60 lg:h-80 w-full object-cover object-left bg-primary-500 rounded-2xl"
-        />
-      )}
-    </div>
+    <Image
+      alt={title || ""}
+      src={image?.[0].url}
+      width={image?.[0].width}
+      height={image?.[0].height}
+      className="h-60 lg:h-80 w-full  object-contain"
+    />
   );
 };

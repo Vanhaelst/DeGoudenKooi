@@ -4,6 +4,7 @@ import { CompanyData } from "@/data/companyData";
 import { LINKS } from "@/enums/links";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import ImageWithFallback from "@/utils/Image";
+import Link from "next/link";
 
 export const Footer = async ({ locale = "nl" }) => {
   const dict = await getDictionary(locale);
@@ -213,12 +214,19 @@ export const Footer = async ({ locale = "nl" }) => {
               </div>
             </div>
           </div>
-          <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 md:flex md:items-center md:justify-between lg:mt-10">
+          <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 flex flex-col-reverse md:flex-row md:items-center md:justify-between lg:mt-10 ">
             <Text as="p" level="xs" classnames="text-white">
-              &copy; {new Date().getFullYear()} De Gouden Kooi | Publiplus
+              &copy; {new Date().getFullYear()} De Gouden Kooi |{" "}
+              <Link
+                href="https://www.publiplus.be"
+                target="_blank"
+                className="hover:underline"
+              >
+                Publiplus
+              </Link>
             </Text>
 
-            <div className="flex gap-x-6 md:order-2">
+            <div className="flex gap-x-6 md:order-2 mb-4 md:mb-0">
               {navigation.social.map((item) => (
                 <a key={item.name} href={item.href} className="transition-all">
                   <span className="sr-only">{item.name}</span>

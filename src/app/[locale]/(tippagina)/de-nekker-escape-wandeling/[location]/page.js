@@ -3,6 +3,8 @@ import { Container, RichText, Text } from "@/components/atoms";
 import React from "react";
 import { fetchData } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
+import { imageQuery } from "@/queries/entries/image";
+import Image from "next/image";
 
 export async function generateMetadata({ params }) {
   return {
@@ -44,6 +46,7 @@ async function getPage({ language, location }) {
           id
           title: question
           description: tip
+          image ${imageQuery}
         }
       }
     }
@@ -70,7 +73,8 @@ export default async function Tips({ params }) {
         />
 
         <div className="divide-y ">
-          {tips.map(({ title, description }) => {
+          {tips.map(({ title, description, image }) => {
+            console.log(image);
             return (
               <div key={title} className="collapse collapse-plus">
                 <input type="checkbox" name="my-accordion-3" />
@@ -85,6 +89,15 @@ export default async function Tips({ params }) {
                     level="md"
                     classnames="text-black font-light"
                   />
+                  {image[0]?.url && (
+                    <Image
+                      src={image[0].url}
+                      alt={image[0].alt || title}
+                      width={image[0].width}
+                      height={image[0].height}
+                      className="w-full rounded-2xl"
+                    />
+                  )}
                 </div>
               </div>
             );
