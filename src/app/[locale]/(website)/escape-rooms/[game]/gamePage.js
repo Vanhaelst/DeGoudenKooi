@@ -159,6 +159,7 @@ export default function GamePage({ data, locale }) {
         features={features}
         awards={heroAwards}
         buttons={[reserveButton]}
+        gameType={t.general[gameType]}
       />
 
       {isInactive && (
@@ -189,7 +190,7 @@ export default function GamePage({ data, locale }) {
           thumb={videoImage?.[0]}
         />
 
-        {sliderAwards && sliderAwards.length && (
+        {sliderAwards && sliderAwards.length ? (
           <AwardSlider
             title={`${t.general.the} "${title}" ${t.topbar.awards}`}
             backgroundColor="darkGray"
@@ -198,7 +199,7 @@ export default function GamePage({ data, locale }) {
             slider
             t={t.game}
           />
-        )}
+        ) : null}
 
         <Reviews reviews={reviews} />
 

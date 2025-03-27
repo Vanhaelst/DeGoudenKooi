@@ -20,6 +20,7 @@ export const HeroContent = ({
   features,
   textColor,
   detail = false,
+  gameType,
 }) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -101,6 +102,11 @@ export const HeroContent = ({
         >
           {subtitle}
         </Text>
+        {gameType ? (
+          <Text as={"span"} level="sm" classnames="font-semibold text-white">
+            {gameType}
+          </Text>
+        ) : null}
       </div>
       {description && (
         <div ref={descriptionRef}>

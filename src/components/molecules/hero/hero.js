@@ -28,6 +28,7 @@ export const Hero = ({
   videoPlayer = "youtube",
   features,
   detail,
+  gameType,
 }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
@@ -79,6 +80,7 @@ export const Hero = ({
             title={title}
             description={description}
             buttons={buttons}
+            gameType={gameType}
           />
         </Container>
       </section>
@@ -97,6 +99,7 @@ export const Hero = ({
             title={title}
             description={description}
             buttons={buttons}
+            gameType={gameType}
           />
           <Images images={image} />
         </Container>
@@ -130,6 +133,7 @@ export const Hero = ({
           buttons={buttons}
           features={features}
           awards={awards}
+          gameType={gameType}
         />
 
         {image && image[0] && (

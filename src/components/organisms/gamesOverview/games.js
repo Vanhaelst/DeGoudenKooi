@@ -29,6 +29,7 @@ export const Games = ({
   price6,
   index,
   locale,
+  gameType,
   t,
 }) => {
   const elementRef = useRef(null);
@@ -127,8 +128,23 @@ export const Games = ({
                 <RichText
                   text={story}
                   level="lg"
-                  classnames="text-white pb-6 lg:mb-4 font-light text-center lg:text-left"
+                  classnames={clsx(
+                    "text-white font-light text-center lg:text-left",
+                    gameType ? "mb-2" : "pb-6 lg:mb-4",
+                  )}
                 />
+                {gameType ? (
+                  <Text
+                    as={"p"}
+                    level="sm"
+                    classnames={clsx(
+                      "font-semibold text-white",
+                      gameType ? "pb-6 lg:mb-4" : "mb-2",
+                    )}
+                  >
+                    {t.general[gameType]}
+                  </Text>
+                ) : null}
 
                 {features && (
                   <div className="grid grid-cols-2 gap-y-4" ref={featuresRef}>
