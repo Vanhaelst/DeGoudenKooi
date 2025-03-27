@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Text } from "@/components/atoms";
 
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";

@@ -25,7 +25,9 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
         })
         .catch((e) => console.log("error", e));
     } else {
-      setRooms(defaultRooms);
+      setTimeout(() => {
+        setRooms(defaultRooms);
+      }, 100);
     }
   }, [defaultRooms, searchParams, type]);
 
@@ -35,12 +37,12 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
     <div>
       <div className="badges w-full flex justify-center mt-12">
         <div className="flex overflow-x-scroll hide-scrollbar px-10 min-h-44">
-          {rooms?.map((room, index) => (
+          {rooms?.map((room, id) => (
             <Badge
               key={room.title}
               searchParams={searchParams}
               dict={dict}
-              index={index}
+              index={id}
               length={rooms.length}
               {...room}
             />

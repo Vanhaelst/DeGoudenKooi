@@ -13,6 +13,7 @@ export const roomsQuery = ({
           query MyQuery {
               rooms: roomsEntries(language: "${locale}", gameType: [${type}], gameLocation: [${location}]) {
                   ... on game_Entry {
+                      id
                       title
                       story
                       icon: iconImage ${imageQuery}
