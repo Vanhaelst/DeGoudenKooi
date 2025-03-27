@@ -18,7 +18,7 @@ export const Cta = ({
 }) => {
   const elementRef = useRef(null);
 
-  if (image) {
+  if (image?.[0]) {
     return (
       <div
         className={`bg-primary-500 rounded-3xl bg-no-repeat bg-contain bg-right-bottom grid md:grid-cols-4 ${pullUp ? "relative -top-20" : ""}`}

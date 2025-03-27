@@ -1,16 +1,10 @@
 import { defaultMetadata } from "@/data/metadata";
 import Image from "next/image";
 
-export async function generateMetadata({ params }) {
-  return {
-    ...defaultMetadata,
-    title: defaultMetadata.title,
-    description: "",
-    keywords: "",
-    images: "",
-    robots: "NO",
-  };
-}
+export const metadata = {
+  ...defaultMetadata,
+  robots: "noindex,nofollow",
+};
 
 export default async function Home({ params }) {
   return (

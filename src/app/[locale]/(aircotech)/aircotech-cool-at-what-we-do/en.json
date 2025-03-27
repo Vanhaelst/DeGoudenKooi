@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "title": "World leader in airconditioning",
+    "description": "<p>Global warming is an irreversible fact, but you’re cool with us. Our mission: Everyone is entitled to one degree less! Aircotech offers an answer to the increasing demand for air conditioning systems. Because we manage the entire development chain in-house, we can offer our customers very competitive rates. In this way we want to introduce an airconditioner in every household and every company.</p>",
+    "subtitle": "Aircotech, cool at what we do!",
+    "name": " Michel A.",
+    "function": "CEO Aircotech",
+    "quote": "I was born cool!",
+    "cta": "Contact us"
+  },
+  "services": {
+    "title": "Our services",
+    "description": "We control every aspect of aircos so we can offer you the best rates and services.",
+    "services": [
+      {
+        "title": "production",
+        "description": "<p>Aircotech is leader in the worldwide production of airconditioning. Because we have production facilities on all continents of the world, we can respond quickly to the ever-increasing demand for air conditioners since we are not dependent on other suppliers.</p>",
+        "cta": "Contact us",
+        "image": [
+          {
+            "url": "/aircotech/productie-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "orange"
+      },
+      {
+        "title": "Productie",
+        "description": "<p>We have a worldwide network of our own sales branches and franchisers to deliver our high-quality products to the end user. Want to become a franchiser and start earning some serious money? Don’t hesitate to get in touch!</p>",
+        "cta": "Contact us",
+        "image": [
+          {
+            "url": "/aircotech/aircos-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "blue"
+      },
+      {
+        "title": "Productie",
+        "description": "<p>Our own people and subcontractors are true airconditioning experts and install the right unit with the greatest of ease. Whether this is at your home or at your company. Would you like a quote for the installation of an Aircotech system, please contact us quickly.</p>",
+        "cta": "Contact us",
+        "image": [
+          {
+            "url": "/aircotech/airco-installatie-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "darkblue"
+      },
+      {
+        "title": "Productie",
+        "description": "<p>We give a lifetime warranty on our devices and of course you can contact us for an ultra-fast intervention if necessary. Nobody likes to be too hot. We are immediately ready for you with a repair service within 24 hours. Aircotech, cool at what we do!</p>",
+        "cta": "Contact us",
+        "image": [
+          {
+            "url": "/aircotech/reparatie-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "darkblue"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Don’t miss out on this promotion!",
+    "description": "<p>A fan is an old technology that is quickly disappearing, it does nothing more than move air. Scientific research shows that this only gives the appearance of cooling for temperatures up to 21 degrees Celsius. This means that your fan is useless for 238 days of the year. Do like so many before you and take your ventilator to the container park, replace it with an intelligent air conditioning system from Aircotech and receive a nice discount!</p>"
+  },
+  "testimonials": {
+    "title": "What our customers are saying",
+    "testimonials": [
+      {
+        "name": "Margaret E.",
+        "subtitle": "Flexible and quick",
+        "quote": "<p>“After 12 years my Aircotech system broke down for the first time. 7 hours after my first email, my system was quickly repaired, and all at no cost.”</p>"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "We love helping you!",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "mail": "Mail",
+    "message": "Message",
+    "message_description": "Let us know what's on your mind. Do you have a question for us? Let us know.",
+    "send": "Send",
+    "required": "Required",
+    "validation": {
+      "required": "This field is required",
+      "pattern": "E-mail is not correct"
+    }
+  }
+}

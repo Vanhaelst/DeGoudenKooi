@@ -32,7 +32,6 @@ export const NewsPaginated = ({ news, locale, amount, count }) => {
     if (page !== 1) {
       getBlogs({ language: locale, offset: (page - 1) * amount, amount }).then(
         ({ blogs }) => {
-          console.log(blogs);
           setNewsItems((prevState) => [...prevState, ...blogs]);
         },
       );

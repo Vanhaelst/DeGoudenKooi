@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "title": " Wereldleider in airco’s",
+    "description": "<p>De globale opwarming is een onomkeerbaar feit, maar bij ons zit je cool. Onze missie: Iedereen heeft recht op een graadje minder! Aircotech biedt een antwoord op de stijgende vraag naar aircosystemen door zich te ontwikkelen in 4 afdelingen. Doordat wij de hele keten in eigen huis beheren, kunnen we onze klanten erg scherpe tarieven aanbieden. Op die manier willen wij een airco in elk huishouden en elk bedrijf introduceren als vaste waarde.</p>",
+    "subtitle": "Aircotech, cool at what we do!",
+    "name": " Michel A.",
+    "function": "CEO Aircotech",
+    "quote": "Ik ben cool geboren",
+    "cta": "Contacteer ons"
+  },
+  "services": {
+    "title": "Onze diensten",
+    "description": "Wij controleren de hele lijn om jou een topservice aan te bieden.",
+    "services": [
+      {
+        "title": "Productie",
+        "description": "<p>Aircotech is marktleider in de wereldwijde productie van air conditioners. Doordat we productiefaciliteiten bezitten op alle continenten van de wereld, kunnen wij flexibel inspelen op de immer stijgende vraag naar air conditioners en zijn wij niet afhankelijk van andere aanvoerders.</p>",
+        "cta": "Contacteer ons",
+        "image": [
+          {
+            "url": "/aircotech/productie-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "orange"
+      },
+      {
+        "title": "Productie",
+        "description": "<p>Aircotech is marktleider in de wereldwijde productie van air conditioners. Doordat we productiefaciliteiten bezitten op alle continenten van de wereld, kunnen wij flexibel inspelen op de immer stijgende vraag naar air conditioners en zijn wij niet afhankelijk van andere aanvoerders.</p>",
+        "cta": "Contacteer ons",
+        "image": [
+          {
+            "url": "/aircotech/aircos-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "blue"
+      },
+      {
+        "title": "Productie",
+        "description": "<p>Aircotech is marktleider in de wereldwijde productie van air conditioners. Doordat we productiefaciliteiten bezitten op alle continenten van de wereld, kunnen wij flexibel inspelen op de immer stijgende vraag naar air conditioners en zijn wij niet afhankelijk van andere aanvoerders.</p>",
+        "cta": "Contacteer ons",
+        "image": [
+          {
+            "url": "/aircotech/airco-installatie-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "darkblue"
+      },
+      {
+        "title": "Productie",
+        "description": "<p>Aircotech is marktleider in de wereldwijde productie van air conditioners. Doordat we productiefaciliteiten bezitten op alle continenten van de wereld, kunnen wij flexibel inspelen op de immer stijgende vraag naar air conditioners en zijn wij niet afhankelijk van andere aanvoerders.</p>",
+        "cta": "Contacteer ons",
+        "image": [
+          {
+            "url": "/aircotech/reparatie-header.webp",
+            "width": 997,
+            "height": 332
+          }
+        ],
+        "color": "darkblue"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Niet te missen toppromotie",
+    "description": "<p>Een ventilator is een oude technologie die snel aan het verdwijnen is. Een ventilator doet niet meer dan lucht verplaatsen. Wetenschappelijk onderzoek toont aan dat dit slechts de schijn van verkoeling wekt voor temperaturen tot 21 graden Celcius. Dat wil zeggen dat je ventilator 238 dagen van het jaar geen nut heeft. Doe zoals zovelen voor jou en breng je ventilator naar het containerpark. Vervang hem door een intelligent airco systeem van Aircotech en ontvang een leuke korting!</p>"
+  },
+  "testimonials": {
+    "title": "Wat onze klanten zeggen",
+    "testimonials": [
+      {
+        "name": "Margaret E.",
+        "subtitle": "Flexibel en snel",
+        "quote": "<p>“Na 12 jaar ging mijn Aircotech systeem voor de eerste maal stuk. 7 uur na mijn eerste mailtje werd mijn systeem al snel een vlot gerepareerd, en dat allemaal zonder kosten.”</p>"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Neem contact met ons op",
+    "subtitle": "Wij helpen je graag",
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
+    "mail": "E-mail",
+    "message": "Bericht",
+    "message_description": "Laat ons weten wat je bezighoudt. Heb je een vraag voor ons? Stel hem gerust.",
+    "send": "Verzenden",
+    "required": "Verplicht",
+    "validation": {
+      "required": "Dit veld is verplicht",
+      "pattern": "Dit veld is niet correct"
+    }
+  }
+}

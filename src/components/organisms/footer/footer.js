@@ -16,7 +16,6 @@ export const Footer = async ({ locale = "nl" }) => {
   const dict = await getDictionary(locale);
   const { rooms } = await getRooms({ language: locale });
 
-  console.log(rooms);
   const navigation = {
     navigation: [
       { name: dict.navigation.about, href: LINKS[locale.toUpperCase()].ABOUT },
@@ -46,7 +45,8 @@ export const Footer = async ({ locale = "nl" }) => {
       },
     ],
     questions: [
-      { name: "Blog", href: LINKS[locale.toUpperCase()].NEWS },
+      { name: "Blog", href: LINKS[locale.toUpperCase()].BLOG },
+      { name: "Nieuws", href: LINKS[locale.toUpperCase()].NEWS },
       { name: "FAQ", href: LINKS[locale.toUpperCase()].FAQ },
       { name: "Privacy", href: LINKS[locale.toUpperCase()].PRIVACY },
       { name: "Jobs", href: LINKS[locale.toUpperCase()].JOBS },

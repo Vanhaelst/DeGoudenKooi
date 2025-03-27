@@ -46,7 +46,6 @@ export const Games = ({
   }, []);
 
   useEffect(() => {
-    console.log(categories);
     fetchData(
       awardsQuery({
         locale: locale,

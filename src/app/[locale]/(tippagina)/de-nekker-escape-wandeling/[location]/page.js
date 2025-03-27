@@ -74,7 +74,6 @@ export default async function Tips({ params }) {
 
         <div className="divide-y ">
           {tips.map(({ title, description, image }) => {
-            console.log(image);
             return (
               <div key={title} className="collapse collapse-plus">
                 <input type="checkbox" name="my-accordion-3" />

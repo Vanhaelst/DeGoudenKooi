@@ -59,6 +59,22 @@ const nextConfig = {
         source: "/nl/boek-nu",
         destination: "/nl/reserveer",
       },
+
+
+      {
+        source: "/aircotech-cool-at-what-we-do",
+        destination: "/nl/aircotech-cool-at-what-we-do",
+      },{
+        source: "/en/aircotech-cool-at-what-we-do",
+        destination: "/en/aircotech-cool-at-what-we-do",
+      },
+      {
+        source: "/en/aircotech/",
+        destination: "/en/aircotech-cool-at-what-we-do",
+      },
+
+
+
     ];
   },
 };
