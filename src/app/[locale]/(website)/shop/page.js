@@ -7,6 +7,7 @@ import {
   englishMetadata,
 } from "@/data/metadata";
 import { SeoQuery } from "@/queries/sections/seo";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "shopEntries", language }));
@@ -42,5 +43,11 @@ export default async function Home({ params }) {
 
   const sections = page[0]?.sections;
 
-  return sections?.map((section) => renderComponents(section, params.locale));
+  const transparentImage = page[0]?.transparentImage?.[0];
+
+  return (
+    <ImageWrapper image={transparentImage}>
+      {sections?.map((section) => renderComponents(section, params.locale))}
+    </ImageWrapper>
+  );
 }

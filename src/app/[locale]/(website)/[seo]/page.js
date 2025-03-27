@@ -8,6 +8,7 @@ import {
   englishMetadata,
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language, url }) {
   return fetchData(SeoQuery({ url, language }));
@@ -56,5 +57,11 @@ export default async function Home({ params }) {
   if (page.length === 0) {
     redirect(`/${params.locale}/not-found`);
   }
-  return sections?.map((section) => renderComponents(section, params.locale));
+  const transparentImage = page[0]?.transparentImage?.[0];
+
+  return (
+    <ImageWrapper image={transparentImage}>
+      {sections?.map((section) => renderComponents(section, params.locale))}
+    </ImageWrapper>
+  );
 }

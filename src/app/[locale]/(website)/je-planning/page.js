@@ -5,6 +5,7 @@ import { Hero } from "@/components/molecules/hero/hero";
 import React from "react";
 import { Container } from "@/components/atoms";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language }) {
   return fetchData(FixedPageQuery({ page: "planningEntries", language }));
@@ -49,6 +50,7 @@ export default async function Home({ params }) {
     backgroundImage,
     sections,
   } = page[0] ?? {};
+  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
@@ -77,7 +79,9 @@ export default async function Home({ params }) {
         </Container>
       </section>
 
-      {sections?.map((section) => renderComponents(section, params.locale))}
+      <ImageWrapper image={transparentImage}>
+        {sections?.map((section) => renderComponents(section, params.locale))}
+      </ImageWrapper>
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { SeoQuery } from "@/queries/sections/seo";
 import { Badges } from "@/components/organisms/badges/badges";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "overviewEntries", language }));
@@ -53,6 +54,7 @@ export default async function Home({ params, searchParams }) {
   const dict = await getDictionary(params.locale);
 
   const sections = page[0]?.sections;
+  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
@@ -65,9 +67,11 @@ export default async function Home({ params, searchParams }) {
         <Badges defaultRooms={rooms} dict={dict} filter={true} />
       </section>
 
-      <GamesOverview defaultRooms={rooms} t={dict} locale={params.locale} />
+      <ImageWrapper image={transparentImage}>
+        <GamesOverview defaultRooms={rooms} t={dict} locale={params.locale} />
 
-      {sections?.map((section) => renderComponents(section, params.locale))}
+        {sections?.map((section) => renderComponents(section, params.locale))}
+      </ImageWrapper>
     </>
   );
 }

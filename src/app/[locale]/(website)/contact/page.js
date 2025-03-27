@@ -9,6 +9,8 @@ import {
 } from "@/data/metadata";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { SeoQuery } from "@/queries/sections/seo";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import React from "react";
 
 async function getPage({ language }) {
   return fetchData(PageQuery({ page: "contactEntries", language }));
@@ -44,10 +46,13 @@ export default async function Contact({ params }) {
   const dict = await getDictionary(params.locale);
 
   const sections = page[0]?.sections;
+  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
-      {sections?.map((section) => renderComponents(section, params.locale))}
+      <ImageWrapper image={transparentImage}>
+        {sections?.map((section) => renderComponents(section, params.locale))}
+      </ImageWrapper>
 
       <Newsletter locale={params.locale} t={dict} />
     </>

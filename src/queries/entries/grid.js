@@ -1,21 +1,18 @@
-import { buttonsQuery } from "@/queries/entries/buttons";
 import { imageQuery } from "@/queries/entries/image";
 
 export const gridEntry = `
     ... on grid_Entry {
         typeHandle
         title
-              id
+        id
         description
         backgroundColor
         gridItems {
             ... on gridItem_Entry {
                 title
-                description
-                buttons ${buttonsQuery}
+                href
                 image ${imageQuery}
                 gridSize
-                isBackgroundAsset
             }
         }
     }

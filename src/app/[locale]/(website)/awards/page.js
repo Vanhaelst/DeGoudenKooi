@@ -12,6 +12,7 @@ import {
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { renderComponents } from "@/utils/renderComponents";
 import { seoEntry } from "@/queries/entries/seo";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
@@ -67,6 +68,7 @@ export default async function Home({ params }) {
     backgroundImage,
     sections,
   } = page[0] ?? {};
+  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
@@ -79,41 +81,42 @@ export default async function Home({ params }) {
         backgroundImage={backgroundImage}
         backgroundColor={backgroundColor}
       />
-
-      <section className="py-12 sm:py-16">
-        <Container classnames="grid grid-cols-12 relative">
-          <div className="col-span-1" />
-          <ul
-            role="list"
-            className=" space-y-12 divide-y divide-gray-200 col-span-12 lg:col-span-10"
-          >
-            {awards.map(({ image, title, description }, person) => (
-              <li
-                key={person.title}
-                className="flex flex-col items-start gap-10 pt-12 lg:flex-row"
-              >
-                <Image
-                  src={image?.[0]?.url}
-                  alt={image?.[0]?.alt || ""}
-                  width={image?.[0]?.width}
-                  height={image?.[0]?.height}
-                  className={`min-w-40 w-40 object-contain`}
-                />
-
-                <div className="">
-                  <h3 className="text-lg/8 font-semibold tracking-tight text-gray-900">
-                    {title}
-                  </h3>
-                  <RichText
-                    text={description}
-                    className="mt-6 text-gray-600 font-light"
+      <ImageWrapper image={transparentImage}>
+        <section className="py-12 sm:py-16">
+          <Container classnames="grid grid-cols-12 relative">
+            <div className="col-span-1" />
+            <ul
+              role="list"
+              className=" space-y-12 divide-y divide-gray-200 col-span-12 lg:col-span-10"
+            >
+              {awards.map(({ image, title, description }, person) => (
+                <li
+                  key={person.title}
+                  className="flex flex-col items-start gap-10 pt-12 lg:flex-row"
+                >
+                  <Image
+                    src={image?.[0]?.url}
+                    alt={image?.[0]?.alt || ""}
+                    width={image?.[0]?.width}
+                    height={image?.[0]?.height}
+                    className={`min-w-40 w-40 object-contain`}
                   />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
+
+                  <div className="">
+                    <h3 className="text-lg/8 font-semibold tracking-tight text-gray-900">
+                      {title}
+                    </h3>
+                    <RichText
+                      text={description}
+                      className="mt-6 text-gray-600 font-light"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </section>
+      </ImageWrapper>
 
       {sections?.map((section) => renderComponents(section, params.locale))}
     </>

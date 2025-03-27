@@ -7,15 +7,10 @@ import Image from "next/image";
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
-export const BentoCard = ({
-  title,
-  description,
-  buttons,
-  image,
-  isBackgroundAsset,
-}) => {
+export const BentoCard = ({ title, href, image }) => {
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -29,12 +24,17 @@ export const BentoCard = ({
   }, []);
 
   return (
-    <Image
-      alt={title || ""}
-      src={image?.[0].url}
-      width={image?.[0].width}
-      height={image?.[0].height}
-      className="h-60 lg:h-80 w-full  object-contain"
-    />
+    <Link
+      href={href || ""}
+      className="flex justify-center items-center w-full h-60 lg:h-80 "
+    >
+      <Image
+        alt={title || ""}
+        src={image?.[0].url}
+        width={image?.[0].width}
+        height={image?.[0].height}
+        className="  object-contain hover:scale-105 transition-all"
+      />
+    </Link>
   );
 };

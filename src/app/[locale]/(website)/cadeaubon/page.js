@@ -10,6 +10,7 @@ import { renderComponents } from "@/utils/renderComponents";
 import { fetchData } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { seoEntry } from "@/queries/entries/seo";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
@@ -60,8 +61,7 @@ export default async function Home({ params }) {
     backgroundImage,
     sections,
   } = page[0] ?? {};
-
-  const lang = params.locale === "en" ? "&languageCode=en_US" : "";
+  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
@@ -74,10 +74,10 @@ export default async function Home({ params }) {
         backgroundImage={backgroundImage}
         backgroundColor={backgroundColor}
       />
-
       <Bookeo locale={params.locale} variant="voucher" />
-
-      {sections?.map((section) => renderComponents(section, params.locale))}
+      <ImageWrapper image={transparentImage}>
+        {sections?.map((section) => renderComponents(section, params.locale))}
+      </ImageWrapper>{" "}
     </>
   );
 }

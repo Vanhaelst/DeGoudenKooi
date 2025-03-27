@@ -11,6 +11,7 @@ import {
 } from "@/data/metadata";
 import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage() {
   return fetchData(PageQuery({ page: "blogEntries" }));
@@ -64,19 +65,21 @@ export default async function Home({ params }) {
   const { blogs, count } = await getBlogs({ language: params.locale });
 
   const sections = page[0]?.sections;
+  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
       {sections?.map((section) => renderComponents(section, params.locale))}
-
-      <Container classnames="mb-28">
-        <NewsPaginated
-          news={blogs}
-          locale={params.locale}
-          amount={amount}
-          count={count}
-        />
-      </Container>
+      <ImageWrapper image={transparentImage}>
+        <Container classnames="mb-28">
+          <NewsPaginated
+            news={blogs}
+            locale={params.locale}
+            amount={amount}
+            count={count}
+          />
+        </Container>
+      </ImageWrapper>
     </>
   );
 }

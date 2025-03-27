@@ -10,6 +10,7 @@ import React from "react";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { seoEntry } from "@/queries/entries/seo";
+import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 export const fetchCache = "force-no-store";
 
@@ -61,6 +62,8 @@ export default async function Home({ params }) {
     backgroundImage,
     sections,
   } = page[0] ?? {};
+  const transparentImage = page[0]?.transparentImage?.[0];
+
   return (
     <>
       <Hero
@@ -73,11 +76,12 @@ export default async function Home({ params }) {
         backgroundColor={backgroundColor}
         textColor={textColor}
       />
-
       <div className="-my-24">
         <Bookeo locale={params.locale} />
       </div>
-      {sections?.map((section) => renderComponents(section, params.locale))}
+      <ImageWrapper image={transparentImage}>
+        {sections?.map((section) => renderComponents(section, params.locale))}
+      </ImageWrapper>
     </>
   );
 }

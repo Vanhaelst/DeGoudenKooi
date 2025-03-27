@@ -13,6 +13,7 @@ import { accordionEntry } from "@/queries/entries/accordion";
 import { seoEntry } from "@/queries/entries/seo";
 import { videoEntry } from "@/queries/entries/video";
 import { bannerEntry } from "@/queries/entries/banner";
+import { imageQuery } from "@/queries/entries/image";
 
 export const PageQuery = ({ page, language = "nl" }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -22,6 +23,7 @@ export const PageQuery = ({ page, language = "nl" }) => {
         ... on page_Entry {
           id
           ${seoEntry}
+          transparentImage ${imageQuery}
           sections {
             ${heroEntry}
             ${awardsEntry}
