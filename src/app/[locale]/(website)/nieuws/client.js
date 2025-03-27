@@ -6,6 +6,7 @@ import { fetchData } from "@/utils/fetchData";
 import { Button, RichText, Text } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
+import { formatDate } from "@/utils/formatDate";
 
 async function getBlogs({ language, offset, amount }) {
   return fetchData(
@@ -72,6 +73,9 @@ export const NewsPaginated = ({ news, locale, amount, count }) => {
 
           <div className="flex flex-col justify-between h-full">
             <div>
+              <time dateTime={post.datetime} className="text-gray-500">
+                {formatDate(post.postDate)}
+              </time>
               <div className="group relative max-w-xl">
                 <Text
                   level="xl"

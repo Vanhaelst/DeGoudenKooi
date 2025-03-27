@@ -5,10 +5,18 @@ import { LINKS } from "@/enums/links";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import ImageWithFallback from "@/utils/Image";
 import Link from "next/link";
+import { fetchData } from "@/utils/fetchData";
+import { roomsQuery } from "@/queries/sections/rooms";
+
+async function getRooms({ language }) {
+  return fetchData(roomsQuery({ language }));
+}
 
 export const Footer = async ({ locale = "nl" }) => {
   const dict = await getDictionary(locale);
+  const { rooms } = await getRooms({ language: locale });
 
+  console.log(rooms);
   const navigation = {
     navigation: [
       { name: dict.navigation.about, href: LINKS[locale.toUpperCase()].ABOUT },
@@ -37,12 +45,18 @@ export const Footer = async ({ locale = "nl" }) => {
         href: LINKS[locale.toUpperCase()].RESTAURANT_DEALS,
       },
     ],
-    Questions: [
+    questions: [
       { name: "Blog", href: LINKS[locale.toUpperCase()].NEWS },
       { name: "FAQ", href: LINKS[locale.toUpperCase()].FAQ },
       { name: "Privacy", href: LINKS[locale.toUpperCase()].PRIVACY },
       { name: "Jobs", href: LINKS[locale.toUpperCase()].JOBS },
+      {
+        name: dict.navigation.general_conditions,
+        target: "_blank",
+        href: "https://degoudenkooi.pluxit.be/web/assets/Algemene-voorwaarden-De-Gouden-Kooi.pdf",
+      },
     ],
+    adventures: rooms.map((room) => ({ name: room.title, href: room.slug })),
     social: [
       {
         name: "LinkedIn",
@@ -140,67 +154,86 @@ export const Footer = async ({ locale = "nl" }) => {
           className="w-full absolute object-cover h-16 -top-16"
         />
         <div className="mx-auto max-w-7xl px-6 pb-32 mb:pb-8 pt-20 sm:pt-20 lg:px-8 xl:pt-32">
-          <div className="xl:grid xl:grid-cols-2 xl:gap-8">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <Image
-                  width={121}
-                  height={18}
-                  src={CompanyData.logo}
-                  alt={CompanyData.name}
-                  className="h-6 w-auto"
-                />
-                <ul role="list" className="mt-6 space-y-2">
-                  {navigation.navigation.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                      >
-                        {item.name.toUpperCase()}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <Text as="h3" level="xl" classnames="font-semibold text-white">
-                  {dict.general.discover}
-                </Text>
-                <ul role="list" className="mt-6 space-y-2">
-                  {navigation.discover.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                      >
-                        {item.name.toUpperCase()}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8">
+            <div>
+              <Image
+                width={121}
+                height={18}
+                src={CompanyData.logo}
+                alt={CompanyData.name}
+                className="h-6 w-auto"
+              />
+              <ul role="list" className="mt-6 space-y-2">
+                {navigation.navigation.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                    >
+                      {item.name.toUpperCase()}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="mt-10 xl:mt-0 md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <Text as="h3" level="xl" classnames="font-semibold text-white">
-                  {dict.general.questions}
-                </Text>
-                <ul role="list" className="mt-6 space-y-2">
-                  {navigation.Questions.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                      >
-                        {item.name.toUpperCase()}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0 ">
-                <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
+            <div className="mt-10 md:mt-0">
+              <Text as="h3" level="xl" classnames="font-semibold text-white">
+                {dict.general.discover}
+              </Text>
+              <ul role="list" className="mt-6 space-y-2">
+                {navigation.discover.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                    >
+                      {item.name.toUpperCase()}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <Text as="h3" level="xl" classnames="font-semibold text-white">
+                {dict.general.questions}
+              </Text>
+              <ul role="list" className="mt-6 space-y-2">
+                {navigation.questions.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      target={item.target ? item.target : "_self"}
+                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                    >
+                      {item.name.toUpperCase()}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <Text as="h3" level="xl" classnames="font-semibold text-white">
+                {dict.navigation.adventures}
+              </Text>
+              <ul role="list" className="mt-6 space-y-2">
+                {navigation.adventures.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                    >
+                      {item.name.toUpperCase()}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-10 md:mt-0 ">
+              <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
+                <Link
+                  href={`/${locale}/nieuws/federatie-escape-rooms-befeb-de-gouden-kooi-staat-mee-aan-de-wieg`}
+                >
                   <ImageWithFallback
                     // src="https://befeb.be/images/member-badge/BEFEB-member_white.png"
                     src="https://befeb.be/images/member-badge/BEFEB-member_trans.png"
@@ -210,7 +243,7 @@ export const Footer = async ({ locale = "nl" }) => {
                     height={300}
                     className=""
                   />
-                </div>
+                </Link>
               </div>
             </div>
           </div>

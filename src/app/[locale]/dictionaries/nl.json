@@ -17,7 +17,9 @@
     "restaurant_deals": "Restaurant deals",
     "hotel_deals": "Hotel deals",
     "calendar": "Bekijk onze agenda",
-    "calendar_subtitle": "Claim jouw avontuur nu"
+    "calendar_subtitle": "Claim jouw avontuur nu",
+    "general_conditions": "Algemene voorwaarden",
+    "adventures": "Avonturen"
   },
   "general": {
     "the": "De",
@@ -41,6 +43,7 @@
     "awards_link": "Ontdek ze allemaal op onze",
     "awards_link_bold": "awards pagina",
     "minAge": "Details onderaan in de faq",
+    "faq": "Vragen en antwoorden over",
     "inactive": {
       "title": "Momenteel niet actief",
       "walk": "Deze wandeling is momenteel niet actief.",

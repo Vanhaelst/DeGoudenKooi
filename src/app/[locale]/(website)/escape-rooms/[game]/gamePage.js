@@ -138,14 +138,6 @@ export default function GamePage({ data, locale }) {
       }
     : {};
 
-  const teaserButton = videoId
-    ? {
-        callToAction: t.game.watch_teaser,
-        href: "#teaser",
-        variant: "primary-outline",
-      }
-    : {};
-
   if (!data) {
     return <Loader />;
   }
@@ -220,8 +212,12 @@ export default function GamePage({ data, locale }) {
         )}
         {!isInactive && <Bookeo variant={categories[0]} />}
 
-        <div id="faq" />
-        <Faq title={`FAQ: ${title}`} backgroundColor="lightGray" faq={faq} />
+        <div id="faq" className="mb-10 md:mb-20" />
+        <Faq
+          title={`${t.game.faq} ${title}`}
+          backgroundColor="lightGray"
+          faq={faq}
+        />
       </div>
     </main>
   );

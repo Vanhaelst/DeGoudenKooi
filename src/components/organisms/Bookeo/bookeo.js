@@ -36,6 +36,7 @@ export const Bookeo = ({ variant, locale }) => {
 
   return (
     <>
+      <div id="book" />
       <Image
         src="/scheur-top.png"
         alt="scheur"
@@ -43,7 +44,7 @@ export const Bookeo = ({ variant, locale }) => {
         height={60}
         className="w-full"
       />
-      <section className="bg-white relative py-12 lg:py-24">
+      <section className="bg-white relative py-12 lg:py-24 ">
         <Container classnames="min-h-80 flex justify-center items-center">
           <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
           <Script

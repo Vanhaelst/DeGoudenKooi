@@ -17,7 +17,9 @@
     "restaurant_deals": "Restaurant deals",
     "hotel_deals": "Hotel deals",
     "calendar": "Check our callendar",
-    "calendar_subtitle": "Claim your adventure now"
+    "calendar_subtitle": "Claim your adventure now",
+    "general_conditions": "General conditions",
+    "adventures": "Adventures"
   },
   "general": {
     "the": "The",
@@ -42,7 +44,7 @@
     "awards_link": "Discover all on our",
     "awards_link_bold": "awards page",
     "minAge": "Details below in faq",
-
+    "faq": "Questions and answers about",
     "inactive": {
       "title": "Currently not active",
       "walk": "This walk is not active.",
