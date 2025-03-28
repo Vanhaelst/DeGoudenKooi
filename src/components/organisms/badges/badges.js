@@ -26,26 +26,48 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
   const elementRightRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(elementLeftRef.current, fade.from, {
-      ...fade.to,
-      scrollTrigger: {
-        trigger: elementLeftRef.current,
-        ...scrollTrigger,
-      },
-    });
-  }, [type]);
+    if (rooms.length === 0) {
+      gsap.fromTo(elementLeftRef.current, fade.from, {
+        opacity: "0%",
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: elementLeftRef.current,
+          ...scrollTrigger,
+        },
+      });
+    } else {
+      gsap.fromTo(elementLeftRef.current, fade.from, {
+        ...fade.to,
+        scrollTrigger: {
+          trigger: elementLeftRef.current,
+          ...scrollTrigger,
+        },
+      });
+    }
+  }, [type, rooms]);
 
   useEffect(() => {
-    const delay = type ? rooms?.length : defaultRooms.length;
-    gsap.fromTo(elementRightRef.current, fade.from, {
-      ...fade.to,
-      delay: delay * 0.1,
-      scrollTrigger: {
-        trigger: elementRightRef.current,
-        ...scrollTrigger,
-      },
-    });
-  }, [type]);
+    if (rooms.length === 0) {
+      gsap.fromTo(elementLeftRef.current, fade.from, {
+        opacity: "0%",
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: elementLeftRef.current,
+          ...scrollTrigger,
+        },
+      });
+    } else {
+      const delay = type ? rooms?.length : defaultRooms.length;
+      gsap.fromTo(elementRightRef.current, fade.from, {
+        ...fade.to,
+        delay: delay * 0.1,
+        scrollTrigger: {
+          trigger: elementRightRef.current,
+          ...scrollTrigger,
+        },
+      });
+    }
+  }, [type, rooms]);
 
   useEffect(() => {
     setRooms([]);
