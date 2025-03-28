@@ -6,9 +6,10 @@ import { RichText, Text } from "@/components/atoms";
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { clsx } from "clsx";
 gsap.registerPlugin(ScrollTrigger);
 
-export const Title = ({ title, subtitle, description, classnames }) => {
+export const Title = ({ title, subtitle, description, classnames, center }) => {
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -31,13 +32,23 @@ export const Title = ({ title, subtitle, description, classnames }) => {
         <Text
           as="h5"
           level="3xl"
-          classnames="text-secondary-500 mb-4 font-bold"
+          classnames={clsx(
+            "text-secondary-500 mb-4 font-bold",
+            center ? "text-center" : "",
+          )}
         >
           {title}
         </Text>
       )}
       {subtitle && (
-        <Text as="h6" level="xl" classnames="text-secondary-500 mb-4 font-bold">
+        <Text
+          as="h6"
+          level="xl"
+          classnames={clsx(
+            "text-secondary-500 mb-4 font-bold",
+            center ? "text-center" : "",
+          )}
+        >
           {subtitle}
         </Text>
       )}
@@ -45,7 +56,10 @@ export const Title = ({ title, subtitle, description, classnames }) => {
         <RichText
           text={description}
           level="lg"
-          classnames="text-primary-700 font-light"
+          classnames={clsx(
+            "text-primary-700 font-light",
+            center ? "text-center" : "",
+          )}
         />
       )}
     </div>

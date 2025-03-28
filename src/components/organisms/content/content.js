@@ -6,9 +6,10 @@ import { Button, Container, RichText, Text } from "@/components/atoms";
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { clsx } from "clsx";
 gsap.registerPlugin(ScrollTrigger);
 
-export const Content = ({ title, description, buttons, columns }) => {
+export const Content = ({ title, description, buttons, columns, center }) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const buttonRef = useRef(null);
@@ -49,7 +50,10 @@ export const Content = ({ title, description, buttons, columns }) => {
           <Text
             as="h5"
             level="3xl"
-            classnames="text-secondary-500 mb-4 font-bold"
+            classnames={clsx(
+              "text-secondary-500 mb-4 font-bold",
+              center ? "text-center" : "",
+            )}
           >
             {title}
           </Text>
@@ -59,10 +63,16 @@ export const Content = ({ title, description, buttons, columns }) => {
             <RichText
               level="lg"
               text={description}
-              classnames="text-primary-700 font-light"
+              classnames={clsx(
+                "text-primary-700 font-light",
+                center ? "text-center" : "",
+              )}
             />
           </div>
-          <div className="space-y-4 md:space-x-4" ref={buttonRef}>
+          <div
+            className={clsx("space-y-4 md:space-x-4", center ? "mx-auto" : "")}
+            ref={buttonRef}
+          >
             {buttons &&
               buttons.map((button) => (
                 <Button key={button.href} {...button} classnames="mt-4" />

@@ -19,12 +19,15 @@ import { Contact } from "@/components/molecules/contact/contact";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { ContentImageFullWidth } from "@/components/organisms/content/image";
 import { Banner } from "@/components/molecules/banner";
+import { Columns } from "@/components/organisms/content/columns";
+import { ColumnsWithDivider } from "@/components/organisms/content/columnsWithDivider";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
 
   const dict = getDictionary(locale);
 
+  console.log("type", typeHandle);
   switch (typeHandle) {
     case "hero":
       return <AsyncHero key={data.id} locale={locale} {...data} />;
@@ -61,9 +64,11 @@ export const renderComponents = (data, locale) => {
     case "fullWidthImage":
       return <ContentImageFullWidth key={data.id} locale={locale} {...data} />;
     case "twoColumns":
-      return <Contact key={data.id} locale={locale} {...data} />;
+      return <Columns key={data.id} locale={locale} {...data} />;
     case "text":
       return <Content key={data.id} locale={locale} {...data} />;
+    case "columnsWithDivider":
+      return <ColumnsWithDivider key={data.id} locale={locale} {...data} />;
     default:
       return null;
   }

@@ -90,7 +90,7 @@ export const Hero = ({
   if (type === "vertical") {
     return (
       <section
-        className={`${bgColor}  bg-cover bg-center pt-[150px]`}
+        className={`${bgColor}  bg-cover bg-bottom pt-[150px]`}
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
         <Container classnames="py-20">

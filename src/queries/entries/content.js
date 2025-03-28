@@ -11,6 +11,7 @@ export const contentEntry = `
                 id
                 typeHandle
                 title
+                center
                 description
                 columns
                 buttons ${buttonsQuery}
@@ -19,6 +20,7 @@ export const contentEntry = `
                 id
                 typeHandle
                 title
+                center
                 description
                 buttons ${buttonsQuery}
                 image ${imageQuery}
@@ -36,10 +38,25 @@ export const contentEntry = `
               id
               typeHandle
               title
+              center
               descriptionLeft
               descriptionRight
               buttonsLeft ${buttonsQuery}
               buttons ${buttonsQuery}
+            }
+            ... on columnsWithDivider_Entry {
+              id
+              typeHandle
+              title
+              center
+              column {
+                ... on column_Entry {
+                  id
+                  heading
+                  description
+                  buttons ${buttonsQuery}
+                }
+              }
             }
         }
     }

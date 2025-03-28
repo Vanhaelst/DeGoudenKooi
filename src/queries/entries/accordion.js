@@ -3,6 +3,7 @@ export const accordionEntry = `
               typeHandle
               id
               backgroundColor
+              center
               title
               description
               faq: accordeonItems {
