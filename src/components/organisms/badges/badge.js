@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 import gsap from "gsap";
-import { fadeSlide, fade, scrollTrigger } from "@/utils/gsap";
+import { fade, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { clsx } from "clsx";
 gsap.registerPlugin(ScrollTrigger);

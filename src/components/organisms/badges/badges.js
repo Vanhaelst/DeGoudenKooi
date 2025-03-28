@@ -3,10 +3,16 @@
 import { Badge } from "@/components/organisms/badges/badge";
 import { Container } from "@/components/atoms";
 import { Select } from "@/components/organisms/badges/select";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
+
+import { fade, scrollTrigger } from "@/utils/gsap";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export const Badges = ({ defaultRooms, dict, filter }) => {
   const [rooms, setRooms] = useState([]);
@@ -15,6 +21,31 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
   const typeSearch = searchParams.get("type")?.toString();
 
   const type = typeSearch ? `"${typeSearch}"` : undefined;
+
+  const elementLeftRef = useRef(null);
+  const elementRightRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(elementLeftRef.current, fade.from, {
+      ...fade.to,
+      scrollTrigger: {
+        trigger: elementLeftRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, [type]);
+
+  useEffect(() => {
+    const delay = type ? rooms?.length : defaultRooms.length;
+    gsap.fromTo(elementRightRef.current, fade.from, {
+      ...fade.to,
+      delay: delay * 0.1,
+      scrollTrigger: {
+        trigger: elementRightRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, [type]);
 
   useEffect(() => {
     setRooms([]);
@@ -36,6 +67,14 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
   return (
     <div>
       <div className="badges w-full flex justify-center mt-12">
+        <Image
+          ref={elementLeftRef}
+          src="https://degoudenkooi.pluxit.be/web/assets/Algemene-Beelden/Details/krul_links.png"
+          alt=""
+          width={77}
+          height={40}
+          className="object-contain relative -bottom-14 left-12 opacity-0"
+        />
         <div className="flex overflow-x-scroll hide-scrollbar px-10 min-h-44">
           {rooms?.map((room, id) => (
             <Badge
@@ -48,6 +87,14 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
             />
           ))}
         </div>
+        <Image
+          src="https://degoudenkooi.pluxit.be/web/assets/Algemene-Beelden/Details/Krul_rechts.png"
+          alt=""
+          ref={elementRightRef}
+          width={77}
+          height={40}
+          className="object-contain relative -top-14 right-12 opacity-0"
+        />
       </div>
       {filter && (
         <Container classnames="pt-10">

@@ -205,7 +205,7 @@ export const Games = ({
                   />
                   <Button
                     variant="primary"
-                    href={`${slug}#bookeo-position`}
+                    href={`${slug}#book`}
                     callToAction="BOEK NU"
                     size="medium"
                   />
