@@ -4,6 +4,7 @@ import { Container } from "@/components/atoms";
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
+import { Title } from "@/components/molecules";
 
 const BOOKEO = {
   main: "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360",
@@ -25,13 +26,15 @@ const BOOKEO = {
   voucher: "&startmode=buyvoucher",
 };
 
-export const Bookeo = ({ variant, locale }) => {
+export const Bookeo = ({ variant, locale, title }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
 
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    setTimeout(() => {
+      setIsMounted(true);
+    }, 1000);
   }, []);
 
   return (
@@ -45,8 +48,17 @@ export const Bookeo = ({ variant, locale }) => {
         className="w-full"
       />
       <section className="bg-white relative py-12 lg:py-24 ">
-        <Container classnames="min-h-80 flex justify-center items-center">
+        {title && (
+          <Container classnames="">
+            <Title title={title} />
+          </Container>
+        )}
+        <Container classnames="min-h-80 flex flex-col justify-center items-center">
           <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
+          {!isMounted && (
+            <span className="loading loading-spinner loading-lg" />
+          )}
+
           <Script
             // strategy="afterInteractive"
             type="text/javascript"

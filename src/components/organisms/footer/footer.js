@@ -45,11 +45,11 @@ export const Footer = async ({ locale = "nl" }) => {
       },
     ],
     questions: [
-      { name: "Blog", href: LINKS[locale.toUpperCase()].BLOG },
-      { name: "Nieuws", href: LINKS[locale.toUpperCase()].NEWS },
-      { name: "FAQ", href: LINKS[locale.toUpperCase()].FAQ },
-      { name: "Privacy", href: LINKS[locale.toUpperCase()].PRIVACY },
-      { name: "Jobs", href: LINKS[locale.toUpperCase()].JOBS },
+      { name: dict.topbar.blog, href: LINKS[locale.toUpperCase()].BLOG },
+      { name: dict.topbar.news, href: LINKS[locale.toUpperCase()].NEWS },
+      { name: dict.topbar.faq, href: LINKS[locale.toUpperCase()].FAQ },
+      { name: dict.topbar.privacy, href: LINKS[locale.toUpperCase()].PRIVACY },
+      { name: dict.topbar.jobs, href: LINKS[locale.toUpperCase()].JOBS },
       {
         name: dict.navigation.general_conditions,
         target: "_blank",
@@ -145,7 +145,7 @@ export const Footer = async ({ locale = "nl" }) => {
 
   return (
     <>
-      <footer className="relative bg-secondary-700">
+      <footer className="relative bg-secondary-700 pt-10">
         <Image
           src="/scheur-footer-top.png"
           alt="scheur"

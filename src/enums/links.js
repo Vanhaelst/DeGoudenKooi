@@ -22,7 +22,7 @@ export const LINKS = {
   EN: {
     HOME: "/en",
     ABOUT: "/en/about-us",
-    GAME_OVERVIEW: "/en/overview",
+    GAME_OVERVIEW: "/en/escape-rooms",
     TEAMBUILDING: "/en/teambuilding-events",
     CONTACT: "/en/contact",
     AWARDS: "/en/awards",

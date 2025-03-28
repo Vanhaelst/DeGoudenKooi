@@ -9,7 +9,7 @@ export const Faq = ({ title, description, faq, backgroundColor }) => {
   }
 
   return (
-    <section className={`py-12 sm:py-16 md:pb-48`}>
+    <section className={`py-12 sm:py-16`}>
       <Container classnames="">
         <Title title={title} description={description} />
         <div className="divide-y">

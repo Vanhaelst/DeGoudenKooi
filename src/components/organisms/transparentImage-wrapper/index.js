@@ -2,7 +2,7 @@ export default async function ImageWrapper({ image, children }) {
   if (image) {
     return (
       <div
-        className="bg-[length:100%_auto] bg-no-repeat"
+        className="bg-[length:100%_auto] bg-no-repeat pb-20"
         style={{ backgroundImage: `url('${image.url}')` }}
       >
         {children}
@@ -10,5 +10,5 @@ export default async function ImageWrapper({ image, children }) {
     );
   }
 
-  return children;
+  return <div className="pb-20">{children}</div>;
 }

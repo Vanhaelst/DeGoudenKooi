@@ -4,7 +4,9 @@
     "blog": "Blog",
     "news": "Nieuws",
     "giftcard": "Cadeaubon",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "jobs": "Jobs",
+    "privacy": "Privacy"
   },
   "navigation": {
     "about": "Ons verhaal",
@@ -24,11 +26,11 @@
   "general": {
     "the": "De",
     "from": "va",
-    "gerechtstraat": "Gerechtstraat",
-    "haverwerf": "Haverwerf",
-    "game": "Game",
-    "experience": "Experience",
-    "walk": "Wandeling",
+    "gerechtstraat": "Gerechtstraat 10",
+    "haverwerf": "Haverwerf 7",
+    "game": "Escape game",
+    "experience": "Escape experience",
+    "walk": "Escape walk experience",
     "location": "Locatie",
     "discover": "Ontdek",
     "questions": "Nuttig",

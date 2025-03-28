@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 import gsap from "gsap";
-import { fadeSlide, scrollTrigger } from "@/utils/gsap";
+import { fadeSlide, fade, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { clsx } from "clsx";
 gsap.registerPlugin(ScrollTrigger);
@@ -12,8 +12,8 @@ export const Badge = ({ title, slug, featuredImage, index }) => {
   const elementRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(elementRef.current, fadeSlide.from, {
-      ...fadeSlide.to,
+    gsap.fromTo(elementRef.current, fade.from, {
+      ...fade.to,
       delay: index * 0.1,
       scrollTrigger: {
         trigger: elementRef.current,

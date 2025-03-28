@@ -227,27 +227,29 @@ export default async function Home({ params }) {
 
       <footer className="pb-4">
         <Container classnames="flex justify-between items-center">
-          <Link href="https://www.publiplus.be" target="_blank">
-            <Text as="p" level="sm" classnames="hover:underline">
-              Publiplus Website Design
-            </Text>
-          </Link>
+          <Text as="p" level="sm" classnames="hover:underline">
+            Clint D’Hoogh Website Design
+          </Text>
           {params.locale === "nl" ? (
-            <Image
-              src="/aircotech/engels.webp"
-              alt="engles"
-              width={512}
-              height={512}
-              className="aspect-square w-10"
-            />
+            <Link href="/en/aircotech">
+              <Image
+                src="/aircotech/engels.webp"
+                alt="engles"
+                width={512}
+                height={512}
+                className="aspect-square w-10"
+              />
+            </Link>
           ) : (
-            <Image
-              src="/aircotech/nederlands.webp"
-              alt="engles"
-              width={512}
-              height={512}
-              className="aspect-square w-10"
-            />
+            <Link href="/nl/aircotech-cool-at-what-we-do">
+              <Image
+                src="/aircotech/nederlands.webp"
+                alt="engles"
+                width={512}
+                height={512}
+                className="aspect-square w-10"
+              />
+            </Link>
           )}
         </Container>
       </footer>

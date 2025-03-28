@@ -61,7 +61,7 @@ export const AwardSlider = ({
   if (slider) {
     return (
       <section
-        className={`py-12 px-8 md:px-4 bg-cover`}
+        className={`py-12 px-8 md:px-4 bg-cover bg-center`}
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
         <Container classnames="relative">

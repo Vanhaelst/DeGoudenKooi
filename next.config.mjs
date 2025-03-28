@@ -69,7 +69,7 @@ const nextConfig = {
         destination: "/en/aircotech-cool-at-what-we-do",
       },
       {
-        source: "/en/aircotech/",
+        source: "/en/aircotech",
         destination: "/en/aircotech-cool-at-what-we-do",
       },
 

@@ -24,7 +24,7 @@ export const Faq = async ({
   }
 
   return (
-    <section className={`${bgColor} py-18 sm:py-24`}>
+    <section className={`${bgColor} py-10 sm:py-16`}>
       <Container classnames="">
         <Title title={title} description={description} />
         <div className="divide-y">

@@ -211,7 +211,12 @@ export default function GamePage({ data, locale }) {
             gameType={gameType}
           />
         )}
-        {!isInactive && <Bookeo variant={categories[0]} />}
+        {!isInactive && (
+          <Bookeo
+            variant={categories[0]}
+            title={`${t.navigation.reserve} ${title}`}
+          />
+        )}
 
         <div id="faq" className="mb-10 md:mb-20" />
         <Faq
