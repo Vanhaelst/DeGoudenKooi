@@ -13,6 +13,7 @@ import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { renderComponents } from "@/utils/renderComponents";
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import { Awards } from "@/app/[locale]/(website)/awards/client";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
@@ -50,12 +51,15 @@ async function getPage({ language }) {
   return fetchData(FixedPageQuery({ page: "awardspageEntries", language }));
 }
 
+const amount = 2;
 const getAwards = ({ locale }) => {
-  return fetchData(awardsQuery({ locale, visibility: "awardsPage" }));
+  return fetchData(
+    awardsQuery({ locale, visibility: "awardsPage", limit: amount }),
+  );
 };
 
 export default async function Home({ params }) {
-  const { awards } = await getAwards({ locale: params.locale });
+  const { awards, count } = await getAwards({ locale: params.locale });
   const { page } = await getPage({ language: params.locale });
 
   const {
@@ -85,35 +89,12 @@ export default async function Home({ params }) {
         <section className="py-12 sm:py-16">
           <Container classnames="grid grid-cols-12 relative">
             <div className="col-span-1" />
-            <ul
-              role="list"
-              className=" space-y-12 divide-y divide-gray-200 col-span-12 lg:col-span-10"
-            >
-              {awards.map(({ image, title, description }, person) => (
-                <li
-                  key={person.title}
-                  className="flex flex-col items-start gap-10 pt-12 lg:flex-row"
-                >
-                  <Image
-                    src={image?.[0]?.url}
-                    alt={image?.[0]?.alt || ""}
-                    width={image?.[0]?.width}
-                    height={image?.[0]?.height}
-                    className={`min-w-40 w-40 object-contain`}
-                  />
-
-                  <div className="">
-                    <h3 className="text-lg/8 font-semibold tracking-tight text-gray-900">
-                      {title}
-                    </h3>
-                    <RichText
-                      text={description}
-                      className="mt-6 text-gray-600 font-light"
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <Awards
+              defaultAwards={awards}
+              locale={params.locale}
+              amount={amount}
+              count={count}
+            />
           </Container>
         </section>
       </ImageWrapper>
