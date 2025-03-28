@@ -10,15 +10,17 @@ async function getRooms({ language }) {
   return fetchData(roomsQuery({ language }));
 }
 
-export async function Testimonials({ locale, title }) {
+export async function Testimonials({ locale, title, backgroundImage }) {
   const { rooms } = await getRooms({ language: locale });
   const dict = await getDictionary(locale);
+
+  const badgesBackground = backgroundImage?.[0]?.url;
 
   return (
     <section
       className={`pt-10 pb-24 sm:pb-32 bg-top bg-cover`}
       style={{
-        backgroundImage: `url('/hero-badges-top.png')`,
+        backgroundImage: `url('${badgesBackground}')`,
       }}
     >
       <Container>

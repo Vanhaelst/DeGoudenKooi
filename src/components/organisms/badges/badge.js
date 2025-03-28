@@ -25,7 +25,7 @@ export const Badge = ({ title, slug, featuredImage, index }) => {
   return (
     <a
       ref={elementRef}
-      href={slug}
+      href={`/${slug}`}
       className={clsx(
         "opacity-0",
         "w-40 min-w-40 max-w-40",

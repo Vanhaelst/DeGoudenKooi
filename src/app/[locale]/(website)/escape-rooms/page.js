@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params, searchParams }) {
+export default async function Home({ params }) {
   const { page } = await getPage({ language: params.locale });
   const { rooms } = await getRooms({ language: params.locale });
 
