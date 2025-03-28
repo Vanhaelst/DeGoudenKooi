@@ -21,7 +21,7 @@ import { formatPrice } from "@/utils/formatPrice";
 import ModalVideo from "@/components/molecules/video/modalVideo";
 import { Reviews } from "@/components/organisms/reviews/review";
 
-export default function GamePage({ data, locale }) {
+export default function GamePage({ data, locale, children }) {
   const [faq, setFaq] = useState(undefined);
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
@@ -183,13 +183,11 @@ export default function GamePage({ data, locale }) {
             <ContentImage key={item.id} detail={true} {...item} />
           ))}
         </div>
-
         <ModalVideo
           videoId={videoId}
           videoPlayer={videoPlayer}
           thumb={videoImage?.[0]}
         />
-
         {sliderAwards && sliderAwards.length ? (
           <AwardSlider
             title={`${t.general.the} "${title}" ${t.topbar.awards}`}
@@ -200,9 +198,7 @@ export default function GamePage({ data, locale }) {
             t={t.game}
           />
         ) : null}
-
         <Reviews reviews={reviews} />
-
         {!isInactive && (
           <Prices
             prices={prices}
@@ -217,13 +213,13 @@ export default function GamePage({ data, locale }) {
             title={`${t.navigation.reserve} ${title}`}
           />
         )}
-
         <div id="faq" className="mb-10 md:mb-20" />
         <Faq
           title={`${t.game.faq} ${title}`}
           backgroundColor="lightGray"
           faq={faq}
         />
+        {children}
       </div>
     </main>
   );

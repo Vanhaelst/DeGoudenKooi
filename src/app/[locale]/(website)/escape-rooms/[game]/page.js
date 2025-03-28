@@ -10,11 +10,14 @@ import {
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
 import { buttonsQuery } from "@/queries/entries/buttons";
+import { Badges } from "@/components/organisms/badges/badges";
+import { roomsQuery } from "@/queries/sections/rooms";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
 const query = ({ slug, language = "nl" }) => {
   return `
         query MyQuery {
-              rooms: roomsEntries(slug: "${slug}", language: "${language}") {
+              room: roomsEntries(slug: "${slug}", language: "${language}") {
                   ... on game_Entry {
                       title
                       featuredImage ${imageQuery}
@@ -90,6 +93,9 @@ const query = ({ slug, language = "nl" }) => {
   `;
 };
 
+async function getRooms({ language }) {
+  return fetchData(roomsQuery({ language }));
+}
 async function getRoom({ params }) {
   return fetchData(
     query({
@@ -134,11 +140,27 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Game({ params }) {
-  const { rooms } = await getRoom({ params });
+  const { rooms } = await getRooms({ language: params.locale });
+  const { room } = await getRoom({ params });
 
-  if (!rooms) {
+  const dict = await getDictionary(params.locale);
+
+  if (!room) {
     return <Loader />;
   }
 
-  return <GamePage data={rooms[0]} locale={params.locale} />;
+  return (
+    <>
+      <GamePage data={room[0]} locale={params.locale}>
+        <section
+          className={`py-20 bg-bottom bg-cover`}
+          style={{
+            backgroundImage: `url('/hero-badges-scheur.png')`,
+          }}
+        >
+          <Badges defaultRooms={rooms} dict={dict} />
+        </section>
+      </GamePage>
+    </>
+  );
 }
