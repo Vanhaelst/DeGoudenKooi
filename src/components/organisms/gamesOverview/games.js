@@ -199,13 +199,13 @@ export const Games = ({
                 <div className="space-x-3 flex justify-center lg:justify-start">
                   <Button
                     variant="white-outline"
-                    href={slug}
+                    href={`/${slug}`}
                     callToAction="MEER WETEN"
                     size="medium"
                   />
                   <Button
                     variant="primary"
-                    href={`${slug}#book`}
+                    href={`/${slug}#book`}
                     callToAction="BOEK NU"
                     size="medium"
                   />
