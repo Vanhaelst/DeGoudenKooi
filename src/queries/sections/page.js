@@ -14,6 +14,7 @@ import { seoEntry } from "@/queries/entries/seo";
 import { videoEntry } from "@/queries/entries/video";
 import { bannerEntry } from "@/queries/entries/banner";
 import { imageQuery } from "@/queries/entries/image";
+import { contactFormEntry } from "@/queries/entries/contactForm";
 
 export const PageQuery = ({ page, language = "nl" }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -28,6 +29,7 @@ export const PageQuery = ({ page, language = "nl" }) => {
           sections {
             ${heroEntry}
             ${awardsEntry}
+            ${contactFormEntry}
             ${featuresEntry}
             ${faqEntry}
             ${callToActionEntry}

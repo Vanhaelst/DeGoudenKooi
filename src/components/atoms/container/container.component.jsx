@@ -3,6 +3,8 @@
 export const Container = ({ size, classnames, children, style }) => {
   const getSize = () => {
     switch (size) {
+      case "xs":
+        return "container px-6 lg:px-8 max-w-xl lg:max-w-3xl";
       case "s":
         return "container px-6 lg:px-8 max-w-xl lg:max-w-5xl";
       case "md":

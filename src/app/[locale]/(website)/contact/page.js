@@ -41,26 +41,6 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const faq = [
-  {
-    title: "DGK escape games - gerechtstraat",
-    description:
-      "<p>Er zijn verschillende parkeermogelijkheden in de buurt.\n" +
-      "Gratis parkeren doe je op parking Douaneplein. Vandaar wandel je zo’n 20 minuten.\n" +
-      "Goedkoop parkeren (max. €1 per uur in de week, gratis vanaf 20 uur en in het weekend) doe je op parking Zandpoortvest. Deze parkeertoren bevindt zich op zo’n 5 minuten wandelafstand.\n" +
-      "Vlakbij (maar duurder) parkeren doe je in de ondergrondse parking Veemarkt. Vandaar is het zo’n 3 minuten wandelen.\n" +
-      "Er zijn ook gratis shopping shuttles op bepaalde dagen die je naar het centrum van Mechelen brengen vanaf een gratis parking in de rand.</p>",
-  },
-  {
-    title: "DGK escape Experiences - Haverwerf",
-    description:
-      "<p>Er zijn verschillende parkeermogelijkheden in de buurt.\n" +
-      "Gratis parkeren doe je op parking Douaneplein. Vandaar wandel je zo’n 20 minuten.\n" +
-      "Goedkoop parkeren (max. €1 per uur in de week, gratis vanaf 20 uur en in het weekend) doe je op parking Zandpoortvest. Deze parkeertoren bevindt zich op zo’n 5 minuten wandelafstand.\n" +
-      "Vlakbij (maar duurder) parkeren doe je in de ondergrondse parking Veemarkt. Vandaar is het zo’n 3 minuten wandelen.\n" +
-      "Er zijn ook gratis shopping shuttles op bepaalde dagen die je naar het centrum van Mechelen brengen vanaf een gratis parking in de rand.</p>",
-  },
-];
 export default async function Contact({ params }) {
   const { page } = await getPage({ language: params.locale });
   const dict = await getDictionary(params.locale);

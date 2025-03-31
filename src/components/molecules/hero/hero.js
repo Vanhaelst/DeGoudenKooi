@@ -11,6 +11,7 @@ import { Images } from "@/components/molecules/image/image";
 import gsap from "gsap";
 import { fade, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { clsx } from "clsx";
 gsap.registerPlugin(ScrollTrigger);
 
 export const Hero = ({
@@ -90,7 +91,7 @@ export const Hero = ({
   if (type === "vertical") {
     return (
       <section
-        className={`${bgColor}  bg-cover bg-bottom pt-[150px]`}
+        className={clsx(bgColor, "pb-40", "bg-cover bg-bottom pt-[150px]")}
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
         <Container classnames="py-20">
@@ -109,7 +110,11 @@ export const Hero = ({
 
   return (
     <section
-      className={`${bgColor} min-h-96  bg-cover bg-bottom opacity-0`}
+      className={clsx(
+        bgColor,
+
+        "min-h-96  bg-cover bg-bottom opacity-0",
+      )}
       style={{
         backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
       }}

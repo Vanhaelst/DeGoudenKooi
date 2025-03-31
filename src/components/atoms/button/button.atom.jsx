@@ -117,7 +117,21 @@ export const Button = ({
       </button>
     );
   }
-
+  if (buttonType === "submit") {
+    return (
+      <button
+        type={buttonType}
+        className={`
+            ${classnames}
+          ${getVariant()} ${getFont()} ${getType()} ${buttonSize()} 
+          ${fullWidth ? "w-full" : ""}
+        cursor-pointer hover:scale-110 transition-all
+        `}
+      >
+        {callToAction}
+      </button>
+    );
+  }
   return (
     <Link
       href={foo.url || ""}

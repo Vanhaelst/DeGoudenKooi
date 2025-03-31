@@ -15,12 +15,12 @@ import { Features } from "@/components/organisms/features/features";
 import { CallToAction } from "@/components/organisms/callToAction/callToAction";
 import { Testimonials } from "@/components/organisms/testimonials/testimonials";
 import { Faq } from "@/components/organisms/faq/faq";
-import { Contact } from "@/components/molecules/contact/contact";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { ContentImageFullWidth } from "@/components/organisms/content/image";
 import { Banner } from "@/components/molecules/banner";
 import { Columns } from "@/components/organisms/content/columns";
 import { ColumnsWithDivider } from "@/components/organisms/content/columnsWithDivider";
+import { Contact } from "@/components/molecules/contact/contact";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
@@ -54,6 +54,8 @@ export const renderComponents = (data, locale) => {
       return <Team key={data.id} locale={locale} {...data} />;
     case "accordion":
       return <FaqMolecule key={data.id} locale={locale} {...data} />;
+    case "contactForm":
+      return <Contact key={data.id} locale={locale} {...data} />;
     // content wrapper
     case "contents":
       return <Contents key={data.id} locale={locale} {...data} />;

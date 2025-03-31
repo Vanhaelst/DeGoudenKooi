@@ -1,13 +1,12 @@
 "use client";
 
+import { Button, Container, RichText, Text } from "@/components/atoms";
 import React, { useState } from "react";
-import { clsx } from "clsx";
 import { useForm } from "react-hook-form";
 import { sendMail } from "@/server/brevo/sendMail";
+import { clsx } from "clsx";
 
-import { Text } from "@/components/atoms";
-
-export const Form = ({ t }) => {
+export const Form = ({ t, title }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -46,6 +45,8 @@ export const Form = ({ t }) => {
     }
   };
 
+  console.log(t);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -56,9 +57,9 @@ export const Form = ({ t }) => {
           htmlFor="firstname"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          {t.firstname}{" "}
+          {t?.firstname}{" "}
           <span className="text-red-500 font-normal text-xs">
-            ({t.required})
+            ({t?.required})
           </span>
         </label>
         <div className="mt-2">
@@ -68,7 +69,7 @@ export const Form = ({ t }) => {
           />{" "}
           {errors.firstname?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t.validation[errors.firstname.type]}
+              {t?.validation[errors.firstname.type]}
             </Text>
           )}
         </div>
@@ -78,9 +79,9 @@ export const Form = ({ t }) => {
           htmlFor="lastname"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          {t.lastname}{" "}
+          {t?.lastname}{" "}
           <span className="text-red-500 font-normal text-xs">
-            ({t.required})
+            ({t?.required})
           </span>
         </label>
         <div className="mt-2">
@@ -90,7 +91,7 @@ export const Form = ({ t }) => {
           />{" "}
           {errors.lastname?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t.validation[errors.lastname.type]}
+              {t?.validation[errors.lastname.type]}
             </Text>
           )}
         </div>
@@ -100,9 +101,9 @@ export const Form = ({ t }) => {
           htmlFor="mail"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          {t.mail}{" "}
+          {t?.mail}{" "}
           <span className="text-red-500 font-normal text-xs">
-            ({t.required})
+            ({t?.required})
           </span>
         </label>
         <div className="mt-2">
@@ -112,7 +113,7 @@ export const Form = ({ t }) => {
           />
           {errors.mail?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t.validation[errors.mail.type]}
+              {t?.validation[errors.mail.type]}
             </Text>
           )}
         </div>
@@ -122,12 +123,12 @@ export const Form = ({ t }) => {
           htmlFor="message"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          {t.message}{" "}
+          {t?.message}{" "}
           <span className="text-red-500 font-normal text-xs">
-            ({t.required})
+            ({t?.required})
           </span>
         </label>
-        <Text level="xs">{t.message_description}</Text>
+        <Text level="xs">{t?.message_description}</Text>
 
         <div className="mt-2">
           <textarea
@@ -137,25 +138,19 @@ export const Form = ({ t }) => {
           />
           {errors.message?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t.validation[errors.message.type]}
+              {t?.validation[errors.message.type]}
             </Text>
           )}
         </div>
       </div>
 
-      <div className="col-span-2">
-        <button
+      <div className="col-span-2 flex justify-end">
+        <Button
           type="submit"
+          variant="white"
           disabled={isSubmitting}
-          className={clsx(
-            "rounded-full px-6 py-3 uppercase font-semibold tracking-wide",
-            "bg-orange-500 text-white",
-            "hover:bg-orange-700 transition-all",
-            isSubmitting && "bg-gray-500 hover:bg-gray-500 cursor-not-allowed",
-          )}
-        >
-          {t.send}
-        </button>
+          callToAction={t?.send}
+        />
       </div>
     </form>
   );
