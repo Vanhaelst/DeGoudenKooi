@@ -57,7 +57,7 @@ export const Games = ({
       .then((res) => {
         setAwards(res.awards);
       })
-      .catch((e) => console.log("error", e));
+      .catch((e) => console.error(e));
   }, []);
 
   const isEven = index % 2 === 0;

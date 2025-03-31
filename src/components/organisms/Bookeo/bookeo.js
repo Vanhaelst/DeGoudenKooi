@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
 import { Title } from "@/components/molecules";
+import { useRouter } from "next/navigation";
 
 const BOOKEO = {
   main: "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360",
@@ -28,14 +29,34 @@ const BOOKEO = {
 
 export const Bookeo = ({ variant, locale, title }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
+  const router = useRouter();
 
+  const [seconds, setSeconds] = useState(0);
+  const [error, setError] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const bookeo = document.getElementById("bookeo_position");
+
+    if (bookeo.children.length) {
       setIsMounted(true);
+    } else if (!isMounted && seconds >= 10) {
+      setError(true);
+      setIsMounted(true);
+    }
+
+    setTimeout(() => {
+      if (!isMounted) {
+        setSeconds((prevState) => prevState + 1);
+      }
     }, 1000);
-  }, []);
+  }, [isMounted, seconds]);
+
+  useEffect(() => {
+    if (error) {
+      window.location.reload();
+    }
+  }, [error]);
 
   return (
     <>

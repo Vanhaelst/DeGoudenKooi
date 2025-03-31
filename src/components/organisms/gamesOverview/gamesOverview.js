@@ -36,7 +36,7 @@ export const GamesOverview = ({
         .then((res) => {
           setRooms(res.rooms);
         })
-        .catch((e) => console.log("error", e));
+        .catch((e) => console.error(e));
     } else {
       setRooms(defaultRooms);
     }

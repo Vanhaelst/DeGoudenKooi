@@ -36,7 +36,7 @@ export async function POST(req, res) {
   const result = await fetch(url, options)
     .then((res) => res.json())
     .then((json) => ({ status: 200, ...json }))
-    .catch((err) => console.error("catch", err));
+    .catch((err) => console.error(err));
 
   return NextResponse.json(result, { status: 200 });
 }

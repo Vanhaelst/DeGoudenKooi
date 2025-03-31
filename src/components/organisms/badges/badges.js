@@ -76,7 +76,7 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
         .then((res) => {
           setRooms(res.rooms);
         })
-        .catch((e) => console.log("error", e));
+        .catch((e) => console.error(e));
     } else {
       setTimeout(() => {
         setRooms(defaultRooms);

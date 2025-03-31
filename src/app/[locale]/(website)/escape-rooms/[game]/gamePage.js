@@ -209,6 +209,7 @@ export default function GamePage({ data, locale, children }) {
         )}
         {!isInactive && (
           <Bookeo
+            locale={locale}
             variant={categories[0]}
             title={`${t.navigation.reserve} ${title}`}
           />
