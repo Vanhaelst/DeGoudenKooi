@@ -17,7 +17,7 @@ async function getPage({ language, url }) {
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     `query MyQuery {
-      page: seoPagesEntries(slug:"${params.seo}", , language: "${params.locale}") {
+      page: seoPagesEntries(slug:"${params.seo}", language: "${params.locale}") {
         ... on page_Entry {
           id
           ${seoEntry}

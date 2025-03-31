@@ -13,8 +13,8 @@ import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage() {
-  return fetchData(PageQuery({ page: "blogEntries" }));
+async function getPage({ language }) {
+  return fetchData(PageQuery({ page: "blogEntries", language }));
 }
 
 const amount = 5;

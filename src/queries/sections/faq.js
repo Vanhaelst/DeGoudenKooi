@@ -1,6 +1,6 @@
-export const faqQuery = ({ categories, filters }) => `
+export const faqQuery = ({ categories, filters, language = "nl" }) => `
   query MyQuery {
-      faq: faqEntries(categories: "${categories}" ${filters ? `, filters: "${filters}"` : ""}) {
+      faq: faqEntries(language: "${language}", categories: "${categories}" ${filters ? `, filters: "${filters}"` : ""}) {
         ... on faq_Entry {
           title
           description

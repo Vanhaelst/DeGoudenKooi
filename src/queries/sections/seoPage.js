@@ -15,7 +15,7 @@ export const SeoQuery = ({ url, language }) => {
   const locale = language === "undefined" ? "nl" : language;
   return `
     query MyQuery {
-      page: seoPagesEntries(slug:"${url}") {
+      page: seoPagesEntries(slug:"${url}", language: "${locale}") {
         ... on page_Entry  {
           id
           sections {

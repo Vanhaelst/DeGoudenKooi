@@ -65,7 +65,7 @@ export default function GamePage({ data, locale, children }) {
     if (!categories) {
       return;
     }
-    fetchData(faqQuery({ categories })).then((res) => {
+    fetchData(faqQuery({ language: locale, categories })).then((res) => {
       setFaq(res.faq);
     });
 

@@ -89,7 +89,7 @@ export const NewsPaginated = ({ news, locale, amount, count }) => {
           <Button
             variant={"primary"}
             onClick={() => setPage((prevState) => prevState + 1)}
-            callToAction={"Laad meer"}
+            callToAction={locale === "en" ? "Load more" : "Laad meer"}
           />
         </div>
       )}

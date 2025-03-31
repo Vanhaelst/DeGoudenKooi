@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Home({ params }) {
-  const { page } = await getPage({ langauge: params.locale });
+  const { page } = await getPage({ language: params.locale });
 
   const sections = page[0]?.sections;
 

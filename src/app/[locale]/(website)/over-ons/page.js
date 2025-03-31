@@ -9,8 +9,8 @@ import {
 import { SeoQuery } from "@/queries/sections/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage() {
-  return fetchData(PageQuery({ page: "aboutUsEntries" }));
+async function getPage({ language }) {
+  return fetchData(PageQuery({ page: "aboutUsEntries", language }));
 }
 
 export async function generateMetadata({ params }) {

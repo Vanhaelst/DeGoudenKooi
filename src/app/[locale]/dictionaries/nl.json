@@ -28,6 +28,7 @@
     "from": "va",
     "gerechtstraat": "Gerechtstraat 10",
     "haverwerf": "Haverwerf 7",
+    "adventures": "Alle avonturen",
     "game": "Escape game",
     "experience": "Escape experience",
     "walk": "Escape walk experience",
@@ -37,7 +38,8 @@
     "amount": "Aantal",
     "time": "Duurtijd",
     "discover_all": "Ontdek alle escape games",
-    "minAge": "Aanbevolen minimum leeftijd"
+    "minAge": "Aanbevolen minimum leeftijd",
+    "loadMore": "Meer laden"
   },
   "game": {
     "teaser": "Teaser",
@@ -46,6 +48,8 @@
     "awards_link_bold": "awards pagina",
     "minAge": "Details onderaan in de faq",
     "faq": "Vragen en antwoorden over",
+    "moreInfo": "Meer weten",
+    "book": "Boek nu",
     "inactive": {
       "title": "Momenteel niet actief",
       "walk": "Deze wandeling is momenteel niet actief.",

@@ -26,7 +26,6 @@ export const Form = ({ t }) => {
     },
   });
 
-  console.log(errors);
   const onSubmit = async (data, e) => {
     e.preventDefault();
     setIsSubmitting(true);

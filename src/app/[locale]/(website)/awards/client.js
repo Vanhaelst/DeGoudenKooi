@@ -18,7 +18,7 @@ export const Awards = ({ defaultAwards, locale, amount, count }) => {
 
   useEffect(() => {
     if (page !== 1) {
-      getAwards({ language: locale, offset: (page - 1) * amount, amount }).then(
+      getAwards({ locale, offset: (page - 1) * amount, amount }).then(
         ({ awards }) => {
           setAwards((prevState) => [...prevState, ...awards]);
         },
@@ -59,7 +59,7 @@ export const Awards = ({ defaultAwards, locale, amount, count }) => {
           <Button
             variant={"primary"}
             onClick={() => setPage((prevState) => prevState + 1)}
-            callToAction={"Laad meer"}
+            callToAction={locale === "en" ? "Load more" : "Laad meer"}
           />
         </div>
       )}

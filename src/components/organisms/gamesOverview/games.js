@@ -200,13 +200,13 @@ export const Games = ({
                   <Button
                     variant="white-outline"
                     href={`/${slug}`}
-                    callToAction="MEER WETEN"
+                    callToAction={t.game.moreInfo.toUpperCase()}
                     size="medium"
                   />
                   <Button
                     variant="primary"
                     href={`/${slug}#book`}
-                    callToAction="BOEK NU"
+                    callToAction={t.game.book.toUpperCase()}
                     size="medium"
                   />
                 </div>

@@ -15,7 +15,6 @@ export const metadata = {
 };
 
 export default async function Home({ params }) {
-  console.log("params", params);
   const t = params.locale === "en" ? en : nl;
   return (
     <main>

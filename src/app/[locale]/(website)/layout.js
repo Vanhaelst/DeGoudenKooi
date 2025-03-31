@@ -17,7 +17,6 @@ import {
   englishMetadata,
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
-import Image from "next/image";
 import { Borders } from "@/app/[locale]/(website)/border";
 
 const font = Roboto_Condensed({

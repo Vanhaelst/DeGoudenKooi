@@ -120,7 +120,7 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
       </div>
       {filter && (
         <Container classnames="pt-10">
-          <Select />
+          <Select t={dict} />
         </Container>
       )}
     </div>

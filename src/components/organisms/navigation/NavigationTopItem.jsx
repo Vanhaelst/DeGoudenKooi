@@ -1,4 +1,8 @@
 export default function NavigationTopItem({ item }) {
+  if (!item) {
+    return null;
+  }
+
   const { name, href } = item ?? {};
 
   return (

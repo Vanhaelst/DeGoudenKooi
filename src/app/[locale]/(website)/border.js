@@ -3,20 +3,9 @@ import { Roboto_Condensed } from "next/font/google";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { GoogleTagManager } from "@next/third-parties/google";
-
 import "./globals.css";
 import "../../slick.css";
 import React from "react";
-import { TopBar } from "@/components/organisms/navigation/top-bar";
-import { Footer } from "@/components/organisms/footer/footer";
-import { redirect } from "next/navigation";
-import {
-  defaultMetadata,
-  dutchMetadata,
-  englishMetadata,
-} from "@/data/metadata";
-import { Navigation } from "@/components/organisms/navigation/navigation";
 import Image from "next/image";
 
 export const Borders = () => {

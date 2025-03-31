@@ -17,6 +17,7 @@ import { imageQuery } from "@/queries/entries/image";
 
 export const PageQuery = ({ page, language = "nl" }) => {
   const locale = language === "undefined" ? "nl" : language;
+
   return `
     query MyQuery {
       page: ${page}(language: "${locale}") {

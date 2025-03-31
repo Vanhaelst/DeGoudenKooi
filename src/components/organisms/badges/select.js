@@ -13,14 +13,7 @@ import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import Image from "next/image";
 
-const people = [
-  { id: 0, key: "", name: "Alle avonturen" },
-  { id: 1, key: "game", name: "Escape Game" },
-  { id: 2, key: "experience", name: "Escape Experience" },
-  { id: 3, key: "walk", name: "Escape Walk Experience" },
-];
-
-export const Select = () => {
+export const Select = ({ t }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -28,6 +21,13 @@ export const Select = () => {
   const [selected, setSelected] = useState();
 
   const elementRef = useRef(null);
+
+  const people = [
+    { id: 0, key: "", name: t.general.adventures },
+    { id: 1, key: "game", name: t.general.game },
+    { id: 2, key: "experience", name: t.general.experience },
+    { id: 3, key: "walk", name: t.general.walk },
+  ];
 
   useEffect(() => {
     gsap.fromTo(elementRef.current, fadeSlide.from, {

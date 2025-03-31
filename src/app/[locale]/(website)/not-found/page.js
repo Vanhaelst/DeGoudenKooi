@@ -4,11 +4,9 @@ import React from "react";
 import { LINKS } from "@/enums/links";
 import nl from "@/app/[locale]/dictionaries/nl.json";
 import en from "@/app/[locale]/dictionaries/en.json";
-import { usePathname, useParams } from "next/navigation";
 
-export default function Page() {
-  const pathname = usePathname();
-  const t = pathname.includes("/nl/") ? nl : en;
+export default function Page({ params }) {
+  const t = params.locale === "en" ? en : nl;
 
   return (
     <main className="relative isolate lg:min-h-[800px]">
@@ -27,7 +25,7 @@ export default function Page() {
         </p>
         <div className="mt-10 flex justify-center">
           <a
-            href={LINKS.NL.HOME}
+            href={params.locale === "en" ? LINKS.EN.HOME : LINKS.NL.HOME}
             className="text-sm/7 font-semibold text-white"
           >
             <span aria-hidden="true">&larr;</span> {t.notFound.button}

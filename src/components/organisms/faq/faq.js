@@ -5,8 +5,8 @@ import { Accordion, Title } from "@/components/molecules";
 import { faqQuery } from "@/queries/sections/faq";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 
-async function getPage({ categories, filters }) {
-  return fetchData(faqQuery({ categories, filters }));
+async function getPage({ categories, filters, language }) {
+  return fetchData(faqQuery({ categories, filters, language }));
 }
 
 export const Faq = async ({
@@ -15,8 +15,10 @@ export const Faq = async ({
   categories,
   filters,
   backgroundColor,
+  locale,
 }) => {
-  const { faq } = (await getPage({ categories, filters })) ?? undefined;
+  const { faq } =
+    (await getPage({ categories, filters, language: locale })) ?? undefined;
   const bgColor = getBackgroundColor(backgroundColor);
 
   if (!faq) {

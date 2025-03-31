@@ -38,7 +38,13 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
             </div>
 
             <ul className="mt-24 menu rounded-box w-full">
-              {nav.map(({ name, href, children }) => {
+              {nav.map((item) => {
+                if (!item) {
+                  return null;
+                }
+
+                const { name, href, children } = item;
+
                 if (children) {
                   return (
                     <li key={name}>
@@ -64,7 +70,13 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
                 );
               })}
 
-              {topbar.map(({ name, href, children }) => {
+              {topbar.map((item) => {
+                if (!item) {
+                  return null;
+                }
+
+                const { name, href, children } = item;
+
                 if (children) {
                   return (
                     <li key={name}>

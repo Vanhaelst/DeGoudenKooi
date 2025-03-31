@@ -31,6 +31,16 @@ const nextConfig = {
         source: "/",
         destination: "/nl",
       },
+      /*------------------------------- Nederlands -------------------------------*/
+      {
+        source: "/nl/boek-nu",
+        destination: "/nl/boeking",
+      },
+      /*------------------------------- Engels -------------------------------*/
+      {
+        source: "/en/activities-in-mechelen",
+        destination: "/en/activiteiten-in-mechelen",
+      },
       {
         source: "/en/about-us",
         destination: "/en/over-ons",
@@ -48,23 +58,35 @@ const nextConfig = {
         destination: "/en/nieuws/:nieuws",
       },
       {
-        source: "/en/reserve",
-        destination: "/en/reserveer",
+        source: "/en/booking",
+        destination: "/en/boeking",
       },
       {
         source: "/en/book-now",
-        destination: "/en/reserveer",
+        destination: "/en/boeking",
       },
       {
-        source: "/nl/boek-nu",
-        destination: "/nl/reserveer",
+        source: "/en/giftcard",
+        destination: "/en/cadeaubon",
       },
-
-
+      {
+        source: "/en/grab-a-bite",
+        destination: "/en/hapje-eten",
+      },
+      {
+        source: "/en/your-planning",
+        destination: "/en/je-planning",
+      },
+      {
+        source: "/en/press",
+        destination: "/en/pers",
+      },
+      /*------------------------------- Aircotech -------------------------------*/
       {
         source: "/aircotech-cool-at-what-we-do",
         destination: "/nl/aircotech-cool-at-what-we-do",
-      },{
+      },
+      {
         source: "/en/aircotech-cool-at-what-we-do",
         destination: "/en/aircotech-cool-at-what-we-do",
       },
@@ -72,9 +94,6 @@ const nextConfig = {
         source: "/en/aircotech",
         destination: "/en/aircotech-cool-at-what-we-do",
       },
-
-
-
     ];
   },
 };

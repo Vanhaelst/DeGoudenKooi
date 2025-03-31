@@ -15,10 +15,12 @@ export const TopBar = async ({ locale = "nl" }) => {
       name: dict.topbar.awards,
       href: LINKS[locale.toUpperCase()].AWARDS,
     },
-    {
-      name: dict.topbar.news,
-      href: LINKS[locale.toUpperCase()].NEWS,
-    },
+    locale === "nl"
+      ? {
+          name: dict.topbar.news,
+          href: LINKS[locale.toUpperCase()].NEWS,
+        }
+      : null,
     {
       name: dict.topbar.blog,
       href: LINKS[locale.toUpperCase()].BLOG,
@@ -30,6 +32,10 @@ export const TopBar = async ({ locale = "nl" }) => {
       <div className="mx-auto max-w-7xl px-6 lg:px-0">
         <div className="flex items-center justify-end gap-x-6 px-6 py-2 sm:pr-3.5 lg:pl-8 mr-4">
           {topNavigation.map((item) => {
+            if (!item) {
+              return null;
+            }
+
             return <NavigationTopItem key={item.name} item={item} />;
           })}
           <LanguageSwitch locale={locale} />

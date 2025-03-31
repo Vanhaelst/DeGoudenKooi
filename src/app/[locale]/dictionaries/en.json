@@ -11,7 +11,7 @@
   "navigation": {
     "about": "Our story",
     "games": "Our Escape Rooms",
-    "teambuilding": "Teambuilding",
+    "teambuilding": "Team building",
     "contact": "Contact",
     "reserve": "Book",
     "pers": "Press",
@@ -29,6 +29,7 @@
     "teaser": "Teaser",
     "gerechtstraat": "Gerechtstraat 10",
     "haverwerf": "Haverwerf 7",
+    "adventures": "All adventures",
     "game": "Escape game",
     "experience": "Escape experience",
     "walk": "Escape walk experience",
@@ -38,7 +39,8 @@
     "amount": "Amount",
     "time": "Time",
     "discover_all": "Discover all escape games",
-    "minAge": "Recommended minimum age"
+    "minAge": "Recommended minimum age",
+    "loadMore": "Load more"
   },
   "game": {
     "teaser": "Teaser",
@@ -47,6 +49,8 @@
     "awards_link_bold": "awards page",
     "minAge": "Details below in faq",
     "faq": "Questions and answers about",
+    "moreInfo": "More info",
+    "book": "Book now",
     "inactive": {
       "title": "Currently not active",
       "walk": "This walk is not active.",

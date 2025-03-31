@@ -46,10 +46,14 @@ export const Footer = async ({ locale = "nl" }) => {
     ],
     questions: [
       { name: dict.topbar.blog, href: LINKS[locale.toUpperCase()].BLOG },
-      { name: dict.topbar.news, href: LINKS[locale.toUpperCase()].NEWS },
+      locale === "nl"
+        ? { name: dict.topbar.news, href: LINKS[locale.toUpperCase()].NEWS }
+        : null,
       { name: dict.topbar.faq, href: LINKS[locale.toUpperCase()].FAQ },
       { name: dict.topbar.privacy, href: LINKS[locale.toUpperCase()].PRIVACY },
-      { name: dict.topbar.jobs, href: LINKS[locale.toUpperCase()].JOBS },
+      locale === "nl"
+        ? { name: dict.topbar.jobs, href: LINKS[locale.toUpperCase()].JOBS }
+        : null,
       {
         name: dict.navigation.general_conditions,
         target: "_blank",
@@ -198,17 +202,22 @@ export const Footer = async ({ locale = "nl" }) => {
                 {dict.general.questions}
               </Text>
               <ul role="list" className="mt-6 space-y-2">
-                {navigation.questions.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      target={item.target ? item.target : "_self"}
-                      className="text-sm text-white hover:underline hover:pl-2 transition-all"
-                    >
-                      {item.name.toUpperCase()}
-                    </a>
-                  </li>
-                ))}
+                {navigation.questions.map((item) => {
+                  if (!item) {
+                    return null;
+                  }
+                  return (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        target={item.target ? item.target : "_self"}
+                        className="text-sm text-white hover:underline hover:pl-2 transition-all"
+                      >
+                        {item.name.toUpperCase()}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -220,7 +229,7 @@ export const Footer = async ({ locale = "nl" }) => {
                 {navigation.adventures.map((item) => (
                   <li key={item.name}>
                     <a
-                      href={item.href}
+                      href={`/${item.href}`}
                       className="text-sm text-white hover:underline hover:pl-2 transition-all"
                     >
                       {item.name.toUpperCase()}

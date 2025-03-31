@@ -2,10 +2,14 @@
 
 import React, { useState } from "react";
 import { LOCALES } from "@/enums/locales";
+import { usePathname, useRouter } from "next/navigation";
 
 export const LanguageSwitch = ({ locale }) => {
   const [show, setShow] = useState(false);
+  const router = useRouter();
+  const path = usePathname();
 
+  const subPath = path.slice(3);
   return (
     <div className="hidden lg:block group relative z-50">
       <button
@@ -33,14 +37,14 @@ export const LanguageSwitch = ({ locale }) => {
         }`}
       >
         <a
-          href={`/${LOCALES.DUTCH}`}
+          href={`/${LOCALES.DUTCH}${subPath}`}
           className="block p-4 py-2 pl-3 pr-4 text-sm text-primary-500 cursor-pointer hover:bg-gray-100"
         >
           Nederlands
         </a>
 
         <a
-          href={`/${LOCALES.ENGLISH}`}
+          href={`/${LOCALES.ENGLISH}${subPath}`}
           className="block p-4 py-2 pl-3 pr-4 text-sm text-primary-500 cursor-pointer hover:bg-gray-100"
         >
           English
