@@ -122,6 +122,7 @@ export default async function News({ params }) {
       />
 
       {blogsections?.map((section) => renderComponents(section, params.locale))}
+      <div className="pb-20" />
     </>
   );
 }

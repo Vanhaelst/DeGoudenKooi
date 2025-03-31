@@ -15,15 +15,26 @@ export const Cta = ({
   backgroundImage,
   image,
   pullUp,
+  textColor,
 }) => {
   const elementRef = useRef(null);
 
+  const getColor = () => {
+    switch (textColor) {
+      case "white":
+        return "text-white";
+      case "primary":
+        return "text-primary-500";
+      default:
+        return "text-secondary-500";
+    }
+  };
   if (image?.[0]) {
     return (
       <div
-        className={`bg-primary-500 rounded-3xl bg-no-repeat bg-contain bg-right-bottom grid md:grid-cols-4 ${pullUp ? "relative -top-20" : ""}`}
+        className={`bg-primary-500 rounded-3xl bg-no-repeat bg-cover bg-center grid md:grid-cols-4 ${pullUp ? "relative -top-20" : ""}`}
         style={{
-          backgroundImage: `url('${backgroundImage}')`,
+          backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
         }}
         ref={elementRef}
       >
@@ -46,11 +57,14 @@ export const Cta = ({
           <Text
             as={"h2"}
             level="3xl"
-            classnames="text-white lg:max-w-[80%] font-bold"
+            classnames={`${getColor()} lg:max-w-[80%] font-bold`}
           >
             {title}
           </Text>
-          <RichText text={description} classnames="text-white font-light" />
+          <RichText
+            text={description}
+            classnames={`${getColor()} lg:max-w-[80%] font-light`}
+          />
           <div className="space-x-2 mt-6 mb-10 md:mb-4">
             {buttons?.map(({ href, variant, callToAction }) => {
               return (

@@ -54,7 +54,9 @@ export const Bookeo = ({ variant, locale, title }) => {
 
   useEffect(() => {
     if (error) {
-      window.location.reload();
+      process.env.NODE_ENV === "production"
+        ? window.location.reload()
+        : console.error("Bookeo not loaded");
     }
   }, [error]);
 

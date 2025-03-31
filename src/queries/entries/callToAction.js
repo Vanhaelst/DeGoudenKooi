@@ -9,6 +9,8 @@ export const callToActionEntry = `
         description
         buttons ${buttonsQuery}
         image ${imageQuery}
+        backgroundImage ${imageQuery}
+        textColor
         pullUp
         backgroundColor
     }

@@ -51,7 +51,7 @@ async function getPage({ language }) {
   return fetchData(FixedPageQuery({ page: "awardspageEntries", language }));
 }
 
-const amount = 2;
+const amount = 5;
 const getAwards = ({ locale }) => {
   return fetchData(
     awardsQuery({ locale, visibility: "awardsPage", limit: amount }),
@@ -70,9 +70,9 @@ export default async function Home({ params }) {
     type,
     backgroundColor,
     backgroundImage,
+    transparentImage,
     sections,
   } = page[0] ?? {};
-  const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
     <>
@@ -85,7 +85,7 @@ export default async function Home({ params }) {
         backgroundImage={backgroundImage}
         backgroundColor={backgroundColor}
       />
-      <ImageWrapper image={transparentImage}>
+      <ImageWrapper image={transparentImage?.[0]}>
         <section className="py-12 sm:py-16">
           <Container classnames="grid grid-cols-12 relative">
             <div className="col-span-1" />

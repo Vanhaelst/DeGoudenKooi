@@ -25,6 +25,7 @@ export const FixedPageQuery = ({ page, language = "nl" }) => {
           title
           description
           backgroundImage ${imageQuery}
+          transparentImage ${imageQuery}
           image ${imageQuery}
           type: heroType
           textColor
