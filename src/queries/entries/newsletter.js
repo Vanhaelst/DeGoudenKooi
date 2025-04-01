@@ -4,4 +4,9 @@ export const newsletterEntry = `
         id
         title: heading
     }
+    ... on contactForm_Entry {
+        typeHandle
+        id
+        title
+    }
 `;
