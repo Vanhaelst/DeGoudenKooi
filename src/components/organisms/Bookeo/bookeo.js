@@ -27,38 +27,38 @@ const BOOKEO = {
   voucher: "&startmode=buyvoucher",
 };
 
+function generateRandomInteger(min, max) {
+  return Math.floor(min + Math.random() * (max - min + 1));
+}
+const version = generateRandomInteger(0, 50);
+
 export const Bookeo = ({ variant, locale, title }) => {
   const lang = locale === "en" ? "&languageCode=en_US" : "";
   const router = useRouter();
 
   const [seconds, setSeconds] = useState(0);
-  const [error, setError] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const bookeo = document.getElementById("bookeo_position");
 
-    if (bookeo.children.length) {
-      setIsMounted(true);
-    } else if (!isMounted && seconds >= 10) {
-      setError(true);
-      setIsMounted(true);
-    }
+    setTimeout(() => {
+      if (bookeo?.children?.length) {
+        setIsMounted(true);
+      } else if (seconds === 5 && !isMounted && !bookeo?.children?.length) {
+        setSeconds(0);
+        bookeo_startOnready && bookeo_start();
+      }
+    }, 1000);
+  }, [isMounted, seconds]);
 
+  useEffect(() => {
     setTimeout(() => {
       if (!isMounted) {
         setSeconds((prevState) => prevState + 1);
       }
     }, 1000);
   }, [isMounted, seconds]);
-
-  useEffect(() => {
-    if (error) {
-      process.env.NODE_ENV === "production"
-        ? window.location.reload()
-        : console.error("Bookeo not loaded");
-    }
-  }, [error]);
 
   return (
     <>
@@ -81,11 +81,12 @@ export const Bookeo = ({ variant, locale, title }) => {
           {!isMounted && (
             <span className="loading loading-spinner loading-lg" />
           )}
-
           <Script
-            // strategy="afterInteractive"
+            // strategy="beforeInteractive"
+            strategy="afterInteractive"
+            // strategy="lazyOnload"
             type="text/javascript"
-            src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}`}
+            src={`${BOOKEO.main}${variant ? BOOKEO[variant] : ""}${lang}&v=${version}`}
           />
         </Container>
       </section>

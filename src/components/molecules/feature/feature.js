@@ -25,7 +25,7 @@ export const Feature = ({ title, description, icon, index }) => {
 
   return (
     <div ref={elementRef}>
-      <div className="relative flex flex-row items-center">
+      <div className="relative flex flex-row items-center mb-2">
         <Image
           src={icon?.[0]?.url || "/artwork-diamond.png"}
           alt={icon?.[0]?.alt || "diamond artwork"}

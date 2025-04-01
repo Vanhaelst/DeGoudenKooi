@@ -45,8 +45,6 @@ export const Form = ({ t, title }) => {
     }
   };
 
-  console.log(t);
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -64,7 +62,7 @@ export const Form = ({ t, title }) => {
         </label>
         <div className="mt-2">
           <input
-            className="block w-full   bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            className="block w-full   bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
             {...register("firstname", { required: true })}
           />{" "}
           {errors.firstname?.type && (
@@ -87,7 +85,7 @@ export const Form = ({ t, title }) => {
         <div className="mt-2">
           <input
             {...register("lastname", { required: true })}
-            className="block w-full   bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            className="block w-full   bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
           />{" "}
           {errors.lastname?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
@@ -109,7 +107,7 @@ export const Form = ({ t, title }) => {
         <div className="mt-2">
           <input
             {...register("mail", { required: true })}
-            className="block w-full   bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            className="block w-full   bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
           />
           {errors.mail?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
@@ -134,7 +132,7 @@ export const Form = ({ t, title }) => {
           <textarea
             {...register("message", { required: true })}
             rows={6}
-            className="block w-full resize-none bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            className="block w-full resize-none bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
           />
           {errors.message?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
@@ -146,7 +144,7 @@ export const Form = ({ t, title }) => {
 
       <div className="col-span-2 flex justify-end">
         <Button
-          type="submit"
+          buttonType="submit"
           variant="white"
           disabled={isSubmitting}
           callToAction={t?.send}

@@ -7,6 +7,7 @@ export const gridEntry = `
         id
         description
         backgroundColor
+        center
         gridItems {
             ... on gridItem_Entry {
                 title

@@ -1,6 +1,5 @@
 import { Container } from "@/components/atoms";
 import React from "react";
-import { clsx } from "clsx";
 import { Form } from "@/components/molecules/contact/form";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 

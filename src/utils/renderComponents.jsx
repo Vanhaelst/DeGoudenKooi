@@ -21,6 +21,7 @@ import { Banner } from "@/components/molecules/banner";
 import { Columns } from "@/components/organisms/content/columns";
 import { ColumnsWithDivider } from "@/components/organisms/content/columnsWithDivider";
 import { Contact } from "@/components/molecules/contact/contact";
+import Newsletter from "@/components/molecules/newsletter/newsletter";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
@@ -56,6 +57,8 @@ export const renderComponents = (data, locale) => {
       return <FaqMolecule key={data.id} locale={locale} {...data} />;
     case "contactForm":
       return <Contact key={data.id} locale={locale} {...data} />;
+    case "newsletter":
+      return <Newsletter key={data.id} locale={locale} {...data} />;
     // content wrapper
     case "contents":
       return <Contents key={data.id} locale={locale} {...data} />;

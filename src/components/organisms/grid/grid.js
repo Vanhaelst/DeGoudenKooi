@@ -4,13 +4,19 @@ import { BentoCard } from "@/components/molecules/bento/bento-card";
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { clsx } from "clsx";
 
-export const Grid = ({ title, description, gridItems, backgroundColor }) => {
+export const Grid = ({
+  title,
+  description,
+  gridItems,
+  center,
+  backgroundColor,
+}) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
   return (
     <section className={bgColor}>
       <Container classnames="py-12 sm:py-16">
-        <Title title={title} description={description} />
+        <Title title={title} description={description} center={center} />
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 md:grid-cols-12 md:grid-rows-2">
           {gridItems?.map((item) => {

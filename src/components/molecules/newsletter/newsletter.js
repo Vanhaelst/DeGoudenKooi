@@ -1,32 +1,25 @@
 import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { Container, Text } from "@/components/atoms";
 import Script from "next/script";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
-export default async function Newsletter({
-  backgroundColor = "secondary",
-  pullUp = true,
-  t,
-}) {
-  const bgColor = getBackgroundColor(backgroundColor);
+export default async function Newsletter({ pullUp = true, locale }) {
+  const t = await getDictionary(locale);
 
   return (
-    <section className={`${bgColor}`}>
+    <section
+      className={`py-32 bg-bottom bg-cover -mb-20`}
+      style={{
+        backgroundImage: `url('/hero-badges-scheur.png')`,
+      }}
+    >
       <Container classnames="">
-        <div
-          className={`bg-primary-500 rounded-3xl grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8 p-8 lg:p-16 ${pullUp ? "relative -top-20" : ""}`}
-        >
-          <Text
-            as={"h2"}
-            level="2xl"
-            classnames="text-white lg:max-w-[80%]  lg:col-span-7"
-          >
+        <div className="p-8 lg:p-16">
+          <Text as={"h2"} level="2xl" classnames="text-white text-center">
             {t.newsletter.title}
           </Text>
 
-          <div
-            id="mc_embed_shell"
-            className="w-full max-w-md lg:col-span-5 lg:pt-2"
-          >
+          <div id="mc_embed_shell" className="w-full  lg:pt-2">
             <link
               href="//cdn-images.mailchimp.com/embedcode/classic-061523.css"
               rel="stylesheet"
@@ -55,7 +48,7 @@ export default async function Newsletter({
                       type="email"
                       name="EMAIL"
                       placeholder="E-mailadres"
-                      className="required email bg-white text-primary-500 rounded-xl"
+                      className="required email bg-white text-primary-500 rounded-none"
                       id="mce-EMAIL"
                       required=""
                     />
@@ -68,7 +61,7 @@ export default async function Newsletter({
                       type="text"
                       name="FNAME"
                       placeholder="Voornaam"
-                      className="required text bg-white text-primary-500"
+                      className="required text bg-white text-primary-500 rounded-none"
                       id="mce-FNAME"
                       required=""
                     />
@@ -80,7 +73,7 @@ export default async function Newsletter({
                     <div className="datefield text-white">
                       <span className="subfield dayfield">
                         <input
-                          className="birthday REQ_CSS bg-white text-primary-500 rounded-xl"
+                          className="birthday REQ_CSS bg-white text-primary-500 rounded-none"
                           type="text"
                           pattern="[0-9]*"
                           placeholder="DD"
@@ -93,7 +86,7 @@ export default async function Newsletter({
                       /{" "}
                       <span className="subfield monthfield">
                         <input
-                          className="birthday REQ_CSS bg-white text-primary-500 px-2 rounded-xl"
+                          className="birthday REQ_CSS bg-white text-primary-500 px-2 rounded-none"
                           type="text"
                           pattern="[0-9]*"
                           placeholder="MM"
