@@ -14,7 +14,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-export const Badges = ({ defaultRooms, dict, filter }) => {
+export const Badges = ({ defaultRooms, dict, filter, locale }) => {
   const [rooms, setRooms] = useState([]);
 
   const searchParams = useSearchParams();
@@ -72,7 +72,7 @@ export const Badges = ({ defaultRooms, dict, filter }) => {
   useEffect(() => {
     setRooms([]);
     if (type) {
-      fetchData(roomsQuery({ type }))
+      fetchData(roomsQuery({ type, language: locale }))
         .then((res) => {
           setRooms(res.rooms);
         })

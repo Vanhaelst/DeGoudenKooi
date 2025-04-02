@@ -32,7 +32,7 @@ export const GamesOverview = ({
   useEffect(() => {
     setRooms([]);
     if (type || location) {
-      fetchData(roomsQuery({ type, location }))
+      fetchData(roomsQuery({ type, location, language: locale }))
         .then((res) => {
           setRooms(res.rooms);
         })

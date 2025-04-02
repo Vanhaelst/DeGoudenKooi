@@ -18,6 +18,7 @@ import {
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
+import Script from "next/script";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -51,7 +52,11 @@ export async function generateMetadata({ params }) {
       };
 }
 
+const bookeo = "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360";
+
 export default function RootLayout({ children, params }) {
+  const lang = params.locale === "en" ? "&languageCode=en_US" : "";
+
   if (params.locale !== "nl" && params.locale !== "en") {
     redirect("/nl");
   }

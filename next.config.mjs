@@ -18,10 +18,126 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      /* Redirects EN -> NL*/
       {
-        source: "/google",
-        permanent: false,
-        destination: "https://www.google.com",
+        source: "/nl/about-us",
+        permanent: true,
+        destination: "/nl/over-ons",
+      },
+      {
+        source: "/nl/giftcard",
+        permanent: true,
+        destination: "/nl/cadeaubon",
+      },
+      {
+        source: "/nl/press",
+        permanent: true,
+        destination: "/nl/pers",
+      },
+      {
+        source: "/nl/activities-in-mechelen",
+        permanent: true,
+        destination: "/nl/activiteiten-in-mechelen",
+      },
+      {
+        source: "/nl/grab-a-bite",
+        permanent: true,
+        destination: "/nl/hapje-eten",
+      },
+      {
+        source: "/nl/escape-rooms/the-treasure-of-kalakmul",
+        permanent: true,
+        destination: "/nl/escape-rooms/the-treasure-of-kalakmul",
+      },
+      {
+        source: "/nl/escape-rooms/the-master-thief-of-mechelen",
+        permanent: true,
+        destination: "/nl/escape-rooms/de-meesterdief-van-mechelen",
+      },
+      {
+        source: "/nl/escape-rooms/the-secret-of-saint-rumoldus",
+        permanent: true,
+        destination: "/nl/escape-rooms/het-geheim-van-sint-rumoldus",
+      },
+      {
+        source: "/nl/escape-rooms/hans-revenge",
+        permanent: true,
+        destination: "/nl/escape-rooms/de-wraak-van-han",
+      },
+      {
+        source: "/nl/booking",
+        permanent: true,
+        destination: "/nl/boeking",
+      },
+      {
+        source: "/nl/your-planning",
+        permanent: true,
+        destination: "/nl/je-planning",
+      },
+      {
+        source: "/en/jobs",
+        permanent: true,
+        destination: "/nl",
+      },
+      {
+        source: "/en/nieuws",
+        permanent: true,
+        destination: "/nl",
+      } /* Redirects NL -> EN */,
+      {
+        source: "/en/over-ons",
+        destination: "/en/about-us",
+        permanent: true,
+      },
+      {
+        source: "/en/cadeaubon",
+        permanent: true,
+        destination: "/en/giftcard",
+      },
+      {
+        source: "/en/pers",
+        permanent: true,
+        destination: "/en/press",
+      },
+      {
+        source: "/en/activiteiten-in-mechelen",
+        permanent: true,
+        destination: "/en/activities-in-mechelen",
+      },
+      {
+        source: "/en/hapje-eten",
+        permanent: true,
+        destination: "/nl/grab-a-bite",
+      },
+      {
+        source: "/en/escape-rooms/the-treasure-of-kalakmul",
+        permanent: true,
+        destination: "/en/escape-rooms/the-treasure-of-kalakmul",
+      },
+      {
+        source: "/en/escape-rooms/de-meesterdief-van-mechelen",
+        permanent: true,
+        destination: "/en/escape-rooms/the-master-thief-of-mechelen",
+      },
+      {
+        source: "/en/escape-rooms/het-geheim-van-sint-rumoldus",
+        permanent: true,
+        destination: "/en/escape-rooms/the-secret-of-saint-rumoldus",
+      },
+      {
+        source: "/en/escape-rooms/de-wraak-van-han",
+        permanent: true,
+        destination: "/en/escape-rooms/hans-revenge",
+      },
+      {
+        source: "/en/boeking",
+        permanent: true,
+        destination: "/en/booking",
+      },
+      {
+        source: "/en/je-planning",
+        permanent: true,
+        destination: "/en/your-planning",
       },
     ];
   },

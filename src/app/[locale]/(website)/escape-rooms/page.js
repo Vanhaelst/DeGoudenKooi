@@ -64,7 +64,12 @@ export default async function Home({ params }) {
           backgroundImage: `url('/hero-badges.png')`,
         }}
       >
-        <Badges defaultRooms={rooms} dict={dict} filter={true} />
+        <Badges
+          defaultRooms={rooms}
+          dict={dict}
+          filter={true}
+          locale={params.locale}
+        />
       </section>
 
       <ImageWrapper image={transparentImage}>

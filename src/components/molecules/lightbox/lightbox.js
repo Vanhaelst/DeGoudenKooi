@@ -8,12 +8,19 @@ import { Title } from "@/components/molecules";
 import { Container } from "@/components/atoms";
 import Image from "next/image";
 
-const galleryId = `${Math.random().toString(36).slice(2)}`;
+export const Gallery = ({
+  id,
+  title,
+  description,
+  bgColor,
+  images,
+  locale,
+}) => {
+  const galleryId = `#my-gallery-${id}`;
 
-export const Gallery = ({ id, title, description, bgColor, images }) => {
   useEffect(() => {
     let lightbox = new PhotoSwipeLightbox({
-      gallery: "#" + galleryId,
+      gallery: galleryId,
       children: "a",
       pswpModule: () => import("photoswipe"),
     });
@@ -65,7 +72,7 @@ export const Gallery = ({ id, title, description, bgColor, images }) => {
               href={image.url}
               data-pswp-width={image.width}
               data-pswp-height={image.height}
-              key={galleryId + "-" + index}
+              key={`${galleryId}` + "-" + index}
               target="_blank"
               rel="noreferrer"
             >

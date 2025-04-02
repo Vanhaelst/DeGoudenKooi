@@ -6,6 +6,7 @@ import React from "react";
 import { Container } from "@/components/atoms";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import Image from "next/image";
 
 async function getPage({ language }) {
   return fetchData(FixedPageQuery({ page: "planningEntries", language }));
@@ -48,6 +49,7 @@ export default async function Home({ params }) {
     type,
     backgroundColor,
     backgroundImage,
+    textColor,
     sections,
   } = page[0] ?? {};
   const transparentImage = page[0]?.transparentImage?.[0];
@@ -62,12 +64,13 @@ export default async function Home({ params }) {
         image={image}
         backgroundImage={backgroundImage}
         backgroundColor={backgroundColor}
+        textColor={textColor}
       />
 
       <section className="bg-white relative py-12 lg:py-24">
         <Container classnames="min-h-80 flex justify-center items-center">
           <iframe
-            src="https://app.plan2book.be/planner?tenant=f4J1eLI23IFoXyCh2ACV&lang=nl"
+            src={`https://app.plan2book.be/planner?tenant=f4J1eLI23IFoXyCh2ACV&lang=${params.locale}`}
             style={{
               width: "100%",
               minWidth: "100%",
@@ -78,6 +81,13 @@ export default async function Home({ params }) {
           />
         </Container>
       </section>
+      <Image
+        src="/scheur-bottom.png"
+        alt="scheur"
+        width={1459}
+        height={60}
+        className="w-full"
+      />
 
       <ImageWrapper image={transparentImage}>
         {sections?.map((section) => renderComponents(section, params.locale))}
