@@ -47,7 +47,7 @@ const nextConfig = {
       {
         source: "/nl/escape-rooms/the-treasure-of-kalakmul",
         permanent: true,
-        destination: "/nl/escape-rooms/the-treasure-of-kalakmul",
+        destination: "/nl/escape-rooms/de-schat-van-kalakmul",
       },
       {
         source: "/nl/escape-rooms/the-master-thief-of-mechelen",
