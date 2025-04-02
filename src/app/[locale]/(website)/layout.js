@@ -18,7 +18,6 @@ import {
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
-import Script from "next/script";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],

@@ -77,7 +77,7 @@ export default async function Home({ params }) {
         textColor={textColor}
       />
       <div className="-my-24">
-        <Bookeo locale={params.locale} />
+        <Bookeo locale={params.locale} variant="main" />
       </div>
       <ImageWrapper image={transparentImage}>
         {sections?.map((section) => renderComponents(section, params.locale))}

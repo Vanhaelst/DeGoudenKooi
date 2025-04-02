@@ -35,7 +35,7 @@ export const LINKS = {
     PERS: "/en/press",
     ACTIVITY_DEALS: "/en/activities-in-mechelen",
     RESTAURANT_DEALS: "/en/grab-a-bite",
-    HOTEL_DEALS: "/nl/hotels-in-mechelen",
+    HOTEL_DEALS: "/en/hotels-in-mechelen",
     RESERVE: "/en/booking",
     JOBS: "/en/jobs",
   },

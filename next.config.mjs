@@ -77,12 +77,12 @@ const nextConfig = {
       {
         source: "/en/jobs",
         permanent: true,
-        destination: "/nl",
+        destination: "/en",
       },
       {
         source: "/en/nieuws",
         permanent: true,
-        destination: "/nl",
+        destination: "/en",
       } /* Redirects NL -> EN */,
       {
         source: "/en/over-ons",
