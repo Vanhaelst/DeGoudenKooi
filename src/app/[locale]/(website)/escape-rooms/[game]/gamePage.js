@@ -150,7 +150,7 @@ export default function GamePage({ data, children }) {
     if (data && window.location.hash === "#book") {
       setTimeout(() => {
         document.getElementById("book").scrollIntoView({ behavior: "smooth" });
-      }, 100);
+      }, 1000);
     }
   }, []);
 

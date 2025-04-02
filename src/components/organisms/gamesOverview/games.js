@@ -138,7 +138,7 @@ export const Games = ({
                     as={"p"}
                     level="sm"
                     classnames={clsx(
-                      "font-semibold text-white",
+                      "font-semibold text-white text-center lg:text-left",
                       gameType ? "pb-6 lg:mb-4" : "mb-2",
                     )}
                   >
@@ -147,7 +147,10 @@ export const Games = ({
                 ) : null}
 
                 {features && (
-                  <div className="grid grid-cols-2 gap-y-4" ref={featuresRef}>
+                  <div
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-y-4"
+                    ref={featuresRef}
+                  >
                     {features.map(({ title, description, classes, icon }) => {
                       return (
                         <div
@@ -196,19 +199,24 @@ export const Games = ({
                     })}
                 </div>
 
-                <div className="space-x-3 flex justify-center lg:justify-start">
-                  <Button
-                    variant="white-outline"
-                    href={`/${slug}`}
-                    callToAction={t.game.moreInfo.toUpperCase()}
-                    size="medium"
-                  />
-                  <Button
-                    variant="primary"
-                    href={`/${slug}#book`}
-                    callToAction={t.game.book.toUpperCase()}
-                    size="medium"
-                  />
+                <div className="space-y-3 sm:space-y-0 sm:space-x-3 grid grid-cols-1 sm:flex justify-center lg:justify-start">
+                  <div className="mx-auto sm:mx-0">
+                    <Button
+                      variant="white-outline"
+                      href={`/${slug}`}
+                      callToAction={t.game.moreInfo.toUpperCase()}
+                      size="medium"
+                      classnames=""
+                    />
+                  </div>
+                  <div className="mx-auto sm:mx-0">
+                    <Button
+                      variant="primary"
+                      href={`/${slug}#book`}
+                      callToAction={t.game.book.toUpperCase()}
+                      size="medium"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

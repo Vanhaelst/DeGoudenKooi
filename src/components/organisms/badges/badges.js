@@ -95,7 +95,7 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           alt=""
           width={77}
           height={40}
-          className="object-contain relative -bottom-14 left-12 opacity-0"
+          className="hidden xl:block object-contain relative -bottom-14 left-12 opacity-0"
         />
         <div className="flex overflow-x-scroll hide-scrollbar px-10 min-h-44">
           {rooms?.map((room, id) => (
@@ -115,7 +115,7 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           ref={elementRightRef}
           width={77}
           height={40}
-          className="object-contain relative -top-14 right-12 opacity-0"
+          className="hidden xl:block object-contain relative -top-14 right-12 opacity-0"
         />
       </div>
       {filter && (

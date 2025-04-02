@@ -2,13 +2,13 @@
 
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LINKS } from "@/enums/links";
 
 export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
   const pathname = usePathname();
 
+  console.log(pathname);
   return (
     <div className="bg-white">
       <Dialog
@@ -37,82 +37,84 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
               </button>
             </div>
 
-            <ul className="mt-24 menu rounded-box w-full">
-              {nav.map((item) => {
-                if (!item) {
-                  return null;
-                }
+            <div>
+              <ul className="mt-24 menu rounded-box w-full">
+                {nav.map((item) => {
+                  if (!item) {
+                    return null;
+                  }
 
-                const { name, href, children } = item;
+                  const { name, href, children } = item;
 
-                if (children) {
+                  if (children) {
+                    return (
+                      <li key={name}>
+                        <details>
+                          <summary>{name}</summary>
+                          <ul>
+                            {children.map(({ title, slug }) => (
+                              <li key={title}>
+                                <a href={`/${locale}/${slug}`}>{title}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        </details>
+                      </li>
+                    );
+                  }
                   return (
                     <li key={name}>
-                      <details>
-                        <summary>{name}</summary>
-                        <ul>
-                          {children.map(({ title, slug }) => (
-                            <li key={title}>
-                              <a href={`/${locale}/${slug}`}>{title}</a>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
+                      <a href={href} className="text-lg md:text-lg">
+                        {name}{" "}
+                      </a>
                     </li>
                   );
-                }
-                return (
-                  <li key={name}>
-                    <a href={href} className="md:text-lg">
-                      {name}{" "}
-                    </a>
-                  </li>
-                );
-              })}
+                })}
+              </ul>
+              <ul className="mt-4 menu rounded-box w-full">
+                {topbar.map((item) => {
+                  if (!item) {
+                    return null;
+                  }
 
-              {topbar.map((item) => {
-                if (!item) {
-                  return null;
-                }
+                  const { name, href, children } = item;
 
-                const { name, href, children } = item;
-
-                if (children) {
+                  if (children) {
+                    return (
+                      <li key={name}>
+                        <details>
+                          <summary>{name}</summary>
+                          <ul>
+                            {children.map(({ title, slug }) => (
+                              <li key={title}>
+                                <a href={`/${locale}/${slug}`}>{title}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        </details>
+                      </li>
+                    );
+                  }
                   return (
                     <li key={name}>
-                      <details>
-                        <summary>{name}</summary>
-                        <ul>
-                          {children.map(({ title, slug }) => (
-                            <li key={title}>
-                              <a href={`/${locale}/${slug}`}>{title}</a>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
+                      <a href={href} className="md:text-lg">
+                        {name}{" "}
+                      </a>
                     </li>
                   );
-                }
-                return (
-                  <li key={name}>
-                    <a href={href} className="md:text-lg">
-                      {name}{" "}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-
+                })}
+              </ul>
+            </div>
             <div className="space-y-6 px-4 py-6 md:mt-12">
               <a
                 href={LINKS.NL.HOME}
-                className={`flex justify-end items-center font-barlow text-md font-medium hover:text-accent-500 ${!pathname.startsWith("/fr") && !pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
+                className={`flex justify-end items-center font-barlow text-md font-medium hover:text-accent-500 ${pathname.startsWith("/nl") ? "text-secondary-500/50" : "text-secondary-500"}`}
               >
                 Nederlands
               </a>
               <a
                 href={LINKS.EN.HOME}
-                className={`flex justify-end items-center font-barlow text-md font-medium hover:text-accent-500 ${pathname.startsWith("/en") ? "text-accent-500" : "text-white"}`}
+                className={`flex justify-end items-center font-barlow text-md font-medium hover:text-accent-500 ${pathname.startsWith("/en") ? "text-secondary-500/50" : "text-secondary-500"}`}
               >
                 English
               </a>

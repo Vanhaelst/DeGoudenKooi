@@ -46,23 +46,12 @@ export const Form = ({ t, title }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 md:grid-cols-2 gap-8"
-    >
-      <div>
-        <label
-          htmlFor="firstname"
-          className="block text-sm/6 font-medium text-gray-900"
-        >
-          {t?.firstname}{" "}
-          <span className="text-red-500 font-normal text-xs">
-            ({t?.required})
-          </span>
-        </label>
+    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
+      <div className="">
         <div className="mt-2">
           <input
-            className="block w-full   bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
+            placeholder={t?.firstname}
+            className="block w-full placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
             {...register("firstname", { required: true })}
           />{" "}
           {errors.firstname?.type && (
@@ -72,42 +61,12 @@ export const Form = ({ t, title }) => {
           )}
         </div>
       </div>
-      <div>
-        <label
-          htmlFor="lastname"
-          className="block text-sm/6 font-medium text-gray-900"
-        >
-          {t?.lastname}{" "}
-          <span className="text-red-500 font-normal text-xs">
-            ({t?.required})
-          </span>
-        </label>
+      <div className="">
         <div className="mt-2">
           <input
-            {...register("lastname", { required: true })}
-            className="block w-full   bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
-          />{" "}
-          {errors.lastname?.type && (
-            <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t?.validation[errors.lastname.type]}
-            </Text>
-          )}
-        </div>
-      </div>
-      <div className="col-span-2">
-        <label
-          htmlFor="mail"
-          className="block text-sm/6 font-medium text-gray-900"
-        >
-          {t?.mail}{" "}
-          <span className="text-red-500 font-normal text-xs">
-            ({t?.required})
-          </span>
-        </label>
-        <div className="mt-2">
-          <input
+            placeholder={t?.mail}
             {...register("mail", { required: true })}
-            className="block w-full   bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
+            className="block w-full placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
           />
           {errors.mail?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
@@ -116,23 +75,13 @@ export const Form = ({ t, title }) => {
           )}
         </div>
       </div>
-      <div className="col-span-2">
-        <label
-          htmlFor="message"
-          className="block text-sm/6 font-medium text-gray-900"
-        >
-          {t?.message}{" "}
-          <span className="text-red-500 font-normal text-xs">
-            ({t?.required})
-          </span>
-        </label>
-        <Text level="xs">{t?.message_description}</Text>
-
+      <div className="">
         <div className="mt-2">
           <textarea
+            placeholder={t?.message}
             {...register("message", { required: true })}
             rows={6}
-            className="block w-full resize-none bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
+            className="block w-full resize-none placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
           />
           {errors.message?.type && (
             <Text level="xs" classnames="text-red-500 font-normal mt-2">
@@ -142,7 +91,7 @@ export const Form = ({ t, title }) => {
         </div>
       </div>
 
-      <div className="col-span-2 flex justify-end">
+      <div className="flex justify-end">
         <Button
           buttonType="submit"
           variant="white"

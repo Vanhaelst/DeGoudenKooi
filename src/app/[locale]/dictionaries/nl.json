@@ -82,13 +82,13 @@
   "contact": {
     "title": "Neem contact met ons op",
     "subtitle": "Wij helpen je graag",
-    "firstname": "Voornaam",
+    "firstname": "Naam",
     "lastname": "Achternaam",
     "mail": "E-mail",
     "message": "Bericht",
     "message_description": "Laat ons weten wat je bezighoudt. Heb je een vraag voor ons? Stel hem gerust.",
     "send": "Verzenden",
-    "required": "Verplicht",
+    "required": "*",
     "validation": {
       "required": "Dit veld is verplicht",
       "pattern": "Dit veld is niet correct"

@@ -12,7 +12,7 @@ export default function Page({ params }) {
     <main className="relative isolate lg:min-h-[800px]">
       <img
         alt=""
-        src="/dgk-card.jpeg"
+        src="https://degoudenkooi.pluxit.be/web/assets/Algemene-Beelden/Details/not_found.webp"
         className="absolute inset-0 -z-10 size-full object-cover object-top"
       />
       <div className="absolute top-0 left-0 w-full h-full bg-black/50" />

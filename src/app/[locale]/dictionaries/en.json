@@ -83,13 +83,13 @@
   "contact": {
     "title": "Contact us",
     "subtitle": "We love helping you!",
-    "firstname": "First name",
+    "firstname": "Name",
     "lastname": "Last name",
     "mail": "Mail",
     "message": "Message",
     "message_description": "Let us know what's on your mind. Do you have a question for us? Let us know.",
     "send": "Send",
-    "required": "Required",
+    "required": "*",
     "validation": {
       "required": "This field is required",
       "pattern": "E-mail is not correct"

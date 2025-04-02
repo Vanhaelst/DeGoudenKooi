@@ -18,7 +18,7 @@ export const Grid = ({
       <Container classnames="py-12 sm:py-16">
         <Title title={title} description={description} center={center} />
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 md:grid-cols-12 md:grid-rows-2">
+        <div className="my-10 grid grid-cols-1 gap-4 sm:mt-16 md:grid-cols-12">
           {gridItems?.map((item) => {
             if (!item) {
               return null;

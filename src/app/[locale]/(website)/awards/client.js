@@ -39,7 +39,7 @@ export const Awards = ({ defaultAwards, locale, amount, count }) => {
               alt={image?.[0]?.alt || ""}
               width={image?.[0]?.width}
               height={image?.[0]?.height}
-              className={`min-w-40 w-40 object-contain`}
+              className={`min-w-40 w-40 object-contain mx-auto md:mx-0`}
             />
 
             <div className="">
