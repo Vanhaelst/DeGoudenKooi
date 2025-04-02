@@ -77,9 +77,9 @@ export const Cta = ({
 
   return (
     <div
-      className={`bg-primary-500 rounded-3xl bg-no-repeat bg-contain bg-right-bottom ${pullUp ? "relative -top-20" : ""}`}
+      className={`bg-primary-500 rounded-3xl bg-no-repeat bg-cover bg-center ${pullUp ? "relative -top-20" : ""}`}
       style={{
-        backgroundImage: `url('${backgroundImage}')`,
+        backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
       }}
       ref={elementRef}
     >

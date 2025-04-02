@@ -37,6 +37,7 @@ export const ContentVideo = ({
       },
     });
   }, []);
+
   return (
     <section>
       <Container classnames="">
@@ -67,14 +68,27 @@ export const ContentVideo = ({
               </div>
             </div>
           </div>
-
-          <Video
-            type="content"
-            videoType={videoType}
-            videoPlayer={videoPlayer}
-            image={image}
-            videoId={videoUrl}
-          />
+          <div
+            className={clsx(
+              detail
+                ? contentLeft
+                  ? "md:order-2"
+                  : "md:order-1"
+                : contentLeft
+                  ? "lg:order-2"
+                  : "lg:order-1",
+              detail ? "md:col-span-2" : " ",
+            )}
+            ref={elementRef}
+          >
+            <Video
+              type="content"
+              videoType={videoType}
+              videoPlayer={videoPlayer}
+              image={image}
+              videoId={videoUrl}
+            />
+          </div>
         </div>
       </Container>
     </section>
