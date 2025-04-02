@@ -110,7 +110,7 @@ const nextConfig = {
         destination: "/nl/grab-a-bite",
       },
       {
-        source: "/en/escape-rooms/the-treasure-of-kalakmul",
+        source: "/en/escape-rooms/de-schat-van-kalakmul",
         permanent: true,
         destination: "/en/escape-rooms/the-treasure-of-kalakmul",
       },

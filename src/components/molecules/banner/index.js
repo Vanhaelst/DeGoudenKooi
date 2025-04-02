@@ -6,7 +6,7 @@ import React from "react";
 export const Banner = ({ title, description, buttons, backgroundImage }) => {
   return (
     <section
-      className={clsx("bg-top bg-cover", "py-40")}
+      className={clsx("bg-top bg-cover", "py-40 -mb-20")}
       style={{ backgroundImage: `url("${backgroundImage?.[0]?.url}")` }}
     >
       <Container>
