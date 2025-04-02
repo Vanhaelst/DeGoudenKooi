@@ -43,7 +43,7 @@ export const ColumnsWithDivider = ({ title, column, center }) => {
               />
               <div
                 className={clsx(
-                  "space-y-4 md:space-x-4",
+                  "space-y-4 md:space-y-0 md:space-x-4",
                   center ? "mx-auto" : "",
                 )}
               >

@@ -34,7 +34,7 @@ export const ContentImageFullWidth = ({
       <Container classnames="">
         <div ref={elementRef} className="">
           <Title title={title} subtitle={subtitle} description={description} />
-          <div className="space-y-4 md:space-y-4 md:space-x-4">
+          <div className="space-y-4 md:space-y-4 md:space-y-0 md:space-x-4">
             {buttons &&
               buttons.map((button) => (
                 <Button key={button.href} {...button} classnames="mt-4" />

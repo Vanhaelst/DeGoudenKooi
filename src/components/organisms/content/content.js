@@ -70,7 +70,10 @@ export const Content = ({ title, description, buttons, columns, center }) => {
             />
           </div>
           <div
-            className={clsx("space-y-4 md:space-x-4", center ? "mx-auto" : "")}
+            className={clsx(
+              "space-y-4 md:space-y-0 md:space-x-4",
+              center ? "mx-auto" : "",
+            )}
             ref={buttonRef}
           >
             {buttons &&

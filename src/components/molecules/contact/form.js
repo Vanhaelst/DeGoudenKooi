@@ -32,7 +32,7 @@ export const Form = ({ t, title }) => {
     try {
       await sendMail({
         data,
-        templateId: 1,
+        templateId: 2,
       });
 
       setShowSuccessMessage(true);

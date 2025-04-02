@@ -23,7 +23,7 @@ export const Banner = ({ title, description, buttons, backgroundImage }) => {
           />
         )}
 
-        <div className="mx-auto lg:mx-0 space-y-4 md:space-x-4 mt-6">
+        <div className="mx-auto lg:mx-0 space-y-4 md:space-y-0 md:space-x-4 mt-6">
           {buttons?.map(({ href, variant, callToAction }) => {
             return (
               <Button

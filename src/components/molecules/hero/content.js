@@ -113,7 +113,7 @@ export const HeroContent = ({
           <RichText
             text={description}
             level="lg"
-            classnames={`${detail ? "text-primary-700" : getColor()}  font-light`}
+            classnames={`${detail ? "text-primary-700" : getColor()}  font-light  text-center lg:text-left`}
           />
         </div>
       )}
@@ -201,7 +201,7 @@ export const HeroContent = ({
       </div>
 
       <div
-        className="flex flex-col md:flex-row justify-start items-center mx-auto lg:mx-0 space-y-4 md:space-x-4 mt-6"
+        className="flex flex-col md:flex-row justify-start items-center mx-auto lg:mx-0 space-y-4 md:space-y-0 md:space-x-4 mt-6"
         ref={buttonRef}
       >
         {buttons?.map(({ href, variant, callToAction }) => {

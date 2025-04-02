@@ -60,7 +60,7 @@ export const ContentVideo = ({
                 description={description}
                 showIcon={false}
               />
-              <div className="space-y-4 md:space-x-4">
+              <div className="space-y-4 md:space-y-0 md:space-x-4">
                 {buttons &&
                   buttons.map((button) => (
                     <Button key={button?.href} {...button} classnames="mt-4" />
