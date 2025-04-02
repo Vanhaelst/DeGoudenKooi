@@ -35,8 +35,8 @@ export const Bookeo = ({ variant, locale, title }) => {
 
           <Script
             // strategy="beforeInteractive"
-            // strategy="afterInteractive"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
+            // strategy="lazyOnload"
             type="text/javascript"
             data-type="bookeo_script"
             data-variant={variant}
