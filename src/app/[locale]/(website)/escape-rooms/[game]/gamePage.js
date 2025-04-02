@@ -20,8 +20,10 @@ import { imageQuery } from "@/queries/entries/image";
 import { formatPrice } from "@/utils/formatPrice";
 import ModalVideo from "@/components/molecules/video/modalVideo";
 import { Reviews } from "@/components/organisms/reviews/review";
+import { useParams } from "next/navigation";
 
-export default function GamePage({ data, locale, children }) {
+export default function GamePage({ data, children }) {
+  const { locale } = useParams();
   const [faq, setFaq] = useState(undefined);
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
@@ -137,6 +139,14 @@ export default function GamePage({ data, locale, children }) {
         href: "#book",
       }
     : {};
+
+  useEffect(() => {
+    if (data && window.location.hash === "#book") {
+      setTimeout(() => {
+        document.getElementById("book").scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, []);
 
   if (!data) {
     return <Loader />;
