@@ -62,6 +62,16 @@ const query = ({ slug, language = "nl" }) => {
                       videoPlayer
                       videoImage ${imageQuery}
                       
+                      uspHeading
+                      uspDescription
+                      usps {
+                        ... on feature_Entry {
+                          title
+                          description
+                          icon: featureIcon ${imageQuery}
+                        }
+                      }
+      
                       reviews: review {
                         ... on review_Entry {
                           id

@@ -21,6 +21,9 @@ import { formatPrice } from "@/utils/formatPrice";
 import ModalVideo from "@/components/molecules/video/modalVideo";
 import { Reviews } from "@/components/organisms/reviews/review";
 import { useParams } from "next/navigation";
+import { Container } from "@/components/atoms";
+import { Feature, Title } from "@/components/molecules";
+import { Usp } from "@/components/molecules/usp";
 
 export default function GamePage({ data, children }) {
   const { locale } = useParams();
@@ -45,6 +48,9 @@ export default function GamePage({ data, children }) {
     videoId,
     videoPlayer,
     videoImage,
+    uspHeading,
+    uspDescription,
+    usps,
     reviews,
     players,
     time,
@@ -198,6 +204,24 @@ export default function GamePage({ data, children }) {
           videoPlayer={videoPlayer}
           thumb={videoImage?.[0]}
         />
+
+        {usps?.length > 0 ? (
+          <section className={`py-12 sm:py-16`}>
+            <Container classnames="mb-24">
+              <Title
+                title={uspHeading}
+                description={uspDescription}
+                center={true}
+              />
+            </Container>
+            <Container classnames="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+              {usps?.map((usp, index) => {
+                return <Usp key={usp.title} {...usp} index={index} />;
+              })}
+            </Container>
+          </section>
+        ) : null}
+
         {sliderAwards && sliderAwards.length ? (
           <AwardSlider
             title={`${t.general.the} "${title}" ${t.topbar.awards}`}

@@ -39,13 +39,6 @@ export const Cta = ({
         ref={elementRef}
       >
         <Image
-          src="/border-top-right.png"
-          alt="border-top-right.png"
-          width={92}
-          height={92}
-          className="absolute w-20 -top-10 -right-10 object-contain"
-        />
-        <Image
           src={image?.[0]?.url}
           alt={image?.[0]?.alt || title || ""}
           width={image?.[0]?.width}

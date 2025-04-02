@@ -12,7 +12,7 @@ function generateRandomInteger(min, max) {
 const version = generateRandomInteger(0, 50);
 
 export const Bookeo = ({ variant, locale, title }) => {
-  const lang = locale === "en" ? "&languageCode=en_US" : "&languageCode=nl_BE";
+  const lang = locale === "en" ? "&languageCode=en_US" : "&languageCode=nl_NL";
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { buttonsQuery } from "@/queries/entries/buttons";
 import { imageQuery } from "@/queries/entries/image";
+import { contentVideoEntry } from "@/queries/entries/contentVideo";
 
 export const contentEntry = `
     ... on contents_Entry {
@@ -58,6 +59,7 @@ export const contentEntry = `
                 }
               }
             }
+            ${contentVideoEntry}
         }
     }
 `;

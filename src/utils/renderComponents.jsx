@@ -22,6 +22,7 @@ import { Columns } from "@/components/organisms/content/columns";
 import { ColumnsWithDivider } from "@/components/organisms/content/columnsWithDivider";
 import { Contact } from "@/components/molecules/contact/contact";
 import Newsletter from "@/components/molecules/newsletter/newsletter";
+import { ContentVideo } from "@/components/organisms/content/content-video";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
@@ -63,6 +64,8 @@ export const renderComponents = (data, locale) => {
     case "contents":
       return <Contents key={data.id} locale={locale} {...data} />;
     // content Items
+    case "contentVideo":
+      return <ContentVideo key={data.id} locale={locale} {...data} />;
     case "contentImage":
       return <ContentImage key={data.id} locale={locale} {...data} />;
     case "fullWidthImage":

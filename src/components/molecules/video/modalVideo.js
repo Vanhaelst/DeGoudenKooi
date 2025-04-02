@@ -25,7 +25,7 @@ export default function ModalVideo({ thumb, videoPlayer, videoId }) {
       >
         {thumb && (
           <Image
-            className="w-full transition-all duration-300"
+            className="w-full transition-all duration-300 rounded-2xl"
             src={thumb.url}
             width={thumb.width}
             height={thumb.height}

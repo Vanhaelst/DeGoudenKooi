@@ -10,7 +10,6 @@ export const Features = ({
   backgroundColor,
   center,
 }) => {
-  console.log("center", center);
   const bgColor = getBackgroundColor(backgroundColor);
   return (
     <section className={`${bgColor} py-12 sm:py-16`}>
