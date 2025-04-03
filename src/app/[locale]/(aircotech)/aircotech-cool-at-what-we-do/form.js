@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { sendMail } from "@/server/brevo/sendMail";
 
 import { Text } from "@/components/atoms";
+import { Transition } from "@headlessui/react";
 
 export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,7 +33,27 @@ export const Form = ({ t }) => {
 
     try {
       await sendMail({
-        data,
+        data: {
+          params: data,
+          sender: {
+            email: "aircotech@degoudenkooi.be",
+            name: "aircotech@degoudenkooi.be",
+          },
+          replyTo: {
+            email: data.mail,
+            name: `${data.firstname} ${data.lastname}`,
+          },
+          to: {
+            email:
+              process.env.NODE_ENV !== "production"
+                ? "indy@publiplus.be"
+                : "aircotech@degoudenkooi.be",
+            name:
+              process.env.NODE_ENV !== "production"
+                ? "indy@publiplus.be"
+                : "aircotech@degoudenkooi.be",
+          },
+        },
         templateId: 1,
       });
 
@@ -44,6 +65,11 @@ export const Form = ({ t }) => {
       setIsSubmitting(false);
       console.error(e);
     }
+
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+      setShowErrorMessage(false);
+    }, 2500);
   };
 
   return (
@@ -51,6 +77,33 @@ export const Form = ({ t }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-1 md:grid-cols-2 gap-8"
     >
+      <Transition show={showSuccessMessage}>
+        <div
+          className={clsx([
+            "col-span-2",
+            "transition ease-in-out",
+            "data-[closed]:opacity-0",
+            "data-[enter]:duration-100",
+            "data-[leave]:duration-300",
+          ])}
+        >
+          <Text classnames="text-white">{t.success}</Text>
+        </div>
+      </Transition>
+      <Transition show={showErrorMessage}>
+        <div
+          className={clsx([
+            "col-span-2",
+            "transition ease-in-out",
+            "data-[closed]:opacity-0",
+            "data-[enter]:duration-100",
+            "data-[leave]:duration-300",
+          ])}
+        >
+          <Text classnames="text-white">{t.error}</Text>
+        </div>
+      </Transition>
+
       <div>
         <label
           htmlFor="firstname"

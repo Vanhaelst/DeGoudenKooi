@@ -1,10 +1,13 @@
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
-import { Container, Text } from "@/components/atoms";
 import Script from "next/script";
 import { getDictionary } from "@/app/[locale]/dictionaries";
+import { Container, Text } from "@/components/atoms";
 
-export default async function Newsletter({ pullUp = true, locale }) {
+export default async function Newsletter({ locale }) {
   const t = await getDictionary(locale);
+
+  const handleSubmit = () => {
+    console.log("test");
+  };
 
   return (
     <section
@@ -32,8 +35,7 @@ export default async function Newsletter({ pullUp = true, locale }) {
             </style>*/}
             <div id="mc_embed_signup">
               <form
-                action="https://degoudenkooi.us12.list-manage.com/subscribe/post?u=041e826c02983efe2d13909c3&amp;id=09e631601d&amp;f_id=0076f5e3f0"
-                method="post"
+                action="https://degoudenkooi.us12.list-manage.com/subscribe/post?u=041e826c02983efe2d13909c3&id=09e631601d&f_id=0076f5e3f0"
                 id="mc-embedded-subscribe-form"
                 name="mc-embedded-subscribe-form"
                 className="validate"
@@ -42,12 +44,12 @@ export default async function Newsletter({ pullUp = true, locale }) {
                 <div id="mc_embed_signup_scroll">
                   <div className="mc-field-group">
                     <label htmlFor="mce-EMAIL" className="sr-only">
-                      E-mailadres <span className="asterisk">*</span>
+                      {t.newsletter.mail} <span className="asterisk">*</span>
                     </label>
                     <input
                       type="email"
                       name="EMAIL"
-                      placeholder="E-mailadres"
+                      placeholder={t.newsletter.mail}
                       className="required email bg-white text-primary-500 rounded-none"
                       id="mce-EMAIL"
                       required=""
@@ -55,12 +57,12 @@ export default async function Newsletter({ pullUp = true, locale }) {
                   </div>
                   <div className="mc-field-group">
                     <label htmlFor="mce-FNAME" className="sr-only">
-                      Voornaam <span className="asterisk">*</span>
+                      {t.newsletter.name} <span className="asterisk">*</span>
                     </label>
                     <input
                       type="text"
                       name="FNAME"
-                      placeholder="Voornaam"
+                      placeholder={t.newsletter.name}
                       className="required text bg-white text-primary-500 rounded-none"
                       id="mce-FNAME"
                       required=""
@@ -68,7 +70,7 @@ export default async function Newsletter({ pullUp = true, locale }) {
                   </div>
                   <div className="mc-field-group">
                     <label htmlFor="mce-MMERGE3-month" className="sr-only">
-                      Verjaardag{" "}
+                      {t.newsletter.birthdate}{" "}
                     </label>
                     <div className="datefield text-white">
                       <span className="subfield dayfield">
@@ -97,7 +99,7 @@ export default async function Newsletter({ pullUp = true, locale }) {
                         />
                       </span>
                       <span className="small-meta nowrap ml-2">
-                        (Verjaardag dd / mm )
+                        {t.newsletter.birthdate}
                       </span>
                     </div>
                   </div>
@@ -130,7 +132,8 @@ export default async function Newsletter({ pullUp = true, locale }) {
                       name="subscribe"
                       id="mc-embedded-subscribe"
                       className="button"
-                      value="Subscribe"
+                      value={t.newsletter.button}
+                      onClick={handleSubmit()}
                     />
                   </div>
                 </div>
@@ -138,9 +141,46 @@ export default async function Newsletter({ pullUp = true, locale }) {
             </div>
 
             <Script
+              src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+              integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+              crossOrigin="anonymous"
+              strategy="beforeInteractive"
+            ></Script>
+
+            <Script
               type="text/javascript"
               src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+              strategy="beforeInteractive"
             ></Script>
+
+            {locale === "nl" && (
+              <Script
+                type="text/javascript"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[3]='MMERGE3';ftypes[3]='birthday';
+                  $.extend($.validator.messages, {
+                          required: "Dit is een verplicht veld.",
+                          remote: "Controleer dit veld.",
+                          email: "Vul hier een geldig e-mailadres in.",
+                          url: "Vul hier een geldige URL in.",
+                          date: "Vul hier een geldige datum in.",
+                          dateISO: "Vul hier een geldige datum in (ISO-formaat).",
+                          number: "Vul hier een geldig getal in.",
+                          digits: "Vul hier alleen getallen in.",
+                          creditcard: "Vul hier een geldig creditcardnummer in.",
+                          equalTo: "Vul hier dezelfde waarde in.",
+                          accept: "Vul hier een waarde in met een geldige extensie.",
+                          maxlength: $.validator.format("Vul hier maximaal {0} tekens in."),
+                          minlength: $.validator.format("Vul hier minimaal {0} tekens in."),
+                          rangelength: $.validator.format("Vul hier een waarde in van minimaal {0} en maximaal {1} tekens."),
+                          range: $.validator.format("Vul hier een waarde in van minimaal {0} en maximaal {1}."),
+                          max: $.validator.format("Vul hier een waarde in kleiner dan of gelijk aan {0}."),
+                          min: $.validator.format("Vul hier een waarde in groter dan of gelijk aan {0}.")
+                  });}(jQuery));var $mcj = jQuery.noConflict(true);`,
+                }}
+              />
+            )}
           </div>
         </div>{" "}
       </Container>

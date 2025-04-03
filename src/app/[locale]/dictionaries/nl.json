@@ -72,6 +72,8 @@
   "newsletter": {
     "title": "Schrijf je in voor onze nieuwsbrief.",
     "mail": "E-mail adres",
+    "name": "Voornaam",
+    "birthdate": "(Verjaardag dd / mm)",
     "button": "Inschrijven"
   },
   "notFound": {
@@ -92,6 +94,8 @@
     "validation": {
       "required": "Dit veld is verplicht",
       "pattern": "Dit veld is niet correct"
-    }
+    },
+    "success": "Hartelijk dank voor uw inzending. Wij hebben uw bericht succesvol ontvangen, wij zullen proberen zo spoedig mogelijk contact met u op te nemen.",
+    "error": "Er liep iets mis, probeer later opnieuw."
   }
 }

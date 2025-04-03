@@ -6,6 +6,8 @@ export async function POST(req, res) {
   const body = (await req.json()) ?? {};
   const { templateId, data } = body ?? {};
 
+  console.log("sendMail route", templateId, data);
+
   const options = {
     method: "POST",
     headers: {
@@ -15,21 +17,10 @@ export async function POST(req, res) {
     },
     body: JSON.stringify({
       templateId: templateId,
-      sender: {
-        email: "info@degoudenkooi.be",
-        name: "info@degoudenkooi.be",
-      },
-      to: [
-        {
-          email: data.email,
-          name: data.name,
-        },
-      ],
-      replyTo: {
-        email: "info@degoudenkooi.be",
-        name: "info@degoudenkooi.be",
-      },
-      params: data,
+      sender: data.sender,
+      to: [data.to],
+      replyTo: data.replyTo,
+      params: data.params,
     }),
   };
 
@@ -37,6 +28,8 @@ export async function POST(req, res) {
     .then((res) => res.json())
     .then((json) => ({ status: 200, ...json }))
     .catch((err) => console.error(err));
+
+  console.log("result", result);
 
   return NextResponse.json(result, { status: 200 });
 }

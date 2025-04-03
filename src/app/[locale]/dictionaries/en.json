@@ -73,6 +73,8 @@
   "newsletter": {
     "title": "Subscribe to our newsletter",
     "mail": "Email address",
+    "name": "Firstname",
+    "birthdate": "(Birthday dd / mm)",
     "button": "Subscribe"
   },
   "notFound": {
@@ -93,6 +95,8 @@
     "validation": {
       "required": "This field is required",
       "pattern": "E-mail is not correct"
-    }
+    },
+    "success": "Thank you for your submission. We have successfully received your message, we will try to contact you as soon as possible.",
+    "error": "Er liep iets mis, probeer later opnieuw."
   }
 }

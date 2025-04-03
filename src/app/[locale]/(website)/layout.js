@@ -61,7 +61,10 @@ export default function RootLayout({ children, params }) {
   }
 
   return (
-    <html lang={params.locale} className="bg-white">
+    <html
+      lang={params.locale === "en" ? "en-US" : "nl-NL"}
+      className="bg-white"
+    >
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
       <body className={`${font.className} antialiased`}>
         <TopBar locale={params.locale} />

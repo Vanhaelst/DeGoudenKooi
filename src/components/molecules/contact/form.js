@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Container, RichText, Text } from "@/components/atoms";
+import { Transition } from "@headlessui/react";
+import { Button, Text } from "@/components/atoms";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { sendMail } from "@/server/brevo/sendMail";
@@ -19,7 +20,6 @@ export const Form = ({ t, title }) => {
   } = useForm({
     defaultValues: {
       firstname: "",
-      lastname: "",
       mail: "",
       message: "",
     },
@@ -31,7 +31,27 @@ export const Form = ({ t, title }) => {
 
     try {
       await sendMail({
-        data,
+        data: {
+          params: data,
+          sender: {
+            email: "info@degoudenkooi.be",
+            name: "info@degoudenkooi.be",
+          },
+          replyTo: {
+            email: data.mail,
+            name: data.firstname,
+          },
+          to: {
+            email:
+              process.env.NODE_ENV !== "production"
+                ? "indy@publiplus.be"
+                : "degoudenkooi2016@gmail.com",
+            name:
+              process.env.NODE_ENV !== "production"
+                ? "indy@publiplus.be"
+                : "degoudenkooi2016@gmail.com",
+          },
+        },
         templateId: 2,
       });
 
@@ -43,6 +63,11 @@ export const Form = ({ t, title }) => {
       setIsSubmitting(false);
       console.error(e);
     }
+
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+      setShowErrorMessage(false);
+    }, 2500);
   };
 
   return (
@@ -91,7 +116,38 @@ export const Form = ({ t, title }) => {
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div
+        className={clsx(
+          "flex",
+          showErrorMessage || showSuccessMessage
+            ? "justify-between"
+            : "justify-end",
+        )}
+      >
+        <Transition show={showSuccessMessage}>
+          <div
+            className={clsx([
+              "transition ease-in-out",
+              "data-[closed]:opacity-0",
+              "data-[enter]:duration-100",
+              "data-[leave]:duration-300",
+            ])}
+          >
+            <Text classnames="text-white">{t.success}</Text>
+          </div>
+        </Transition>
+        <Transition show={showErrorMessage}>
+          <div
+            className={clsx([
+              "transition ease-in-out",
+              "data-[closed]:opacity-0",
+              "data-[enter]:duration-100",
+              "data-[leave]:duration-300",
+            ])}
+          >
+            <Text classnames="text-white">{t.error}</Text>
+          </div>
+        </Transition>
         <Button
           buttonType="submit"
           variant="white"

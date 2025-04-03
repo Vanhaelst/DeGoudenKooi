@@ -8,7 +8,6 @@ import { LINKS } from "@/enums/links";
 export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
   const pathname = usePathname();
 
-  console.log(pathname);
   return (
     <div className="bg-white">
       <Dialog
