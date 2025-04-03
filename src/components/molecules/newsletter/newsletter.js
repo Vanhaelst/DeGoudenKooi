@@ -155,6 +155,7 @@ export default async function Newsletter({ locale }) {
 
             {locale === "nl" && (
               <Script
+                id="mailchimp-validate-translate"
                 type="text/javascript"
                 strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
