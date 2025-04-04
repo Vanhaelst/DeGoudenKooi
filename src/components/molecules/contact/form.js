@@ -67,7 +67,7 @@ export const Form = ({ t, title }) => {
     setTimeout(() => {
       setShowSuccessMessage(false);
       setShowErrorMessage(false);
-    }, 2500);
+    }, 5000);
   };
 
   return (

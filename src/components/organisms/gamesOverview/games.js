@@ -184,11 +184,7 @@ export const Games = ({
                     awards.length > 0 &&
                     awards.map(({ image, title }) => {
                       return (
-                        <div
-                          key={title}
-                          className="tooltip hover:tooltip-open tooltip-bottom mr-2"
-                          data-tip={title}
-                        >
+                        <div key={title} className="mr-2" data-tip={title}>
                           <img
                             src={image[0]?.url}
                             alt={title || ""}

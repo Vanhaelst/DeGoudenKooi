@@ -270,7 +270,12 @@ export const Footer = async ({ locale = "nl" }) => {
 
             <div className="flex gap-x-6 md:order-2 mb-4 md:mb-0">
               {navigation.social.map((item) => (
-                <a key={item.name} href={item.href} className="transition-all">
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="transition-all"
+                  target="_blank"
+                >
                   <span className="sr-only">{item.name}</span>
                   <item.icon
                     aria-hidden="true"

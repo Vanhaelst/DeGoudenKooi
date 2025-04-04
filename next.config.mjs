@@ -65,6 +65,11 @@ const nextConfig = {
         destination: "/nl/escape-rooms/de-wraak-van-han",
       },
       {
+        source: "/nl/je-boeking",
+        permanent: true,
+        destination: "/nl/boeking",
+      },
+      {
         source: "/nl/booking",
         permanent: true,
         destination: "/nl/boeking",

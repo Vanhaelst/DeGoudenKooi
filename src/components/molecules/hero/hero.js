@@ -110,10 +110,7 @@ export const Hero = ({
 
   return (
     <section
-      className={clsx(
-        bgColor,
-        "min-h-96  bg-cover bg-bottom opacity-0 min-h-[750px]",
-      )}
+      className={clsx(bgColor, "bg-cover bg-bottom opacity-0 min-h-[750px]")}
       style={{
         backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
       }}
