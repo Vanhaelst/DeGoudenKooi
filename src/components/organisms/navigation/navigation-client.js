@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { MegaMenu } from "@/components/organisms/navigation/mega-menu";
 import { LOCATIONS } from "@/enums/locations";
 import { MobileNavigation } from "@/components/organisms/navigation/mobile-navigation";
 import { LINKS } from "@/enums/links";
+import { Button } from "@/components/atoms";
 
 export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
   const [open, setOpen] = useState(false);
@@ -68,6 +69,17 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
         locale={locale}
         setOpen={setOpen}
       />
+
+      <div className="fixed bottom-0 z-50 w-full sm:hidden">
+        <Button
+          href={locale === "en" ? LINKS.EN.BOOK : LINKS.NL.BOOK}
+          classnames="w-full"
+          variant={"secondary"}
+          callToAction={dict.navigation.reserve}
+          type="square"
+          size="medium"
+        />
+      </div>
     </>
   );
 };

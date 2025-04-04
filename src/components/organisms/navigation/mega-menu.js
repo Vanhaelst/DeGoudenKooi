@@ -16,7 +16,7 @@ export const MegaMenu = ({ locale = "nl", dict, setOpen }) => {
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8 z-20"
       >
-        <div className="flex justify-between w-full lg:w-auto">
+        <div className="flex justify-between items-center w-full lg:w-auto">
           <a href={`/${locale}`} className="flex -m-1.5 p-1.5">
             <span className="sr-only">{CompanyData.name}</span>
             <Image
@@ -24,7 +24,7 @@ export const MegaMenu = ({ locale = "nl", dict, setOpen }) => {
               width={121}
               height={18}
               src={CompanyData.logo}
-              className="h-8 md:h-10 w-auto"
+              className="ml-2 md:ml-0 h-6 md:h-10 w-auto"
             />
           </a>
 

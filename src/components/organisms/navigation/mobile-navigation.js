@@ -4,6 +4,8 @@ import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { LINKS } from "@/enums/links";
+import { Button } from "@/components/atoms";
+import React from "react";
 
 export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
   const pathname = usePathname();
@@ -103,6 +105,16 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
                   );
                 })}
               </ul>
+
+              <div className="mx-4">
+                <Button
+                  href={locale === "en" ? LINKS.EN.BOOK : LINKS.NL.BOOK}
+                  classnames="w-full"
+                  variant={"secondary"}
+                  callToAction={"Boek nu"}
+                  size="small"
+                />
+              </div>
             </div>
             <div className="space-y-6 px-4 py-6 md:mt-12">
               <a

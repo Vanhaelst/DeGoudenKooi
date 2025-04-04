@@ -110,7 +110,7 @@ export const Button = ({
             ${classnames}
           ${getVariant()} ${getFont()} ${getType()} ${buttonSize()} 
           ${fullWidth ? "w-full" : ""}
-        cursor-pointer hover:scale-110 transition-all
+        cursor-pointer sm:hover:scale-110 transition-all
         `}
       >
         {callToAction}
@@ -125,7 +125,7 @@ export const Button = ({
             ${classnames}
           ${getVariant()} ${getFont()} ${getType()} ${buttonSize()} 
           ${fullWidth ? "w-full" : ""}
-        cursor-pointer hover:scale-110 transition-all
+        cursor-pointersm: hover:scale-110 transition-all
         `}
       >
         {callToAction}
@@ -143,7 +143,7 @@ export const Button = ({
             ${classnames}
           ${getVariant()} ${getFont()} ${getType()} ${buttonSize()} 
           ${fullWidth ? "w-full" : ""}
-        cursor-pointer hover:scale-110 transition-all
+        cursor-pointer sm:hover:scale-110 transition-all
         `}
       >
         {callToAction}
