@@ -9,7 +9,6 @@ import { callToActionEntry } from "@/queries/entries/callToAction";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { videoEntry } from "@/queries/entries/video";
 import { Loader } from "@/components/atoms/loader/loader";
-import { HomeIcon } from "@heroicons/react/20/solid";
 import { LINKS } from "@/enums/links";
 
 import nl from "@/app/[locale]/dictionaries/nl.json";

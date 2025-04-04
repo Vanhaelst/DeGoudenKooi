@@ -5,8 +5,9 @@ import { MegaMenu } from "@/components/organisms/navigation/mega-menu";
 import { LOCATIONS } from "@/enums/locations";
 import { MobileNavigation } from "@/components/organisms/navigation/mobile-navigation";
 import { LINKS } from "@/enums/links";
-import { Button } from "@/components/atoms";
 import { usePathname } from "next/navigation";
+
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { clsx } from "clsx";
 
 export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
@@ -77,16 +78,30 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
         className={clsx(
           "fixed bottom-0 z-50 w-full sm:hidden",
           pathname === LINKS.NL.BOOK ? "hidden" : "",
+          pathname === LINKS.EN.BOOK ? "hidden" : "",
         )}
       >
-        <Button
+        <a
           href={locale === "en" ? LINKS.EN.BOOK : LINKS.NL.BOOK}
-          classnames="w-full"
-          variant={"secondary"}
-          callToAction={dict.navigation.reserve}
-          type="square"
-          size="medium"
-        />
+          className=""
+          target="_self"
+        >
+          <button
+            className={clsx(
+              "border border-primary-500 bg-primary-500",
+              "text-white font-semibold",
+              "px-12 py-4 text-md md:text-base",
+              "w-full animate-scale",
+              "flex justify-center items-center",
+            )}
+          >
+            {dict.navigation.mobile_book}
+            <ArrowRightIcon
+              aria-hidden="true"
+              className="pointer-events-none size-5 text-white ml-2 sm:size-4"
+            />
+          </button>
+        </a>
       </div>
     </>
   );

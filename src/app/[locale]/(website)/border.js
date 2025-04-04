@@ -1,14 +1,23 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+"use client";
 
-import "./globals.css";
-import "../../slick.css";
 import React from "react";
 import Image from "next/image";
+import { clsx } from "clsx";
+import { usePathname } from "next/navigation";
+import { LINKS } from "@/enums/links";
 
 export const Borders = () => {
+  const pathname = usePathname();
+
+  const bookingsPage = pathname === LINKS.NL.BOOK || pathname === LINKS.EN.BOOK;
   return (
-    <div className="border-wrapper fixed sm:bottom-0 top-[76px] lg:top-[90px] pointer-events-none w-full z-40">
+    <div
+      className={clsx(
+        bookingsPage ? "h-[calc(100%_-_76px)]" : "h-[calc(100%_-_136px)]",
+        "h-[calc(100%_-_136px)] sm:h-[calc(100%_-_72px)] md:h-[calc(100%_-_85px)] lg:h-[calc(100%_-_94px)]",
+        "border-wrapper fixed sm:bottom-0 top-[76px] lg:top-[90px] pointer-events-none w-full z-40",
+      )}
+    >
       <Image
         className="absolute right-2 top-2 w-14 md:w-24"
         src="/border-top-right.png"
