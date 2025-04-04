@@ -17,10 +17,10 @@ export const ColumnsWithDivider = ({ title, column, center }) => {
           {title}
         </Text>
       </Container>
-      <Container classnames="grid grid-cols-1 lg:grid-cols-2 divide-x-2 divide-primary-500">
+      <Container classnames="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x-2  divide-primary-500">
         {column?.map(({ id, heading, description, buttons }) => {
           return (
-            <div key={id}>
+            <div key={id} className="py-6 lg:py-0">
               <div>
                 <Text
                   as="h5"
