@@ -179,12 +179,12 @@ export const Games = ({
                   </div>
                 )}
 
-                <div className="group flex my-6 justify-center lg:justify-start">
+                <div className="group flex my-6 justify-center lg:justify-start flex-wrap">
                   {awards &&
                     awards.length > 0 &&
                     awards.map(({ image, title }) => {
                       return (
-                        <div key={title} className="mr-2" data-tip={title}>
+                        <div key={title} className="mr-2 mb-2" data-tip={title}>
                           <img
                             src={image[0]?.url}
                             alt={title || ""}

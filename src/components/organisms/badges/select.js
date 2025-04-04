@@ -12,6 +12,7 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import Image from "next/image";
+import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
 export const Select = ({ t }) => {
   const searchParams = useSearchParams();
@@ -40,11 +41,12 @@ export const Select = ({ t }) => {
   }, []);
 
   function handleSearch(term) {
+    console.log(term);
     const params = new URLSearchParams(searchParams);
     setSelected(term);
 
-    if (term.key) {
-      params.set("type", term.key);
+    if (term) {
+      params.set("type", term);
     } else {
       params.delete("type");
     }
@@ -63,7 +65,7 @@ export const Select = ({ t }) => {
 
   return (
     <div
-      className="mx-auto flex justify-center items-center space-x-6 opacity-0"
+      className="relative mx-auto flex justify-center items-center space-x-6 opacity-0"
       ref={elementRef}
     >
       <Image
@@ -73,6 +75,26 @@ export const Select = ({ t }) => {
         height={17}
         className="object-contain relative"
       />
+      <div className="relative">
+        <select
+          id="location"
+          name="location"
+          defaultValue={selected}
+          onChange={(e) => handleSearch(e.target.value)}
+          className="relative col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 sm:text-sm/6"
+        >
+          {people.map((person) => (
+            <option key={person.id} value={person.key}>
+              {person.name}
+            </option>
+          ))}
+        </select>
+        <ChevronDownIcon
+          aria-hidden="true"
+          className="absolute right-0 top-2 pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+        />
+      </div>
+      {/*
       <Listbox value={selected} onChange={handleSearch}>
         <div className="relative mt-2 max-w-80 w-80">
           <ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-none bg-white py-1.5 pl-3 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 sm:text-sm/6">
@@ -103,6 +125,7 @@ export const Select = ({ t }) => {
           </ListboxOptions>
         </div>
       </Listbox>
+      */}
       <Image
         src="https://degoudenkooi.pluxit.be/web/assets/Algemene-Beelden/Details/zijkant_filter_rechts.png"
         alt=""

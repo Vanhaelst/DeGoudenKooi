@@ -26,7 +26,7 @@ export const BentoCard = ({ title, href, image }) => {
   return (
     <Link
       href={href || ""}
-      className="flex justify-center items-center w-full h-60 lg:h-80 "
+      className="flex justify-center items-center w-full md:h-60 lg:h-80 pb-8 md:pb-0"
     >
       <Image
         alt={title || ""}

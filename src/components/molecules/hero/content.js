@@ -87,7 +87,7 @@ export const HeroContent = ({
   };
   return (
     <div className="flex justify-center flex-col">
-      <div ref={titleRef} className="pb-8">
+      <div ref={titleRef} className="pb-2 md:pb-8">
         <Text
           as={"h1"}
           level="4xl"
