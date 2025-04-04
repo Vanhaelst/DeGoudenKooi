@@ -6,8 +6,11 @@ import { LOCATIONS } from "@/enums/locations";
 import { MobileNavigation } from "@/components/organisms/navigation/mobile-navigation";
 import { LINKS } from "@/enums/links";
 import { Button } from "@/components/atoms";
+import { usePathname } from "next/navigation";
+import { clsx } from "clsx";
 
 export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const gerechtstraat = rooms.filter(
     (room) => room.gameLocation === LOCATIONS.GERECHTSTRAAT,
@@ -70,7 +73,12 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
         setOpen={setOpen}
       />
 
-      <div className="fixed bottom-0 z-50 w-full sm:hidden">
+      <div
+        className={clsx(
+          "fixed bottom-0 z-50 w-full sm:hidden",
+          pathname === LINKS.NL.BOOK ? "hidden" : "",
+        )}
+      >
         <Button
           href={locale === "en" ? LINKS.EN.BOOK : LINKS.NL.BOOK}
           classnames="w-full"

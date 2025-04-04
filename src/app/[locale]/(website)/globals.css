@@ -28,6 +28,12 @@ html {
   scroll-behavior: smooth;
 }
 
+select {
+  text-align: center;
+  text-align-last: center;
+  -moz-text-align-last: center;
+}
+
 .border-wrapper {
   height: calc(100vh - 116px);
   @media screen and (min-width: 640px) {

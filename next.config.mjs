@@ -80,15 +80,11 @@ const nextConfig = {
         destination: "/nl/je-planning",
       },
       {
-        source: "/en/jobs",
+        source: "/nl/saint-rumbolds-cathedral-tower",
         permanent: true,
-        destination: "/en",
+        destination: "/nl/sint-romboutstoren-mechelen",
       },
-      {
-        source: "/en/nieuws",
-        permanent: true,
-        destination: "/en",
-      } /* Redirects NL -> EN */,
+      /* Redirects NL -> EN */
       {
         source: "/en/over-ons",
         destination: "/en/about-us",
@@ -143,6 +139,22 @@ const nextConfig = {
         source: "/en/je-planning",
         permanent: true,
         destination: "/en/your-planning",
+      },
+
+      {
+        source: "/en/sint-romboutstoren-mechelen",
+        permanent: true,
+        destination: "/en/saint-rumbolds-cathedral-tower",
+      },
+      {
+        source: "/en/jobs",
+        permanent: true,
+        destination: "/en",
+      },
+      {
+        source: "/en/nieuws",
+        permanent: true,
+        destination: "/en",
       },
     ];
   },

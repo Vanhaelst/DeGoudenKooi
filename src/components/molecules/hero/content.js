@@ -103,7 +103,11 @@ export const HeroContent = ({
           {subtitle}
         </Text>
         {gameType ? (
-          <Text as={"span"} level="sm" classnames="font-semibold text-white">
+          <Text
+            as={"span"}
+            level="sm"
+            classnames="font-semibold text-white text-center block"
+          >
             {gameType}
           </Text>
         ) : null}
@@ -184,7 +188,7 @@ export const HeroContent = ({
       )}
 
       <div
-        className="flex items-center justify-center lg:justify-start space-x-4 my-6"
+        className="flex items-center justify-center flex-wrap lg:justify-start space-x-4 my-6"
         ref={awardsRef}
       >
         {awards &&

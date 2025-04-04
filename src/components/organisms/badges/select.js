@@ -84,7 +84,7 @@ export const Select = ({ t }) => {
           className="relative col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 sm:text-sm/6"
         >
           {people.map((person) => (
-            <option key={person.id} value={person.key}>
+            <option key={person.id} value={person.key} className="text-center">
               {person.name}
             </option>
           ))}

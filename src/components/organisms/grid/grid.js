@@ -32,6 +32,7 @@ export const Grid = ({
                   "flex",
                   item.gridSize === "oneThird" ? " md:col-span-5" : "",
                   item.gridSize === "twoThirds" ? "md:col-span-7" : "",
+                  item.gridSize === "halfWidth" ? "md:col-span-6" : "",
                   item.gridSize === "fullWidth" ? "md:col-span-12" : "",
                 )}
               >
