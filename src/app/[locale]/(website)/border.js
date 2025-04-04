@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export const Borders = () => {
   return (
-    <div className="border-wrapper fixed bottom-0 pointer-events-none w-full z-40">
+    <div className="border-wrapper fixed bottom-0 top-[76px] pointer-events-none w-full z-40">
       <Image
         className="absolute right-2 top-2 w-14 md:w-24"
         src="/border-top-right.png"
