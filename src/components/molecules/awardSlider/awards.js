@@ -2,7 +2,7 @@
 
 import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
-import { Container, Text } from "@/components/atoms";
+import { Container, RichText, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import { LINKS } from "@/enums/links";
 
@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
+import { clsx } from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,6 +65,29 @@ export const AwardSlider = ({
         className={`py-12 px-8 md:px-4 bg-cover bg-center`}
         style={{ backgroundImage: `url('${backgroundImage?.[0]?.url}')` }}
       >
+        <Container classnames="flex flex-col items-center">
+          {title && (
+            <Text
+              as="h5"
+              level="2xl"
+              classnames={clsx(
+                "text-primary-500 font-bold",
+                "text-center",
+                description ? "mb-4" : "",
+              )}
+            >
+              {title}
+            </Text>
+          )}
+          {description && (
+            <RichText
+              text={description}
+              level="lg"
+              classnames={clsx("text-primary-700 font-light", "text-center")}
+            />
+          )}
+        </Container>
+
         <Container classnames="relative">
           <Slider {...settings}>
             {awards.map(({ title, image }) => {
