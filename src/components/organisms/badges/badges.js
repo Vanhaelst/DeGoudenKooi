@@ -12,7 +12,7 @@ import Image from "next/image";
 import { fade, scrollTrigger } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import { ArrowLongRightIcon } from "@heroicons/react/20/solid";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,10 +117,12 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           className="hidden xl:block object-contain relative -top-14 right-12 opacity-0"
         />
 
-        <ArrowRightIcon
-          aria-hidden="true"
-          className="absolute -bottom-4 right-5 pointer-events-none size-6 text-white md:hidden fill-primary-500"
-        />
+        {rooms?.length > 2 ? (
+          <ArrowLongRightIcon
+            aria-hidden="true"
+            className="absolute -bottom-6 right-10 pointer-events-none size-8 text-white md:hidden fill-primary-500"
+          />
+        ) : null}
       </div>
       {filter && (
         <Container classnames="pt-10">
