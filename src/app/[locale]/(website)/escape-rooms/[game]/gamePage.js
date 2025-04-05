@@ -24,12 +24,14 @@ import { useParams } from "next/navigation";
 import { Container } from "@/components/atoms";
 import { Feature, Title } from "@/components/molecules";
 import { Usp } from "@/components/molecules/usp";
+import { clsx } from "clsx";
 
 export default function GamePage({ data, children }) {
   const { locale } = useParams();
   const [faq, setFaq] = useState(undefined);
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
   const t = locale === "nl" ? nl : en;
 
   const {
@@ -146,12 +148,15 @@ export default function GamePage({ data, children }) {
       }
     : {};
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
-    if (data && window.location.hash === "#book") {
-      setTimeout(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+      if (data && window.location.hash === "#book") {
         document.getElementById("book").scrollIntoView({ behavior: "smooth" });
-      }, 1000);
-    }
+      }
+    }, 1000);
   }, []);
 
   if (!data) {
@@ -159,103 +164,111 @@ export default function GamePage({ data, children }) {
   }
 
   return (
-    <main
-      className={`bg-[length:100%_100%] bg-center`}
-      style={{
-        backgroundImage: `url('${mainBackground?.[0]?.url}')`,
-      }}
-    >
-      <Hero
-        detail={true}
-        type={"horizontal"}
-        image={detailImage || featuredImage}
-        backgroundImage={backgroundImage}
-        title={heroTitle}
-        subtitle={heroSubTitle}
-        features={features}
-        awards={heroAwards}
-        buttons={[reserveButton]}
-        gameType={t.general[gameType]}
-      />
+    <>
+      {isLoading ? <Loader /> : null}
 
-      {isInactive && (
-        <div className="fixed z-50 bottom-5 right-5 space-y-2">
-          <Warning
-            title={t.game.inactive.title}
-            description={inactiveMessage || t.game.inactive[gameType]}
-          />
-        </div>
-      )}
-
-      <div
-        id="content"
-        className={`bg-no-repeat bg-contain bg-top`}
+      <main
+        className={clsx(
+          isLoading ? "opacity-0" : "opacity-100",
+          "transition-all duration-1000",
+          "bg-[length:100%_100%] bg-center",
+        )}
         style={{
-          backgroundImage: `url('${transparentImage?.[0]?.url}')`,
+          backgroundImage: `url('${mainBackground?.[0]?.url}')`,
         }}
       >
-        <div className={`py-14 space-y-8 md:space-x-16`}>
-          {contentItem?.map((item) => (
-            <ContentImage key={item.id} detail={true} {...item} />
-          ))}
+        <Hero
+          detail={true}
+          type={"horizontal"}
+          image={detailImage || featuredImage}
+          backgroundImage={backgroundImage}
+          title={heroTitle}
+          subtitle={heroSubTitle}
+          features={features}
+          awards={heroAwards}
+          buttons={[reserveButton]}
+          gameType={t.general[gameType]}
+        />
+
+        {isInactive && (
+          <div className="fixed z-50 bottom-5 right-5 space-y-2">
+            <Warning
+              title={t.game.inactive.title}
+              description={inactiveMessage || t.game.inactive[gameType]}
+            />
+          </div>
+        )}
+
+        <div
+          id="content"
+          className={`bg-no-repeat bg-contain bg-top`}
+          style={{
+            backgroundImage: `url('${transparentImage?.[0]?.url}')`,
+          }}
+        >
+          <div className={`py-14 space-y-8 md:space-x-16`}>
+            {contentItem?.map((item) => (
+              <ContentImage key={item.id} detail={true} {...item} />
+            ))}
+          </div>
+          <ModalVideo
+            videoId={videoId}
+            videoPlayer={videoPlayer}
+            thumb={videoImage?.[0]}
+          />
+
+          {usps?.length > 0 ? (
+            <section className={`py-12 sm:py-16`}>
+              <Container classnames="mb-24">
+                <Title
+                  title={uspHeading}
+                  description={uspDescription}
+                  center={true}
+                />
+              </Container>
+              <Container classnames="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                {usps?.map((usp, index) => {
+                  return <Usp key={usp.title} {...usp} index={index} />;
+                })}
+              </Container>
+            </section>
+          ) : null}
+
+          {sliderAwards && sliderAwards.length ? (
+            <AwardSlider
+              title={`${t.general.the} "${title}" ${t.topbar.awards}`}
+              backgroundColor="darkGray"
+              awards={sliderAwards}
+              locale={locale}
+              slider
+              t={t.game}
+            />
+          ) : null}
+          <Reviews reviews={reviews} />
+          {!isInactive && (
+            <Prices
+              prices={prices}
+              image={priceImage[0]}
+              t={t.rate}
+              gameType={gameType}
+            />
+          )}
+          {!isInactive && (
+            <Bookeo
+              locale={locale}
+              variant={categories[0]}
+              title={`${t.navigation.reserve} ${title}`}
+            />
+          )}
+          <div id="faq" className="mb-10 md:mb-20" />
+          <Faq
+            title={`${t.game.faq} ${title}`}
+            backgroundColor="lightGray"
+            faq={faq}
+          />
+          {children}
         </div>
-        <ModalVideo
-          videoId={videoId}
-          videoPlayer={videoPlayer}
-          thumb={videoImage?.[0]}
-        />
-
-        {usps?.length > 0 ? (
-          <section className={`py-12 sm:py-16`}>
-            <Container classnames="mb-24">
-              <Title
-                title={uspHeading}
-                description={uspDescription}
-                center={true}
-              />
-            </Container>
-            <Container classnames="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              {usps?.map((usp, index) => {
-                return <Usp key={usp.title} {...usp} index={index} />;
-              })}
-            </Container>
-          </section>
-        ) : null}
-
-        {sliderAwards && sliderAwards.length ? (
-          <AwardSlider
-            title={`${t.general.the} "${title}" ${t.topbar.awards}`}
-            backgroundColor="darkGray"
-            awards={sliderAwards}
-            locale={locale}
-            slider
-            t={t.game}
-          />
-        ) : null}
-        <Reviews reviews={reviews} />
-        {!isInactive && (
-          <Prices
-            prices={prices}
-            image={priceImage[0]}
-            t={t.rate}
-            gameType={gameType}
-          />
-        )}
-        {!isInactive && (
-          <Bookeo
-            locale={locale}
-            variant={categories[0]}
-            title={`${t.navigation.reserve} ${title}`}
-          />
-        )}
-        <div id="faq" className="mb-10 md:mb-20" />
-        <Faq
-          title={`${t.game.faq} ${title}`}
-          backgroundColor="lightGray"
-          faq={faq}
-        />
-        {children}
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
