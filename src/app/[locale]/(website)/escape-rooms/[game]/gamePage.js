@@ -155,7 +155,11 @@ export default function GamePage({ data, children }) {
       setTimeout(() => {
         setIsLoading(false);
         document.body.classList.remove("stop-scrolling");
-        document.getElementById("book").scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          document
+            .getElementById("book")
+            .scrollIntoView({ behavior: "smooth" });
+        }, 250);
       }, 2000);
     }
   }, []);
