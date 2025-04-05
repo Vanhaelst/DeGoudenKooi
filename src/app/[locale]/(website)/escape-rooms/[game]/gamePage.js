@@ -174,7 +174,7 @@ export default function GamePage({ data, children }) {
 
       <main
         className={clsx(
-          isLoading ? "opacity-0 h-[300vh] overflow-hidden" : "opacity-100",
+          isLoading ? "opacity-0 overflow-hidden" : "opacity-100",
           "transition-all duration-1000",
           "bg-[length:100%_100%] bg-center",
         )}
