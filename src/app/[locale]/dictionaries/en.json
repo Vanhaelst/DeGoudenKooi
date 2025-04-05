@@ -97,7 +97,7 @@
       "required": "This field is required",
       "pattern": "E-mail is not correct"
     },
-    "success": "Thank you for your submission. We have successfully received your message, we will try to contact you as soon as possible.",
+    "success": "Thank you for your submission. We have received your message and will respond within 24 hours.",
     "error": "Er liep iets mis, probeer later opnieuw."
   }
 }

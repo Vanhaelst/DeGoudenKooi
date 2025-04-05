@@ -96,7 +96,7 @@
       "required": "Dit veld is verplicht",
       "pattern": "Dit veld is niet correct"
     },
-    "success": "Hartelijk dank voor uw inzending. Wij hebben uw bericht succesvol ontvangen, wij zullen proberen zo spoedig mogelijk contact met u op te nemen.",
+    "success": "Bedankt voor je inzending. We hebben je bericht goed ontvangen en antwoorden je binnen de 24 uur.",
     "error": "Er liep iets mis, probeer later opnieuw."
   }
 }

@@ -3,7 +3,7 @@
 import { Badge } from "@/components/organisms/badges/badge";
 import { Container } from "@/components/atoms";
 import { Select } from "@/components/organisms/badges/select";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { useSearchParams } from "next/navigation";
@@ -12,6 +12,8 @@ import Image from "next/image";
 import { fade, scrollTrigger } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export const Badges = ({ defaultRooms, dict, filter, locale }) => {
@@ -85,7 +87,7 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
 
   return (
     <div>
-      <div className="badges w-full flex justify-center mt-12">
+      <div className="relative badges w-full flex justify-center mt-12">
         <Image
           ref={elementLeftRef}
           src="https://degoudenkooi.pluxit.be/web/assets/Algemene-Beelden/Details/krul_links.png"
@@ -113,6 +115,11 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           width={77}
           height={40}
           className="hidden xl:block object-contain relative -top-14 right-12 opacity-0"
+        />
+
+        <ArrowRightIcon
+          aria-hidden="true"
+          className="absolute -bottom-4 right-5 pointer-events-none size-6 text-white md:hidden fill-primary-500"
         />
       </div>
       {filter && (
