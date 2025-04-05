@@ -26,16 +26,26 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
   const elementRightRef = useRef(null);
 
   useEffect(() => {
-    if (rooms.length === 0) {
-      gsap.fromTo(elementLeftRef.current, fade.from, {
-        opacity: "0%",
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: elementLeftRef.current,
-          ...scrollTrigger,
-        },
-      });
-    } else {
+    gsap.fromTo(elementLeftRef.current, fade.from, {
+      opacity: "0%",
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: elementLeftRef.current,
+        ...scrollTrigger,
+      },
+    });
+    gsap.fromTo(elementRightRef.current, fade.from, {
+      opacity: "0%",
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: elementRightRef.current,
+        ...scrollTrigger,
+      },
+    });
+  }, [type]);
+
+  useEffect(() => {
+    if (rooms.length > 0) {
       gsap.fromTo(elementLeftRef.current, fade.from, {
         ...fade.to,
         scrollTrigger: {
@@ -43,20 +53,7 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           ...scrollTrigger,
         },
       });
-    }
-  }, [type, rooms]);
 
-  useEffect(() => {
-    if (rooms.length === 0) {
-      gsap.fromTo(elementLeftRef.current, fade.from, {
-        opacity: "0%",
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: elementLeftRef.current,
-          ...scrollTrigger,
-        },
-      });
-    } else {
       const delay = type ? rooms?.length : defaultRooms.length;
       gsap.fromTo(elementRightRef.current, fade.from, {
         ...fade.to,
@@ -67,7 +64,7 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
         },
       });
     }
-  }, [type, rooms]);
+  }, [rooms]);
 
   useEffect(() => {
     setRooms([]);

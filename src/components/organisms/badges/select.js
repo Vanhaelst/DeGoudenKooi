@@ -19,7 +19,9 @@ export const Select = ({ t }) => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(
+    searchParams.get("type")?.toString(),
+  );
 
   const elementRef = useRef(null);
 
