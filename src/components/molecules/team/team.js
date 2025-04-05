@@ -6,10 +6,10 @@ import { getBackgroundColor } from "@/utils/getBackgroundColor";
 import { TeamMember } from "@/components/molecules/team/teamMember";
 import { imageQuery } from "@/queries/entries/image";
 
-async function getTeam() {
+async function getTeam({ locale }) {
   return fetchData(`
     query MyQuery {
-      team: teamMembersFieldEntries {
+      team: teamMembersFieldEntries(language: "${locale}") {
         ... on teamMember_Entry {
           id
           name: title
@@ -22,10 +22,10 @@ async function getTeam() {
 `);
 }
 
-export const Team = async ({ title, description, backgroundColor }) => {
+export const Team = async ({ title, description, backgroundColor, locale }) => {
   const bgColor = getBackgroundColor(backgroundColor);
 
-  const { team } = await getTeam();
+  const { team } = await getTeam({ locale });
 
   return (
     <section className={`${bgColor} py-12 sm:py-16`}>
