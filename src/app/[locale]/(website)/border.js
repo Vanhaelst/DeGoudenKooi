@@ -9,12 +9,12 @@ import { LINKS } from "@/enums/links";
 export const Borders = () => {
   const pathname = usePathname();
 
-  const bookingsPage = pathname === LINKS.NL.BOOK || pathname === LINKS.EN.BOOK;
+  let bookingsPage = pathname === LINKS.NL.BOOK || pathname === LINKS.EN.BOOK;
   return (
     <div
       className={clsx(
         bookingsPage ? "h-[calc(100%_-_76px)]" : "h-[calc(100%_-_136px)]",
-        "h-[calc(100%_-_136px)] sm:h-[calc(100%_-_72px)] md:h-[calc(100%_-_85px)] lg:h-[calc(100%_-_94px)]",
+        "sm:h-[calc(100%_-_72px)] md:h-[calc(100%_-_85px)] lg:h-[calc(100%_-_94px)]",
         "border-wrapper fixed sm:bottom-0 top-[76px] lg:top-[90px] pointer-events-none w-full z-40",
       )}
     >
