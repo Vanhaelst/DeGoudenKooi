@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 import { fetchData } from "@/utils/fetchData";
 import { ContentImage } from "@/components/organisms/content/content-image";
@@ -31,7 +30,7 @@ export default function GamePage({ data, children }) {
   const [faq, setFaq] = useState(undefined);
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(window.location.hash === "#book");
   const t = locale === "nl" ? nl : en;
 
   const {
@@ -151,12 +150,14 @@ export default function GamePage({ data, children }) {
   useEffect(() => {}, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      if (data && window.location.hash === "#book") {
+    if (data && window.location.hash === "#book") {
+      document.body.classList.add("stop-scrolling");
+      setTimeout(() => {
+        setIsLoading(false);
+        document.body.classList.remove("stop-scrolling");
         document.getElementById("book").scrollIntoView({ behavior: "smooth" });
-      }
-    }, 1000);
+      }, 1000);
+    }
   }, []);
 
   if (!data) {
@@ -169,7 +170,7 @@ export default function GamePage({ data, children }) {
 
       <main
         className={clsx(
-          isLoading ? "opacity-0" : "opacity-100",
+          isLoading ? "opacity-0 h-[300vh] overflow-hidden" : "opacity-100",
           "transition-all duration-1000",
           "bg-[length:100%_100%] bg-center",
         )}

@@ -28,6 +28,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 select {
   text-align: center;
   text-align-last: center;

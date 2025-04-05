@@ -72,7 +72,7 @@ export default function RootLayout({ children, params }) {
 
         <Borders />
         <main
-          className=" bg-[length:100%_100%] bg-center"
+          className="bg-[length:100%_100%] bg-center"
           style={{ backgroundImage: "url('/achtergrond.png')" }}
         >
           {children}
