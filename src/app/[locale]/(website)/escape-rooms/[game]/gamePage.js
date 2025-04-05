@@ -160,7 +160,7 @@ export default function GamePage({ data, children }) {
             .getElementById("book")
             .scrollIntoView({ behavior: "smooth" });
         }, 250);
-      }, 2000);
+      }, 1000);
     }
   }, []);
 
