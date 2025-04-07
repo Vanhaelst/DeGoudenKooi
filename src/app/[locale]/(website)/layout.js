@@ -75,6 +75,7 @@ export default function RootLayout({ children, params }) {
           {children}
         </main>
         <Footer locale={params.locale} />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src={bookeo_url} />
       </body>
     </html>
