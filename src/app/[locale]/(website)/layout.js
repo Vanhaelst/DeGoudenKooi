@@ -75,11 +75,6 @@ export default function RootLayout({ children, params }) {
           {children}
         </main>
         <Footer locale={params.locale} />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          type="text/javascript"
-          src="https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360"
-        ></script>
       </body>
     </html>
   );
