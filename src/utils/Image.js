@@ -3,6 +3,7 @@
 import fallback from "../../public/fallback-image.png";
 import Image from "next/image";
 import { useState } from "react";
+import { clsx } from "clsx";
 
 function ImageWithFallback({
   src,
@@ -22,9 +23,8 @@ function ImageWithFallback({
       alt={alt || ""}
       width={width}
       height={height}
-      objectFit={objectFit || "cover"}
       onError={() => setImageError(true)}
-      className={classnames}
+      className={clsx(classnames, objectFit || "cover")}
     />
   );
 }

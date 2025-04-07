@@ -13,6 +13,7 @@ import { fade, scrollTrigger } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { clsx } from "clsx";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,22 +123,7 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           className="hidden xl:block object-contain relative -top-14 right-12 opacity-0"
         />
       </div>
-      {filter && (
-        <Container classnames="flex flex-col justify-center pb-4">
-          <Select t={dict} />
-          <Text
-            as="p"
-            level="xs"
-            classnames="text-white text-center mt-4 font-light flex justify-center items-center"
-          >
-            <InformationCircleIcon
-              aria-hidden="true"
-              className="size-4 mr-2 flex-none"
-            />{" "}
-            Meer weten over de verschillen? Check onze blog.
-          </Text>
-        </Container>
-      )}
+      {filter && <Select t={dict} />}
     </div>
   );
 };

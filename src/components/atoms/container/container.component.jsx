@@ -1,6 +1,12 @@
 //          <div className="container px-4  ">
 
-export const Container = ({ size, classnames, children, style }) => {
+export const Container = ({
+  size,
+  classnames,
+  children,
+  style,
+  forwardRef,
+}) => {
   const getSize = () => {
     switch (size) {
       case "xs":
@@ -18,6 +24,7 @@ export const Container = ({ size, classnames, children, style }) => {
 
   return (
     <div
+      ref={forwardRef}
       className={`relative mx-auto ${getSize()} ${classnames}`}
       style={style}
     >

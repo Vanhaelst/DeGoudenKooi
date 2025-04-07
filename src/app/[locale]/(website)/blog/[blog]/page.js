@@ -11,14 +11,13 @@ import { videoEntry } from "@/queries/entries/video";
 import { Loader } from "@/components/atoms/loader/loader";
 import { LINKS } from "@/enums/links";
 
-import nl from "@/app/[locale]/dictionaries/nl.json";
-import en from "@/app/[locale]/dictionaries/en.json";
 import {
   defaultMetadata,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
+import { redirect } from "next/navigation";
 
 const query = ({ pathname, language = "nl" }) => {
   return `
@@ -93,21 +92,14 @@ export default async function News({ params }) {
     language: params.locale,
   });
 
+  console.log("blog", blog);
+
   const { image, title, shortDescription, blogsections } = blog?.[0] || {};
 
-  const t = params.locale === "en" ? en : nl;
-  const pages = [
-    {
-      name: t.topbar.news,
-      href: LINKS[params.locale.toUpperCase()]?.NEWS,
-      current: false,
-    },
-    { name: title, href: "#", current: true },
-  ];
-
-  if (!blog) {
-    return <Loader />;
+  if (blog.length === 0) {
+    redirect(params.locale === "en" ? LINKS.EN.BLOG : LINKS.NL.BLOG);
   }
+
   return (
     <>
       <Hero

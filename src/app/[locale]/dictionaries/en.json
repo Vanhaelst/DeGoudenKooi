@@ -24,6 +24,10 @@
     "adventures": "Adventures",
     "mobile_book": "Book your adventure now"
   },
+  "filter": {
+    "information": "Want to know more about the differences?",
+    "information_cta": "Check our blog"
+  },
   "general": {
     "the": "The",
     "from": "sa",

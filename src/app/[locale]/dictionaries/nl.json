@@ -42,6 +42,10 @@
     "minAge": "Aanbevolen minimum leeftijd",
     "loadMore": "Meer laden"
   },
+  "filter": {
+    "information": "Meer weten over de verschillen?",
+    "information_cta": "Check onze blog"
+  },
   "game": {
     "teaser": "Teaser",
     "watch_teaser": "Bekijk onze teaser",
