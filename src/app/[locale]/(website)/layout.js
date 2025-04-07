@@ -18,6 +18,7 @@ import {
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
+import { bookeo_url } from "@/enums/bookeo";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -74,6 +75,7 @@ export default function RootLayout({ children, params }) {
           {children}
         </main>
         <Footer locale={params.locale} />
+        <script src={bookeo_url} />
       </body>
     </html>
   );
