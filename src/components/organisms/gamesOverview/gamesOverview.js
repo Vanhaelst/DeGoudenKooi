@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
-import { Container } from "@/components/atoms";
+import { Container, Text } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import { useSearchParams } from "next/navigation";
 

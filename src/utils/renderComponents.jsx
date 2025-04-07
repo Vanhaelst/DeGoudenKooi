@@ -27,6 +27,7 @@ import { ContentVideo } from "@/components/organisms/content/content-video";
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
 
+  console.log(typeHandle);
   const dict = getDictionary(locale);
 
   switch (typeHandle) {

@@ -195,7 +195,7 @@ export const Games = ({
                     })}
                 </div>
 
-                <div className="space-y-3 sm:space-y-0 sm:space-x-3 grid grid-cols-1 sm:flex justify-center lg:justify-start">
+                <div className="space-x-3 grid grid-cols-2 sm:flex justify-center lg:justify-start">
                   <div className="mx-auto sm:mx-0">
                     <Button
                       variant="white-outline"
