@@ -76,7 +76,7 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
 
       <div
         className={clsx(
-          "fixed bottom-0 z-50 w-full sm:hidden",
+          "fixed bottom-0 z-30 w-full sm:hidden",
           pathname === LINKS.NL.BOOK ? "hidden" : "",
           pathname === LINKS.EN.BOOK ? "hidden" : "",
           pathname.includes("/escape-rooms/") ? "hidden" : "",
