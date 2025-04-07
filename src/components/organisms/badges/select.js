@@ -62,7 +62,7 @@ export const Select = ({ t }) => {
 
   return (
     <Container
-      classnames="flex flex-col justify-center pb-4 pt-10 opacity-0"
+      classnames="flex flex-col justify-center pb-4 sm:pt-10 opacity-0"
       forwardRef={elementRef}
     >
       <div className="relative mx-auto flex justify-center items-center space-x-6">
