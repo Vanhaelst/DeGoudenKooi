@@ -130,7 +130,7 @@ export default function GamePage({ data, children }) {
     {
       icon: "/icon-age.svg",
       description: t.general.minAge,
-      classes: "hidden lg:flex",
+      classes: "",
       tooltip: t.game.minAge,
     },
     {

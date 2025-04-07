@@ -6,12 +6,14 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { sendMail } from "@/server/brevo/sendMail";
 import { clsx } from "clsx";
+import { useParams } from "next/navigation";
 
-export const Form = ({ t, title }) => {
+export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
+  const { locale } = useParams();
   const {
     register,
     handleSubmit,
@@ -30,6 +32,7 @@ export const Form = ({ t, title }) => {
     setIsSubmitting(true);
 
     try {
+      // Admin email
       await sendMail({
         data: {
           params: data,
@@ -52,7 +55,27 @@ export const Form = ({ t, title }) => {
                 : "degoudenkooi2016@gmail.com",
           },
         },
-        templateId: 2,
+        templateId: locale === "en" ? 4 : 2,
+      });
+
+      // Client email
+      await sendMail({
+        data: {
+          params: data,
+          sender: {
+            email: "info@degoudenkooi.be",
+            name: "info@degoudenkooi.be",
+          },
+          replyTo: {
+            email: "noreply@degoudenkooi.be",
+            name: "De Gouden Kooi",
+          },
+          to: {
+            email: data.mail,
+            name: data.firstname || data.mail,
+          },
+        },
+        templateId: locale === "en" ? 5 : 3,
       });
 
       setShowSuccessMessage(true);

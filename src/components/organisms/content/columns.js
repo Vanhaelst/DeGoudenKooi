@@ -10,7 +10,7 @@ export const Columns = ({
 }) => {
   return (
     <section className="">
-      <Container classnames="grid grid-cols-2 gap-x-8">
+      <Container classnames="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Text
           as="h5"
           level="3xl"
@@ -19,7 +19,7 @@ export const Columns = ({
           {title}
         </Text>
       </Container>
-      <Container classnames="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
+      <Container classnames="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
           <RichText
             level="lg"
