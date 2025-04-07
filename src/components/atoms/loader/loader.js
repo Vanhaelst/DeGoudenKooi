@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Loader = () => {
   return (
     <div className="fixed flex justify-center items-center w-full h-[100vh] pointer-events-none">
-      <Image src="/loading.gif" alt="loading" width={200} height={200} />
+      <Image src="/load_gif.gif" alt="loading" width={128} height={128} />
       <svg
         className="hidden"
         version="1.1"
