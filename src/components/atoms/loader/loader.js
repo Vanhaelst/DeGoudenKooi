@@ -1,7 +1,11 @@
+import Image from "next/image";
+
 export const Loader = () => {
   return (
     <div className="fixed flex justify-center items-center w-full h-[100vh] pointer-events-none">
+      <Image src="/loading.gif" alt="loading" width={200} height={200} />
       <svg
+        className="hidden"
         version="1.1"
         id="L9"
         xmlns="http://www.w3.org/2000/svg"

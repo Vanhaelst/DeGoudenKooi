@@ -11,6 +11,7 @@ import { fadeSlide, scrollTrigger } from "@/utils/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
 import { clsx } from "clsx";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,14 +96,15 @@ export const AwardSlider = ({
                 return null;
               }
               return (
-                <Image
-                  key={image[0].url}
-                  src={image[0].url}
-                  alt={image[0].alt || title || ""}
-                  width={image[0].width}
-                  height={image[0].height}
-                  className="w-full px-6 h-32 object-contain"
-                />
+                <Link key={image[0].url} href={LINKS.NL.AWARDS}>
+                  <Image
+                    src={image[0].url}
+                    alt={image[0].alt || title || ""}
+                    width={image[0].width}
+                    height={image[0].height}
+                    className="w-full px-6 h-32 object-contain"
+                  />
+                </Link>
               );
             })}
           </Slider>
