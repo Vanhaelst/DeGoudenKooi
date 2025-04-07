@@ -160,7 +160,7 @@ export const Games = ({
                           <Image
                             src={icon}
                             alt={description || ""}
-                            className="mr-3 w-10 h-10"
+                            className="mr-3 w-6 h-6 sm:w-10 sm:h-10"
                             width={13}
                             height={16}
                           />

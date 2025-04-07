@@ -28,7 +28,8 @@ export const Badge = ({ title, slug, featuredImage, index }) => {
       href={`/${slug}`}
       className={clsx(
         "opacity-0",
-        "w-40 min-w-40 max-w-40",
+        "w-32 min-w-32 max-w-32",
+        "sm:w-40 sm:min-w-40 sm:max-w-40",
         "md:w-32 md:min-w-32 md:max-w-32",
         "lg:w-40 lg:min-w-40 lg:max-w-40",
         "group mx-auto flex flex-col items-center hover:grayscale-0 duration-200 hover:opacity-100",

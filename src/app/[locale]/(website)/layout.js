@@ -51,11 +51,7 @@ export async function generateMetadata({ params }) {
       };
 }
 
-const bookeo = "https://bookeo.com/widget.js?a=3250KXLLEU151F84FE360";
-
 export default function RootLayout({ children, params }) {
-  const lang = params.locale === "en" ? "&languageCode=en_US" : "";
-
   if (params.locale !== "nl" && params.locale !== "en") {
     redirect("/nl");
   }
@@ -73,7 +69,7 @@ export default function RootLayout({ children, params }) {
         <Borders />
         <main
           className="bg-[length:100%_100%] bg-center"
-          style={{ backgroundImage: "url('/achtergrond.png')" }}
+          style={{ backgroundImage: "url('/achtergrond2.png')" }}
         >
           {children}
         </main>

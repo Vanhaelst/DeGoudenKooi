@@ -12,7 +12,7 @@ import Image from "next/image";
 import { fade, scrollTrigger } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLongRightIcon } from "@heroicons/react/20/solid";
+import { clsx } from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,7 +96,12 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           height={40}
           className="hidden xl:block object-contain relative -bottom-14 left-12 opacity-0"
         />
-        <div className="flex overflow-x-scroll hide-scrollbar px-10 min-h-44">
+        <div
+          className={clsx(
+            "flex overflow-x-scroll hide-scrollbar px-10 min-h-44",
+            "overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]",
+          )}
+        >
           {rooms?.map((room, id) => (
             <Badge
               key={room.title}
@@ -116,13 +121,6 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
           height={40}
           className="hidden xl:block object-contain relative -top-14 right-12 opacity-0"
         />
-
-        {rooms?.length > 2 ? (
-          <ArrowLongRightIcon
-            aria-hidden="true"
-            className="absolute -bottom-6 right-10 pointer-events-none size-8 text-white md:hidden fill-primary-500"
-          />
-        ) : null}
       </div>
       {filter && (
         <Container classnames="pt-10">
