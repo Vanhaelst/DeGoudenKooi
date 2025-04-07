@@ -157,7 +157,11 @@ const nextConfig = {
         destination: "/en",
       },
       /* Redirects BOOKEO */
-
+      {
+        source: "/je-boeking.html",
+        permanent: true,
+        destination: "/nl/boeking",
+      },
       {
         source: "/je-boeking",
         permanent: true,
