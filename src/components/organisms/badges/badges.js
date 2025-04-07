@@ -1,14 +1,14 @@
 "use client";
 
 import { Badge } from "@/components/organisms/badges/badge";
-import { Container } from "@/components/atoms";
+import { Container, Text } from "@/components/atoms";
 import { Select } from "@/components/organisms/badges/select";
 import React, { useEffect, useRef, useState } from "react";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { fade, scrollTrigger } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -123,8 +123,19 @@ export const Badges = ({ defaultRooms, dict, filter, locale }) => {
         />
       </div>
       {filter && (
-        <Container classnames="pt-10">
+        <Container classnames="flex flex-col justify-center pb-4">
           <Select t={dict} />
+          <Text
+            as="p"
+            level="xs"
+            classnames="text-white text-center mt-4 font-light flex justify-center items-center"
+          >
+            <InformationCircleIcon
+              aria-hidden="true"
+              className="size-4 mr-2 flex-none"
+            />{" "}
+            Meer weten over de verschillen? Check onze blog.
+          </Text>
         </Container>
       )}
     </div>
