@@ -9,7 +9,11 @@ import { LINKS } from "@/enums/links";
 export const Borders = () => {
   const pathname = usePathname();
 
-  let bookingsPage = pathname === LINKS.NL.BOOK || pathname === LINKS.EN.BOOK;
+  let bookingsPage =
+    pathname === LINKS.NL.BOOK ||
+    pathname === LINKS.EN.BOOK ||
+    pathname.includes("/escape-rooms/");
+
   return (
     <div
       className={clsx(
