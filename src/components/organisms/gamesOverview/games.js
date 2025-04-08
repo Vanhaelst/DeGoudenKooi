@@ -107,7 +107,7 @@ export const Games = ({
         >
           <Link
             href={`/${slug}`}
-            className=" absolute inset-px lg:rounded-lg w-[70%] md:w-[50%] lg:w-full lg:h-[80%] mt-[10%] mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
+            className="absolute inset-px lg:rounded-lg w-[70%] md:w-[50%] lg:w-full lg:h-[80%] mt-[10%] mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
             style={{
               backgroundImage: `url('${featuredImage[0]?.url}')`,
             }}
@@ -197,14 +197,14 @@ export const Games = ({
                     })}
                 </div>
 
-                <div className="space-x-3 grid grid-cols-2 sm:flex justify-center lg:justify-start">
+                <div className="sm:space-x-3 grid grid-cols-1 sm:grid-cols-2 sm:flex justify-center lg:justify-start">
                   <div className="mx-auto sm:mx-0">
                     <Button
                       variant="white-outline"
                       href={`/${slug}`}
                       callToAction={t.game.moreInfo.toUpperCase()}
                       size="medium"
-                      classnames=""
+                      classnames="mb-3"
                     />
                   </div>
                   <div className="mx-auto sm:mx-0">
