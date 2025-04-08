@@ -32,7 +32,7 @@ export const Cta = ({
   if (image?.[0]) {
     return (
       <div
-        className={`bg-primary-500 rounded-3xl bg-no-repeat bg-cover bg-center grid md:grid-cols-4 ${pullUp ? "relative -top-20" : ""}`}
+        className={`bg-primary-500 rounded-3xl bg-no-repeat bg-cover bg-center grid md:grid-cols-4 ${pullUp ? "relative lg:-top-20" : "mb-10 "}`}
         style={{
           backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
         }}
@@ -77,7 +77,7 @@ export const Cta = ({
 
   return (
     <div
-      className={`bg-primary-500 rounded-3xl bg-no-repeat bg-cover bg-center ${pullUp ? "relative -top-20" : ""}`}
+      className={`bg-primary-500 rounded-3xl bg-no-repeat bg-cover bg-center ${pullUp ? "relative lg:-top-20" : "mb-10"}`}
       style={{
         backgroundImage: `url('${backgroundImage?.[0]?.url}')`,
       }}

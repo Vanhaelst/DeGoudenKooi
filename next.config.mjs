@@ -18,6 +18,27 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      /*------------------------------- SEO -------------------------------*/
+      {
+        source: "/boeking",
+        permanent: true,
+        destination: "/nl/boeking",
+      },
+      {
+        source: "/boeken-of-plannen",
+        permanent: true,
+        destination: "/nl/boeking",
+      },
+      {
+        source: "/escape-games",
+        permanent: true,
+        destination: " /nl/escape-rooms&type=game",
+      },
+      {
+        source: "/escape-experiences",
+        permanent: true,
+        destination: "/nl/escape-rooms&type=experience",
+      },
       /* Redirects EN -> NL*/
       {
         source: "/nl/about-us",
