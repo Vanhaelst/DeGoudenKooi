@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 import { redirect } from "next/navigation";
+import Script from "next/script";
 
 const font = Open_Sans({
   subsets: ["latin"],
@@ -23,6 +24,17 @@ export default function RootLayout({ children, params }) {
         className={`${font.className} antialiased bg-[length:100%_100%] bg-center`}
       >
         {children}
+
+        <Script
+          src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="usercentrics-cmp"
+          src="https://web.cmp.usercentrics.eu/ui/loader.js"
+          data-settings-id="Q_xuNFhDQfahYX"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

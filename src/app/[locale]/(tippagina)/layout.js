@@ -9,6 +9,7 @@ import { Container, Text } from "@/components/atoms";
 import Image from "next/image";
 import Link from "next/link";
 import { CompanyData } from "@/data/companyData";
+import Script from "next/script";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -71,6 +72,17 @@ export default function RootLayout({ children, params }) {
             />
           </Container>
         </section>
+
+        <Script
+          src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="usercentrics-cmp"
+          src="https://web.cmp.usercentrics.eu/ui/loader.js"
+          data-settings-id="Q_xuNFhDQfahYX"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );
