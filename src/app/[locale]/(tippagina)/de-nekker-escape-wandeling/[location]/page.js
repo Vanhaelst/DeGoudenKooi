@@ -6,7 +6,7 @@ import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { imageQuery } from "@/queries/entries/image";
 import Image from "next/image";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata() {
   return {
     ...defaultMetadata,
     title: defaultMetadata.title,
@@ -17,28 +17,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const faq = [
-  {
-    title: "Tip 1",
-    description:
-      "<p>Kan je aan de hand van de richting en de locatie van de voetsporen het pad achterhalen dat de moordenaar gelopen heeft?\n" +
-      "\n</p>",
-  },
-  {
-    title: "Tip 2",
-    description:
-      "<p>Kan je aan de hand van de richting en de locatie van de voetsporen het pad achterhalen dat de moordenaar gelopen heeft?\n" +
-      "\n</p>",
-  },
-  {
-    title: "Tip 3",
-    description:
-      "<p>Kan je aan de hand van de richting en de locatie van de voetsporen het pad achterhalen dat de moordenaar gelopen heeft?\n" +
-      "\n</p>",
-  },
-];
-
 async function getPage({ language, location }) {
+  console.log(location);
   return fetchData(`
     query MyQuery {
       tips: tipsEntries(language: "${language}", location: ${location}) {

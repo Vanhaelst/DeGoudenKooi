@@ -167,6 +167,52 @@ const nextConfig = {
         permanent: true,
         destination: "/nl/boeking",
       },
+      /*------------------------------- De Nekker -------------------------------*/
+      {
+        source: "/de-nekker-escape-wandeling-locatie1",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-1",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie2",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-2",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie3",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-3",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie4",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-4",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie5",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-5",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie6",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-6",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie7",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-7",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie8",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-8",
+        permanent: true,
+      },
+      {
+        source: "/de-nekker-escape-wandeling-locatie9",
+        destination: "/nl/de-nekker-escape-wandeling/locatie-9",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
