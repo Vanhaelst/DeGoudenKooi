@@ -18,7 +18,6 @@ import {
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
-import { bookeo_url } from "@/enums/bookeo";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],

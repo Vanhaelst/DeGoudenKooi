@@ -22,7 +22,7 @@ export default function RootLayout({ children, params }) {
 
   return (
     <html lang={params.locale} className="bg-white">
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_DE_NEKKER} />
       <body
         className={`${font.className} antialiased bg-[length:100%_100%] bg-center`}
       >
