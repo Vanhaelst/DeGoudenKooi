@@ -18,6 +18,8 @@ import {
 } from "@/data/metadata";
 import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
+import Head from "next/head";
+import Script from "next/script";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -74,6 +76,17 @@ export default function RootLayout({ children, params }) {
           {children}
         </main>
         <Footer locale={params.locale} />
+
+        <Script
+          src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="usercentrics-cmp"
+          src="https://web.cmp.usercentrics.eu/ui/loader.js"
+          data-settings-id="Q_xuNFhDQfahYX"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );
