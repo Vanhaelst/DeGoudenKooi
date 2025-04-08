@@ -106,7 +106,7 @@ export const HeroContent = ({
           <Text
             as={"span"}
             level="sm"
-            classnames="font-semibold text-white text-center block"
+            classnames="font-semibold text-white text-center md:text-left block"
           >
             {gameType}
           </Text>

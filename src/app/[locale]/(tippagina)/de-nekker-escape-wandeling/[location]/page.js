@@ -18,7 +18,6 @@ export async function generateMetadata() {
 }
 
 async function getPage({ language, location }) {
-  console.log(location);
   return fetchData(`
     query MyQuery {
       tips: tipsEntries(language: "${language}", location: ${location}) {

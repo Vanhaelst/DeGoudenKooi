@@ -73,7 +73,7 @@ export const AwardSlider = ({
               level="2xl"
               classnames={clsx(
                 "text-primary-500 font-bold",
-                "text-center",
+                "text-center mt-5",
                 description ? "mb-4" : "",
               )}
             >

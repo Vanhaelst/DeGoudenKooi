@@ -10,6 +10,7 @@ import { gameOverviewEntry } from "@/queries/entries/gameOverview";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 import { videoEntry } from "@/queries/entries/video";
+import { imageQuery } from "@/queries/entries/image";
 
 export const SeoQuery = ({ url, language }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -18,6 +19,7 @@ export const SeoQuery = ({ url, language }) => {
       page: seoPagesEntries(slug:"${url}", language: "${locale}") {
         ... on page_Entry  {
           id
+          transparentImage ${imageQuery}
           sections {
             ${heroEntry}
             ${awardsEntry}

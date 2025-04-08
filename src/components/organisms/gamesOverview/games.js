@@ -14,6 +14,7 @@ import { awardsQuery } from "@/queries/sections/awards";
 import { clsx } from "clsx";
 import { formatPrice } from "@/utils/formatPrice";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export const Games = ({
@@ -104,7 +105,8 @@ export const Games = ({
         <div
           className={`relative lg:col-span-5 aspect-[16/12] lg:aspect-auto lg:min-h-60 ${isEven ? "lg:order-1" : "lg:order-2"}`}
         >
-          <div
+          <Link
+            href={`/${slug}`}
             className=" absolute inset-px lg:rounded-lg w-[70%] md:w-[50%] lg:w-full lg:h-[80%] mt-[10%] mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
             style={{
               backgroundImage: `url('${featuredImage[0]?.url}')`,
