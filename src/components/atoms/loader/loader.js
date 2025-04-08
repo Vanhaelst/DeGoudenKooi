@@ -4,7 +4,7 @@ export const Loader = () => {
   return (
     <div className="fixed flex justify-center items-center w-full h-[100vh] pointer-events-none">
       <Image
-        src="/load_gif.gif"
+        src="/loader.gif"
         alt="loading"
         width={128}
         height={128}
