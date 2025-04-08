@@ -13,7 +13,7 @@ export default async function Newsletter({ locale }) {
     <section
       className={`py-32 bg-bottom bg-cover -mb-20`}
       style={{
-        backgroundImage: `url('/hero-badges-scheur.png')`,
+        backgroundImage: `url('/hero-badges-scheur.webp')`,
       }}
     >
       <Container classnames="">

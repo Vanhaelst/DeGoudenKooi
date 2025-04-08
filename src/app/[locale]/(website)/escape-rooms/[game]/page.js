@@ -165,7 +165,7 @@ export default async function Game({ params }) {
         <section
           className={`py-20 bg-bottom bg-cover`}
           style={{
-            backgroundImage: `url('/hero-badges-scheur.png')`,
+            backgroundImage: `url('/hero-badges-scheur.webp')`,
           }}
         >
           <Badges defaultRooms={rooms} dict={dict} />

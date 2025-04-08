@@ -61,7 +61,7 @@ export default async function Home({ params }) {
       <section
         className={`py-10 md:py-20 lg:py-0 lg:pt-32 lg:pb-44 bg-bottom bg-cover`}
         style={{
-          backgroundImage: `url('/hero-badges.png')`,
+          backgroundImage: `url('/hero-badges.webp')`,
         }}
       >
         <Badges
