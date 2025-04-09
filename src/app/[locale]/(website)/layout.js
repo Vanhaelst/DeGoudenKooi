@@ -86,7 +86,7 @@ export default function RootLayout({ children, params }) {
             data-settings-id="Q_xuNFhDQfahYX"
             async
           />
-        ) : process.env.NEXT_PUBLIC_COOKIE_TYPE !== "auto" ? (
+        ) : process.env.NEXT_PUBLIC_COOKIE_TYPE === "auto" ? (
           // auto block
           <>
             <Script
