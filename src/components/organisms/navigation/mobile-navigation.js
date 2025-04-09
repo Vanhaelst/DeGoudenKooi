@@ -7,7 +7,7 @@ import { LINKS } from "@/enums/links";
 import { Button } from "@/components/atoms";
 import React from "react";
 
-export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
+export function MobileNavigation({ locale, nav, topbar, open, setOpen, dict }) {
   const pathname = usePathname();
 
   return (
@@ -111,7 +111,7 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen }) {
                   href={locale === "en" ? LINKS.EN.BOOK : LINKS.NL.BOOK}
                   classnames="w-full"
                   variant={"secondary"}
-                  callToAction={"Boek nu"}
+                  callToAction={dict.navigation.reserve}
                   size="small"
                 />
               </div>

@@ -31,6 +31,7 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
       />
 
       <MobileNavigation
+        dict={dict}
         topbar={[
           {
             name: dict.navigation.about,
