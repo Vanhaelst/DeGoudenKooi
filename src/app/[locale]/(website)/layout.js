@@ -20,6 +20,7 @@ import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
 import Head from "next/head";
 import Script from "next/script";
+import { Cookiebot } from "@/components/organisms/Cookiebot";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -77,39 +78,7 @@ export default function RootLayout({ children, params }) {
         </main>
         <Footer locale={params.locale} />
 
-        {process.env.NODE_ENV !== "production" ? (
-          <Script
-            id="usercentrics-cmp"
-            src="https://web.cmp.usercentrics.eu/ui/loader.js"
-            data-draft="true"
-            strategy="beforeInteractive"
-            data-settings-id="Q_xuNFhDQfahYX"
-            async
-          />
-        ) : process.env.NEXT_PUBLIC_COOKIE_TYPE === "auto" ? (
-          // auto block
-          <>
-            <Script
-              src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"
-              strategy="beforeInteractive"
-            />
-            <Script
-              id="usercentrics-cmp"
-              src="https://web.cmp.usercentrics.eu/ui/loader.js"
-              data-settings-id="Q_xuNFhDQfahYX"
-              strategy="beforeInteractive"
-            />
-          </>
-        ) : (
-          // manual block
-          <Script
-            id="usercentrics-cmp"
-            src="https://web.cmp.usercentrics.eu/ui/loader.js"
-            strategy="beforeInteractive"
-            data-settings-id="Q_xuNFhDQfahYX"
-            async
-          />
-        )}
+        <Cookiebot />
       </body>
     </html>
   );
