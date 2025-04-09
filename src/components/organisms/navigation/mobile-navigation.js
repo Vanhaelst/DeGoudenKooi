@@ -111,7 +111,7 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen, dict }) {
                   href={locale === "en" ? LINKS.EN.BOOK : LINKS.NL.BOOK}
                   classnames="w-full"
                   variant={"secondary"}
-                  callToAction={dict.navigation.reserve}
+                  callToAction={dict.navigation.mobile_book}
                   size="small"
                 />
               </div>
