@@ -30,8 +30,25 @@ export default function GamePage({ data, children }) {
   const [faq, setFaq] = useState(undefined);
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
-  const [isLoading, setIsLoading] = useState(window?.location.hash === "#book");
+  const [isLoading, setIsLoading] = useState(
+    window && window.location.hash === "#book",
+  );
   const t = locale === "nl" ? nl : en;
+
+  useEffect(() => {
+    if (data && window.location.hash === "#book") {
+      document.body.classList.add("stop-scrolling");
+      setTimeout(() => {
+        setIsLoading(false);
+        document.body.classList.remove("stop-scrolling");
+        setTimeout(() => {
+          document
+            .getElementById("bookeo")
+            .scrollIntoView({ behavior: "smooth" });
+        }, 250);
+      }, 1000);
+    }
+  }, []);
 
   const {
     title,
@@ -148,21 +165,6 @@ export default function GamePage({ data, children }) {
     : {};
 
   useEffect(() => {}, []);
-
-  useEffect(() => {
-    if (data && window.location.hash === "#book") {
-      document.body.classList.add("stop-scrolling");
-      setTimeout(() => {
-        setIsLoading(false);
-        document.body.classList.remove("stop-scrolling");
-        setTimeout(() => {
-          document
-            .getElementById("book")
-            .scrollIntoView({ behavior: "smooth" });
-        }, 250);
-      }, 1000);
-    }
-  }, []);
 
   if (!data) {
     return <Loader />;

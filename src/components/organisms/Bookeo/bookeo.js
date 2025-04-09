@@ -16,7 +16,7 @@ export const Bookeo = ({ variant, locale, title }) => {
 
   return (
     <>
-      <div id="book" />
+      <div id="bookeo" />
       <Image
         src="/scheur-top.png"
         alt="scheur"
