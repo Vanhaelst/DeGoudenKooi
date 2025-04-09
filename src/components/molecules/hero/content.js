@@ -86,7 +86,7 @@ export const HeroContent = ({
     }
   };
   return (
-    <div className="flex justify-center flex-col max-w-full overflow-hidden">
+    <div className="flex justify-center flex-col max-w-full overflow-hidden md:overflow-visible">
       <div ref={titleRef} className="pb-2 md:pb-8">
         <Text
           as={"h1"}
