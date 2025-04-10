@@ -1,12 +1,12 @@
 "use client";
 
-import { Transition } from "@headlessui/react";
-import { Button, Text } from "@/components/atoms";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { sendMail } from "@/server/brevo/sendMail";
 import { clsx } from "clsx";
 import { useParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { Transition } from "@headlessui/react";
+import { Button, Text } from "@/components/atoms";
+import { sendMail } from "@/server/brevo/sendMail";
 
 export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,6 +32,14 @@ export const Form = ({ t }) => {
     setIsSubmitting(true);
 
     try {
+      window.dataLayer.push({
+        event: "formulier_verzonden",
+        userData: {
+          email: data.mail,
+          name: data.firstname,
+        },
+      });
+
       // Admin email
       await sendMail({
         data: {
