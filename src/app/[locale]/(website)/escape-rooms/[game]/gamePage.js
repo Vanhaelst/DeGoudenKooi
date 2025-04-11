@@ -31,7 +31,7 @@ export default function GamePage({ data, children }) {
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
   const [isLoading, setIsLoading] = useState(
-    window ? window.location.hash === "#book" : true,
+    typeof window !== "undefined" ? window.location.hash === "#book" : true,
   );
   const t = locale === "nl" ? nl : en;
 
