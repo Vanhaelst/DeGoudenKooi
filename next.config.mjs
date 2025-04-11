@@ -32,12 +32,22 @@ const nextConfig = {
       {
         source: "/escape-games",
         permanent: true,
-        destination: " /nl/escape-rooms&type=game",
+        destination: "/nl/escape-rooms&type=game",
       },
       {
         source: "/escape-experiences",
         permanent: true,
         destination: "/nl/escape-rooms&type=experience",
+      },
+      {
+        source: "/en/escape-games",
+        permanent: true,
+        destination: "/en/escape-rooms&type=game",
+      },
+      {
+        source: "/en/escape-experiences",
+        permanent: true,
+        destination: "/en/escape-rooms&type=experience",
       },
       /* Redirects EN -> NL*/
       {
