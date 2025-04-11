@@ -45,10 +45,49 @@ const nextConfig = {
         destination: "/en/escape-rooms&type=game",
       },
       {
+        source: "/en/boeking-gerechtstraat",
+        permanent: true,
+        destination: "/en/escape-rooms&type=game",
+      },
+      {
+        source: "/boeking-gerechtstraat",
+        permanent: true,
+        destination: "/nl/escape-rooms&type=game",
+      },
+      {
         source: "/en/escape-experiences",
         permanent: true,
         destination: "/en/escape-rooms&type=experience",
       },
+      {
+        source: "/escape-experiences",
+        permanent: true,
+        destination: "/nl/escape-rooms&type=experience",
+      },
+      {
+        source: "/en/boeking-haverwerf",
+        permanent: true,
+        destination: "/en/escape-rooms&type=experience",
+      },
+      {
+        source: "/boeking-haverwerf",
+        permanent: true,
+        destination: "/nl/escape-rooms&type=experience",
+      },
+      {
+        source: "/boeking-escape-wandeling",
+        permanent: true,
+        destination: "/nl/escape-rooms&type=walk",
+      },
+      {
+        source: "/en/boeking-escape-wandeling",
+        permanent: true,
+        destination: "/en/escape-rooms&type=walk",
+      },
+
+
+
+
       /* Redirects EN -> NL*/
       {
         source: "/nl/about-us",
