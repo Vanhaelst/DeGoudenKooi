@@ -7,8 +7,14 @@ export const defaultMetadata = {
   openGraph: {
     type: "website",
     url: "https://degoudenkooi.be/",
-    site_name: "De Gouden Kooi",
-    images: "/share_image_DGK.jpg",
+    siteName: "De Gouden Kooi",
+    image: [
+      {
+        url: "https://degoudenkooi.be/share_image_DGK.jpg",
+        width: 1080,
+        height: 630,
+      },
+    ],
   },
 };
 
