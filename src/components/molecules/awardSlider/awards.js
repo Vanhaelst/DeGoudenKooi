@@ -96,7 +96,10 @@ export const AwardSlider = ({
                 return null;
               }
               return (
-                <a key={image[0].url} href={LINKS.NL.AWARDS}>
+                <a
+                  key={image[0].url}
+                  href={LINKS[locale.toUpperCase() || "NL"].AWARDS}
+                >
                   <Image
                     src={image[0].url}
                     alt={image[0].alt || title || ""}
