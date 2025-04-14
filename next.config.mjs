@@ -77,16 +77,89 @@ const nextConfig = {
       {
         source: "/boeking-escape-wandeling",
         permanent: true,
-        destination: "/nl/escape-rooms&type=walk",
+        destination: "/nl/escape-rooms/de-nekker",
       },
       {
         source: "/en/boeking-escape-wandeling",
         permanent: true,
-        destination: "/en/escape-rooms&type=walk",
+        destination: "/en/escape-rooms/de-nekker",
+      },
+      {
+        source: "/escape-wandeling",
+        permanent: true,
+        destination: "/nl/escape-rooms/de-nekker",
+      },
+      {
+        source: "/en/escape-wandeling",
+        permanent: true,
+        destination: "/en/escape-rooms/de-nekker",
       },
 
-
-
+      {
+        source: "/mechelenbon",
+        permanent: true,
+        destination: "/nl/mechelenbon",
+      },
+      {
+        source: "/befeb-voucher",
+        permanent: true,
+        destination: "/nl/befeb-voucher",
+      },
+      {
+        source: "/code-van-coppens",
+        permanent: true,
+        destination: "/nl/code-van-coppens",
+      },
+      {
+        source: "/escape-room-in-belgie",
+        permanent: true,
+        destination: "/nl/escape-room-in-belgie",
+      },
+      {
+        source: "/escape-room-2-personen",
+        permanent: true,
+        destination: "/nl/escape-room-2-personen",
+      },
+      {
+        source: "/gezinsbond-voordeel",
+        permanent: true,
+        destination: "/nl/gezinsbond-voordeel",
+      },
+      {
+        source: "/sint-romboutstoren-mechelen",
+        permanent: true,
+        destination: "/nl/sint-romboutstoren-mechelen",
+      },
+      {
+        source: "/interactieve-wandeling",
+        permanent: true,
+        destination: "/nl/interactieve-wandeling",
+      },
+      {
+        source: "/escape-room-kleine-groep",
+        permanent: true,
+        destination: "/nl/escape-room-kleine-groep",
+      },
+      {
+        source: "/bedrijfstrainingen-teambuilding",
+        permanent: true,
+        destination: "/nl/bedrijfstrainingen-teambuilding",
+      },
+      {
+        source: "/originele-wandeling",
+        permanent: true,
+        destination: "/nl/originele-wandeling",
+      },
+      {
+        source: "/escape-room-thema",
+        permanent: true,
+        destination: "/nl/escape-room-thema",
+      },
+      {
+        source: "/teambuilding-mechelen",
+        permanent: true,
+        destination: "/nl/teambuilding-mechelen",
+      },
 
       /* Redirects EN -> NL*/
       {
