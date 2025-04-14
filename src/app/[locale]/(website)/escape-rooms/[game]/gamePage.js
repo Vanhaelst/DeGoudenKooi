@@ -251,7 +251,7 @@ export default function GamePage({ data, children }) {
               t={t.game}
             />
           ) : null}
-          <Reviews reviews={reviews} />
+          <Reviews reviews={reviews} title={t.game.reviews} />
           {!isInactive && (
             <Prices
               prices={prices}
