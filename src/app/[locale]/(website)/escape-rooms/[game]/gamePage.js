@@ -21,7 +21,7 @@ import ModalVideo from "@/components/molecules/video/modalVideo";
 import { Reviews } from "@/components/organisms/reviews/review";
 import { useParams } from "next/navigation";
 import { Container } from "@/components/atoms";
-import { Feature, Title } from "@/components/molecules";
+import { Title } from "@/components/molecules";
 import { Usp } from "@/components/molecules/usp";
 import { clsx } from "clsx";
 

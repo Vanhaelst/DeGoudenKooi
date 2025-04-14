@@ -96,7 +96,7 @@ export const AwardSlider = ({
                 return null;
               }
               return (
-                <Link key={image[0].url} href={LINKS.NL.AWARDS}>
+                <a key={image[0].url} href={LINKS.NL.AWARDS}>
                   <Image
                     src={image[0].url}
                     alt={image[0].alt || title || ""}
@@ -104,7 +104,7 @@ export const AwardSlider = ({
                     height={image[0].height}
                     className="w-full px-6 h-32 object-contain"
                   />
-                </Link>
+                </a>
               );
             })}
           </Slider>

@@ -1,10 +1,7 @@
-import { Button, Container, RichText, Text } from "@/components/atoms";
-import { ReviewCard } from "@/components/molecules/reviews/review-card-small";
-import { Slider } from "@/components/molecules";
-import Image from "next/image";
 import React from "react";
-import { getBackgroundColor } from "@/utils/getBackgroundColor";
-import { HeroContent } from "@/components/molecules/hero/content";
+import Image from "next/image";
+import { Container } from "@/components/atoms";
+import { Slider } from "@/components/molecules";
 
 const settings = {
   slidesToShow: 8,
