@@ -32,47 +32,47 @@ const nextConfig = {
       {
         source: "/escape-games",
         permanent: true,
-        destination: "/nl/escape-rooms&type=game",
+        destination: "/nl/escape-rooms?type=game",
+      },
+      {
+        source: "/escape-experience",
+        permanent: true,
+        destination: "/nl/escape-rooms?type=experience",
       },
       {
         source: "/escape-experiences",
         permanent: true,
-        destination: "/nl/escape-rooms&type=experience",
-      },
-      {
-        source: "/en/escape-games",
-        permanent: true,
-        destination: "/en/escape-rooms&type=game",
-      },
-      {
-        source: "/en/boeking-gerechtstraat",
-        permanent: true,
-        destination: "/en/escape-rooms&type=game",
-      },
-      {
-        source: "/boeking-gerechtstraat",
-        permanent: true,
-        destination: "/nl/escape-rooms&type=game",
+        destination: "/nl/escape-rooms?type=experience",
       },
       {
         source: "/en/escape-experiences",
         permanent: true,
-        destination: "/en/escape-rooms&type=experience",
+        destination: "/en/escape-rooms?type=experience",
       },
       {
-        source: "/escape-experiences",
+        source: "/en/escape-games",
         permanent: true,
-        destination: "/nl/escape-rooms&type=experience",
+        destination: "/en/escape-rooms?type=game",
+      },
+      {
+        source: "/en/boeking-gerechtstraat",
+        permanent: true,
+        destination: "/en/escape-rooms?type=game",
+      },
+      {
+        source: "/boeking-gerechtstraat",
+        permanent: true,
+        destination: "/nl/escape-rooms?type=game",
       },
       {
         source: "/en/boeking-haverwerf",
         permanent: true,
-        destination: "/en/escape-rooms&type=experience",
+        destination: "/en/escape-rooms?type=experience",
       },
       {
         source: "/boeking-haverwerf",
         permanent: true,
-        destination: "/nl/escape-rooms&type=experience",
+        destination: "/nl/escape-rooms?type=experience",
       },
       {
         source: "/boeking-escape-wandeling",
@@ -94,7 +94,6 @@ const nextConfig = {
         permanent: true,
         destination: "/en/escape-rooms/de-nekker",
       },
-
       {
         source: "/mechelenbon",
         permanent: true,
@@ -159,6 +158,81 @@ const nextConfig = {
         source: "/teambuilding-mechelen",
         permanent: true,
         destination: "/nl/teambuilding-mechelen",
+      },
+      {
+        source: "/escape-room-gezin",
+        permanent: true,
+        destination: "/nl/blog/escape-room-met-kinderen",
+      },
+      {
+        source: "/escape-room-groepen",
+        permanent: true,
+        destination: "/nl/escape-room-kleine-groep",
+      },
+      {
+        source: "/escape-room-leeftijd",
+        permanent: true,
+        destination: "/nl/faq",
+      },
+      {
+        source: "/jobs",
+        permanent: true,
+        destination: "/nl/jobs",
+      },
+      {
+        source: "/activiteiten-in-mechelen",
+        permanent: true,
+        destination: "/nl/activiteiten-in-mechelen",
+      },
+      {
+        source: "/awards",
+        permanent: true,
+        destination: "/nl/awards",
+      },
+      {
+        source: "/gezinsbond",
+        permanent: true,
+        destination: "/nl/gezinsbond-voordeel",
+      },
+      {
+        source: "/escape-wandeling-mechelen",
+        permanent: true,
+        destination: "/nl/escape-rooms/de-nekker",
+      },
+      {
+        source: "/escape-room-belgie",
+        permanent: true,
+        destination: "/nl/escape-room-in-belgie",
+      },
+      {
+        source: "/hapje-eten",
+        permanent: true,
+        destination: "/nl/hapje-eten",
+      },
+      {
+        source: "/cadeaubon",
+        permanent: true,
+        destination: "/nl/cadeaubon",
+      },
+      {
+        source: "/",
+        permanent: true,
+        destination: "/nl/",
+      },
+      {
+        source: "/escape-experience-next-level-escape-rooms",
+        permanent: true,
+        destination: "/nl/blog/next-level-escape-rooms",
+      },
+      {
+        source: "/escape-room-tips",
+        permanent: true,
+        destination: "/nl/blog/escape-room-tips",
+      },
+      {
+        source: "/je-planning",
+        permanent: true,
+        destination: "/nl/je-planning",
       },
 
       /* Redirects EN -> NL*/
