@@ -14,7 +14,7 @@ export const Cookiebot = () => {
       <Script
         id="usercentrics-cmp"
         src="https://web.cmp.usercentrics.eu/ui/loader.js"
-        data-settings-id="Q_xuNFhDQfahYX"
+        data-settings-id="C4L6XSXglex8Ju"
         strategy="beforeInteractive"
         data-draft={process.env.NODE_ENV !== "production"}
       />
