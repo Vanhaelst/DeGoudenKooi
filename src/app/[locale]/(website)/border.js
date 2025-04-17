@@ -16,6 +16,7 @@ export const Borders = () => {
 
   return (
     <div
+      style={{ "-webkit-transform": "translateZ(0);" }}
       className={clsx(
         bookingsPage ? "h-[calc(100%_-_76px)]" : "h-[calc(100%_-_136px)]",
         "sm:h-[calc(100%_-_72px)] md:h-[calc(100%_-_85px)] lg:h-[calc(100%_-_90px)]",
