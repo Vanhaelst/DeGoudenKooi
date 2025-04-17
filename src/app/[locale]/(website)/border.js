@@ -16,11 +16,11 @@ export const Borders = () => {
 
   return (
     <div
-      style={{ "-webkit-transform": "translateZ(0);" }}
       className={clsx(
+        "hidden sm:fixed",
         bookingsPage ? "h-[calc(100%_-_76px)]" : "h-[calc(100%_-_136px)]",
         "sm:h-[calc(100%_-_72px)] md:h-[calc(100%_-_85px)] lg:h-[calc(100%_-_90px)]",
-        "border-wrapper fixed sm:bottom-0 top-[76px] lg:top-[90px] pointer-events-none w-full z-40",
+        "border-wrapper sm:bottom-0 top-[76px] lg:top-[90px] pointer-events-none w-full z-40",
       )}
     >
       <Image
