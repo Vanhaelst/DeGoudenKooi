@@ -17,7 +17,7 @@ export const Borders = () => {
   return (
     <div
       className={clsx(
-        "hidden sm:fixed",
+        "hidden fixed sm:block",
         bookingsPage ? "h-[calc(100%_-_76px)]" : "h-[calc(100%_-_136px)]",
         "sm:h-[calc(100%_-_72px)] md:h-[calc(100%_-_85px)] lg:h-[calc(100%_-_90px)]",
         "border-wrapper sm:bottom-0 top-[76px] lg:top-[90px] pointer-events-none w-full z-40",
