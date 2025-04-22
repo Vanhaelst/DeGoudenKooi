@@ -20,6 +20,11 @@ const nextConfig = {
     return [
       /*------------------------------- SEO -------------------------------*/
       {
+        source: "/contact",
+        permanent: true,
+        destination: "/nl/contact",
+      },
+      {
         source: "/boeking",
         permanent: true,
         destination: "/nl/boeking",
@@ -180,7 +185,12 @@ const nextConfig = {
         destination: "/nl/jobs",
       },
       {
-        source: "/activiteiten-in-mechelen",
+        source: "/hotels-in-mechelen",
+        permanent: true,
+        destination: "/nl/hotels-in-mechelen",
+      },
+      {
+        source: "/activiteiten",
         permanent: true,
         destination: "/nl/activiteiten-in-mechelen",
       },
