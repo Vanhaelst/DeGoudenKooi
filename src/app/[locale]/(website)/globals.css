@@ -158,3 +158,8 @@ select {
 #mc_embed_signup form .mc-field-group input {
   border-radius: 0;
 }
+
+iframe#plan2bookIframe {
+  width: 500px !important;
+  max-width: 100% !important;
+}
