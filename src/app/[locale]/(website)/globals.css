@@ -160,6 +160,6 @@ select {
 }
 
 iframe#plan2bookIframe {
-  width: 500px !important;
+  width: 1000px !important;
   max-width: 100% !important;
 }
