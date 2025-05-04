@@ -257,6 +257,11 @@ const nextConfig = {
         destination: "/nl/cadeaubon",
       },
       {
+        source: "/en/gift-voucher",
+        permanent: true,
+        destination: "/en/giftcard",
+      },
+      {
         source: "/nl/press",
         permanent: true,
         destination: "/nl/pers",
