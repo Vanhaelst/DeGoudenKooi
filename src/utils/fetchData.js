@@ -4,7 +4,7 @@ export async function fetchData(graphql) {
   const res = await fetch(craftUrl, {
     method: "post",
     body: graphql,
-    cache: "no-store",
+    // cache: "no-store",
     maxDuration: 25,
     headers: {
       "Content-Type": "application/graphql",
