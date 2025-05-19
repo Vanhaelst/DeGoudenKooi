@@ -34,8 +34,8 @@ export const Bookeo = ({ variant, locale, title }) => {
           <div id="bookeo_position" style={{ clear: "both", width: "100%" }} />
 
           <Script
-            strategy="beforeInteractive"
-            // strategy="lazyOnload"
+            // strategy="beforeInteractive"
+            strategy="lazyOnload"
             type="text/javascript"
             data-type="bookeo_script"
             data-variant={variant}
