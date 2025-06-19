@@ -48,9 +48,9 @@ export default function RootLayout({ children, params }) {
               classnames="font-light text-white text-center pb-8"
             >
               Schade aan de puzzels? Iets mis? Bel ons op{" "}
-              <Link href="tel:015676886" className="underline">
+              <a href="tel:015676886" className="underline">
                 015/67.68.86
-              </Link>
+              </a>
               .
             </Text>
             <Text
@@ -59,9 +59,9 @@ export default function RootLayout({ children, params }) {
               classnames="font-light text-white text-center"
             >
               Ben je hier per ongeluk terechtgekomen? Bezoek dan{" "}
-              <Link href="/" className="underline">
+              <a href="/" className="underline">
                 onze website
-              </Link>
+              </a>
               .
             </Text>
             <Image

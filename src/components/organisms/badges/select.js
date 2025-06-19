@@ -114,12 +114,12 @@ export const Select = ({ t }) => {
           className="size-4 mr-2 flex-none"
         />{" "}
         {t.filter.information}{" "}
-        <Link
+        <a
           href={`nieuws/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience`}
           className="ml-1 underline"
         >
           {t.filter.information_cta}
-        </Link>
+        </a>
         .
       </Text>
     </Container>

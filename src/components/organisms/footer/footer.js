@@ -240,7 +240,7 @@ export const Footer = async ({ locale = "nl" }) => {
             </div>
             <div className="mt-10 md:mt-0 ">
               <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
-                <Link
+                <a
                   href={`/${locale}/nieuws/federatie-escape-rooms-befeb-de-gouden-kooi-staat-mee-aan-de-wieg`}
                 >
                   <ImageWithFallback
@@ -252,20 +252,20 @@ export const Footer = async ({ locale = "nl" }) => {
                     height={300}
                     className=""
                   />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
           <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-6 flex flex-col-reverse md:flex-row md:items-center md:justify-between lg:mt-10 ">
             <Text as="p" level="xs" classnames="text-white">
               &copy; {new Date().getFullYear()} De Gouden Kooi |{" "}
-              <Link
+              <a
                 href="https://www.publiplus.be"
                 target="_blank"
                 className="hover:underline"
               >
                 Publiplus
-              </Link>
+              </a>
             </Text>
 
             <div className="flex gap-x-6 md:order-2 mb-4 md:mb-0">

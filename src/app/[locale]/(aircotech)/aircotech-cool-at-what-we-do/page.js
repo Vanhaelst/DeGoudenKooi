@@ -62,7 +62,7 @@ export default async function Home({ params }) {
               />
             </div>
 
-            <Link href="#contact">
+            <a href="#contact">
               <button
                 className={clsx(
                   "rounded-full px-6 py-3 uppercase font-semibold tracking-wide",
@@ -72,7 +72,7 @@ export default async function Home({ params }) {
               >
                 {t.hero.cta}
               </button>
-            </Link>
+            </a>
           </div>
           <Image
             src="/aircotech/hvac.webp"
@@ -94,7 +94,7 @@ export default async function Home({ params }) {
         <Container classnames="grid grid-cols-1 md:grid-cols-2 gap-16">
           {t.services.services.map((service) => {
             return (
-              <Link
+              <a
                 href="#contact"
                 key={service.title}
                 className="bg-white p-8 shadow-2xl hover:scale-110 transition-all cursor-pointer"
@@ -134,7 +134,7 @@ export default async function Home({ params }) {
                     {service.cta}
                   </button>
                 </div>
-              </Link>
+              </a>
             );
           })}
         </Container>
@@ -230,7 +230,7 @@ export default async function Home({ params }) {
             Clint D’Hoogh Website Design
           </Text>
           {params.locale === "nl" ? (
-            <Link href="/en/aircotech">
+            <a href="/en/aircotech">
               <Image
                 src="/aircotech/engels.webp"
                 alt="engles"
@@ -238,9 +238,9 @@ export default async function Home({ params }) {
                 height={512}
                 className="aspect-square w-10"
               />
-            </Link>
+            </a>
           ) : (
-            <Link href="/nl/aircotech-cool-at-what-we-do">
+            <a href="/nl/aircotech-cool-at-what-we-do">
               <Image
                 src="/aircotech/nederlands.webp"
                 alt="engles"
@@ -248,7 +248,7 @@ export default async function Home({ params }) {
                 height={512}
                 className="aspect-square w-10"
               />
-            </Link>
+            </a>
           )}
         </Container>
       </footer>

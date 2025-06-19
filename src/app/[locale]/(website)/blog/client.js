@@ -41,7 +41,7 @@ export const NewsPaginated = ({ news, locale, amount, count }) => {
   return (
     <div className="mt-16 space-y-10 lg:mt-20">
       {newsItems.map((post) => (
-        <Link href={post?.slug || ""} key={post.id} className="relative flex">
+        <a href={post?.slug || ""} key={post.id} className="relative flex">
           <article className="relative isolate flex flex-col gap-8 lg:flex-row">
             <div className="relative lg:w-64">
               {post.image?.[0]?.url ? (
@@ -81,7 +81,7 @@ export const NewsPaginated = ({ news, locale, amount, count }) => {
               </div>
             </div>
           </article>{" "}
-        </Link>
+        </a>
       ))}
 
       {newsItems.length < count && (

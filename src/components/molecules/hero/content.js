@@ -148,13 +148,13 @@ export const HeroContent = ({
                     >
                       {description}
                     </Text>
-                    <Link
+                    <a
                       href="#faq"
                       className="hover:cursor-pointer tooltip"
                       data-tip={tooltip}
                     >
                       <InformationCircleIcon className="ml-2 size-5 text-white" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               );
