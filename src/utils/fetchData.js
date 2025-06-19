@@ -5,7 +5,7 @@ export async function fetchData(graphql) {
     next: {
       revalidate: 3600, // 1 hour
     },
-    cache: "force-cache",
+    // cache: "force-cache",
     // cache: "no-store",
     method: "post",
     body: graphql,
