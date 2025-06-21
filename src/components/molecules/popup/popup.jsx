@@ -144,7 +144,7 @@ export default function PopupComponent({
                 >
                   {isBackgroundAsset ? null : (
                     <div
-                      className="ralative h-[300px] w-full bg-gray-50 bg-cover bg-center"
+                      className="ralative h-[300px] w-full bg-gray-50 bg-cover bg-center aspect-video"
                       style={{
                         backgroundImage: `url("${image[0]?.url}")`,
                       }}
@@ -176,7 +176,7 @@ export default function PopupComponent({
                         <Button
                           callToAction={cta}
                           variant="primary"
-                          size="small"
+                          size="large"
                         />
                       </span>
                     </div>
