@@ -64,6 +64,10 @@ export default function RootLayout({ children, params }) {
       className="bg-white"
     >
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
+      <meta
+        name="google-site-verification"
+        content="QPVFwJyzUdQNKFlSBAdgdjxBnK8OfPhkScwB_O6pyEA"
+      />
       <body className={`${font.className} antialiased`}>
         <TopBar locale={params.locale} />
         <Navigation locale={params.locale} />
