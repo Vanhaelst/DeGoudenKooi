@@ -340,7 +340,7 @@ const nextConfig = {
       {
         source: "/en/hapje-eten",
         permanent: true,
-        destination: "/nl/grab-a-bite",
+        destination: "/en/grab-a-bite",
       },
       {
         source: "/en/escape-rooms/de-schat-van-kalakmul",
