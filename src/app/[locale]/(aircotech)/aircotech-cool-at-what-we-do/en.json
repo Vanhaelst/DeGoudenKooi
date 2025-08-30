@@ -13,7 +13,7 @@
     "description": "We control every aspect of aircos so we can offer you the best rates and services.",
     "services": [
       {
-        "title": "production",
+        "title": "Production",
         "description": "<p>Aircotech is leader in the worldwide production of airconditioning. Because we have production facilities on all continents of the world, we can respond quickly to the ever-increasing demand for air conditioners since we are not dependent on other suppliers.</p>",
         "cta": "Contact us",
         "image": [
@@ -26,7 +26,7 @@
         "color": "orange"
       },
       {
-        "title": "Productie",
+        "title": "Sales",
         "description": "<p>We have a worldwide network of our own sales branches and franchisers to deliver our high-quality products to the end user. Want to become a franchiser and start earning some serious money? Don’t hesitate to get in touch!</p>",
         "cta": "Contact us",
         "image": [
@@ -39,7 +39,7 @@
         "color": "blue"
       },
       {
-        "title": "Productie",
+        "title": "Installation",
         "description": "<p>Our own people and subcontractors are true airconditioning experts and install the right unit with the greatest of ease. Whether this is at your home or at your company. Would you like a quote for the installation of an Aircotech system, please contact us quickly.</p>",
         "cta": "Contact us",
         "image": [
@@ -52,7 +52,7 @@
         "color": "darkblue"
       },
       {
-        "title": "Productie",
+        "title": "Warranty",
         "description": "<p>We give a lifetime warranty on our devices and of course you can contact us for an ultra-fast intervention if necessary. Nobody likes to be too hot. We are immediately ready for you with a repair service within 24 hours. Aircotech, cool at what we do!</p>",
         "cta": "Contact us",
         "image": [
