@@ -1,7 +1,7 @@
 export const faqEntry = `
     ... on faqs_Entry {
         typeHandle
-              id
+        id
         title
         description
         categories

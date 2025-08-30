@@ -505,6 +505,10 @@ const nextConfig = {
       },
       /*------------------------------- Aircotech -------------------------------*/
       {
+        source: "/aircotech",
+        destination: "/nl/aircotech-cool-at-what-we-do",
+      },
+      {
         source: "/aircotech-cool-at-what-we-do",
         destination: "/nl/aircotech-cool-at-what-we-do",
       },
