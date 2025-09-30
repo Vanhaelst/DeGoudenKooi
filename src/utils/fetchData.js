@@ -1,9 +1,13 @@
-export async function fetchData(graphql, revalidate = 3600) {
+export async function fetchData(
+  graphql,
+  options = { revalidate: 3600, tags: [] },
+) {
   let craftUrl = "https://degoudenkooi.pluxit.be/web/api";
 
   const res = await fetch(craftUrl, {
     next: {
-      revalidate, // 1 hour
+      tags: options.tags,
+      revalidate: options.revalidate, // 1 hour
     },
     // cache: "force-cache",
     // cache: "no-store",

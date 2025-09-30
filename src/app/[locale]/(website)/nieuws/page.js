@@ -1,4 +1,6 @@
 import React from "react";
+import { revalidateTag } from "next/cache";
+
 import { fetchData } from "@/utils/fetchData";
 import { Container } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
@@ -19,6 +21,7 @@ async function getPage() {
 
 const amount = 5;
 async function getBlogs({ language }) {
+  revalidateTag("news_paginated");
   return fetchData(
     `query MyQuery {
       blogs: newsEntries(language: "${language}", orderBy: "postDate desc", limit: ${amount}) {
@@ -39,6 +42,9 @@ async function getBlogs({ language }) {
             count: entryCount(section: "news")
 
     }`,
+    {
+      tags: ["news"],
+    },
   );
 }
 

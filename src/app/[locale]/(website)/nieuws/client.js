@@ -27,6 +27,9 @@ async function getBlogs({ language, offset, amount }) {
         }
       }
     }`,
+    {
+      tags: ["news", "news_paginated"],
+    },
   );
 }
 
