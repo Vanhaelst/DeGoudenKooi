@@ -6,7 +6,9 @@ import React from "react";
 export const GoogleAnalytics = () => {
   if (typeof window !== "undefined") {
     const cookieBot = window?.localStorage.getItem("ucData");
-    const analyticsStorage = JSON.parse(cookieBot)?.gcm?.analyticsStorage;
+    const analyticsStorage = cookieBot
+      ? JSON.parse(cookieBot)?.gcm?.analyticsStorage
+      : false;
 
     return (
       <GoogleTagManager

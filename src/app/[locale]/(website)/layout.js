@@ -64,7 +64,7 @@ export default function RootLayout({ children, params }) {
       lang={params.locale === "en" ? "en-US" : "nl-NL"}
       className="bg-white"
     >
-      <GoogleAnalytics />
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
       <meta
         name="google-site-verification"
         content="QPVFwJyzUdQNKFlSBAdgdjxBnK8OfPhkScwB_O6pyEA"
