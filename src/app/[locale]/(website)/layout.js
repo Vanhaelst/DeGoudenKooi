@@ -20,6 +20,7 @@ import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
 import { Cookiebot } from "@/components/organisms/Cookiebot";
 import Popup from "@/components/molecules/popup";
+import { GoogleAnalytics } from "@/components/organisms/analytics";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -63,7 +64,7 @@ export default function RootLayout({ children, params }) {
       lang={params.locale === "en" ? "en-US" : "nl-NL"}
       className="bg-white"
     >
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
+      <GoogleAnalytics />
       <meta
         name="google-site-verification"
         content="QPVFwJyzUdQNKFlSBAdgdjxBnK8OfPhkScwB_O6pyEA"
