@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const token = searchParams.get("x-craft-live-preview");
+  const token = searchParams.get("token");
   const uri = searchParams.get("uri");
 
   if (!token) {
