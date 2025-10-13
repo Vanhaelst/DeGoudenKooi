@@ -50,7 +50,6 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Home({ params, searchParams }) {
-  console.log(searchParams);
   const { page } = await getPage({
     language: params.locale,
     url: params.seo,

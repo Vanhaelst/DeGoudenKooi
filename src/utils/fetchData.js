@@ -8,7 +8,7 @@ export async function fetchData(
   const res = await fetch(craftUrl, {
     next: {
       tags: options.tags,
-      revalidate: options.revalidate, // 1 hour
+      revalidate: token ? 0 : options.revalidate, // 1 hour
     },
     // cache: "force-cache",
     // cache: "no-store",
@@ -31,6 +31,6 @@ export async function fetchData(
     console.error(json.errors);
     throw new Error("Failed to fetch API");
   }
-
+  console.log("token", token, json.data);
   return json.data;
 }
