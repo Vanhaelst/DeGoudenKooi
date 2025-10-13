@@ -5,24 +5,27 @@ export async function fetchData(
 ) {
   console.log("token", token);
 
-  let craftUrl = `https://degoudenkooi.pluxit.be/web/api${token ? `?token=${token}` : ""}`;
+  // let craftUrl = `https://degoudenkooi.pluxit.be/web/api${token ? `?token=${token}` : ""}`;
+  let craftUrl = `https://degoudenkooi.pluxit.be/web/api`;
+
+  const headers = {
+    "Content-Type": "application/graphql",
+    // Authorization: "Bearer JYZ6XcF_A15nBvbMC1SOiM14Zk-YxNE8",
+  };
+
+  if (token) {
+    headers["X-Craft-Token"] = token;
+  }
 
   const res = await fetch(craftUrl, {
     next: {
       tags: options.tags,
       revalidate: token ? 0 : options.revalidate, // 1 hour
     },
-    // cache: "force-cache",
-    // cache: "no-store",
     method: "post",
     body: graphql,
     maxDuration: 25,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/graphql",
-      "X-Craft-Token": token,
-      // Authorization: "Bearer JYZ6XcF_A15nBvbMC1SOiM14Zk-YxNE8",
-    },
+    headers,
   });
 
   if (res.status !== 200) {
