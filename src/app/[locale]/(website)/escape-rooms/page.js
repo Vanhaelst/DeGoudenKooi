@@ -14,12 +14,14 @@ import { SeoQuery } from "@/queries/sections/seo";
 import { Badges } from "@/components/organisms/badges/badges";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "overviewEntries", language }));
+async function getPage({ language, token }) {
+  console.log("x", token);
+  return fetchData(PageQuery({ page: "overviewEntries", language }), {}, token);
 }
 
-async function getRooms({ language }) {
-  return fetchData(roomsQuery({ language }));
+async function getRooms({ language, token }) {
+  console.log(token);
+  return fetchData(roomsQuery({ language }), {}, token);
 }
 
 export async function generateMetadata({ params }) {
@@ -47,14 +49,22 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
-  const { rooms } = await getRooms({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
+  const { rooms } = await getRooms({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const dict = await getDictionary(params.locale);
 
   const sections = page[0]?.sections;
   const transparentImage = page[0]?.transparentImage?.[0];
+
+  console.log("sections", sections);
 
   return (
     <>

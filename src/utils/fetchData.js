@@ -3,6 +3,8 @@ export async function fetchData(
   options = { revalidate: 3600, tags: [] },
   token,
 ) {
+  console.log("token", token);
+
   let craftUrl = `https://degoudenkooi.pluxit.be/web/api${token ? `?token=${token}` : ""}`;
 
   const res = await fetch(craftUrl, {
@@ -16,7 +18,9 @@ export async function fetchData(
     body: graphql,
     maxDuration: 25,
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/graphql",
+      "X-Craft-Token": token,
       // Authorization: "Bearer JYZ6XcF_A15nBvbMC1SOiM14Zk-YxNE8",
     },
   });
@@ -31,6 +35,6 @@ export async function fetchData(
     console.error(json.errors);
     throw new Error("Failed to fetch API");
   }
-  console.log("token", token, JSON.stringify(json.data));
+  // console.log("token", token, json.data);
   return json.data;
 }
