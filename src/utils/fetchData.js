@@ -1,8 +1,9 @@
 export async function fetchData(
   graphql,
   options = { revalidate: 3600, tags: [] },
+  token,
 ) {
-  let craftUrl = "https://degoudenkooi.pluxit.be/web/api";
+  let craftUrl = `https://degoudenkooi.pluxit.be/web/api${token ? `?token=${token}` : ""}`;
 
   const res = await fetch(craftUrl, {
     next: {

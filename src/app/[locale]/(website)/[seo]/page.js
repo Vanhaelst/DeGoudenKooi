@@ -10,8 +10,8 @@ import {
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage({ language, url }) {
-  return fetchData(SeoQuery({ url, language }));
+async function getPage({ language, url, token }) {
+  return fetchData(SeoQuery({ url, language }), {}, token);
 }
 
 export async function generateMetadata({ params }) {
@@ -49,8 +49,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale, url: params.seo });
+export default async function Home({ params, searchParams }) {
+  console.log(searchParams);
+  const { page } = await getPage({
+    language: params.locale,
+    url: params.seo,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const sections = page[0]?.sections;
 
