@@ -19,7 +19,7 @@ import { imageQuery } from "@/queries/entries/image";
 import { formatPrice } from "@/utils/formatPrice";
 import ModalVideo from "@/components/molecules/video/modalVideo";
 import { Reviews } from "@/components/organisms/reviews/review";
-import { useParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Container } from "@/components/atoms";
 import { Title } from "@/components/molecules";
 import { Usp } from "@/components/molecules/usp";
@@ -27,6 +27,7 @@ import { clsx } from "clsx";
 
 export default function GamePage({ data, children }) {
   const { locale } = useParams();
+  const searchParams = useSearchParams();
   const [faq, setFaq] = useState(undefined);
   const [sliderAwards, setSliderAwards] = useState(undefined);
   const [heroAwards, setHeroAwards] = useState(undefined);
@@ -34,6 +35,7 @@ export default function GamePage({ data, children }) {
     typeof window !== "undefined" ? window.location.hash === "#book" : true,
   );
   const t = locale === "nl" ? nl : en;
+  const token = searchParams?.get("x-craft-live-preview");
 
   useEffect(() => {
     if (data && window.location.hash === "#book") {
@@ -91,11 +93,14 @@ export default function GamePage({ data, children }) {
     if (!categories) {
       return;
     }
-    fetchData(faqQuery({ language: locale, categories })).then((res) => {
-      setFaq(res.faq);
-    });
+    fetchData(faqQuery({ language: locale, categories }), {}, token).then(
+      (res) => {
+        setFaq(res.faq);
+      },
+    );
 
-    fetchData(`query MyQuery {
+    fetchData(
+      `query MyQuery {
         sliderAwards: awardsEntries(categories: ["${categories}"], visibility: ["roomsSlider"]) {
             ...on award_Entry {
             title
@@ -114,7 +119,10 @@ export default function GamePage({ data, children }) {
             categories
             }
         }                 
-  }  `).then((res) => {
+  }  `,
+      {},
+      token,
+    ).then((res) => {
       setSliderAwards(res.sliderAwards);
       setHeroAwards(res.heroAwards);
     });

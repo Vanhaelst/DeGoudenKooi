@@ -3,8 +3,8 @@ import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import { defaultMetadata } from "@/data/metadata";
 
-async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "privacyEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(PageQuery({ page: "privacyEntries", language }), {}, token);
 }
 
 export async function generateMetadata({ params }) {
@@ -33,8 +33,11 @@ export async function generateMetadata({ params }) {
       };
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const sections = page[0]?.sections;
 

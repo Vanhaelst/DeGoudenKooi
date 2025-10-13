@@ -15,12 +15,12 @@ import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage() {
-  return fetchData(PageQuery({ page: "nieuwsEntries" }));
+async function getPage({ token }) {
+  return fetchData(PageQuery({ page: "nieuwsEntries" }), {}, token);
 }
 
 const amount = 5;
-async function getBlogs({ language }) {
+async function getBlogs({ language, token }) {
   revalidateTag("news_paginated");
   return fetchData(
     `query MyQuery {
@@ -45,6 +45,7 @@ async function getBlogs({ language }) {
     {
       tags: ["news"],
     },
+    token,
   );
 }
 
@@ -73,9 +74,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
-  const { blogs, count } = await getBlogs({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
+  const { blogs, count } = await getBlogs({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const sections = page[0]?.sections;
   const transparentImage = page[0]?.transparentImage?.[0];

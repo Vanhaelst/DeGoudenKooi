@@ -7,8 +7,9 @@ import { Button, RichText, Text } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
-async function getBlogs({ language, offset, amount }) {
+async function getBlogs({ language, offset, amount, token }) {
   return fetchData(
     `query MyQuery {
       blogs: blogsEntries(language: "${language}", orderBy: "postDate desc", offset: ${offset}, limit: ${amount}) {
@@ -21,20 +22,27 @@ async function getBlogs({ language, offset, amount }) {
         }
       }
     }`,
+    {},
+    token,
   );
 }
 
 export const NewsPaginated = ({ news, locale, amount, count }) => {
   const [page, setPage] = useState(1);
   const [newsItems, setNewsItems] = useState(news);
+  const searchParams = useSearchParams();
+  const token = searchParams?.get("x-craft-live-preview");
 
   useEffect(() => {
     if (page !== 1) {
-      getBlogs({ language: locale, offset: (page - 1) * amount, amount }).then(
-        ({ blogs }) => {
-          setNewsItems((prevState) => [...prevState, ...blogs]);
-        },
-      );
+      getBlogs({
+        language: locale,
+        offset: (page - 1) * amount,
+        amount,
+        token,
+      }).then(({ blogs }) => {
+        setNewsItems((prevState) => [...prevState, ...blogs]);
+      });
     }
   }, [page]);
 

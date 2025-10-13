@@ -64,8 +64,6 @@ export default async function Home({ params, searchParams }) {
   const sections = page[0]?.sections;
   const transparentImage = page[0]?.transparentImage?.[0];
 
-  console.log("sections", sections);
-
   return (
     <>
       <section

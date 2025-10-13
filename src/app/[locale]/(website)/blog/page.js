@@ -13,8 +13,8 @@ import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "blogEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(PageQuery({ page: "blogEntries", language }), {}, token);
 }
 
 const amount = 5;
@@ -60,9 +60,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
-  const { blogs, count } = await getBlogs({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
+  const { blogs, count } = await getBlogs({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const sections = page[0]?.sections;
   const transparentImage = page[0]?.transparentImage?.[0];

@@ -47,20 +47,32 @@ export async function generateMetadata({ params }) {
   };
 }
 
-async function getPage({ language }) {
-  return fetchData(FixedPageQuery({ page: "awardspageEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(
+    FixedPageQuery({ page: "awardspageEntries", language }),
+    {},
+    token,
+  );
 }
 
 const amount = 5;
-const getAwards = ({ locale }) => {
+const getAwards = ({ locale, token }) => {
   return fetchData(
     awardsQuery({ locale, visibility: "awardsPage", limit: amount }),
+    {},
+    token,
   );
 };
 
-export default async function Home({ params }) {
-  const { awards, count } = await getAwards({ locale: params.locale });
-  const { page } = await getPage({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { awards, count } = await getAwards({
+    locale: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const {
     title,

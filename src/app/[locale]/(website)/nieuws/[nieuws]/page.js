@@ -21,7 +21,7 @@ import {
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
 
-const query = ({ pathname, language = "nl" }) => {
+const query = ({ pathname, language = "nl", token }) => {
   return `
         query MyQuery {
               blog: blogsEntries(slug: "${pathname}", language: "${language}") {
@@ -47,7 +47,7 @@ const query = ({ pathname, language = "nl" }) => {
 };
 
 async function getPage({ pathname, language }) {
-  return fetchData(query({ pathname, language }));
+  return fetchData(query({ pathname, language }), {}, token);
 }
 
 export async function generateMetadata({ params }) {
@@ -88,10 +88,11 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function News({ params }) {
+export default async function News({ params, searchParams }) {
   const { blog } = await getPage({
     pathname: params.nieuws,
     language: params.locale,
+    token: searchParams["x-craft-live-preview"],
   });
 
   const { image, title, shortDescription, blogsections } = blog?.[0] || {};

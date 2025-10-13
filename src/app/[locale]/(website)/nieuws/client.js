@@ -7,8 +7,9 @@ import { Button, RichText, Text } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
 import { formatDate } from "@/utils/formatDate";
+import { useSearchParams } from "next/navigation";
 
-async function getBlogs({ language, offset, amount }) {
+async function getBlogs({ language, offset, amount, token }) {
   return fetchData(
     `query MyQuery {
       blogs: newsEntries(language: "${language}", orderBy: "postDate desc", limit: ${amount}, offset: ${offset}) {
@@ -30,20 +31,26 @@ async function getBlogs({ language, offset, amount }) {
     {
       tags: ["news", "news_paginated"],
     },
+    token,
   );
 }
 
 export const NewsPaginated = ({ news, locale, amount, count }) => {
   const [page, setPage] = useState(1);
   const [newsItems, setNewsItems] = useState(news);
+  const searchParams = useSearchParams();
+  const token = searchParams?.get("x-craft-live-preview");
 
   useEffect(() => {
     if (page !== 1) {
-      getBlogs({ language: locale, offset: (page - 1) * amount, amount }).then(
-        ({ blogs }) => {
-          setNewsItems((prevState) => [...prevState, ...blogs]);
-        },
-      );
+      getBlogs({
+        language: locale,
+        offset: (page - 1) * amount,
+        amount,
+        token,
+      }).then(({ blogs }) => {
+        setNewsItems((prevState) => [...prevState, ...blogs]);
+      });
     }
   }, [page]);
 

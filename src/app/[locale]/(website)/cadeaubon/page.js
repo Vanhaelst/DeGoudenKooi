@@ -44,12 +44,19 @@ export async function generateMetadata({ params }) {
   };
 }
 
-async function getPage({ language }) {
-  return fetchData(FixedPageQuery({ page: "cadeaubonEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(
+    FixedPageQuery({ page: "cadeaubonEntries", language }),
+    {},
+    token,
+  );
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const {
     title,

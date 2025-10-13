@@ -14,8 +14,12 @@ import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 export const fetchCache = "force-no-store";
 
-async function getPage({ language }) {
-  return fetchData(FixedPageQuery({ page: "reserveEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(
+    FixedPageQuery({ page: "reserveEntries", language }),
+    {},
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {
@@ -48,8 +52,11 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
-  const { page } = await getPage({ language: params.locale });
+export default async function Home({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const {
     title,

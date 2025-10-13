@@ -103,15 +103,17 @@ const query = ({ slug, language = "nl" }) => {
   `;
 };
 
-async function getRooms({ language }) {
-  return fetchData(roomsQuery({ language }));
+async function getRooms({ language, token }) {
+  return fetchData(roomsQuery({ language }), {}, token);
 }
-async function getRoom({ params }) {
+async function getRoom({ params, token }) {
   return fetchData(
     query({
       slug: params.game,
       language: params.locale,
     }),
+    {},
+    token,
   );
 }
 
@@ -149,9 +151,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Game({ params }) {
-  const { rooms } = await getRooms({ language: params.locale });
-  const { room } = await getRoom({ params });
+export default async function Game({ params, searchParams }) {
+  const { rooms } = await getRooms({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
+  const { room } = await getRoom({
+    params,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const dict = await getDictionary(params.locale);
 

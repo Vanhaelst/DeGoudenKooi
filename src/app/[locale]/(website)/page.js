@@ -9,8 +9,8 @@ import {
 import { SeoQuery } from "@/queries/sections/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "homeEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(PageQuery({ page: "homeEntries", language }), {}, token);
 }
 
 export async function generateMetadata({ params }) {
@@ -38,9 +38,10 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
+export default async function Home({ params, searchParams }) {
   const { page } = await getPage({
     language: params.locale,
+    token: searchParams["x-craft-live-preview"],
   });
 
   const sections = page[0]?.sections;

@@ -11,8 +11,8 @@ import { SeoQuery } from "@/queries/sections/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 import React from "react";
 
-async function getPage({ language }) {
-  return fetchData(PageQuery({ page: "contactEntries", language }));
+async function getPage({ language, token }) {
+  return fetchData(PageQuery({ page: "contactEntries", language }), {}, token);
 }
 
 export async function generateMetadata({ params }) {
@@ -40,8 +40,11 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Contact({ params }) {
-  const { page } = await getPage({ language: params.locale });
+export default async function Contact({ params, searchParams }) {
+  const { page } = await getPage({
+    language: params.locale,
+    token: searchParams["x-craft-live-preview"],
+  });
 
   const sections = page[0]?.sections;
   const transparentImage = page[0]?.transparentImage?.[0];
