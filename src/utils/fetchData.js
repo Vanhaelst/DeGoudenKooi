@@ -31,6 +31,6 @@ export async function fetchData(
     console.error(json.errors);
     throw new Error("Failed to fetch API");
   }
-  console.log("token", token, json.data);
+  console.log("token", token, JSON.stringify(json.data));
   return json.data;
 }
