@@ -115,7 +115,7 @@ export const Select = ({ t }) => {
         {t.filter.information}{" "}
         <a
           href={
-            "nieuws/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience"
+            "blog/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience"
           }
           className="ml-1 underline"
         >
