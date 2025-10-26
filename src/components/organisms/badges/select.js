@@ -8,7 +8,6 @@ import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { Container, Text } from "@/components/atoms";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 
 export const Select = ({ t }) => {
   const searchParams = useSearchParams();
@@ -115,7 +114,9 @@ export const Select = ({ t }) => {
         />{" "}
         {t.filter.information}{" "}
         <a
-          href={`nieuws/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience`}
+          href={
+            "nieuws/wat-is-het-verschil-tussen-een-escape-game-en-een-escape-experience"
+          }
           className="ml-1 underline"
         >
           {t.filter.information_cta}
