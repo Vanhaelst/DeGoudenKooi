@@ -259,10 +259,16 @@ export default function GamePage({ data, children }) {
               t={t.game}
             />
           ) : null}
-          <Reviews
-            reviews={reviews}
-            title={gameType[0] === "walk" ? t.game.reviewsWalk : t.game.reviews}
-          />
+
+          {reviews && reviews.length ? (
+            <Reviews
+              reviews={reviews}
+              title={
+                gameType[0] === "walk" ? t.game.reviewsWalk : t.game.reviews
+              }
+            />
+          ) : null}
+
           {!isInactive && (
             <Prices
               prices={prices}
