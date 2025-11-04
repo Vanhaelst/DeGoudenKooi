@@ -227,7 +227,7 @@ const nextConfig = {
       {
         source: "/",
         permanent: true,
-        destination: "/nl/",
+        destination: "/nl",
       },
       {
         source: "/escape-experience-next-level-escape-rooms",
@@ -507,7 +507,8 @@ const nextConfig = {
       {
         source: "/aircotech",
         destination: "/nl/aircotech-cool-at-what-we-do",
-      },{
+      },
+      {
         source: "/nl/aircotech",
         destination: "/nl/aircotech-cool-at-what-we-do",
       },
