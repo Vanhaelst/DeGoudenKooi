@@ -50,7 +50,7 @@ export const Prices = ({ prices, image, t, gameType }) => {
                   {t.players}
                 </Text>
 
-                <div className="flex justify-between w-full md:max-w-[350px]">
+                <div className="flex justify-between w-full md:max-w-[400px]">
                   <Text
                     as="p"
                     level="lg"
