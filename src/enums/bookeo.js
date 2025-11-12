@@ -7,6 +7,7 @@ export const BOOKEO = {
   deSchatVanKalakmul: "&type=325043P7UH151F85563A6",
   cabinInTheWoods: "&type=3250UPXAHR151F88DFDCB",
   deMeesterdiefVanMechelen: "&type=3250LW3NJC152DACE84DC",
+  arbreville: "&type=425529JPXAX19A6423A866",
   lostInSpace: "&type=3250YYENK7153BC9919C9",
   teambuilding: "&type=3250HRP3RH151F85563A5",
   teambuilding_teambuilding: "&type=32506UP46Y1529854BCD1",
