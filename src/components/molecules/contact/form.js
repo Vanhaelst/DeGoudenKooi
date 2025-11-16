@@ -1,12 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Recaptcha from "react-recaptcha";
+
 import { clsx } from "clsx";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Transition } from "@headlessui/react";
 import { Button, Text } from "@/components/atoms";
 import { sendMail } from "@/server/brevo/sendMail";
+
+let recaptchaInstance;
+const executeCaptcha = (e) => {
+  e.preventDefault();
+  console.log("executeCaptcha");
+  recaptchaInstance.execute();
+};
 
 export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,6 +39,7 @@ export const Form = ({ t }) => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    await executeCaptcha;
 
     try {
       window.dataLayer.push({
@@ -101,6 +111,7 @@ export const Form = ({ t }) => {
     }, 5000);
   };
 
+  console.log(errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
       <div className="">
@@ -145,6 +156,15 @@ export const Form = ({ t }) => {
             </Text>
           )}
         </div>
+      </div>
+
+      <div>
+        <Recaptcha
+          ref={(e) => (recaptchaInstance = e)}
+          sitekey="6LdEiOEZAAAAALkNjecKwayqjmPyqcrgMW-mfNvk"
+          size="invisible"
+          verifyCallback={handleSubmit(onSubmit)}
+        />
       </div>
 
       <div
