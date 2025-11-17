@@ -161,7 +161,7 @@ export const Form = ({ t }) => {
       <div>
         <Recaptcha
           ref={(e) => (recaptchaInstance = e)}
-          sitekey="6LdEiOEZAAAAALkNjecKwayqjmPyqcrgMW-mfNvk"
+          sitekey="6Ld0cQ4sAAAAAKeRQpFdQTD8OZ5z5_WT3cDIOUnq"
           size="invisible"
           verifyCallback={handleSubmit(onSubmit)}
         />
