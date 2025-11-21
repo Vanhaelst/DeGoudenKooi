@@ -1,3 +1,4 @@
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { Roboto_Condensed } from "next/font/google";
 
 import "slick-carousel/slick/slick.css";
@@ -70,18 +71,22 @@ export default function RootLayout({ children, params }) {
         content="QPVFwJyzUdQNKFlSBAdgdjxBnK8OfPhkScwB_O6pyEA"
       />
       <body className={`${font.className} antialiased`}>
-        <TopBar locale={params.locale} />
-        <Navigation locale={params.locale} />
-
-        <Borders />
-        <main
-          className="bg-[length:100%_100%] bg-center"
-          style={{ backgroundImage: "url('/achtergrond2.png')" }}
+        <GoogleReCaptchaProvider
+          reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
         >
-          {children}
-        </main>
-        <Footer locale={params.locale} />
-        <Popup locale={params.locale} />
+          <TopBar locale={params.locale} />
+          <Navigation locale={params.locale} />
+
+          <Borders />
+          <main
+            className="bg-[length:100%_100%] bg-center"
+            style={{ backgroundImage: "url('/achtergrond2.png')" }}
+          >
+            {children}
+          </main>
+          <Footer locale={params.locale} />
+          <Popup locale={params.locale} />
+        </GoogleReCaptchaProvider>
         <Cookiebot />
       </body>
     </html>
