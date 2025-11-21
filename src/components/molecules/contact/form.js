@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Recaptcha from "react-recaptcha";
+import React, { useState } from "react";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 
 import { clsx } from "clsx";
 import { useParams } from "next/navigation";
@@ -10,17 +13,12 @@ import { Transition } from "@headlessui/react";
 import { Button, Text } from "@/components/atoms";
 import { sendMail } from "@/server/brevo/sendMail";
 
-let recaptchaInstance;
-const executeCaptcha = (e) => {
-  e.preventDefault();
-  console.log("executeCaptcha");
-  recaptchaInstance.execute();
-};
-
 export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const { locale } = useParams();
   const {
@@ -39,8 +37,21 @@ export const Form = ({ t }) => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await executeCaptcha;
 
+    if (!executeRecaptcha) return;
+
+    const token = await executeRecaptcha("contact_form");
+
+    const res = await fetch("/api/verify-captcha", {
+      method: "POST",
+      body: JSON.stringify({ token }),
+    });
+
+    const captcha = await res.json();
+    alert(captcha.message);
+    console.log(captcha);
+
+    return;
     try {
       window.dataLayer.push({
         event: "formulier_verzonden",
@@ -111,101 +122,95 @@ export const Form = ({ t }) => {
     }, 5000);
   };
 
-  console.log(errors);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
-      <div className="">
-        <div className="mt-2">
-          <input
-            placeholder={t?.firstname}
-            className="block w-full placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
-            {...register("firstname", { required: true })}
-          />{" "}
-          {errors.firstname?.type && (
-            <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t?.validation[errors.firstname.type]}
-            </Text>
-          )}
-        </div>
-      </div>
-      <div className="">
-        <div className="mt-2">
-          <input
-            placeholder={t?.mail}
-            {...register("mail", { required: true })}
-            className="block w-full placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
-          />
-          {errors.mail?.type && (
-            <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t?.validation[errors.mail.type]}
-            </Text>
-          )}
-        </div>
-      </div>
-      <div className="">
-        <div className="mt-2">
-          <textarea
-            placeholder={t?.message}
-            {...register("message", { required: true })}
-            rows={6}
-            className="block w-full resize-none placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
-          />
-          {errors.message?.type && (
-            <Text level="xs" classnames="text-red-500 font-normal mt-2">
-              {t?.validation[errors.message.type]}
-            </Text>
-          )}
-        </div>
-      </div>
-
-      <div>
-        <Recaptcha
-          ref={(e) => (recaptchaInstance = e)}
-          sitekey="6Ld0cQ4sAAAAAKeRQpFdQTD8OZ5z5_WT3cDIOUnq"
-          size="invisible"
-          verifyCallback={handleSubmit(onSubmit)}
-        />
-      </div>
-
-      <div
-        className={clsx(
-          "flex",
-          showErrorMessage || showSuccessMessage
-            ? "justify-between"
-            : "justify-end",
-        )}
-      >
-        <Transition show={showSuccessMessage}>
-          <div
-            className={clsx([
-              "transition ease-in-out",
-              "data-[closed]:opacity-0",
-              "data-[enter]:duration-100",
-              "data-[leave]:duration-300",
-            ])}
-          >
-            <Text classnames="text-white">{t.success}</Text>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
+        <div className="">
+          <div className="mt-2">
+            <input
+              placeholder={t?.firstname}
+              className="block w-full placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
+              {...register("firstname", { required: true })}
+            />{" "}
+            {errors.firstname?.type && (
+              <Text level="xs" classnames="text-red-500 font-normal mt-2">
+                {t?.validation[errors.firstname.type]}
+              </Text>
+            )}
           </div>
-        </Transition>
-        <Transition show={showErrorMessage}>
-          <div
-            className={clsx([
-              "transition ease-in-out",
-              "data-[closed]:opacity-0",
-              "data-[enter]:duration-100",
-              "data-[leave]:duration-300",
-            ])}
-          >
-            <Text classnames="text-white">{t.error}</Text>
+        </div>
+        <div className="">
+          <div className="mt-2">
+            <input
+              placeholder={t?.mail}
+              {...register("mail", { required: true })}
+              className="block w-full placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
+            />
+            {errors.mail?.type && (
+              <Text level="xs" classnames="text-red-500 font-normal mt-2">
+                {t?.validation[errors.mail.type]}
+              </Text>
+            )}
           </div>
-        </Transition>
-        <Button
-          buttonType="submit"
-          variant="white"
-          disabled={isSubmitting}
-          callToAction={t?.send}
-        />
-      </div>
-    </form>
+        </div>
+        <div className="">
+          <div className="mt-2">
+            <textarea
+              placeholder={t?.message}
+              {...register("message", { required: true })}
+              rows={6}
+              className="block w-full resize-none placeholder:text-black/75 bg-white/50 px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-primary-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-500 sm:text-sm/6"
+            />
+            {errors.message?.type && (
+              <Text level="xs" classnames="text-red-500 font-normal mt-2">
+                {t?.validation[errors.message.type]}
+              </Text>
+            )}
+          </div>
+        </div>
+
+        <div
+          className={clsx(
+            "flex",
+            showErrorMessage || showSuccessMessage
+              ? "justify-between"
+              : "justify-end",
+          )}
+        >
+          <Transition show={showSuccessMessage}>
+            <div
+              className={clsx([
+                "transition ease-in-out",
+                "data-[closed]:opacity-0",
+                "data-[enter]:duration-100",
+                "data-[leave]:duration-300",
+              ])}
+            >
+              <Text classnames="text-white">{t.success}</Text>
+            </div>
+          </Transition>
+          <Transition show={showErrorMessage}>
+            <div
+              className={clsx([
+                "transition ease-in-out",
+                "data-[closed]:opacity-0",
+                "data-[enter]:duration-100",
+                "data-[leave]:duration-300",
+              ])}
+            >
+              <Text classnames="text-white">{t.error}</Text>
+            </div>
+          </Transition>
+          <Button
+            buttonType="submit"
+            variant="white"
+            disabled={isSubmitting}
+            callToAction={t?.send}
+          />
+        </div>
+      </form>
+    </GoogleReCaptchaProvider>
   );
 };

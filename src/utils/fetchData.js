@@ -3,8 +3,6 @@ export async function fetchData(
   options = { revalidate: 3600, tags: [] },
   token,
 ) {
-  console.log("token", token);
-
   // let craftUrl = `https://degoudenkooi.pluxit.be/web/api${token ? `?token=${token}` : ""}`;
   let craftUrl = `https://degoudenkooi.pluxit.be/web/api`;
 
