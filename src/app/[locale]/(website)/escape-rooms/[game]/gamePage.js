@@ -153,7 +153,7 @@ export default function GamePage({ data, children }) {
       classes: "",
     },
     {
-      icon: "/icon-age.svg",
+      icon: title === "Arbreville" ? "/icon-age.svg" : "/icon-age-10.svg",
       description: t.general.minAge,
       classes: "",
       tooltip: t.game.minAge,
