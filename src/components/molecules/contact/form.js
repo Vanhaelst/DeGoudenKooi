@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Transition } from "@headlessui/react";
 import { Button, Text } from "@/components/atoms";
 import { sendMail } from "@/server/brevo/sendMail";
+import Script from "next/script";
 
 export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,16 +38,15 @@ export const Form = ({ t }) => {
 
     if (!executeRecaptcha) return;
 
-    const token = await executeRecaptcha("contact_form");
+    const token = await grecaptcha.execute(
+      process.env.NEXT_PUBLIC_RECAPTCHA_KEY,
+      { action: "submit" },
+    );
 
-    const res = await fetch("/api/verify-captcha", {
+    await fetch("/api/verify-captcha", {
       method: "POST",
       body: JSON.stringify({ token }),
     });
-
-    const captcha = await res.json();
-    alert(captcha.message);
-    console.log(captcha);
 
     return;
     try {
@@ -121,6 +121,10 @@ export const Form = ({ t }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`}
+        strategy="afterInteractive"
+      />
       <div className="">
         <div className="mt-2">
           <input
