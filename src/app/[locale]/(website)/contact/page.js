@@ -1,7 +1,7 @@
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { fetchData } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
-import Newsletter from "@/components/molecules/newsletter/newsletter";
 import {
   defaultMetadata,
   dutchMetadata,
@@ -50,8 +50,12 @@ export default async function Contact({ params, searchParams }) {
   const transparentImage = page[0]?.transparentImage?.[0];
 
   return (
-    <ImageWrapper image={transparentImage}>
-      {sections?.map((section) => renderComponents(section, params.locale))}
-    </ImageWrapper>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
+    >
+      <ImageWrapper image={transparentImage}>
+        {sections?.map((section) => renderComponents(section, params.locale))}
+      </ImageWrapper>
+    </GoogleReCaptchaProvider>
   );
 }

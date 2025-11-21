@@ -1,4 +1,3 @@
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { Roboto_Condensed } from "next/font/google";
 
 import "slick-carousel/slick/slick.css";
@@ -21,7 +20,6 @@ import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
 import { Cookiebot } from "@/components/organisms/Cookiebot";
 import Popup from "@/components/molecules/popup";
-import { GoogleAnalytics } from "@/components/organisms/analytics";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -71,22 +69,18 @@ export default function RootLayout({ children, params }) {
         content="QPVFwJyzUdQNKFlSBAdgdjxBnK8OfPhkScwB_O6pyEA"
       />
       <body className={`${font.className} antialiased`}>
-        <GoogleReCaptchaProvider
-          reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
-        >
-          <TopBar locale={params.locale} />
-          <Navigation locale={params.locale} />
+        <TopBar locale={params.locale} />
+        <Navigation locale={params.locale} />
 
-          <Borders />
-          <main
-            className="bg-[length:100%_100%] bg-center"
-            style={{ backgroundImage: "url('/achtergrond2.png')" }}
-          >
-            {children}
-          </main>
-          <Footer locale={params.locale} />
-          <Popup locale={params.locale} />
-        </GoogleReCaptchaProvider>
+        <Borders />
+        <main
+          className="bg-[length:100%_100%] bg-center"
+          style={{ backgroundImage: "url('/achtergrond2.png')" }}
+        >
+          {children}
+        </main>
+        <Footer locale={params.locale} />
+        <Popup locale={params.locale} />
         <Cookiebot />
       </body>
     </html>
