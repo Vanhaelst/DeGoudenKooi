@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { Transition } from "@headlessui/react";
 import { Button, Text } from "@/components/atoms";
 import { sendMail } from "@/server/brevo/sendMail";
-import Script from "next/script";
 
 export const Form = ({ t }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +47,7 @@ export const Form = ({ t }) => {
       body: JSON.stringify({ token }),
     });
 
-    return;
+    // return;
     try {
       window.dataLayer.push({
         event: "formulier_verzonden",
@@ -121,10 +120,6 @@ export const Form = ({ t }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
-      <Script
-        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`}
-        strategy="afterInteractive"
-      />
       <div className="">
         <div className="mt-2">
           <input
