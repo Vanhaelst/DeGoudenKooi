@@ -47,7 +47,7 @@ export const Form = ({ t }) => {
       body: JSON.stringify({ token }),
     });
 
-    if (response.status !== 200 || !captcha.ok) {
+    if (captcha.status !== 200 || !captcha.ok) {
       setShowErrorMessage(true);
       setIsSubmitting(false);
 
