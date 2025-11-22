@@ -20,6 +20,7 @@ import { Navigation } from "@/components/organisms/navigation/navigation";
 import { Borders } from "@/app/[locale]/(website)/border";
 import { Cookiebot } from "@/components/organisms/Cookiebot";
 import Popup from "@/components/molecules/popup";
+import Script from "next/script";
 
 const font = Roboto_Condensed({
   subsets: ["latin"],
@@ -82,6 +83,11 @@ export default function RootLayout({ children, params }) {
         <Footer locale={params.locale} />
         <Popup locale={params.locale} />
         <Cookiebot />
+
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

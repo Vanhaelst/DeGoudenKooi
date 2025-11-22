@@ -42,12 +42,14 @@ export const Form = ({ t }) => {
       { action: "submit" },
     );
 
-    await fetch("/api/verify-captcha", {
+    const captcha = await fetch("/api/verify-captcha", {
       method: "POST",
       body: JSON.stringify({ token }),
     });
 
-    // return;
+    console.log("captcha", captcha);
+    return;
+
     try {
       window.dataLayer.push({
         event: "formulier_verzonden",
