@@ -47,8 +47,13 @@ export const Form = ({ t }) => {
       body: JSON.stringify({ token }),
     });
 
-    console.log("captcha", captcha);
-    return;
+    if (response.status !== 200 || !captcha.ok) {
+      setShowErrorMessage(true);
+      setIsSubmitting(false);
+
+      console.error(captcha || "Failed to verify captcha");
+      return;
+    }
 
     try {
       window.dataLayer.push({
