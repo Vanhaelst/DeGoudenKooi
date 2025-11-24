@@ -154,9 +154,9 @@ export default function GamePage({ data, children }) {
     },
     {
       icon:
-        title.toLowerCase() === "ARBREVILLE".toLowerCase()
-          ? "/icon-age.svg"
-          : "/icon-age-10.svg",
+        title?.toLowerCase() === "Arbreville".toLowerCase()
+          ? "/icon-age-10.svg"
+          : "/icon-age.svg",
       description: t.general.minAge,
       classes: "",
       tooltip: t.game.minAge,
