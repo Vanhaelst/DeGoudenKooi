@@ -84,6 +84,10 @@ export default function RootLayout({ children, params }) {
         <Popup locale={params.locale} />
         <Cookiebot />
 
+        <p className="sr-only">
+          This site is protected by reCAPTCHA and the Google Privacy Policy and
+          Terms of Service apply.
+        </p>
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`}
           strategy="afterInteractive"

@@ -70,7 +70,6 @@ export default async function Home({ params, searchParams }) {
   } = page[0] ?? {};
   const transparentImage = page[0]?.transparentImage?.[0];
 
-  console.log(transparentImage);
   return (
     <>
       <Hero
