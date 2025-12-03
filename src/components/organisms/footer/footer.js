@@ -4,7 +4,6 @@ import { CompanyData } from "@/data/companyData";
 import { LINKS } from "@/enums/links";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import ImageWithFallback from "@/utils/Image";
-import Link from "next/link";
 import { fetchData } from "@/utils/fetchData";
 import { roomsQuery } from "@/queries/sections/rooms";
 
@@ -54,6 +53,10 @@ export const Footer = async ({ locale = "nl" }) => {
       locale === "nl"
         ? { name: dict.topbar.jobs, href: LINKS[locale.toUpperCase()].JOBS }
         : null,
+      {
+        name: dict.topbar.planning,
+        href: LINKS[locale.toUpperCase()].PLANNING,
+      },
       {
         name: dict.navigation.general_conditions,
         target: "_blank",

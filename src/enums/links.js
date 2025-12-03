@@ -18,6 +18,7 @@ export const LINKS = {
     HOTEL_DEALS: "/nl/hotels-in-mechelen",
     RESERVE: "/nl/boeking",
     JOBS: "/nl/jobs",
+    PLANNING: "/nl/je-planning",
   },
   EN: {
     HOME: "/en",
@@ -38,5 +39,6 @@ export const LINKS = {
     HOTEL_DEALS: "/en/hotels-in-mechelen",
     RESERVE: "/en/booking",
     JOBS: "/en/jobs",
+    PLANNING: "/en/your-planning",
   },
 };
