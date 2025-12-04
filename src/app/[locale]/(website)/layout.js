@@ -35,23 +35,27 @@ export const viewport = {
 };
 
 export async function generateMetadata({ params }) {
-  return params.locale === "en"
-    ? {
-        ...defaultMetadata,
-        ...englishMetadata,
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          ...englishMetadata.description,
-        },
-      }
-    : {
-        ...defaultMetadata,
-        ...dutchMetadata,
-        openGraph: {
-          ...defaultMetadata.openGraph,
-          ...dutchMetadata.description,
-        },
-      };
+  const data =
+    params.locale === "en"
+      ? {
+          ...defaultMetadata,
+          ...englishMetadata,
+          openGraph: {
+            ...defaultMetadata.openGraph,
+            description: englishMetadata.description,
+          },
+        }
+      : {
+          ...defaultMetadata,
+          ...dutchMetadata,
+          openGraph: {
+            ...defaultMetadata.openGraph,
+            description: dutchMetadata.description,
+          },
+        };
+
+  console.log(data, data.openGraph.image);
+  return data;
 }
 
 export default function RootLayout({ children, params }) {
