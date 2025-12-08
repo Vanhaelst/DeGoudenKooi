@@ -54,7 +54,6 @@ export async function generateMetadata({ params }) {
           },
         };
 
-  console.log(data, data.openGraph.image);
   return data;
 }
 

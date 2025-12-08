@@ -92,8 +92,6 @@ export default async function News({ params }) {
     language: params.locale,
   });
 
-  console.log("blog", blog);
-
   const { image, title, shortDescription, blogsections } = blog?.[0] || {};
 
   if (blog.length === 0) {

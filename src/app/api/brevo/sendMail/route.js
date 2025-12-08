@@ -6,8 +6,6 @@ export async function POST(req, res) {
   const body = (await req.json()) ?? {};
   const { templateId, data } = body ?? {};
 
-  console.log("sendMail route", templateId, data);
-
   const options = {
     method: "POST",
     headers: {
@@ -28,8 +26,6 @@ export async function POST(req, res) {
     .then((res) => res.json())
     .then((json) => ({ status: 200, ...json }))
     .catch((err) => console.error(err));
-
-  console.log("result", result);
 
   return NextResponse.json(result, { status: 200 });
 }

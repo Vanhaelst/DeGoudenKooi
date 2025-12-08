@@ -133,7 +133,7 @@ export default async function Newsletter({ locale }) {
                       id="mc-embedded-subscribe"
                       className="button"
                       value={t.newsletter.button}
-                      onClick={handleSubmit()}
+                      onClick={handleSubmit}
                     />
                   </div>
                 </div>

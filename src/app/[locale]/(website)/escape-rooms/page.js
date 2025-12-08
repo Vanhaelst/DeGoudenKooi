@@ -15,12 +15,10 @@ import { Badges } from "@/components/organisms/badges/badges";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language, token }) {
-  console.log("x", token);
   return fetchData(PageQuery({ page: "overviewEntries", language }), {}, token);
 }
 
 async function getRooms({ language, token }) {
-  console.log(token);
   return fetchData(roomsQuery({ language }), {}, token);
 }
 
