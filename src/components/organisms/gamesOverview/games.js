@@ -80,7 +80,10 @@ export const Games = ({
       classes: "",
     },
     {
-      icon: "/icon-age.svg",
+      icon:
+        title?.toLowerCase() === "Arbreville".toLowerCase()
+          ? "/icon-age-10.svg"
+          : "/icon-age.svg",
       description: t.general.minAge,
       classes: "",
       tooltip: t.game.minAge,
