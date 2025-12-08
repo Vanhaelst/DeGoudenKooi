@@ -44,6 +44,10 @@ export const Footer = async ({ locale = "nl" }) => {
       },
     ],
     questions: [
+      {
+        name: dict.topbar.planning,
+        href: LINKS[locale.toUpperCase()].PLANNING,
+      },
       { name: dict.topbar.blog, href: LINKS[locale.toUpperCase()].BLOG },
       locale === "nl"
         ? { name: dict.topbar.news, href: LINKS[locale.toUpperCase()].NEWS }
@@ -53,10 +57,7 @@ export const Footer = async ({ locale = "nl" }) => {
       locale === "nl"
         ? { name: dict.topbar.jobs, href: LINKS[locale.toUpperCase()].JOBS }
         : null,
-      {
-        name: dict.topbar.planning,
-        href: LINKS[locale.toUpperCase()].PLANNING,
-      },
+
       {
         name: dict.navigation.general_conditions,
         target: "_blank",
@@ -244,7 +245,7 @@ export const Footer = async ({ locale = "nl" }) => {
             <div className="mt-10 md:mt-0 ">
               <div className="flex justify-center items-center bg-white/10 aspect-square rounded-2xl overflow-hidden w-32 h-40">
                 <a
-                  href={`/${locale}/nieuws/federatie-escape-rooms-befeb-de-gouden-kooi-staat-mee-aan-de-wieg`}
+                  href={`/${locale}/blog/federatie-escape-rooms-befeb-de-gouden-kooi-staat-mee-aan-de-wieg`}
                 >
                   <ImageWithFallback
                     // src="https://befeb.be/images/member-badge/BEFEB-member_white.png"
