@@ -5,10 +5,6 @@ import { Container, Text } from "@/components/atoms";
 export default async function Newsletter({ locale }) {
   const t = await getDictionary(locale);
 
-  const handleSubmit = () => {
-    console.log("test");
-  };
-
   return (
     <section
       className={`py-32 bg-bottom bg-cover -mb-20`}
@@ -133,7 +129,6 @@ export default async function Newsletter({ locale }) {
                       id="mc-embedded-subscribe"
                       className="button"
                       value={t.newsletter.button}
-                      onClick={handleSubmit}
                     />
                   </div>
                 </div>
