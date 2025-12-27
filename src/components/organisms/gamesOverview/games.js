@@ -98,11 +98,11 @@ export const Games = ({
   return (
     <Container
       key={slug}
-      classnames={clsx(background[0]?.url ? "bg-cover" : "")}
+      classnames={clsx(background[0]?.url ? "bg-cover" : "", "aspect-[18/10]")}
       style={{ backgroundImage: `url('${background?.[0]?.url}')` }}
     >
       <div
-        className="mt-10 grid grid-cols-1 lg:gap-4 sm:mt-16 lg:grid-cols-12 opacity-0"
+        className="mt-10 grid grid-cols-1 lg:gap-4 sm:mt-16 lg:grid-cols-12 opacity-0 lg:h-full"
         ref={elementRef}
       >
         <div
@@ -110,18 +110,18 @@ export const Games = ({
         >
           <a
             href={`/${slug}`}
-            className="absolute inset-px lg:rounded-lg w-[70%] md:w-[50%] lg:w-full lg:h-[80%] mt-[10%] mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
+            className="absolute lg:relative lg:flex lg:h-full inset-px lg:rounded-lg w-[70%] md:w-[50%] lg:w-full lg:h-[80%] mt-[10%] lg:mt-0 mx-auto bg-contain md:bg-cover lg:bg-contain bg-no-repeat bg-center max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] perspective"
             style={{
               backgroundImage: `url('${featuredImage[0]?.url}')`,
             }}
           />
         </div>
         <div
-          className={`relative lg:col-span-7 ${isEven ? "lg:order-2" : "lg:order-1"}`}
+          className={`relative lg:flex lg:col-span-7 ${isEven ? "lg:order-2" : "lg:order-1"} flex justify-center`}
         >
           <div className="absolute lg:rounded-lg lg:rounded-tr-[2rem]" />
           <div className="relative flex h-full flex-col overflow-hidden lg:rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]">
-            <div className="px-10 pt-10 pb-4 min-h-[500px] flex flex-col justify-between">
+            <div className="px-10 pt-10 pb-4 min-h-[500px] h-full flex flex-col justify-center">
               <div>
                 <Text
                   as="h5"
