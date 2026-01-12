@@ -88,7 +88,7 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen, dict }) {
                           <ul>
                             {children.map(({ title, slug }) => (
                               <li key={title}>
-                                <a href={`/${locale}/${slug}`}>{title}</a>
+                                <a href={`/${locale}/${slug}`}>{title} x</a>
                               </li>
                             ))}
                           </ul>
@@ -99,7 +99,7 @@ export function MobileNavigation({ locale, nav, topbar, open, setOpen, dict }) {
                   return (
                     <li key={name}>
                       <a href={href} className="md:text-lg">
-                        {name}{" "}
+                        {name}
                       </a>
                     </li>
                   );

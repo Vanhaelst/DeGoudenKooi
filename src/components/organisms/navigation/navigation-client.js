@@ -47,6 +47,10 @@ export const NavigationClient = ({ locale = "nl", dict, rooms }) => {
                 href: LINKS[locale.toUpperCase()].NEWS,
               }
             : null,
+          {
+            name: dict.topbar.planning,
+            href: LINKS[locale.toUpperCase()].PLANNING,
+          },
         ]}
         nav={[
           {
