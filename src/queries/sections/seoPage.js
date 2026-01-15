@@ -11,6 +11,7 @@ import { lightboxEntry } from "@/queries/entries/lightbox";
 import { teamEntry } from "@/queries/entries/team";
 import { videoEntry } from "@/queries/entries/video";
 import { imageQuery } from "@/queries/entries/image";
+import { newsletterEntry } from "@/queries/entries/newsletter";
 
 export const SeoQuery = ({ url, language }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -33,6 +34,7 @@ export const SeoQuery = ({ url, language }) => {
             ${lightboxEntry}
             ${teamEntry}
             ${videoEntry}
+            ${newsletterEntry}
             ... on accordion_Entry {
               typeHandle
               backgroundColor

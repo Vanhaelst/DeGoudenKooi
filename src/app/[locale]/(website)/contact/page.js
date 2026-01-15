@@ -48,7 +48,6 @@ export default async function Contact({ params, searchParams }) {
   const sections = page[0]?.sections;
   const transparentImage = page[0]?.transparentImage?.[0];
 
-  console.log(sections);
   return (
     <ImageWrapper image={transparentImage}>
       {sections?.map((section) => renderComponents(section, params.locale))}
