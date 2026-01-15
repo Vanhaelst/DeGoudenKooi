@@ -230,6 +230,16 @@ const nextConfig = {
         destination: "/nl",
       },
       {
+        source: "/wedstrijd",
+        permanent: true,
+        destination: "/nl/wedstrijd",
+      },
+      {
+        source: "/competition",
+        permanent: true,
+        destination: "/en/competition",
+      },
+      {
         source: "/escape-experience-next-level-escape-rooms",
         permanent: true,
         destination: "/nl/blog/next-level-escape-rooms",
