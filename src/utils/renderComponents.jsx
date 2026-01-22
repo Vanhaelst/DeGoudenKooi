@@ -23,6 +23,7 @@ import { ColumnsWithDivider } from "@/components/organisms/content/columnsWithDi
 import { Contact } from "@/components/molecules/contact/contact";
 import Newsletter from "@/components/molecules/newsletter/newsletter";
 import { ContentVideo } from "@/components/organisms/content/content-video";
+import { Code } from "@/components/organisms/code";
 
 export const renderComponents = (data, locale) => {
   const { typeHandle } = data ?? {};
@@ -63,6 +64,8 @@ export const renderComponents = (data, locale) => {
     // content wrapper
     case "contents":
       return <Contents key={data.id} locale={locale} {...data} />;
+    case "code":
+      return <Code key={data.id} locale={locale} {...data} />;
     // content Items
     case "contentVideo":
       return <ContentVideo key={data.id} locale={locale} {...data} />;

@@ -15,6 +15,7 @@ import { videoEntry } from "@/queries/entries/video";
 import { bannerEntry } from "@/queries/entries/banner";
 import { imageQuery } from "@/queries/entries/image";
 import { newsletterEntry } from "@/queries/entries/newsletter";
+import { codeEntry } from "@/queries/entries/code";
 
 export const PageQuery = ({ page, language = "nl" }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -33,6 +34,7 @@ export const PageQuery = ({ page, language = "nl" }) => {
             ${faqEntry}
             ${callToActionEntry}
             ${contentEntry}
+            ${codeEntry}
             ${RoomSliderEntry}
             ${gridEntry}
             ${gameOverviewEntry}

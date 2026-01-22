@@ -12,6 +12,7 @@ import { teamEntry } from "@/queries/entries/team";
 import { videoEntry } from "@/queries/entries/video";
 import { imageQuery } from "@/queries/entries/image";
 import { newsletterEntry } from "@/queries/entries/newsletter";
+import { codeEntry } from "@/queries/entries/code";
 
 export const SeoQuery = ({ url, language }) => {
   const locale = language === "undefined" ? "nl" : language;
@@ -28,6 +29,7 @@ export const SeoQuery = ({ url, language }) => {
             ${faqEntry}
             ${callToActionEntry}
             ${contentEntry}
+            ${codeEntry}
             ${RoomSliderEntry}
             ${gridEntry}
             ${gameOverviewEntry}
