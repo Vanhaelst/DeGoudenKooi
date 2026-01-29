@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { Hero } from "@/components/molecules/hero/hero";
 import { awardsQuery } from "@/queries/sections/awards";
 import { Container, RichText } from "@/components/atoms";
@@ -25,6 +25,10 @@ export async function generateMetadata({ params }) {
         }
       }
     }`,
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-awardspageEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};
@@ -50,7 +54,10 @@ export async function generateMetadata({ params }) {
 async function getPage({ language, token }) {
   return fetchData(
     FixedPageQuery({ page: "awardspageEntries", language }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-awardspageEntries`, `language-${language}`],
+    },
     token,
   );
 }
@@ -59,7 +66,10 @@ const amount = 5;
 const getAwards = ({ locale, token }) => {
   return fetchData(
     awardsQuery({ locale, visibility: "awardsPage", limit: amount }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`awards-awardspageEntries`, `language-${locale}`],
+    },
     token,
   );
 };

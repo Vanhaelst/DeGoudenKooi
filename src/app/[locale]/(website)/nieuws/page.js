@@ -1,7 +1,7 @@
 import React from "react";
 import { revalidateTag } from "next/cache";
 
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { Container } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { renderComponents } from "@/utils/renderComponents";
@@ -15,8 +15,15 @@ import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
-async function getPage({ token }) {
-  return fetchData(PageQuery({ page: "nieuwsEntries" }), {}, token);
+async function getPage({ language, token }) {
+  return fetchData(
+    PageQuery({ page: "nieuwsEntries" }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-nieuwsEntries`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 const amount = 5;
@@ -52,6 +59,10 @@ async function getBlogs({ language, token }) {
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     SeoQuery({ page: "blogEntries", language: params.locale }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-blogEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};

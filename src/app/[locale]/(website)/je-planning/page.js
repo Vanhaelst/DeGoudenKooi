@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
 import { defaultMetadata } from "@/data/metadata";
 import { Hero } from "@/components/molecules/hero/hero";
@@ -12,7 +12,10 @@ import Planner from "@/components/molecules/planner";
 async function getPage({ language, token }) {
   return fetchData(
     FixedPageQuery({ page: "planningEntries", language }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-planningEntries`, `language-${language}`],
+    },
     token,
   );
 }

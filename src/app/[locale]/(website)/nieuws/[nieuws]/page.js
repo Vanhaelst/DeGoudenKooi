@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
 import { imageQuery } from "@/queries/entries/image";
 import { Hero } from "@/components/molecules/hero/hero";
@@ -47,11 +47,19 @@ const query = ({ pathname, language = "nl", token }) => {
 };
 
 async function getPage({ pathname, language }) {
-  return fetchData(query({ pathname, language }), {}, token);
+  return fetchData(
+    query({ pathname, language }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-${pathname}`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {
-  const { page } = await fetchData(`
+  const { page } = await fetchData(
+    `
         query MyQuery {
         page: blogsEntries(slug: "${params.nieuws}", language: "${params.locale}") {
         ... on newsItem_Entry {
@@ -61,7 +69,12 @@ export async function generateMetadata({ params }) {
                 ${seoEntry}
             }
         }
-    }`);
+    }`,
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-${params.nieuws}`, `language-${params.locale}`],
+    },
+  );
 
   const { title, seoTitle, seoDescription, seoKeywords, seoImage, image } =
     page?.[0] ?? {};

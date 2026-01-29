@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { renderComponents } from "@/utils/renderComponents";
@@ -19,12 +19,23 @@ async function getPage({ language, token }) {
 }
 
 async function getRooms({ language, token }) {
-  return fetchData(roomsQuery({ language }), {}, token);
+  return fetchData(
+    roomsQuery({ language }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-overviewEntries`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     SeoQuery({ page: "overviewEntries", language: params.locale }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-overviewEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};

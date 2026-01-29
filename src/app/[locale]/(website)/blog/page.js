@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { Container } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { renderComponents } from "@/utils/renderComponents";
@@ -14,7 +14,14 @@ import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language, token }) {
-  return fetchData(PageQuery({ page: "blogEntries", language }), {}, token);
+  return fetchData(
+    PageQuery({ page: "blogEntries", language }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-blogEntries`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 const amount = 5;
@@ -38,6 +45,10 @@ async function getBlogs({ language }) {
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     SeoQuery({ page: "blogEntries", language: params.locale }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-blogEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};

@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import {
@@ -10,12 +10,23 @@ import { SeoQuery } from "@/queries/sections/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language, token }) {
-  return fetchData(PageQuery({ page: "shopEntries", language }), {}, token);
+  return fetchData(
+    PageQuery({ page: "shopEntries", language }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-shopEntries`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     SeoQuery({ page: "shopEntries", language: params.locale }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-shopEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};

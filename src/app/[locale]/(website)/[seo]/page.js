@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
 import { SeoQuery } from "@/queries/sections/seoPage";
 import {
@@ -13,7 +13,7 @@ import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 async function getPage({ language, url, token }) {
   return fetchData(
     SeoQuery({ url, language }),
-    { revalidate: 10, tags: [`page-${url}`, `language-${language}`] },
+    { revalidate: REVALIDATE, tags: [`page-${url}`, `language-${language}`] },
     token,
   );
 }
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
       }
     }`,
     {
-      revalidate: 10,
+      revalidate: REVALIDATE,
       tags: [`metadata-${params.seo}`, `language-${params.locale}`],
     },
   );

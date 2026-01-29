@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
 import { imageQuery } from "@/queries/entries/image";
 import { Hero } from "@/components/molecules/hero/hero";
@@ -8,7 +8,6 @@ import { featuresEntry } from "@/queries/entries/features";
 import { callToActionEntry } from "@/queries/entries/callToAction";
 import { lightboxEntry } from "@/queries/entries/lightbox";
 import { videoEntry } from "@/queries/entries/video";
-import { Loader } from "@/components/atoms/loader/loader";
 import { LINKS } from "@/enums/links";
 
 import {
@@ -45,11 +44,15 @@ const query = ({ pathname, language = "nl" }) => {
 };
 
 async function getPage({ pathname, language }) {
-  return fetchData(query({ pathname, language }));
+  return fetchData(query({ pathname, language }), {
+    revalidate: REVALIDATE,
+    tags: [`blog-${pathname}`, `language-${language}`],
+  });
 }
 
 export async function generateMetadata({ params }) {
-  const { page } = await fetchData(`
+  const { page } = await fetchData(
+    `
         query MyQuery {
         page: blogsEntries(slug: "${params.blog}", language: "${params.locale}") {
         ... on newsItem_Entry {
@@ -59,7 +62,12 @@ export async function generateMetadata({ params }) {
                 ${seoEntry}
             }
         }
-    }`);
+    }`,
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-${params.blog}`, `language-${params.locale}`],
+    },
+  );
 
   const { title, seoTitle, seoDescription, seoKeywords, seoImage, image } =
     page?.[0] ?? {};

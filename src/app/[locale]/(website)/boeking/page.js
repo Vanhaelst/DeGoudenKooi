@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
 import {
   defaultMetadata,
@@ -17,20 +17,29 @@ export const fetchCache = "force-no-store";
 async function getPage({ language, token }) {
   return fetchData(
     FixedPageQuery({ page: "reserveEntries", language }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-reserveEntries`, `language-${language}`],
+    },
     token,
   );
 }
 
 export async function generateMetadata({ params }) {
-  const { page } = await fetchData(`query MyQuery {
+  const { page } = await fetchData(
+    `query MyQuery {
       page: reserveEntries(language: "${params.locale}") {
         ... on FixedPage_Entry {
           id
           ${seoEntry}
         }
       }
-    }`);
+    }`,
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-reserveEntries`, `language-${params.locale}`],
+    },
+  );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};
 

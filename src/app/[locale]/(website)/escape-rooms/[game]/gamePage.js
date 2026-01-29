@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { ContentImage } from "@/components/organisms/content/content-image";
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { Prices } from "@/components/molecules/prices/prices";
@@ -93,11 +93,16 @@ export default function GamePage({ data, children }) {
     if (!categories) {
       return;
     }
-    fetchData(faqQuery({ language: locale, categories }), {}, token).then(
-      (res) => {
-        setFaq(res.faq);
+    fetchData(
+      faqQuery({ language: locale, categories }),
+      {
+        revalidate: REVALIDATE,
+        tags: [`faq-faqsEntries`, `language-${locale}`],
       },
-    );
+      token,
+    ).then((res) => {
+      setFaq(res.faq);
+    });
 
     fetchData(
       `query MyQuery {
@@ -120,7 +125,10 @@ export default function GamePage({ data, children }) {
             }
         }                 
   }  `,
-      {},
+      {
+        revalidate: REVALIDATE,
+        tags: [`awards-awardsEntries`, `language-${locale}`],
+      },
       token,
     ).then((res) => {
       setSliderAwards(res.sliderAwards);

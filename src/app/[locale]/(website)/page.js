@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import {
@@ -10,7 +10,14 @@ import { SeoQuery } from "@/queries/sections/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language, token }) {
-  return fetchData(PageQuery({ page: "homeEntries", language }), {}, token);
+  return fetchData(
+    PageQuery({ page: "homeEntries", language }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-homeEntries`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {

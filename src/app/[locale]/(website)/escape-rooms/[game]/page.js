@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { Loader } from "@/components/atoms/loader/loader";
 import { imageQuery } from "@/queries/entries/image";
 import GamePage from "./gamePage";
@@ -112,7 +112,10 @@ async function getRoom({ params, token }) {
       slug: params.game,
       language: params.locale,
     }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-${params.game}`, `language-${params.locale}`],
+    },
     token,
   );
 }
@@ -127,6 +130,10 @@ export async function generateMetadata({ params }) {
                   }
               }
         }`,
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-${params.game}`, `language-${params.locale}`],
+    },
   );
 
   const { title, seoTitle, seoDescription, seoKeywords, seoImage } =

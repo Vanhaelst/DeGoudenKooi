@@ -22,7 +22,11 @@ async function getBlogs({ language, offset, amount, token }) {
         }
       }
     }`,
-    {},
+    {
+      revalidate: RTCEncodedVideoFrame,
+      tags: [`blogs`, `language-${language}`],
+    },
+
     token,
   );
 }

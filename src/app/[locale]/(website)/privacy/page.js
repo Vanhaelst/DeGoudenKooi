@@ -1,10 +1,17 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import { defaultMetadata } from "@/data/metadata";
 
 async function getPage({ language, token }) {
-  return fetchData(PageQuery({ page: "privacyEntries", language }), {}, token);
+  return fetchData(
+    PageQuery({ page: "privacyEntries", language }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-privacyEntries`, `language-${language}`],
+    },
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {

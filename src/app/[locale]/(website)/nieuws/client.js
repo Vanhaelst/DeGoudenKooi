@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { Button, RichText, Text } from "@/components/atoms";
 import { imageQuery } from "@/queries/entries/image";
 import { CompanyData } from "@/data/companyData";
@@ -29,7 +29,8 @@ async function getBlogs({ language, offset, amount, token }) {
       }
     }`,
     {
-      tags: ["news", "news_paginated"],
+      revalidate: REVALIDATE,
+      tags: ["news", "news_paginated", `language-${language}`],
     },
     token,
   );

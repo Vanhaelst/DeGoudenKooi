@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import {
@@ -12,7 +12,10 @@ import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 async function getPage({ language, token }) {
   return fetchData(
     PageQuery({ page: "teambuildingEventsEntries", language }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-teambuildingEventsEntries`, `language-${language}`],
+    },
     token,
   );
 }
@@ -20,6 +23,10 @@ async function getPage({ language, token }) {
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     SeoQuery({ page: "teambuildingEventsEntries", language: params.locale }),
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-teambuildingEventsEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};

@@ -1,6 +1,8 @@
+export const REVALIDATE = 3600;
+
 export async function fetchData(
   graphql,
-  options = { revalidate: 3600, tags: [] },
+  options = { revalidate: REVALIDATE, tags: [] },
   token,
 ) {
   // let craftUrl = `https://degoudenkooi.pluxit.be/web/api${token ? `?token=${token}` : ""}`;

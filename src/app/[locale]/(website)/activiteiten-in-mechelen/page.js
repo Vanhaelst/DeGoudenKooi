@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import {
@@ -12,7 +12,10 @@ import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 async function getPage({ language, token }) {
   return fetchData(
     PageQuery({ page: "dealsActiviteitenEntries", language }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-dealsActiviteitenEntries`, `language-${language}`],
+    },
     token,
   );
 }
@@ -20,6 +23,10 @@ async function getPage({ language, token }) {
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     SeoQuery({ page: "dealsActiviteitenEntries", language: params.locale }),
+    {
+      revalidate: 3600,
+      tags: [`metadata-dealsActiviteitenEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};

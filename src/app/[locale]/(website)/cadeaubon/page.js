@@ -7,7 +7,7 @@ import {
 import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import React from "react";
 import { renderComponents } from "@/utils/renderComponents";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
@@ -22,6 +22,10 @@ export async function generateMetadata({ params }) {
         }
       }
     }`,
+    {
+      revalidate: REVALIDATE,
+      tags: [`metadata-cadeaubonEntries`, `language-${params.locale}`],
+    },
   );
 
   const { seoTitle, seoDescription, seoKeywords, seoImage } = page?.[0] ?? {};
@@ -47,7 +51,10 @@ export async function generateMetadata({ params }) {
 async function getPage({ language, token }) {
   return fetchData(
     FixedPageQuery({ page: "cadeaubonEntries", language }),
-    {},
+    {
+      revalidate: REVALIDATE,
+      tags: [`page-cadeaubonEntries`, `language-${language}`],
+    },
     token,
   );
 }
