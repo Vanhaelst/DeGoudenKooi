@@ -11,7 +11,11 @@ import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 
 async function getPage({ language, url, token }) {
-  return fetchData(SeoQuery({ url, language }), {}, token);
+  return fetchData(
+    SeoQuery({ url, language }),
+    { revalidate: 10, tags: [`page-${url}`, `language-${language}`] },
+    token,
+  );
 }
 
 export async function generateMetadata({ params }) {
@@ -24,6 +28,10 @@ export async function generateMetadata({ params }) {
         }
       }
     }`,
+    {
+      revalidate: 10,
+      tags: [`metadata-${params.seo}`, `language-${params.locale}`],
+    },
   );
   if (!page?.[0]) {
     return;
