@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Button, RichText } from "@/components/atoms";
 
 const today = new Date().toDateString();
@@ -19,10 +19,12 @@ export default function PopupComponent({
   tag,
   title,
   description,
+  exclude,
 }) {
   const [open, setOpen] = useState(false);
   const [closed, setClosed] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   const localStorageKey = `DGK_showedPopup_${id}`;
 
@@ -78,6 +80,19 @@ export default function PopupComponent({
 
   const positionClasses = getPosition();
   const sizeClasses = getSize();
+
+  const excluded = exclude?.some((item) => {
+    if (item.title.includes("*")) {
+      const path = item.title.replace("/*", "");
+      return pathname.includes(path);
+    } else {
+      return item.title === pathname;
+    }
+  });
+
+  if (excluded) {
+    return null;
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>

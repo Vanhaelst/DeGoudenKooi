@@ -20,6 +20,12 @@ export const PopupQuery = ({ language = "nl" }) => {
                     isBackgroundAsset
                     position: popupPosition
                     size
+                    
+                    exclude {
+                      ... on excludePath_Entry {
+                        title
+                      }
+                    }
                 }
             }
         }
