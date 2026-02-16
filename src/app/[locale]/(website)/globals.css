@@ -155,8 +155,13 @@ select {
 
 /* Mailchimp */
 
+#mc_embed_signup {
+  max-width: 100%;
+}
+
 #mc_embed_signup .mc-field-group {
   width: 100%;
+  max-width: 100%;
 }
 
 #mc_embed_signup form .mc-field-group input {
