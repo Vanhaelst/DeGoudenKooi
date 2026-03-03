@@ -59,10 +59,10 @@ export const TopBar = async ({ locale = "nl" }) => {
       <div className="mx-auto max-w-7xl px-6 lg:px-0">
         <div className="flex items-center justify-between gap-x-6 px-6 py-2 sm:pr-3.5 lg:pl-8 mr-4">
           <a
-            href={tagline[0].href}
+            href={tagline[0]?.href}
             className="text-sm text-white cursor-pointer hover:underline"
           >
-            {tagline[0].title}
+            {tagline?.[0]?.title}
           </a>
           <div className="flex items-center justify-end gap-x-6">
             {topNavigation.map((item) => {
