@@ -247,10 +247,8 @@ export const Footer = async ({ locale = "nl" }) => {
                 <a
                   href={`/${locale}/blog/federatie-escape-rooms-befeb-de-gouden-kooi-staat-mee-aan-de-wieg`}
                 >
-                  <ImageWithFallback
-                    // src="https://befeb.be/images/member-badge/BEFEB-member_white.png"
+                  <img
                     src="https://befeb.be/images/member-badge/BEFEB-member_trans.png"
-                    fallbackImage="/befeb.webp"
                     alt="befeb"
                     width={236}
                     height={300}
