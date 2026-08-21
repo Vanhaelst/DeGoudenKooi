@@ -8,6 +8,7 @@ import {
 } from "@/data/metadata";
 import { SeoQuery } from "@/queries/sections/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 async function getPage({ language, token }) {
   return fetchData(
@@ -55,12 +56,19 @@ export default async function Home({ params, searchParams }) {
     token: searchParams["x-craft-live-preview"],
   });
 
-  const sections = page[0]?.sections;
-
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const currentPage = page[0];
+  const sections = currentPage?.sections;
+  const transparentImage = currentPage?.transparentImage?.[0];
+  const path = params.locale === "en" ? "grab-a-bite" : "hapje-eten";
 
   return (
     <ImageWrapper image={transparentImage}>
+      <PageJsonLdScript
+        locale={params.locale}
+        path={path}
+        page={currentPage}
+        breadcrumbName="Restaurant deals"
+      />
       {sections?.map((section) => renderComponents(section, params.locale))}
     </ImageWrapper>
   );

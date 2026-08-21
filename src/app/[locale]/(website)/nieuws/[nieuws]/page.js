@@ -20,6 +20,17 @@ import {
   englishMetadata,
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  createJsonLd,
+  getLanguage,
+  getPageUrl,
+  getSeoValues,
+  JsonLdScript,
+  SITE_URL,
+  webpageSchema,
+} from "@/utils/jsonLd";
 
 const query = ({ pathname, language = "nl", token }) => {
   return `
@@ -29,6 +40,7 @@ const query = ({ pathname, language = "nl", token }) => {
                       id
                       title
                       shortDescription
+                      postDate
                       uri
                       slug
                       image ${imageQuery}
@@ -108,7 +120,9 @@ export default async function News({ params, searchParams }) {
     token: searchParams["x-craft-live-preview"],
   });
 
-  const { image, title, shortDescription, blogsections } = blog?.[0] || {};
+  const currentNews = blog?.[0];
+  const { image, title, shortDescription, postDate, blogsections } =
+    currentNews || {};
 
   const t = params.locale === "en" ? en : nl;
   const pages = [
@@ -123,8 +137,52 @@ export default async function News({ params, searchParams }) {
   if (!blog) {
     return <Loader />;
   }
+  const newsPath = params.locale === "en" ? "news" : "nieuws";
+  const path = `${newsPath}/${params.nieuws}`;
+  const webPage = webpageSchema({
+    locale: params.locale,
+    path,
+    page: currentNews,
+  });
+  const seo = getSeoValues({ locale: params.locale, page: currentNews });
+  const jsonLd = createJsonLd([
+    {
+      ...webPage,
+      mainEntity: {
+        "@id": `${webPage.url}#article`,
+      },
+    },
+    {
+      "@type": "NewsArticle",
+      "@id": `${webPage.url}#article`,
+      url: webPage.url,
+      headline: title,
+      description: webPage.description,
+      datePublished: postDate,
+      articleSection: t.topbar.news,
+      mainEntityOfPage: {
+        "@id": `${webPage.url}#webpage`,
+      },
+      image: image?.[0]?.url ? absoluteUrl(image[0].url) : seo.image,
+      author: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: getLanguage(params.locale),
+    },
+    breadcrumbSchema({
+      locale: params.locale,
+      items: [
+        { name: t.topbar.news, url: getPageUrl(params.locale, newsPath) },
+        { name: title, url: webPage.url },
+      ],
+    }),
+  ]);
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       <Hero
         title={title}
         description={shortDescription}

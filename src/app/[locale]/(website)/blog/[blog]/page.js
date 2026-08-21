@@ -17,6 +17,17 @@ import {
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
 import { redirect } from "next/navigation";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  createJsonLd,
+  getLanguage,
+  getPageUrl,
+  getSeoValues,
+  JsonLdScript,
+  SITE_URL,
+  webpageSchema,
+} from "@/utils/jsonLd";
 
 const query = ({ pathname, language = "nl" }) => {
   return `
@@ -26,6 +37,7 @@ const query = ({ pathname, language = "nl" }) => {
                       id
                       title
                       shortDescription
+                      postDate
                       uri
                       slug
                       image ${imageQuery}
@@ -100,14 +112,60 @@ export default async function News({ params }) {
     language: params.locale,
   });
 
-  const { image, title, shortDescription, blogsections } = blog?.[0] || {};
+  const currentBlog = blog?.[0];
+  const { image, title, shortDescription, postDate, blogsections } =
+    currentBlog || {};
 
   if (blog.length === 0) {
     redirect(params.locale === "en" ? LINKS.EN.BLOG : LINKS.NL.BLOG);
   }
 
+  const path = `blog/${params.blog}`;
+  const webPage = webpageSchema({
+    locale: params.locale,
+    path,
+    page: currentBlog,
+  });
+  const seo = getSeoValues({ locale: params.locale, page: currentBlog });
+  const jsonLd = createJsonLd([
+    {
+      ...webPage,
+      mainEntity: {
+        "@id": `${webPage.url}#article`,
+      },
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": `${webPage.url}#article`,
+      url: webPage.url,
+      headline: title,
+      description: webPage.description,
+      datePublished: postDate,
+      articleSection: "Blog",
+      mainEntityOfPage: {
+        "@id": `${webPage.url}#webpage`,
+      },
+      image: image?.[0]?.url ? absoluteUrl(image[0].url) : seo.image,
+      author: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: getLanguage(params.locale),
+    },
+    breadcrumbSchema({
+      locale: params.locale,
+      items: [
+        { name: "Blog", url: getPageUrl(params.locale, "blog") },
+        { name: title, url: webPage.url },
+      ],
+    }),
+  ]);
+
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       <Hero
         title={title}
         description={shortDescription}

@@ -11,6 +11,7 @@ import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
@@ -75,10 +76,18 @@ export default async function Home({ params, searchParams }) {
     backgroundImage,
     sections,
   } = page[0] ?? {};
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const currentPage = page[0];
+  const transparentImage = currentPage?.transparentImage?.[0];
+  const path = params.locale === "en" ? "giftcard" : "cadeaubon";
 
   return (
     <>
+      <PageJsonLdScript
+        locale={params.locale}
+        path={path}
+        page={currentPage}
+        breadcrumbName={params.locale === "en" ? "Gift card" : "Cadeaubon"}
+      />
       <Hero
         type={type}
         title={title}

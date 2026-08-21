@@ -12,6 +12,14 @@ import {
 import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  createJsonLd,
+  itemListSchema,
+  JsonLdScript,
+  webpageSchema,
+} from "@/utils/jsonLd";
 
 async function getPage({ language, token }) {
   return fetchData(
@@ -81,11 +89,33 @@ export default async function Home({ params, searchParams }) {
     token: searchParams["x-craft-live-preview"],
   });
 
-  const sections = page[0]?.sections;
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const currentPage = page[0];
+  const sections = currentPage?.sections;
+  const transparentImage = currentPage?.transparentImage?.[0];
+  const webPage = webpageSchema({
+    locale: params.locale,
+    path: "blog",
+    page: currentPage,
+    type: "CollectionPage",
+  });
+  const jsonLd = createJsonLd([
+    webPage,
+    breadcrumbSchema({
+      locale: params.locale,
+      items: [{ name: "Blog", url: webPage.url }],
+    }),
+    itemListSchema({
+      id: `${webPage.url}#posts`,
+      items: blogs.map((blog) => ({
+        name: blog.title,
+        url: absoluteUrl(`/${blog.slug}`),
+      })),
+    }),
+  ]);
 
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       {sections?.map((section) => renderComponents(section, params.locale))}
       <ImageWrapper image={transparentImage}>
         <Container classnames="mb-28">

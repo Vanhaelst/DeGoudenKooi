@@ -13,6 +13,17 @@ import { buttonsQuery } from "@/queries/entries/buttons";
 import { Badges } from "@/components/organisms/badges/badges";
 import { roomsQuery } from "@/queries/sections/rooms";
 import { getDictionary } from "@/app/[locale]/dictionaries";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  cleanText,
+  createJsonLd,
+  getPageUrl,
+  getSeoValues,
+  JsonLdScript,
+  SITE_URL,
+  webpageSchema,
+} from "@/utils/jsonLd";
 
 const query = ({ slug, language = "nl" }) => {
   return `
@@ -174,9 +185,86 @@ export default async function Game({ params, searchParams }) {
     return <Loader />;
   }
 
+  const currentRoom = room[0];
+  const prices = [
+    currentRoom?.price2,
+    currentRoom?.price3,
+    currentRoom?.price4,
+    currentRoom?.price5,
+    currentRoom?.price6,
+  ]
+    .map((price) => Number.parseFloat(price))
+    .filter((price) => Number.isFinite(price) && price > 0);
+  const path = `escape-rooms/${params.game}`;
+  const webPage = webpageSchema({
+    locale: params.locale,
+    path,
+    page: currentRoom,
+    type: "ItemPage",
+  });
+  const seo = getSeoValues({ locale: params.locale, page: currentRoom });
+  const roomImage =
+    currentRoom?.featuredImage?.[0]?.url ||
+    currentRoom?.detailImage?.[0]?.url ||
+    currentRoom?.backgroundImage?.[0]?.url;
+  const gameSchema = {
+    "@type": ["Product", "Service"],
+    "@id": `${webPage.url}#game`,
+    name: currentRoom?.title,
+    description: cleanText(
+      currentRoom?.heroSubTitle || currentRoom?.story || webPage.description,
+    ),
+    image: roomImage ? absoluteUrl(roomImage) : seo.image,
+    url: webPage.url,
+    brand: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    provider: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    category: currentRoom?.gameType,
+    audience: {
+      "@type": "PeopleAudience",
+      suggestedMinAge: currentRoom?.categories?.find((category) =>
+        /^\d+$/.test(category),
+      ),
+    },
+    offers: prices.length
+      ? {
+          "@type": "AggregateOffer",
+          priceCurrency: "EUR",
+          lowPrice: Math.min(...prices),
+          highPrice: Math.max(...prices),
+          offerCount: prices.length,
+          availability: currentRoom?.inactiveMessage
+            ? "https://schema.org/OutOfStock"
+            : "https://schema.org/InStock",
+          url: getPageUrl(
+            params.locale,
+            params.locale === "en" ? "booking" : "boeking",
+          ),
+        }
+      : undefined,
+  };
+  const jsonLd = createJsonLd([
+    webPage,
+    gameSchema,
+    breadcrumbSchema({
+      locale: params.locale,
+      items: [
+        {
+          name: dict.navigation.games,
+          url: getPageUrl(params.locale, "escape-rooms"),
+        },
+        { name: currentRoom?.title, url: webPage.url },
+      ],
+    }),
+  ]);
+
   return (
     <>
-      <GamePage data={room[0]} locale={params.locale}>
+      <JsonLdScript data={jsonLd} />
+      <GamePage data={currentRoom} locale={params.locale}>
         <section
           className={`py-20 bg-bottom bg-cover`}
           style={{

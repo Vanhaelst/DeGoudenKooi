@@ -11,6 +11,7 @@ import { Bookeo } from "@/components/organisms/Bookeo/bookeo";
 import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 export const fetchCache = "force-no-store";
 
@@ -78,10 +79,18 @@ export default async function Home({ params, searchParams }) {
     backgroundImage,
     sections,
   } = page[0] ?? {};
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const currentPage = page[0];
+  const transparentImage = currentPage?.transparentImage?.[0];
+  const path = params.locale === "en" ? "booking" : "boeking";
 
   return (
     <>
+      <PageJsonLdScript
+        locale={params.locale}
+        path={path}
+        page={currentPage}
+        breadcrumbName={params.locale === "en" ? "Booking" : "Boeking"}
+      />
       <Hero
         type={type}
         title={title}

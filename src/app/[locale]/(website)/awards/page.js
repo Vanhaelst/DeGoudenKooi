@@ -14,6 +14,7 @@ import { renderComponents } from "@/utils/renderComponents";
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 import { Awards } from "@/app/[locale]/(website)/awards/client";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
@@ -95,9 +96,17 @@ export default async function Home({ params, searchParams }) {
     transparentImage,
     sections,
   } = page[0] ?? {};
+  const currentPage = page[0];
 
   return (
     <>
+      <PageJsonLdScript
+        locale={params.locale}
+        path="awards"
+        page={currentPage}
+        type="CollectionPage"
+        breadcrumbName="Awards"
+      />
       <Hero
         type={type}
         title={title}

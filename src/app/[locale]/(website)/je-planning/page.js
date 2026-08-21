@@ -8,6 +8,7 @@ import { FixedPageQuery } from "@/queries/sections/fixedPage";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 import Image from "next/image";
 import Planner from "@/components/molecules/planner";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 async function getPage({ language, token }) {
   return fetchData(
@@ -63,10 +64,20 @@ export default async function Home({ params, searchParams }) {
     textColor,
     sections,
   } = page[0] ?? {};
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const currentPage = page[0];
+  const transparentImage = currentPage?.transparentImage?.[0];
+  const path = params.locale === "en" ? "your-planning" : "je-planning";
 
   return (
     <>
+      <PageJsonLdScript
+        locale={params.locale}
+        path={path}
+        page={currentPage}
+        breadcrumbName={
+          params.locale === "en" ? "Your planning" : "Je planning"
+        }
+      />
       <Hero
         type={type}
         title={title}

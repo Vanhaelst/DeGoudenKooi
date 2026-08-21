@@ -2,6 +2,7 @@ import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import { defaultMetadata } from "@/data/metadata";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 async function getPage({ language, token }) {
   return fetchData(
@@ -46,7 +47,18 @@ export default async function Home({ params, searchParams }) {
     token: searchParams["x-craft-live-preview"],
   });
 
-  const sections = page[0]?.sections;
+  const currentPage = page[0];
+  const sections = currentPage?.sections;
 
-  return sections?.map((section) => renderComponents(section, params.locale));
+  return (
+    <>
+      <PageJsonLdScript
+        locale={params.locale}
+        path="privacy"
+        page={currentPage}
+        breadcrumbName="Privacy"
+      />
+      {sections?.map((section) => renderComponents(section, params.locale))}
+    </>
+  );
 }

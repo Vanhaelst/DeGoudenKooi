@@ -13,6 +13,14 @@ import { getDictionary } from "@/app/[locale]/dictionaries";
 import { SeoQuery } from "@/queries/sections/seo";
 import { Badges } from "@/components/organisms/badges/badges";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  createJsonLd,
+  itemListSchema,
+  JsonLdScript,
+  webpageSchema,
+} from "@/utils/jsonLd";
 
 async function getPage({ language, token }) {
   return fetchData(PageQuery({ page: "overviewEntries", language }), {}, token);
@@ -70,11 +78,33 @@ export default async function Home({ params, searchParams }) {
 
   const dict = await getDictionary(params.locale);
 
-  const sections = page[0]?.sections;
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const currentPage = page[0];
+  const sections = currentPage?.sections;
+  const transparentImage = currentPage?.transparentImage?.[0];
+  const webPage = webpageSchema({
+    locale: params.locale,
+    path: "escape-rooms",
+    page: currentPage,
+    type: "CollectionPage",
+  });
+  const jsonLd = createJsonLd([
+    webPage,
+    breadcrumbSchema({
+      locale: params.locale,
+      items: [{ name: dict.navigation.games, url: webPage.url }],
+    }),
+    itemListSchema({
+      id: `${webPage.url}#rooms`,
+      items: rooms.map((room) => ({
+        name: room.title,
+        url: absoluteUrl(`/${room.slug}`),
+      })),
+    }),
+  ]);
 
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       <section
         className={`py-10 md:py-20 lg:py-0 lg:pt-32 lg:pb-44 bg-bottom bg-cover`}
         style={{

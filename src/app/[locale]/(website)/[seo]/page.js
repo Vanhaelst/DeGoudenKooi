@@ -9,6 +9,7 @@ import {
 } from "@/data/metadata";
 import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
+import { PageJsonLdScript } from "@/utils/jsonLd";
 
 async function getPage({ language, url, token }) {
   return fetchData(
@@ -64,15 +65,22 @@ export default async function Home({ params, searchParams }) {
     token: searchParams["x-craft-live-preview"],
   });
 
-  const sections = page[0]?.sections;
+  const currentPage = page[0];
+  const sections = currentPage?.sections;
 
   if (page.length === 0) {
     redirect(`/${params.locale}/not-found`);
   }
-  const transparentImage = page[0]?.transparentImage?.[0];
+  const transparentImage = currentPage?.transparentImage?.[0];
 
   return (
     <ImageWrapper image={transparentImage}>
+      <PageJsonLdScript
+        locale={params.locale}
+        path={params.seo}
+        page={currentPage}
+        breadcrumbName={currentPage?.seoTitle || params.seo}
+      />
       {sections?.map((section) => renderComponents(section, params.locale))}
     </ImageWrapper>
   );
