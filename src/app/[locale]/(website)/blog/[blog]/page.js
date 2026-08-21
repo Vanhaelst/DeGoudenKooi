@@ -12,6 +12,7 @@ import { LINKS } from "@/enums/links";
 
 import {
   defaultMetadata,
+  getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
@@ -87,6 +88,10 @@ export async function generateMetadata({ params }) {
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {
     ...defaultMetadata,
+    alternates: getAlternates({
+      locale: params.locale,
+      path: `blog/${params.blog}`,
+    }),
     title: seoTitle || title || defaultMetadata.title,
     description: seoDescription || metaData.description,
     keywords: seoKeywords || metaData.keywords,

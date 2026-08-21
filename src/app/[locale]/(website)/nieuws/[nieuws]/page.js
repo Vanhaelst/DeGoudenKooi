@@ -16,6 +16,7 @@ import en from "@/app/[locale]/dictionaries/en.json";
 import { SeoQuery } from "@/queries/sections/seo";
 import {
   defaultMetadata,
+  getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
@@ -94,6 +95,10 @@ export async function generateMetadata({ params }) {
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {
     ...defaultMetadata,
+    alternates: getAlternates({
+      locale: params.locale,
+      path: `nieuws/${params.nieuws}`,
+    }),
     title: seoTitle || title || defaultMetadata.title,
     description: seoDescription || metaData.description,
     keywords: seoKeywords || metaData.keywords,

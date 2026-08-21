@@ -13,6 +13,7 @@ import { Footer } from "@/components/organisms/footer/footer";
 import { redirect } from "next/navigation";
 import {
   defaultMetadata,
+  getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }) {
     params.locale === "en"
       ? {
           ...defaultMetadata,
+          alternates: getAlternates({ locale: params.locale, path: "" }),
           ...englishMetadata,
           openGraph: {
             ...defaultMetadata.openGraph,
@@ -47,6 +49,7 @@ export async function generateMetadata({ params }) {
         }
       : {
           ...defaultMetadata,
+          alternates: getAlternates({ locale: params.locale, path: "" }),
           ...dutchMetadata,
           openGraph: {
             ...defaultMetadata.openGraph,

@@ -6,6 +6,7 @@ import { GamesOverview } from "@/components/organisms/gamesOverview/gamesOvervie
 import React from "react";
 import {
   defaultMetadata,
+  getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }) {
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {
     ...defaultMetadata,
+    alternates: getAlternates({ locale: params.locale, path: "escape-rooms" }),
     title: seoTitle || defaultMetadata.title,
     description: seoDescription || metaData.description,
     keywords: seoKeywords || metaData.keywords,

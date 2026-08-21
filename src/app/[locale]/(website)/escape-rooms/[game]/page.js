@@ -5,6 +5,7 @@ import { imageQuery } from "@/queries/entries/image";
 import GamePage from "./gamePage";
 import {
   defaultMetadata,
+  getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
@@ -154,6 +155,10 @@ export async function generateMetadata({ params }) {
 
   return {
     ...defaultMetadata,
+    alternates: getAlternates({
+      locale: params.locale,
+      path: `escape-rooms/${params.game}`,
+    }),
     title: seoTitle || title || defaultMetadata.title,
     description: seoDescription || metaData.description,
     keywords: seoKeywords || metaData.keywords,

@@ -1,7 +1,7 @@
 import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
-import { defaultMetadata } from "@/data/metadata";
+import { defaultMetadata, getAlternates } from "@/data/metadata";
 import { PageJsonLdScript } from "@/utils/jsonLd";
 
 async function getPage({ language, token }) {
@@ -19,6 +19,7 @@ export async function generateMetadata({ params }) {
   return params.locale === "en"
     ? {
         ...defaultMetadata,
+        alternates: getAlternates({ locale: params.locale, path: "privacy" }),
         title: "Privacy - De Gouden Kooi",
         description:
           "Privacy ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }) {
       }
     : {
         ...defaultMetadata,
+        alternates: getAlternates({ locale: params.locale, path: "privacy" }),
         title: "Privacy - De Gouden Kooi",
         description:
           "Privacy ✓ Informeel en leerzaam ✓ Meetings en bedrijfspresentaties ✓ Escape games.",

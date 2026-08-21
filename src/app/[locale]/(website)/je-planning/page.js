@@ -1,6 +1,6 @@
 import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
-import { defaultMetadata } from "@/data/metadata";
+import { defaultMetadata, getAlternates } from "@/data/metadata";
 import { Hero } from "@/components/molecules/hero/hero";
 import React from "react";
 import { Container } from "@/components/atoms";
@@ -25,6 +25,10 @@ export async function generateMetadata({ params }) {
   return params.locale === "en"
     ? {
         ...defaultMetadata,
+        alternates: getAlternates({
+          locale: params.locale,
+          path: "je-planning",
+        }),
         title: "Plan your escape - De Gouden Kooi",
         description:
           "Plan ✓ Escape Experiences ✓ Escape Walks ✓ Escape rooms ✓ A team activity for families, friends and colleagues ✓ Two locations in the center of Mechelen ✓ Pioneers in Belgium.",
@@ -36,6 +40,10 @@ export async function generateMetadata({ params }) {
       }
     : {
         ...defaultMetadata,
+        alternates: getAlternates({
+          locale: params.locale,
+          path: "je-planning",
+        }),
         title: "Plan je Escape - De Gouden Kooi",
         description:
           "Plan escape game ✓ Escape rooms ✓ Een teamactiviteit voor gezinnen, vrienden en collega's ✓ Twee locaties in centrum Mechelen ✓ Pioniers in België.",

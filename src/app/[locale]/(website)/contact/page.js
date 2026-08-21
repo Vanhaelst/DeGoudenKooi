@@ -3,6 +3,7 @@ import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
 import {
   defaultMetadata,
+  getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }) {
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
   return {
     ...defaultMetadata,
+    alternates: getAlternates({ locale: params.locale, path: "contact" }),
     title: seoTitle || defaultMetadata.title,
     description: seoDescription || metaData.description,
     keywords: seoKeywords || metaData.keywords,
