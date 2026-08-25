@@ -1,5 +1,7 @@
 User-Agent: *
 Allow: /
-Disallow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
 
 Sitemap: https://www.degoudenkooi.be/sitemap.xml

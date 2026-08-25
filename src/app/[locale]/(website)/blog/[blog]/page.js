@@ -26,8 +26,10 @@ import {
   getPageUrl,
   getSeoValues,
   JsonLdScript,
+  organizationSchema,
   SITE_URL,
   webpageSchema,
+  websiteSchema,
 } from "@/utils/jsonLd";
 
 const query = ({ pathname, language = "nl" }) => {
@@ -39,6 +41,7 @@ const query = ({ pathname, language = "nl" }) => {
                       title
                       shortDescription
                       postDate
+                      dateUpdated
                       uri
                       slug
                       image ${imageQuery}
@@ -118,8 +121,14 @@ export default async function News({ params }) {
   });
 
   const currentBlog = blog?.[0];
-  const { image, title, shortDescription, postDate, blogsections } =
-    currentBlog || {};
+  const {
+    image,
+    title,
+    shortDescription,
+    postDate,
+    dateUpdated,
+    blogsections,
+  } = currentBlog || {};
 
   if (blog.length === 0) {
     redirect(params.locale === "en" ? LINKS.EN.BLOG : LINKS.NL.BLOG);
@@ -133,6 +142,8 @@ export default async function News({ params }) {
   });
   const seo = getSeoValues({ locale: params.locale, page: currentBlog });
   const jsonLd = createJsonLd([
+    organizationSchema(),
+    websiteSchema(),
     {
       ...webPage,
       mainEntity: {
@@ -146,6 +157,7 @@ export default async function News({ params }) {
       headline: title,
       description: webPage.description,
       datePublished: postDate,
+      dateModified: dateUpdated || postDate,
       articleSection: "Blog",
       mainEntityOfPage: {
         "@id": `${webPage.url}#webpage`,

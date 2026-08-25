@@ -67,7 +67,7 @@ export default async function Home({ params, searchParams }) {
   const webPage = webpageSchema({ locale: params.locale, page: currentPage });
   const jsonLd = createJsonLd([
     organizationSchema(),
-    websiteSchema(params.locale),
+    websiteSchema(),
     webPage,
     ...localBusinessSchemas({
       locale: params.locale,
