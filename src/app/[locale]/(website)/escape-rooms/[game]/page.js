@@ -200,6 +200,47 @@ export default async function Game({ params, searchParams }) {
   ]
     .map((price) => Number.parseFloat(price))
     .filter((price) => Number.isFinite(price) && price > 0);
+  const gameType = Array.isArray(currentRoom?.gameType)
+    ? currentRoom.gameType[0]
+    : currentRoom?.gameType;
+  const gameTypeLabel = dict.general?.[gameType] || "Escape room";
+  const gameLocation = Array.isArray(currentRoom?.gameLocation)
+    ? currentRoom.gameLocation[0]
+    : currentRoom?.gameLocation;
+  const gameLocationLabel =
+    dict.general?.[gameLocation] || currentRoom?.gameLocation;
+  const contentDescription = currentRoom?.contentItem
+    ?.map(
+      (item) =>
+        item?.description || item?.descriptionLeft || item?.descriptionRight,
+    )
+    .find(Boolean);
+  const minimumAge = currentRoom?.categories?.find((category) =>
+    /^\d+$/.test(category),
+  );
+  const additionalProperties = [
+    {
+      name: dict.general.location,
+      value: gameLocationLabel,
+    },
+    {
+      name: dict.general.time,
+      value: currentRoom?.time,
+    },
+    {
+      name: dict.rate.players,
+      value: currentRoom?.players,
+    },
+    {
+      name: "Type",
+      value: gameTypeLabel,
+    },
+  ]
+    .filter((property) => property.value)
+    .map((property) => ({
+      "@type": "PropertyValue",
+      ...property,
+    }));
   const path = `escape-rooms/${params.game}`;
   const webPage = webpageSchema({
     locale: params.locale,
@@ -217,23 +258,37 @@ export default async function Game({ params, searchParams }) {
     "@id": `${webPage.url}#game`,
     name: currentRoom?.title,
     description: cleanText(
-      currentRoom?.heroSubTitle || currentRoom?.story || webPage.description,
+      [currentRoom?.heroSubTitle, currentRoom?.uspDescription]
+        .concat(contentDescription)
+        .filter(Boolean)
+        .join(" ") || webPage.description,
     ),
     image: roomImage ? absoluteUrl(roomImage) : seo.image,
     url: webPage.url,
     brand: {
+      "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
+      name: "De Gouden Kooi",
+      url: SITE_URL,
     },
     provider: {
+      "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
+      name: "De Gouden Kooi",
+      url: SITE_URL,
     },
-    category: currentRoom?.gameType,
-    audience: {
-      "@type": "PeopleAudience",
-      suggestedMinAge: currentRoom?.categories?.find((category) =>
-        /^\d+$/.test(category),
-      ),
-    },
+    category: gameTypeLabel,
+    serviceType: gameTypeLabel,
+    areaServed: "Mechelen, Belgium",
+    audience: minimumAge
+      ? {
+          "@type": "PeopleAudience",
+          suggestedMinAge: Number(minimumAge),
+        }
+      : undefined,
+    additionalProperty: additionalProperties.length
+      ? additionalProperties
+      : undefined,
     offers: prices.length
       ? {
           "@type": "AggregateOffer",

@@ -26,7 +26,7 @@ import {
 
 async function getPage({ language, token }) {
   return fetchData(
-    PageQuery({ page: "nieuwsEntries" }),
+    PageQuery({ page: "nieuwsEntries", language }),
     {
       revalidate: REVALIDATE,
       tags: [`page-nieuwsEntries`, `language-${language}`],
@@ -68,10 +68,10 @@ async function getBlogs({ language, token }) {
 
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
-    SeoQuery({ page: "blogEntries", language: params.locale }),
+    SeoQuery({ page: "nieuwsEntries", language: params.locale }),
     {
       revalidate: REVALIDATE,
-      tags: [`page-blogEntries`, `language-${params.locale}`],
+      tags: [`metadata-nieuwsEntries`, `language-${params.locale}`],
     },
   );
 
@@ -123,10 +123,18 @@ export default async function Home({ params, searchParams }) {
     }),
     itemListSchema({
       id: `${webPage.url}#news`,
-      items: blogs.map((item) => ({
-        name: item.title,
-        url: absoluteUrl(`/${item.slug}`),
-      })),
+      items: blogs.flatMap((item) => {
+        const href = item.links?.find((link) => link?.href)?.href;
+
+        return href
+          ? [
+              {
+                name: item.title,
+                url: absoluteUrl(href),
+              },
+            ]
+          : [];
+      }),
     }),
   ]);
 

@@ -9,6 +9,28 @@ export const SITE_URL = "https://www.degoudenkooi.be";
 
 const PHONE = "+32 15 67 68 67";
 const EMAIL = "info@degoudenkooi.be";
+const LOCATIONS = [
+  {
+    id: "gerechtstraat",
+    name: `${CompanyData.name} - Gerechtstraat`,
+    streetAddress: "Gerechtstraat 10",
+  },
+  {
+    id: "haverwerf",
+    name: `${CompanyData.name} - Haverwerf`,
+    streetAddress: "Haverwerf 7",
+  },
+];
+
+function postalAddress(streetAddress) {
+  return {
+    "@type": "PostalAddress",
+    streetAddress,
+    addressLocality: "Mechelen",
+    postalCode: "2800",
+    addressCountry: "BE",
+  };
+}
 
 export function absoluteUrl(path) {
   if (!path) {
@@ -31,6 +53,10 @@ export function cleanText(value) {
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+export function getLastPathSegment(value = "") {
+  return String(value).split("/").filter(Boolean).pop();
 }
 
 export function getLanguage(locale) {
@@ -79,13 +105,14 @@ export function organizationSchema() {
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
-      url: absoluteUrl(CompanyData.logo),
-      width: CompanyData.logo_width,
-      height: CompanyData.logo_height,
+      url: absoluteUrl(CompanyData.schemaLogo),
+      width: CompanyData.schemaLogoWidth,
+      height: CompanyData.schemaLogoHeight,
     },
     image: absoluteUrl(defaultMetadata.openGraph.image?.[0]?.url),
     email: EMAIL,
     telephone: PHONE,
+    address: LOCATIONS.map((location) => postalAddress(location.streetAddress)),
     foundingDate: "2016",
     slogan: "De meest bekroonde escape rooms van Belgie",
     sameAs: Object.values(CompanyData.socials),
@@ -100,13 +127,13 @@ export function organizationSchema() {
   };
 }
 
-export function websiteSchema(locale) {
+export function websiteSchema() {
   return {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
     name: CompanyData.name,
-    inLanguage: getLanguage(locale),
+    inLanguage: ["nl-BE", "en-US"],
     publisher: {
       "@id": `${SITE_URL}/#organization`,
     },
@@ -114,20 +141,7 @@ export function websiteSchema(locale) {
 }
 
 export function localBusinessSchemas({ locale, description, image, url }) {
-  const locations = [
-    {
-      id: "gerechtstraat",
-      name: `${CompanyData.name} - Gerechtstraat`,
-      streetAddress: "Gerechtstraat 10",
-    },
-    {
-      id: "haverwerf",
-      name: `${CompanyData.name} - Haverwerf`,
-      streetAddress: "Haverwerf 7",
-    },
-  ];
-
-  return locations.map((location) => ({
+  return LOCATIONS.map((location) => ({
     "@type": "EntertainmentBusiness",
     "@id": `${SITE_URL}/#${location.id}`,
     name: location.name,
@@ -140,13 +154,7 @@ export function localBusinessSchemas({ locale, description, image, url }) {
     parentOrganization: {
       "@id": `${SITE_URL}/#organization`,
     },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: location.streetAddress,
-      addressLocality: "Mechelen",
-      postalCode: "2800",
-      addressCountry: "BE",
-    },
+    address: postalAddress(location.streetAddress),
     knowsAbout: ["Escape rooms", "Escape experiences", "Teambuilding"],
     additionalProperty: {
       "@type": "PropertyValue",
@@ -219,6 +227,21 @@ export function itemListSchema({ id, items }) {
       name: item.name,
       url: item.url,
       item: item.item,
+    })),
+  };
+}
+
+export function faqPageSchema({ url, items }) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${url}#webpage`,
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: cleanText(item.title),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: cleanText(item.description),
+      },
     })),
   };
 }

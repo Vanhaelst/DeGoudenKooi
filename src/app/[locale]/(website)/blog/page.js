@@ -14,9 +14,10 @@ import { SeoQuery } from "@/queries/sections/seo";
 import { NewsPaginated } from "./client";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 import {
-  absoluteUrl,
   breadcrumbSchema,
   createJsonLd,
+  getLastPathSegment,
+  getPageUrl,
   itemListSchema,
   JsonLdScript,
   webpageSchema,
@@ -110,7 +111,7 @@ export default async function Home({ params, searchParams }) {
       id: `${webPage.url}#posts`,
       items: blogs.map((blog) => ({
         name: blog.title,
-        url: absoluteUrl(`/${blog.slug}`),
+        url: getPageUrl(params.locale, `blog/${getLastPathSegment(blog.slug)}`),
       })),
     }),
   ]);

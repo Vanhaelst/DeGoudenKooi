@@ -4,6 +4,9 @@ export const CompanyData = {
   heroBg: "/hero-bg.png",
   logo_width: 210,
   logo_height: 32,
+  schemaLogo: "/favicons/cropped-pictogram-270x270.png",
+  schemaLogoWidth: 270,
+  schemaLogoHeight: 270,
   socials: {
     linkedin: "https://www.linkedin.com/company/de-gouden-kooi/",
     facebook: "https://www.facebook.com/degoudenkooi/",
