@@ -59,7 +59,7 @@ const query = ({ pathname, language = "nl", token }) => {
   `;
 };
 
-async function getPage({ pathname, language }) {
+async function getPage({ pathname, language, token }) {
   return fetchData(
     query({ pathname, language }),
     {
