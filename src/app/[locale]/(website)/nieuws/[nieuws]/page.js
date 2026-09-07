@@ -1,29 +1,22 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import { fetchData, REVALIDATE } from "@/utils/fetchData";
-import { renderComponents } from "@/utils/renderComponents";
 import { imageQuery } from "@/queries/entries/image";
 import { Hero } from "@/components/molecules/hero/hero";
-import { contentEntry } from "@/queries/entries/content";
-import { featuresEntry } from "@/queries/entries/features";
-import { callToActionEntry } from "@/queries/entries/callToAction";
-import { lightboxEntry } from "@/queries/entries/lightbox";
-import { videoEntry } from "@/queries/entries/video";
-import { Loader } from "@/components/atoms/loader/loader";
 import { LINKS } from "@/enums/links";
 
 import nl from "@/app/[locale]/dictionaries/nl.json";
 import en from "@/app/[locale]/dictionaries/en.json";
-import { SeoQuery } from "@/queries/sections/seo";
 import {
   defaultMetadata,
   getAlternates,
   dutchMetadata,
   englishMetadata,
 } from "@/data/metadata";
-import { seoEntry } from "@/queries/entries/seo";
 import {
   absoluteUrl,
   breadcrumbSchema,
+  cleanText,
   createJsonLd,
   getLanguage,
   getPageUrl,
@@ -37,24 +30,23 @@ import {
 
 const query = ({ pathname, language = "nl", token }) => {
   return `
-        query MyQuery {
-              blog: blogsEntries(slug: "${pathname}", language: "${language}") {
-                  ... on newsItem_Entry {
+        query NewsArticleQuery {
+              article: newsEntries(slug: "${pathname}", language: "${language}") {
+                  ... on article_Entry {
                       id
                       title
-                      shortDescription
+                      description
                       postDate
                       dateUpdated
                       uri
                       slug
                       image ${imageQuery}
-                      
-                      blogsections {
-                       ${featuresEntry}
-                       ${callToActionEntry}
-                       ${contentEntry}
-                       ${videoEntry}
-                       ${lightboxEntry}
+
+                      links {
+                        ... on link_Entry {
+                          title
+                          href
+                        }
                       }
                   }
               }
@@ -76,13 +68,15 @@ async function getPage({ pathname, language, token }) {
 export async function generateMetadata({ params }) {
   const { page } = await fetchData(
     `
-        query MyQuery {
-        page: blogsEntries(slug: "${params.nieuws}", language: "${params.locale}") {
-        ... on newsItem_Entry {
+        query NewsArticleMetadataQuery {
+        page: newsEntries(slug: "${params.nieuws}", language: "${params.locale}") {
+        ... on article_Entry {
                 id
                 title
+                description
+                postDate
+                dateUpdated
                 image ${imageQuery}
-                ${seoEntry}
             }
         }
     }`,
@@ -92,51 +86,59 @@ export async function generateMetadata({ params }) {
     },
   );
 
-  const { title, seoTitle, seoDescription, seoKeywords, seoImage, image } =
-    page?.[0] ?? {};
+  const { title, description, postDate, dateUpdated, image } = page?.[0] ?? {};
 
   const metaData = params.locale === "en" ? englishMetadata : dutchMetadata;
+  const alternates = getAlternates({
+    locale: params.locale,
+    path: `nieuws/${params.nieuws}`,
+  });
+  const metaDescription = cleanText(description) || metaData.description;
+
   return {
     ...defaultMetadata,
-    alternates: getAlternates({
-      locale: params.locale,
-      path: `nieuws/${params.nieuws}`,
-    }),
-    title: seoTitle || title || defaultMetadata.title,
-    description: seoDescription || metaData.description,
-    keywords: seoKeywords || metaData.keywords,
-    images:
-      seoImage?.[0]?.url || image?.[0]?.url || defaultMetadata.openGraph.image,
+    alternates,
+    title: title || defaultMetadata.title,
+    description: metaDescription,
+    keywords: metaData.keywords,
+    images: image?.[0]?.url || defaultMetadata.openGraph.image,
 
     openGraph: {
       ...defaultMetadata.openGraph,
-      title: seoTitle || defaultMetadata.title,
-      description: seoDescription || metaData.description,
-      url: defaultMetadata.openGraph.url,
-      images:
-        seoImage?.[0]?.url ||
-        image?.[0]?.url ||
-        defaultMetadata.openGraph.image,
+      type: "article",
+      title: title || defaultMetadata.title,
+      description: metaDescription,
+      url: alternates.canonical,
+      images: image?.[0]?.url || defaultMetadata.openGraph.image,
+      publishedTime: postDate,
+      modifiedTime: dateUpdated || postDate,
     },
   };
 }
 
 export default async function News({ params, searchParams }) {
-  const { blog } = await getPage({
+  const { article } = await getPage({
     pathname: params.nieuws,
     language: params.locale,
     token: searchParams["x-craft-live-preview"],
   });
 
-  const currentNews = blog?.[0];
-  const {
-    image,
-    title,
-    shortDescription,
-    postDate,
-    dateUpdated,
-    blogsections,
-  } = currentNews || {};
+  const currentNews = article?.[0];
+
+  if (!currentNews) {
+    notFound();
+  }
+
+  const { image, title, description, postDate, dateUpdated, links } =
+    currentNews;
+  const buttons = links
+    ?.filter((link) => link?.href && link?.title)
+    .map((link) => ({
+      callToAction: link.title,
+      href: link.href,
+      target: "external",
+      variant: "primary",
+    }));
 
   const t = params.locale === "en" ? en : nl;
   const pages = [
@@ -148,9 +150,6 @@ export default async function News({ params, searchParams }) {
     { name: title, href: "#", current: true },
   ];
 
-  if (!blog) {
-    return <Loader />;
-  }
   const newsPath = params.locale === "en" ? "news" : "nieuws";
   const path = `${newsPath}/${params.nieuws}`;
   const webPage = webpageSchema({
@@ -202,14 +201,13 @@ export default async function News({ params, searchParams }) {
       <JsonLdScript data={jsonLd} />
       <Hero
         title={title}
-        description={shortDescription}
+        description={description}
+        buttons={buttons}
         type="horizontal"
         backgroundColor="lightGray"
         image={image}
         awards={false}
       />
-
-      {blogsections?.map((section) => renderComponents(section, params.locale))}
       <div className="pb-20" />
     </>
   );
