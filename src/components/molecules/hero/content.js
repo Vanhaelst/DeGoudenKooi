@@ -208,12 +208,13 @@ export const HeroContent = ({
         className="flex flex-col md:flex-row justify-start items-center mx-auto lg:mx-0 space-y-4 md:space-y-0 md:space-x-4 mt-6"
         ref={buttonRef}
       >
-        {buttons?.map(({ href, variant, callToAction }) => {
+        {buttons?.map(({ href, variant, callToAction, target }) => {
           return (
             <Button
               key={href}
               variant={variant}
               href={href}
+              target={target}
               callToAction={callToAction.toUpperCase()}
             />
           );

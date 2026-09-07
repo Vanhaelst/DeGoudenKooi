@@ -14,8 +14,6 @@ import { seoEntry } from "@/queries/entries/seo";
 import ImageWrapper from "@/components/organisms/transparentImage-wrapper";
 import { PageJsonLdScript } from "@/utils/jsonLd";
 
-export const fetchCache = "force-no-store";
-
 async function getPage({ language, token }) {
   return fetchData(
     FixedPageQuery({ page: "reserveEntries", language }),

@@ -1,9 +1,12 @@
 import PopupComponent from "@/components/molecules/popup/popup";
-import { fetchData } from "@/utils/fetchData";
+import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PopupQuery } from "@/queries/sections/popup";
 
 async function getPage({ language }) {
-  return fetchData(PopupQuery({ language }), 0);
+  return fetchData(PopupQuery({ language }), {
+    revalidate: REVALIDATE,
+    tags: ["popup", `language-${language}`],
+  });
 }
 
 export default async function Popup({ locale }) {

@@ -409,6 +409,31 @@ const nextConfig = {
         permanent: true,
         destination: "/nl/boeking",
       },
+      {
+        source: "/shop.html",
+        permanent: true,
+        destination: "/nl/shop",
+      },
+      {
+        source: "/apple-touch-icon.png",
+        permanent: true,
+        destination: "/favicons/cropped-pictogram-180x180.png",
+      },
+      {
+        source: "/apple-touch-icon-precomposed.png",
+        permanent: true,
+        destination: "/favicons/cropped-pictogram-180x180.png",
+      },
+      {
+        source: "/en/nieuws/:nieuws",
+        permanent: true,
+        destination: "/en/news/:nieuws",
+      },
+      {
+        source: "/nl/news/:nieuws",
+        permanent: true,
+        destination: "/nl/nieuws/:nieuws",
+      },
       /*------------------------------- De Nekker -------------------------------*/
       {
         source: "/de-nekker-escape-wandeling-locatie1",
