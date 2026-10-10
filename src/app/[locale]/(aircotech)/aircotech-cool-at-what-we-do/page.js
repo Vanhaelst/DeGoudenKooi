@@ -97,7 +97,7 @@ export default async function Home({ params }) {
               <a
                 href="#contact"
                 key={service.title}
-                className="bg-white p-8 shadow-2xl hover:scale-110 transition-all cursor-pointer"
+                className="bg-white p-8 shadow-2xl hover:scale-110 transition-all cursor-pointer relative"
               >
                 <Image
                   src={service.image[0].url}
@@ -118,7 +118,7 @@ export default async function Home({ params }) {
                   level="sm"
                   text={service.description}
                 />
-                <div className="flex justify-center relative -bottom-12">
+                <div className="flex justify-center absolute bottom-[-24px] left[calc(50%-98px)]">
                   <button
                     className={clsx(
                       "rounded-full px-6 py-3 uppercase font-semibold tracking-wide",
