@@ -118,7 +118,7 @@ export default async function Home({ params }) {
                   level="sm"
                   text={service.description}
                 />
-                <div className="flex justify-center absolute bottom-[-24px] left[calc(50%-98px)]">
+                <div className="flex justify-center absolute bottom-[-24px] left-[calc(50%_-_98px)]">
                   <button
                     className={clsx(
                       "rounded-full px-6 py-3 uppercase font-semibold tracking-wide",
