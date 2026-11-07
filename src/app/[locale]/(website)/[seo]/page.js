@@ -1,4 +1,5 @@
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { LOCALES } from "@/enums/locales";
 import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { renderComponents } from "@/utils/renderComponents";
 import { SeoQuery } from "@/queries/sections/seoPage";
@@ -21,6 +22,10 @@ async function getPage({ language, url, token }) {
 }
 
 export async function generateMetadata({ params }) {
+  if (!Object.values(LOCALES).includes(params.locale)) {
+    notFound();
+  }
+
   const { page } = await fetchData(
     `query MyQuery {
       page: seoPagesEntries(slug:"${params.seo}", language: "${params.locale}") {
@@ -61,6 +66,10 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Home({ params, searchParams }) {
+  if (!Object.values(LOCALES).includes(params.locale)) {
+    notFound();
+  }
+
   const { page } = await getPage({
     language: params.locale,
     url: params.seo,

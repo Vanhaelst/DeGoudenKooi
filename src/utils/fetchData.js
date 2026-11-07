@@ -1,9 +1,14 @@
 const DEFAULT_CRAFT_API_URL = "https://degoudenkooi.pluxit.be/web/api";
 const DEFAULT_REVALIDATE_SECONDS = 3600;
-const DEFAULT_TIMEOUT_MS = 6000;
+// Craft normally answers within 0.2-0.6 s. Two attempts of 4 s (plus a short
+// pause) stay well below the 15 s function limit on Vercel, also when a page
+// needs two Craft requests one after the other.
+const DEFAULT_TIMEOUT_MS = 4000;
+const DEFAULT_TOTAL_BUDGET_MS = 8500;
 const MAX_ATTEMPTS = 2;
 const MAX_MEMORY_ENTRIES = 60;
-const RETRY_DELAY_MS = 150;
+const MIN_ATTEMPT_MS = 1000;
+const RETRY_DELAY_MS = 250;
 
 const lastSuccessfulResponses = new Map();
 
@@ -44,21 +49,22 @@ function getRequestOptions(options) {
   };
 }
 
-function getTimeoutMs() {
-  const configuredTimeout = Number.parseInt(
-    process.env.CRAFT_API_TIMEOUT_MS || "",
-    10,
-  );
+function getPositiveIntegerFromEnv(name, fallback) {
+  const configured = Number.parseInt(process.env[name] || "", 10);
 
-  return Number.isFinite(configuredTimeout) && configuredTimeout > 0
-    ? configuredTimeout
-    : DEFAULT_TIMEOUT_MS;
+  return Number.isFinite(configured) && configured > 0 ? configured : fallback;
 }
 
 function getOperationName(graphql) {
   return (
     graphql.match(/\b(?:query|mutation)\s+([A-Za-z0-9_]+)/)?.[1] || "anonymous"
   );
+}
+
+// Next.js uses errors with a digest (redirect, notFound, dynamic usage) for
+// its own control flow. Those must never be treated as a Craft outage.
+function isNextInternalError(error) {
+  return typeof error?.digest === "string";
 }
 
 function rememberSuccessfulResponse(key, data) {
@@ -74,9 +80,16 @@ function rememberSuccessfulResponse(key, data) {
   }
 }
 
-async function requestCraftApi({ graphql, revalidate, tags, token }) {
+async function requestCraftApi({
+  graphql,
+  timeoutMs,
+  token,
+  useFetchCache,
+  revalidate,
+  tags,
+}) {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), getTimeoutMs());
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
   const craftUrl = process.env.CRAFT_API_URL || DEFAULT_CRAFT_API_URL;
 
   const headers = {
@@ -94,7 +107,9 @@ async function requestCraftApi({ graphql, revalidate, tags, token }) {
     signal: controller.signal,
   };
 
-  if (typeof window === "undefined") {
+  // Inside the durable cache (see loadWithLastKnownGood) Next.js already
+  // bypasses the fetch cache, so no cache options are passed there.
+  if (typeof window === "undefined" && useFetchCache) {
     if (token || revalidate === 0) {
       requestOptions.cache = "no-store";
     } else {
@@ -135,6 +150,10 @@ async function requestCraftApi({ graphql, revalidate, tags, token }) {
 
     return json.data;
   } catch (error) {
+    if (isNextInternalError(error)) {
+      throw error;
+    }
+
     if (error?.name === "AbortError") {
       throw new CraftApiError("Craft API request timed out", {
         code: "timeout",
@@ -156,35 +175,50 @@ async function requestCraftApi({ graphql, revalidate, tags, token }) {
   }
 }
 
-export async function fetchData(
+// Asks Craft at most MAX_ATTEMPTS times within one overall time budget.
+// Only temporary problems (time-out, network, 5xx, invalid JSON) are retried.
+async function loadFromCraft({
   graphql,
-  options = { revalidate: REVALIDATE, tags: [] },
+  operation,
+  tags,
   token,
-) {
-  const { revalidate, tags } = getRequestOptions(options);
-  const cacheKey = graphql.trim();
-  const operation = getOperationName(graphql);
+  useFetchCache,
+  revalidate,
+}) {
+  const timeoutMs = getPositiveIntegerFromEnv(
+    "CRAFT_API_TIMEOUT_MS",
+    DEFAULT_TIMEOUT_MS,
+  );
+  const budgetMs = getPositiveIntegerFromEnv(
+    "CRAFT_API_TOTAL_BUDGET_MS",
+    DEFAULT_TOTAL_BUDGET_MS,
+  );
+  const deadline = Date.now() + budgetMs;
   let lastError;
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     const startedAt = Date.now();
 
     try {
-      const data = await requestCraftApi({
+      return await requestCraftApi({
         graphql,
+        timeoutMs: Math.min(timeoutMs, Math.max(deadline - startedAt, 0)),
+        token,
+        useFetchCache,
         revalidate,
         tags,
-        token,
       });
-
-      if (!token) {
-        rememberSuccessfulResponse(cacheKey, data);
+    } catch (error) {
+      if (isNextInternalError(error)) {
+        throw error;
       }
 
-      return data;
-    } catch (error) {
       lastError = error;
-      const willRetry = error.retryable && attempt < MAX_ATTEMPTS;
+      const remainingMs = deadline - Date.now() - RETRY_DELAY_MS;
+      const willRetry =
+        error.retryable &&
+        attempt < MAX_ATTEMPTS &&
+        remainingMs >= MIN_ATTEMPT_MS;
 
       console.warn("Craft API request issue", {
         operation,
@@ -205,24 +239,101 @@ export async function fetchData(
     }
   }
 
-  if (!token && lastSuccessfulResponses.has(cacheKey)) {
-    console.warn("Serving the last successful Craft API response", {
-      operation,
-      tags,
-      code: lastError?.code || "unknown",
-      causeCode: lastError?.causeCode,
-    });
+  throw lastError;
+}
 
-    return lastSuccessfulResponses.get(cacheKey);
+// Stale-if-error: only a valid Craft answer is stored in the Next.js data
+// cache (shared by all serverless instances). When the stored copy is older
+// than `revalidate`, Next.js serves it right away and refreshes it in the
+// background. If that refresh fails, the last good copy stays in place
+// instead of a 500. With a plain fetch, a 200 response with GraphQL errors
+// would be cached for an hour as well.
+async function loadWithLastKnownGood({
+  graphql,
+  cacheKey,
+  operation,
+  revalidate,
+  tags,
+}) {
+  // Server only: this check keeps next/cache out of the browser bundle.
+  if (typeof window === "undefined") {
+    const { unstable_cache } = await import("next/cache");
+
+    return unstable_cache(
+      () =>
+        loadFromCraft({
+          graphql,
+          operation,
+          tags,
+          useFetchCache: false,
+        }),
+      ["craft-graphql", cacheKey],
+      { revalidate, tags },
+    )();
   }
 
-  console.error("Craft API unavailable and no fallback is cached", {
-    operation,
-    tags,
-    code: lastError?.code || "unknown",
-    causeCode: lastError?.causeCode,
-    status: lastError?.status,
-  });
+  return loadFromCraft({ graphql, operation, tags, useFetchCache: true });
+}
 
-  throw lastError;
+export async function fetchData(
+  graphql,
+  options = { revalidate: REVALIDATE, tags: [] },
+  token,
+) {
+  const { revalidate, tags } = getRequestOptions(options);
+  const cacheKey = graphql.trim();
+  const operation = getOperationName(graphql);
+  const isServer = typeof window === "undefined";
+  const canUseLastKnownGood = isServer && !token;
+
+  try {
+    const data =
+      canUseLastKnownGood && revalidate !== 0
+        ? await loadWithLastKnownGood({
+            graphql,
+            cacheKey,
+            operation,
+            revalidate,
+            tags,
+          })
+        : await loadFromCraft({
+            graphql,
+            operation,
+            tags,
+            token,
+            useFetchCache: true,
+            revalidate,
+          });
+
+    if (canUseLastKnownGood) {
+      rememberSuccessfulResponse(cacheKey, data);
+    }
+
+    return data;
+  } catch (error) {
+    if (isNextInternalError(error)) {
+      throw error;
+    }
+
+    if (canUseLastKnownGood && lastSuccessfulResponses.has(cacheKey)) {
+      console.warn("Serving the last successful Craft API response", {
+        operation,
+        tags,
+        code: error?.code || "unknown",
+        causeCode: error?.causeCode,
+      });
+
+      return lastSuccessfulResponses.get(cacheKey);
+    }
+
+    console.error("Craft API unavailable and no fallback is cached", {
+      operation,
+      tags,
+      code: error?.code || "unknown",
+      causeCode: error?.causeCode,
+      status: error?.status,
+    });
+
+    throw error;
+  }
 }

@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+import { LOCALES } from "@/enums/locales";
 import { fetchData, REVALIDATE } from "@/utils/fetchData";
 import { PageQuery } from "@/queries/sections/page";
 import { renderComponents } from "@/utils/renderComponents";
@@ -30,6 +32,10 @@ async function getPage({ language, token }) {
 }
 
 export async function generateMetadata({ params }) {
+  if (!Object.values(LOCALES).includes(params.locale)) {
+    notFound();
+  }
+
   const { page } = await fetchData(
     SeoQuery({ page: "homeEntries", language: params.locale || "nl" }),
   );
@@ -56,6 +62,10 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Home({ params, searchParams }) {
+  if (!Object.values(LOCALES).includes(params.locale)) {
+    notFound();
+  }
+
   const { page } = await getPage({
     language: params.locale,
     token: searchParams["x-craft-live-preview"],

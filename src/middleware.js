@@ -62,6 +62,15 @@ const PUBLIC_ROOT_FILES = new Set([
 
 const PUBLIC_ROOT_DIRECTORIES = new Set(["aircotech", "favicons", "tippagina"]);
 
+// Existing route handlers in src/app/api. Any other /api path would end up in
+// the [locale] catch-all route and trigger a Craft request that fails.
+const API_ROUTES = new Set(["brevo", "preview", "verify-captcha"]);
+
+// Paths under /.well-known that Vercel itself may use. Everything else there
+// (traffic-advice, assetlinks.json, security.txt, ...) does not exist on this
+// site and gets a plain 404.
+const WELL_KNOWN_PASSTHROUGH = new Set(["acme-challenge", "vercel"]);
+
 function notFoundResponse() {
   return new NextResponse("Not found", {
     status: 404,
@@ -84,13 +93,24 @@ export function middleware(request) {
     return notFoundResponse();
   }
 
-  const [rootPath] = pathSegments;
+  const [rootPath, secondPath] = pathSegments;
+
+  if (rootPath === ".well-known") {
+    return WELL_KNOWN_PASSTHROUGH.has(secondPath)
+      ? NextResponse.next()
+      : notFoundResponse();
+  }
+
+  if (rootPath === "api") {
+    return API_ROUTES.has(secondPath)
+      ? NextResponse.next()
+      : notFoundResponse();
+  }
 
   if (
     ALLOWED_ROOT_PATHS.has(rootPath) ||
     PUBLIC_ROOT_DIRECTORIES.has(rootPath) ||
-    PUBLIC_ROOT_FILES.has(rootPath) ||
-    rootPath === ".well-known"
+    PUBLIC_ROOT_FILES.has(rootPath)
   ) {
     return NextResponse.next();
   }
