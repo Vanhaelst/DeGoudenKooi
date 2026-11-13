@@ -2,15 +2,15 @@ export const defaultMetadata = {
   title: "Escape room Mechelen - De Gouden Kooi",
   robots: process.env.NEXT_PUBLIC_META_ROBOTS,
   icons: "/favicons/cropped-pictogram-32x32.png",
-  canonicalUrl: "https://degoudenkooi.be/",
+  canonicalUrl: "https://www.degoudenkooi.be/nl",
   "theme-color": "#987222",
   openGraph: {
     type: "website",
-    url: "https://degoudenkooi.be/",
+    url: "https://www.degoudenkooi.be/nl",
     siteName: "De Gouden Kooi",
     image: [
       {
-        url: "https://degoudenkooi.be/share_image_DGK.jpg",
+        url: "https://www.degoudenkooi.be/share_image_DGK.jpg",
         width: 1080,
         height: 630,
       },

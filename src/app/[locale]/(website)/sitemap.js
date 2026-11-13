@@ -32,7 +32,7 @@ const staticPages = [
 const sitemapEntry = ({
   locale,
   path,
-  lastModified = new Date(),
+  lastModified,
   changeFrequency = "monthly",
   priority = 0.5,
 }) => {
@@ -51,6 +51,13 @@ const sitemapEntry = ({
 
 const toEntryDate = (entry) =>
   entry?.dateUpdated || entry?.postDate || new Date();
+
+const latestDate = (entries = []) =>
+  entries
+    .map((entry) => entry?.dateUpdated)
+    .filter(Boolean)
+    .sort()
+    .pop();
 
 const stripLocaleFromUri = (uri = "") => uri.replace(/^(nl|en)\//, "");
 
@@ -78,6 +85,16 @@ async function getWebsiteEntries(language) {
             id
             slug
             uri
+            dateUpdated
+          }
+        }
+        faqPage: faqPageEntries(language: "${language}") {
+          ... on page_Entry {
+            dateUpdated
+          }
+        }
+        faqItems: faqEntries(language: "${language}") {
+          ... on faq_Entry {
             dateUpdated
           }
         }
@@ -124,8 +141,18 @@ export default async function sitemap() {
     })),
   );
 
-  const staticEntries = locales.flatMap((locale) =>
-    staticPages.map((page) => sitemapEntry({ locale, ...page })),
+  const staticEntries = entriesByLocale.flatMap(
+    ({ locale, faqPage = [], faqItems = [] }) => {
+      const faqLastModified = latestDate([...faqPage, ...faqItems]);
+
+      return staticPages.map((page) =>
+        sitemapEntry({
+          locale,
+          ...page,
+          lastModified: page.path === "faq" ? faqLastModified : undefined,
+        }),
+      );
+    },
   );
 
   const seoPageEntries = entriesByLocale.flatMap(({ locale, seoPages = [] }) =>

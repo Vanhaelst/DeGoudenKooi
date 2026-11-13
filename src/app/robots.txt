@@ -1,7 +1,35 @@
 User-Agent: *
 Allow: /
 
+# AI search and assistant crawlers are explicitly welcome
 User-Agent: OAI-SearchBot
+Allow: /
+
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: ChatGPT-User
+Allow: /
+
+User-Agent: ClaudeBot
+Allow: /
+
+User-Agent: Claude-SearchBot
+Allow: /
+
+User-Agent: Claude-User
+Allow: /
+
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: Perplexity-User
+Allow: /
+
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://www.degoudenkooi.be/sitemap.xml
